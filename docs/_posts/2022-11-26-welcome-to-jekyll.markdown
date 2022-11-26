@@ -1,29 +1,30 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Testing!"
 date:   2022-11-26 14:28:28 +0000
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+# WhateverWe'reCallingThisGame by Team24™
 
-Jekyll requires blog post files to be named according to the following format:
+Excitement! Knives! Burgers! The University Of York's Piazza Building! Salad!!!
 
-`YEAR-MONTH-DAY-title.MARKUP`
+It's all here, in Team24™'s hit new game: WhateverThisThingIsCalled!!!!!!
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+## Images 
+Not yet sold on Team24™'s finest work? Have some images of the game! 
 
-Jekyll also offers powerful support for code snippets:
+\[put these in once they're done\]
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+## Downloads 
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+Download our game ->HERE<- 
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+Requires Java 11
+
+## Instructions
+
+Documentation can be found ->HERE<-
+
+## Developer Information
+
+Want to develop our game more? Information for devs is ->HERE<-
