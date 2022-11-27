@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: default
 title:  "Testing!"
 date:   2022-11-26 14:28:28 +0000
-categories: jekyll update
 ---
 # WhateverWe'reCallingThisGame by Team24™
 
