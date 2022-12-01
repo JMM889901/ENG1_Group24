@@ -15,19 +15,31 @@ Project starts 2022-11-10
 [User requirements] -> [Functional requirements]
 [User requirements] -> [Non-functional requirements]
 [Eliciting requirements] on {Joe} starts 2022-11-29 and lasts 5 days
+note bottom
+Low priority
+end note
 [Finish requirements document] happens at 2023-1-23
 --Website--
 [Website development] on {Emily} starts 2022-11-24 and lasts 1 week
+note bottom
+Low priority
+end note
 [Finish website] happens at 2023-1-23
 --Method Selection and Planning--
 [Write up Methods and planning section] on {Louise} starts 2022-11-24
 [Write up Methods and planning section] ends 2022-11-28
 [Work on Gantt chart] on {Louise} starts 2022-11-24
 [Work on Gantt chart] ends 2022-12-12
+note bottom
+Low priority
+end note
 [Finish methods and planning document] happens at 2023-1-23
 --Risk Assessment and Mitigation--
 [Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
 [Finish risk assessment] on {Alan} starts 2022-11-29 and lasts 2 days
+note bottom 
+High priority
+end note
 [Review risk assessment] on {Louise} starts 2022-12-1 and lasts 1 day
 [Finish risk assessment document] happens at 2023-1-23
 --Implementation--
@@ -38,12 +50,17 @@ Project starts 2022-11-10
 [Sort game engine/asset stuff] on {Joss} starts 2022-11-29 and lasts 5 days
 [Implementation] on {Joss} {Josh} {Amber} starts 2022-12-1
 [Implementation] ends 2023-1-8
+note bottom
+High priority
+end note
+[Start getting tests] on {Josh} starts 2022-12-1 and lasts 1 week
 [Finish implementation document] happens at 2023-1-23
 --Architecture--
 [Writing up document for Architecture] on {Emily} starts 2022-11-29 and lasts 5 days
+note bottom 
+Low priority
+end note
 [Finish architecture document] happens at 2023-1-23
 --Bug Snagging--
 [Bug testing] on {all} starts 2023-1-18 and lasts 14 days
 @endgantt
-
-
