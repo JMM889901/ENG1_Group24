@@ -1,2 +1,19 @@
-- name: Generate Plantuml
-  uses: grassedge/generate-plantuml-action@v1.5
+name: generate plantuml
+on:
+  push:
+    branches:
+      - plantuml
+jobs:
+  generate_plantuml:
+    runs-on: ubuntu-latest
+    name: plantuml
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: plantuml
+        id: plantuml
+        uses: grassedge/generate-plantuml-action@master
+        with:
+          path: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
