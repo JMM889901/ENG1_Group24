@@ -1,0 +1,49 @@
+@startgantt
+Project starts 2022-11-10
+[Team intro] happens at 2022-11-10
+[Assessment 1 due] happens at 2023-2-1
+[Christmas Holidays] starts 2022-12-3
+[Christmas Holidays] ends 2023-1-8
+[Christmas Holidays] is colored in Fuchsia/FireBrick
+[Submit everything] happens at 2023-1-27
+--Requirements Elicitation--
+[Make interview questions] on {all} lasts 13 days
+[Interview] happens at 2022-11-22
+[User requirements] on {all} starts 2022-11-17 and lasts 6 days
+[Functional requirements] on {Joe} {Joss} {Emily} lasts 4 days
+[Non-functional requirements] on {Josh} {Amber} {Louise} lasts 4 days
+[User requirements] -> [Functional requirements]
+[User requirements] -> [Non-functional requirements]
+[Eliciting requirements] on {Joe} starts 2022-11-29 and lasts 5 days
+[Finish requirements document] happens at 2023-1-23
+--Website--
+[Website development] on {Emily} starts 2022-11-24 and lasts 1 week
+[Finish website] happens at 2023-1-23
+--Method Selection and Planning--
+[Write up Methods and planning section] on {Louise} starts 2022-11-24
+[Write up Methods and planning section] ends 2022-11-28
+[Work on Gantt chart] on {Louise} starts 2022-11-24
+[Work on Gantt chart] ends 2022-12-12
+[Finish methods and planning document] happens at 2023-1-23
+--Risk Assessment and Mitigation--
+[Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
+[Finish risk assessment] on {Alan} starts 2022-11-29 and lasts 2 days
+[Review risk assessment] on {Louise} starts 2022-12-1 and lasts 1 day
+[Finish risk assessment document] happens at 2023-1-23
+--Implementation--
+[Started creating classes] on {Joss} {Josh} {Amber} starts 2022-11-24 and lasts 2 weeks
+[Started creating and importing diagrams for code] on {Joss} {Amber} starts 2022-11-29
+[Get visuals/sprites] on {Amber} starts 2022-11-29
+[Get visuals/sprites] ends 2022-11-30
+[Sort game engine/asset stuff] on {Joss} starts 2022-11-29 and lasts 5 days
+[Implementation] on {Joss} {Josh} {Amber} starts 2022-12-1
+[Implementation] ends 2023-1-8
+[Finish implementation document] happens at 2023-1-23
+--Architecture--
+[Writing up document for Architecture] on {Emily} starts 2022-11-29 and lasts 5 days
+[Finish architecture document] happens at 2023-1-23
+--Bug Snagging--
+[Bug testing] on {all} starts 2023-1-18 and lasts 14 days
+@endgantt
+
+
