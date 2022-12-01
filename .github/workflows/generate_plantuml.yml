@@ -2,7 +2,7 @@ name: generate plantuml
 on:
   push:
     branches:
-      - plantuml
+      - "**"
 jobs:
   generate_plantuml:
     runs-on: ubuntu-latest
