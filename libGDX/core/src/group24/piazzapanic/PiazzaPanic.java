@@ -1,13 +1,15 @@
-package com.mygdx.game;
+package group24.piazzapanic;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class PiazzaPanic extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+
+	private String state = "menu_main";
 	
 	@Override
 	public void create () {
@@ -17,7 +19,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
