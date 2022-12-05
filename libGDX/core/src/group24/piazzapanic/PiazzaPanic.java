@@ -19,12 +19,14 @@ public class PiazzaPanic extends ApplicationAdapter {
 
 	private String state;
 	private ArrayList<Menu> menus = new ArrayList<Menu>();
-	
+
 	@Override
-	public void create () {
+	public void create() {
 		// In desktop/build/src/group24/piazzapanic/DesktopLauncher.java:
-		// `config.setResizable(false)` has been added, so the user can't drag to resize.
-		// This line sets the size of the window, which shall not change during the game.
+		// `config.setResizable(false)` has been added, so the user can't drag to
+		// resize.
+		// This line sets the size of the window, which shall not change during the
+		// game.
 		Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
 
 		FontHandler.create();
@@ -33,19 +35,21 @@ public class PiazzaPanic extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 
 		menus.add(MenuFactory.createMainMenu());
+		// menus.add(MenuFactory.createCoordGrid());
+		// menus.add(MenuFactory.createPinTest());
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 		ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
 		Base.batch.begin();
-		//Base.batch.draw(img, 0, 0);
+		// Base.batch.draw(img, 0, 0);
 		menus.get(0).render();
 		Base.batch.end();
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 		Base.batch.dispose();
 		FontHandler.dispose();
 		img.dispose();

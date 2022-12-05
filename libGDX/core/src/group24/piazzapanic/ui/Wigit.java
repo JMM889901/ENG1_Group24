@@ -12,16 +12,23 @@ public abstract class Wigit {
         this.location = relativeLocation.translateToAbsoluteLocation();
     }
 
-    /** Activated when the wigit is clicked, requires implementation by child classes. */
+    /**
+     * Activated when the wigit is clicked, requires implementation by child
+     * classes.
+     */
     public void click() {
         System.out.println("Unimplemented Wigit click method has been called!");
     }
-    
+
     public void update() {
 
     }
 
     public void render() {
+
+    }
+
+    public void pin(int pin) {
 
     }
 }
