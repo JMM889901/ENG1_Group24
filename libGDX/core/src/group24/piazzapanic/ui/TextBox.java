@@ -11,13 +11,13 @@ import group24.piazzapanic.maths.Vector2;
 public class TextBox extends Wigit {
     private String text;
     private Color colour;
-    private BitmapFont format;
+    private BitmapFont textFormat;
 
     public TextBox(String wigitID, Vector2 relativeLocation, String text, Color backGroundColour, BitmapFont textFormat) {
         super(wigitID, relativeLocation);
         this.text = text;
         this.colour = colour;
-        format = textFormat;
+        this.textFormat = textFormat;
     }
 
     @Override
@@ -28,6 +28,6 @@ public class TextBox extends Wigit {
     @Override
     public void render() {
         //FontHandler.typeface.setColor(textColour);
-        FontHandler.typeface.draw(Base.batch, text, location.x, location.y);
+        textFormat.draw(Base.batch, text, location.x, location.y);
     }
 }

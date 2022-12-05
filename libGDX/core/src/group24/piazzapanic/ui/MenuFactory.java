@@ -13,7 +13,7 @@ public class MenuFactory {
     public static Menu createMainMenu() {
         Menu mainMenu = new Menu("mainMenu");
 
-        TextBox title = new TextBox("txt_title", new Vector2(0.0f, 0.5f), "Piazza Panic", Color.WHITE, FontHandler.typeface);
+        TextBox title = new TextBox("txt_title", new Vector2(0.175f, 0.5f), "Piazza Panic", Color.WHITE, FontHandler.titleFormat);
 
         mainMenu.addWigit(title);
 
