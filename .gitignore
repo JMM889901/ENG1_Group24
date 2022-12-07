@@ -1,3 +1,7 @@
 .vscode/
 .vs/
 .gradle/
+libGDX/run.sh
+libGDX/conf_git.sh
+libGDX/clone.sh
+libGDX/commit.sh
