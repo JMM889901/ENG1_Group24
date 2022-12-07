@@ -41,7 +41,7 @@ public class PiazzaPanic extends ApplicationAdapter {
 		// game.
 		// Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
 
-		viewport = new ScreenViewport();
+		viewport = new ExtendViewport(1280, 720);
 		viewport.getCamera().position.set(640, 360, 0);
 
 		FontHandler.create();
