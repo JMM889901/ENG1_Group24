@@ -39,11 +39,10 @@ public class PiazzaPanic extends ApplicationAdapter {
 		// resize.
 		// This line sets the size of the window, which shall not change during the
 		// game.
-		// Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
 
 		viewport = new ExtendViewport(1280, 720);
-		viewport.getCamera().position.set(640, 360, 0);
-
+		viewport.getCamera().position.set(1280 / 2, 720 / 2, 0);
+		Gdx.graphics.setWindowedMode(1280, 720);
 		FontHandler.create();
 
 		Base.batch = new SpriteBatch();
