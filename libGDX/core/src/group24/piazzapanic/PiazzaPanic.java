@@ -34,31 +34,29 @@ public class PiazzaPanic extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		Base.init();
 		// In desktop/build/src/group24/piazzapanic/DesktopLauncher.java:
 		// `config.setResizable(false)` has been added, so the user can't drag to
 		// resize.
 		// This line sets the size of the window, which shall not change during the
 		// game.
 
-		viewport = new ExtendViewport(1280, 720);
-		viewport.getCamera().position.set(1280 / 2, 720 / 2, 0);
-		Gdx.graphics.setWindowedMode(1280, 720);
+		viewport = new ExtendViewport(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
+		viewport.getCamera().position.set(Base.WINDOW_WIDTH / 2, Base.WINDOW_HEIGHT / 2, 0);
+		// position.set() accepts floats.
+		
+		Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
 		FontHandler.create();
 
 		Base.batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 
-		// menus.add(MenuFactory.createMainMenu());
-		menus.add(MenuFactory.createCoordGrid());
+		menus.add(MenuFactory.createMainMenu());
+		menus.add(MenuFactory.createOptionsMenu());
+		//menus.add(MenuFactory.createCoordGrid());
 		// menus.add(MenuFactory.createPinTest());
 
 	}
-
-	// @Override
-	// public void resize(int width, int height) {
-	// viewport.update(width, height, true);
-	// camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-	// }
 
 	@Override
 	public void render() {
@@ -67,8 +65,8 @@ public class PiazzaPanic extends ApplicationAdapter {
 		Base.batch.setProjectionMatrix(viewport.getCamera().combined);
 		Base.batch.begin();
 
-		Base.batch.draw(img, 0, 0);
-		menus.get(0).render();
+		//Base.batch.draw(img, 0, 0);
+		menus.get(1).render();
 		Base.batch.end();
 	}
 
