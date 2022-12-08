@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 public class FontHandler {
     public static final String FONT_PATH = "fonts/liberation-serif/LiberationSerif-Regular.ttf";
     public static BitmapFont titleFormat;
-    // Used for ui tests, just smaller title format to fit more on the screen
+    public static BitmapFont subtitleFormat;
     public static BitmapFont testFormat;
 
     public static void create() {
@@ -24,6 +24,11 @@ public class FontHandler {
         parameter.size = 40;
         parameter.color = Color.BLACK;
         titleFormat = generator.generateFont(parameter);
+        
+        parameter.size = 25;
+        subtitleFormat = generator.generateFont(parameter);
+
+
         parameter.size = 10;
         testFormat = generator.generateFont(parameter);
         generator.dispose();
