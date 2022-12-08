@@ -18,11 +18,11 @@ public class MenuFactory {
     public static Menu createMainMenu() {
         Menu mainMenu = new Menu("mainMenu");
 
-        TextBox title = new TextBox("txt_title", new Vector2(0.5f, 0.5f), "=Piazza Panic=", Color.WHITE,
-                FontHandler.titleFormat, Align.CENTRE);
-        
-        TextBox title2 = new TextBox("txt_title2", new Vector2(0.5f, 0.5f), "ciazzi PanaP", Color.WHITE,
-                FontHandler.titleFormat, Align.TOPLEFT);
+        TextBox title = new TextBox("txt_title", new Vector2(0.5f, 0.5f), "=Piazza Panic=",
+                Color.WHITE, FontHandler.titleFormat, Align.CENTRE);
+
+        TextBox title2 = new TextBox("txt_title2", new Vector2(0.5f, 0.5f), "ciazzi PanaP",
+                Color.WHITE, FontHandler.titleFormat, Align.TOPLEFT);
 
         mainMenu.addWigit(title);
         mainMenu.addWigit(title2);
@@ -33,8 +33,8 @@ public class MenuFactory {
     public static Menu createOptionsMenu() {
         Menu optionsMenu = new Menu("optionsMenu");
 
-        TextBox title = new TextBox("txt_optionstitle", new Vector2(0.5f, 0.8f), "Options", Color.WHITE,
-                FontHandler.subtitleFormat);
+        TextBox title = new TextBox("txt_optionstitle", new Vector2(0.5f, 0.8f), "Options",
+                Color.WHITE, FontHandler.subtitleFormat);
 
         optionsMenu.addWigit(title);
 

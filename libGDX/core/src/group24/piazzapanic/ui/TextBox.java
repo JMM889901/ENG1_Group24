@@ -12,12 +12,10 @@ import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.Align;
 
 public class TextBox extends Textable {
-    // Im definitely forgetting the better way to do this
-    //      I think I've done the 'better' way, it certainly handles much nicer but I don't like the bulk static final ints. - Joss
-    // Used by constructor to alter coords based on text size
     private Color colour;
 
-    public TextBox(String wigitID, Vector2 relativeLocation, String text, Color backGroundColour, BitmapFont textFormat, int textAlignment) {
+    public TextBox(String wigitID, Vector2 relativeLocation, String text, Color backGroundColour,
+            BitmapFont textFormat, int textAlignment) {
         super(wigitID, relativeLocation);
         this.text = text;
         this.colour = colour;
@@ -26,7 +24,8 @@ public class TextBox extends Textable {
         alignText();
     }
 
-    public TextBox(String wigitID, Vector2 relativeLocation, String text, Color backGroundColour, BitmapFont textFormat) {
+    public TextBox(String wigitID, Vector2 relativeLocation, String text, Color backGroundColour,
+            BitmapFont textFormat) {
         // Just make use of the other constructor, but textAlign is CENTRE by default.
         this(wigitID, relativeLocation, text, backGroundColour, textFormat, Align.CENTRE);
     }
