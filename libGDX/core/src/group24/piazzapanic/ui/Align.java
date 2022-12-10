@@ -16,7 +16,7 @@ public class Align {
     public static final int BOTTOMLEFT = 31;
     public static final int BOTTOM = 32;
     public static final int BOTTOMRIGHT = 33;
-    
+
     public static final int COLUMN_LEFT = 1;
     public static final int COLUMN_CENTRE = 2;
     public static final int COLUMN_RIGHT = 3;

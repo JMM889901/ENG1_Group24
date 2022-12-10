@@ -15,6 +15,7 @@ public class FontHandler {
     public static BitmapFont titleFormat;
     public static BitmapFont subtitleFormat;
     public static BitmapFont testFormat;
+    public static BitmapFont textButtonFormat;
 
     public static void create() {
         // Full disclosure, this bit of code is more or less copied from the
@@ -24,12 +25,16 @@ public class FontHandler {
         parameter.size = 40;
         parameter.color = Color.BLACK;
         titleFormat = generator.generateFont(parameter);
-        
+
         parameter.size = 25;
         subtitleFormat = generator.generateFont(parameter);
 
+        parameter.size = 25;
+        parameter.color = Color.WHITE;
+        textButtonFormat = generator.generateFont(parameter);
 
         parameter.size = 10;
+        parameter.color = Color.BLACK;
         testFormat = generator.generateFont(parameter);
         generator.dispose();
     }
