@@ -5,3 +5,4 @@ libGDX/run.sh
 libGDX/conf_git.sh
 libGDX/clone.sh
 libGDX/commit.sh
+libGDX/eclipse-formatter.xml
