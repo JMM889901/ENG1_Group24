@@ -19,7 +19,7 @@ import group24.piazzapanic.ui.Menu;
 import group24.piazzapanic.ui.MenuFactory;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.ui.FontHandler;
-import group24.piazzapanic.ui.stageManager;;
+import group24.piazzapanic.ui.StageManager;;
 
 public class PiazzaPanic extends ApplicationAdapter {
     Texture img;
@@ -32,7 +32,7 @@ public class PiazzaPanic extends ApplicationAdapter {
     Viewport viewport;
     Stage stage;
     TextButton button;
-    stageManager stageManager;
+    StageManager stageManager;
 
     @Override
     public void create() {
@@ -53,7 +53,7 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
-        stageManager = new stageManager();
+        stageManager = new StageManager();
         //menus.add(MenuFactory.createMainMenu());
         //menus.add(MenuFactory.createOptionsMenu());
         // menus.add(MenuFactory.createCoordGrid());
@@ -71,7 +71,7 @@ public class PiazzaPanic extends ApplicationAdapter {
 
     @Override
     public void render() {
-        ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
+        ScreenUtils.clear(1f, 0.8f, 0.5f, 1);
         viewport.apply();
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
         Base.batch.begin();
