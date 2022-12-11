@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture; // This isn't needed yet, but will be when implementing images.
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,6 +25,9 @@ import group24.piazzapanic.ui.TextBox;
 import group24.piazzapanic.maths.Vector2;
 
 /** This class is just a repository of all the methods to generate menu screens. */
+/** Currently also contains methods to produce menu elements since we are switching to stages
+ * Stages are created in StageFactory
+ */
 public class MenuFactory {
     /** Creates a main menu and adds text and buttons to it. */
     public static Menu createMainMenu() {
@@ -39,6 +43,17 @@ public class MenuFactory {
         mainMenu.addWigit(title2);
 
         return mainMenu;
+    }
+
+    public static TextButton createTextButton(BitmapFont font, Color color, Vector2 relativePos, String text,
+            int align) {
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = font;
+        textButtonStyle.fontColor = color;
+        TextButton button = new TextButton(text, textButtonStyle);
+        button.setPosition(relativePos.getAbsoluteX(), relativePos.getAbsoluteY(), align);
+        return button;
+
     }
 
     public static Menu createOptionsMenu() {

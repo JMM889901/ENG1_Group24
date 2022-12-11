@@ -51,15 +51,10 @@ public class StageFactory {
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         //Title.setAlignment(Align.CENTRE);
         stage.addActor(Title);
-
         //Play game button
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = FontHandler.textButtonFormat;
-        textButtonStyle.fontColor = Color.BLACK;
-        textButtonStyle.overFontColor = Color.BLUE;
-        coords = new Vector2(0.5, 0.5);
-        TextButton button = new TextButton("Play Game", textButtonStyle);
-        button.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        TextButton button = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
+                new Vector2(0.5, 0.5), "Play game", Align.center);
+        button.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         button.addListener(new ChangeListener() {
 
@@ -73,19 +68,14 @@ public class StageFactory {
         stage.addActor(button);
 
         //Open options button
-        textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = FontHandler.textButtonFormat;
-        textButtonStyle.fontColor = Color.BLACK;
-        textButtonStyle.overFontColor = Color.BLUE;
-        coords = new Vector2(0.5, 0.4);
-        TextButton button2 = new TextButton("Options", textButtonStyle);
-        button2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
+                new Vector2(0.5, 0.4), "Options", Align.center);
+        button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         button2.addListener(new ChangeListener() {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO Auto-generated method stub
                 System.out.print("Open Options");
                 StageManager.setActiveStage("Options");
             }
@@ -118,13 +108,9 @@ public class StageFactory {
         scrollPane.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
 
         //Add return to main button
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = FontHandler.textButtonFormat;
-        textButtonStyle.fontColor = Color.BLACK;
-        textButtonStyle.overFontColor = Color.BLUE;
-        coords = new Vector2(0.3, 0.7);
-        TextButton button2 = new TextButton("Back to menu", textButtonStyle);
-        button2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
+                new Vector2(0.3, 0.7), "Return to menu", Align.center);
+        button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         button2.addListener(new ChangeListener() {
 
