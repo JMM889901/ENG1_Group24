@@ -37,7 +37,7 @@ public class MenuFactory {
                 Color.WHITE, FontHandler.titleFormat, Align.CENTRE);
 
         TextBox title2 = new TextBox("txt_title2", new Vector2(0.5f, 0.5f), "ciazzi PanaP",
-                Color.WHITE, FontHandler.titleFormat, Align.TOPLEFT);
+                Color.WHITE, FontHandler.textButtonFormat, Align.TOPLEFT);
 
         mainMenu.addWigit(title);
         mainMenu.addWigit(title2);

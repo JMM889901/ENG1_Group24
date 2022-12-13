@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.Gdx;
@@ -33,6 +35,9 @@ public class PiazzaPanic extends ApplicationAdapter {
     Stage stage;
     TextButton button;
     StageManager stageManager;
+    Float stateTime;
+    Animation<TextureRegion> chefIdle;
+    Texture idleChefSheet;
 
     @Override
     public void create() {
@@ -54,6 +59,26 @@ public class PiazzaPanic extends ApplicationAdapter {
         img = new Texture("badlogic.jpg");
 
         stageManager = new StageManager();
+
+        //create chef animation from sprite sheet
+        
+        idleChefSheet = new Texture("chef-idle/chef_idle.png");
+
+        TextureRegion[][] tmp = TextureRegion.split(idleChefSheet,
+				idleChefSheet.getWidth() / 6,
+				idleChefSheet.getHeight());
+
+        TextureRegion[] chefIdleFrames = new TextureRegion[6];
+        int index = 0;
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < 6; j++) {
+                chefIdleFrames[index++] = tmp[i][j];
+            }
+        }
+
+        chefIdle = new Animation<TextureRegion>(1/9f, chefIdleFrames);
+        stateTime = 0f;
+        
         //menus.add(MenuFactory.createMainMenu());
         //menus.add(MenuFactory.createOptionsMenu());
         // menus.add(MenuFactory.createCoordGrid());
@@ -71,13 +96,25 @@ public class PiazzaPanic extends ApplicationAdapter {
 
     @Override
     public void render() {
-        ScreenUtils.clear(1f, 0.8f, 0.5f, 1);
+        ScreenUtils.clear(0, 0, 0, 1);
         viewport.apply();
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
+
+        stateTime += Gdx.graphics.getDeltaTime(); // Accumulate elapsed animation time
+
         Base.batch.begin();
         // Base.batch.draw(img, 0, 0);
         //menus.get(0).render();
+
         stageManager.getActiveStage().draw();
+        if(stageManager.getActiveStage() == stageManager.getStage("MainMenu")){
+            TextureRegion currentFrame = chefIdle.getKeyFrame(stateTime, true);
+		
+		    Base.batch.draw(currentFrame, 50, 50,154,307); // Draw current frame at (50, 50)
+        }
+
+		// Get current frame of animation for the current stateTime
+
         //button.draw(Base.batch, 100);
         Base.batch.end();
     }
@@ -92,5 +129,6 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.dispose();
         FontHandler.dispose();
         img.dispose();
+        idleChefSheet.dispose();
     }
 }

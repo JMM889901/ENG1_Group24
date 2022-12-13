@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture; // This isn't needed yet, but will be when implementing images.
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -45,14 +47,14 @@ public class StageFactory {
     public static Stage createMainMenuStage() {
         //Title
         Stage stage = new Stage();
-        CharSequence TitleText = "Piazza Panic";
-        Label Title = new Label(TitleText, new LabelStyle(FontHandler.textButtonFormat, Color.BLACK));
+        CharSequence TitleText = "Piazza Panic!";
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         //Title.setAlignment(Align.CENTRE);
         stage.addActor(Title);
         //Play game button
-        TextButton button = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
+        TextButton button = MenuFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.5), "Play game", Align.center);
         button.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -68,7 +70,7 @@ public class StageFactory {
         stage.addActor(button);
 
         //Open options button
-        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
+        TextButton button2 = MenuFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.4), "Options", Align.center);
         button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -82,6 +84,26 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
+
+        //create chef animation from sprite sheet
+        /*
+        Texture idleChefSheet = new Texture("chef-idle/chef_idle.png");
+
+        TextureRegion[][] tmp = TextureRegion.split(idleChefSheet,
+				idleChefSheet.getWidth() / 6,
+				idleChefSheet.getHeight());
+
+        TextureRegion[] chefIdleFrames = new TextureRegion[6];
+        int index = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 1; j++) {
+                chefIdleFrames[index++] = tmp[i][j];
+            }
+        }
+
+        Animation<TextureRegion> chefIdle = new Animation<TextureRegion>((float)0.1, chefIdleFrames);
+        */
+        
         return stage;
     }
 
@@ -89,14 +111,14 @@ public class StageFactory {
         //Title
         Stage stage = new Stage();
         CharSequence TitleText = "Options";
-        Label Title = new Label(TitleText, new LabelStyle(FontHandler.textButtonFormat, Color.BLACK));
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(Title);
 
         //Volume bar label
         CharSequence sliderTextString = "Sound";
-        Label sliderText = new Label(sliderTextString, new LabelStyle(FontHandler.subtitleFormat, Color.BLACK));
+        Label sliderText = new Label(sliderTextString, new LabelStyle(FontHandler.textButtonFormat, Color.WHITE));
         coords = new Vector2(0.5, 0.55);
         sliderText.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(sliderText);
@@ -108,8 +130,8 @@ public class StageFactory {
         scrollPane.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
 
         //Add return to main button
-        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.BLACK,
-                new Vector2(0.3, 0.7), "Return to menu", Align.center);
+        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+                new Vector2(0.2, 0.7), "Back", Align.right);
         button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         button2.addListener(new ChangeListener() {
