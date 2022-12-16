@@ -1,4 +1,4 @@
-package group24.piazzapanic.ui;
+package group24.piazzapanic.ui; 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,7 +18,7 @@ public class StageAnimation extends Image {
     int height;
     TextureRegion currentFrame;
 
-    public StageAnimation(String path, int frameCount, int framesPerLine, int x, int y, int width, int height) {
+    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -26,13 +26,17 @@ public class StageAnimation extends Image {
         animationSheet = new Texture(path);
         TextureRegion[][] tmp = TextureRegion.split(animationSheet,
                 animationSheet.getWidth() / framesPerLine,
-                animationSheet.getHeight());
+                animationSheet.getHeight() / numberOfLines);
 
+        int framesAdded = 0;
         TextureRegion[] frames = new TextureRegion[frameCount];
         int index = 0;
-        for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < 6; j++) {
-                frames[index++] = tmp[i][j];
+        for (int i = 0; i < numberOfLines; i++) {
+            for (int j = 0; j < framesPerLine; j++) {
+                if (framesAdded < frameCount){
+                    frames[index++] = tmp[i][j];
+                    framesAdded++;
+                }
             }
         }
         animation = new Animation<TextureRegion>(1 / 9f, frames);

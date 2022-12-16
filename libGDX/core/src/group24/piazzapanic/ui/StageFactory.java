@@ -89,7 +89,7 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
-        StageAnimation ChefAnimation = new StageAnimation("chef-idle/chef_idle.png", 6, 6, 0, 0, 154, 307);
+        StageAnimation ChefAnimation = new StageAnimation("chef-idle/chef_idle.png", 6, 6, 1, 20, 20, 154, 307);
         stage.addActor(ChefAnimation);
         return stage;
     }
