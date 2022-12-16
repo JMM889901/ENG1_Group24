@@ -21,8 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import group24.piazzapanic.ui.Menu;
-import group24.piazzapanic.ui.TextBox;
 import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
 
@@ -30,23 +28,6 @@ import com.badlogic.gdx.utils.Align;
  * Class responsible for creating stages, may get quite long so we may need a better way of doing this
  * */
 public class StageFactory {
-    /*
-    This class uses libgdx align not ours
-    
-    Libgdx allign nums are different to ours
-    
-    
-    static public final int center = 1 << 0;
-    static public final int top = 1 << 1;
-    static public final int bottom = 1 << 2;
-    static public final int left = 1 << 3;
-    static public final int right = 1 << 4;
-    
-    static public final int topLeft = top | left;
-    static public final int topRight = top | right;
-    static public final int bottomLeft = bottom | left;
-    static public final int bottomRight = bottom | right;
-    */
 
     //Main menu
     public static Stage createMainMenuStage() {
