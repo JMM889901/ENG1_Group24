@@ -4,28 +4,38 @@ package group24.piazzapanic;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.Gdx;
 
-import group24.piazzapanic.ui.Menu;
-import group24.piazzapanic.ui.MenuFactory;
+import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.ui.FontHandler;
+import group24.piazzapanic.ui.StageManager;;
 
 public class PiazzaPanic extends ApplicationAdapter {
     Texture img;
 
     private String state;
-    private ArrayList<Menu> menus = new ArrayList<Menu>();
 
     SpriteBatch batch;
     PerspectiveCamera camera;
     Viewport viewport;
+    Stage stage;
+    TextButton button;
+    StageManager stageManager;
+    Float stateTime;
+    Animation<TextureRegion> chefIdle;
+    Texture idleChefSheet;
 
     @Override
     public void create() {
@@ -46,22 +56,20 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
-        menus.add(MenuFactory.createMainMenu());
-        menus.add(MenuFactory.createOptionsMenu());
-        // menus.add(MenuFactory.createCoordGrid());
-        // menus.add(MenuFactory.createPinTest());
+        stageManager = new StageManager();
 
     }
 
     @Override
     public void render() {
-        ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
+        ScreenUtils.clear(0, 0, 0, 1);
         viewport.apply();
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
-        Base.batch.begin();
 
-        // Base.batch.draw(img, 0, 0);
-        menus.get(1).render();
+        Base.batch.begin();
+        stageManager.getActiveStage().act();
+        stageManager.getActiveStage().draw();
+
         Base.batch.end();
     }
 
@@ -75,5 +83,6 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.dispose();
         FontHandler.dispose();
         img.dispose();
+        idleChefSheet.dispose();
     }
 }

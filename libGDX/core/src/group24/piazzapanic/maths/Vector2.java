@@ -25,8 +25,15 @@ public class Vector2 {
      */
     public Vector2i translateToAbsoluteLocation() {
         return new Vector2i(
-            Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH)),
-            Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT))
-            );
+                Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH)),
+                Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT)));
+    }
+
+    public int getAbsoluteX() {
+        return Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH));
+    }
+
+    public int getAbsoluteY() {
+        return Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT));
     }
 }

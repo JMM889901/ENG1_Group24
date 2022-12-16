@@ -3,6 +3,9 @@ package group24.piazzapanic.ui;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.maths.Vector2i;
 
+/**
+ * Deprecated, use https://libgdx.com/wiki/graphics/2d/scene2d/scene2d and stages
+ */
 public abstract class Wigit {
     protected String wigitID;
     protected Vector2i location;
