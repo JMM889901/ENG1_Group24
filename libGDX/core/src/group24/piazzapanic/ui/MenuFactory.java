@@ -24,9 +24,8 @@ import group24.piazzapanic.ui.Menu;
 import group24.piazzapanic.ui.TextBox;
 import group24.piazzapanic.maths.Vector2;
 
-/** This class is just a repository of all the methods to generate menu screens. */
-/** Currently also contains methods to produce menu elements since we are switching to stages
- * Stages are created in StageFactory
+/** 
+    Deprecated, see StageFactory.Java for new system
  */
 public class MenuFactory {
     /** Creates a main menu and adds text and buttons to it. */
@@ -43,17 +42,6 @@ public class MenuFactory {
         mainMenu.addWigit(title2);
 
         return mainMenu;
-    }
-
-    public static TextButton createTextButton(BitmapFont font, Color color, Vector2 relativePos, String text,
-            int align) {
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = font;
-        textButtonStyle.fontColor = color;
-        TextButton button = new TextButton(text, textButtonStyle);
-        button.setPosition(relativePos.getAbsoluteX(), relativePos.getAbsoluteY(), align);
-        return button;
-
     }
 
     public static Menu createOptionsMenu() {

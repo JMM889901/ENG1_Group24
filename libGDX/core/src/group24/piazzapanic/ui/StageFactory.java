@@ -26,6 +26,9 @@ import group24.piazzapanic.ui.TextBox;
 import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
 
+/**
+ * Class responsible for creating stages, may get quite long so we may need a better way of doing this
+ * */
 public class StageFactory {
     /*
     This class uses libgdx align not ours
@@ -44,6 +47,8 @@ public class StageFactory {
     static public final int bottomLeft = bottom | left;
     static public final int bottomRight = bottom | right;
     */
+
+    //Main menu
     public static Stage createMainMenuStage() {
         //Title
         Stage stage = new Stage();
@@ -54,7 +59,7 @@ public class StageFactory {
         //Title.setAlignment(Align.CENTRE);
         stage.addActor(Title);
         //Play game button
-        TextButton button = MenuFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+        TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.5), "Play game", Align.center);
         button.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -70,7 +75,7 @@ public class StageFactory {
         stage.addActor(button);
 
         //Open options button
-        TextButton button2 = MenuFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.4), "Options", Align.center);
         button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -84,26 +89,8 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
-
-        //create chef animation from sprite sheet
-        /*
-        Texture idleChefSheet = new Texture("chef-idle/chef_idle.png");
-
-        TextureRegion[][] tmp = TextureRegion.split(idleChefSheet,
-				idleChefSheet.getWidth() / 6,
-				idleChefSheet.getHeight());
-
-        TextureRegion[] chefIdleFrames = new TextureRegion[6];
-        int index = 0;
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 1; j++) {
-                chefIdleFrames[index++] = tmp[i][j];
-            }
-        }
-
-        Animation<TextureRegion> chefIdle = new Animation<TextureRegion>((float)0.1, chefIdleFrames);
-        */
-        
+        StageAnimation ChefAnimation = new StageAnimation("chef-idle/chef_idle.png", 6, 6, 0, 0, 154, 307);
+        stage.addActor(ChefAnimation);
         return stage;
     }
 
@@ -128,9 +115,9 @@ public class StageFactory {
         Slider scrollPane = new Slider(0, 100, 5, false, skin);
         coords = new Vector2(0.5, 0.5);
         scrollPane.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-
+        stage.addActor(scrollPane);
         //Add return to main button
-        TextButton button2 = MenuFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
                 new Vector2(0.2, 0.7), "Back", Align.right);
         button2.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -145,7 +132,7 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
-        stage.addActor(scrollPane);
+
         return stage;
     }
 }

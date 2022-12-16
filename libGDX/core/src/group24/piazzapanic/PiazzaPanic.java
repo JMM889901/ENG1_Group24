@@ -19,6 +19,7 @@ import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.ui.Menu;
 import group24.piazzapanic.ui.MenuFactory;
+import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageManager;;
@@ -60,25 +61,26 @@ public class PiazzaPanic extends ApplicationAdapter {
 
         stageManager = new StageManager();
 
+        //stageManager.getActiveStage().addActor(ChefAnimation);
         //create chef animation from sprite sheet
-        
-        idleChefSheet = new Texture("chef-idle/chef_idle.png");
 
-        TextureRegion[][] tmp = TextureRegion.split(idleChefSheet,
-				idleChefSheet.getWidth() / 6,
-				idleChefSheet.getHeight());
+        //idleChefSheet = new Texture("chef-idle/chef_idle.png");
+        //
+        //TextureRegion[][] tmp = TextureRegion.split(idleChefSheet,
+        //        idleChefSheet.getWidth() / 6,
+        //        idleChefSheet.getHeight());
+        //
+        //TextureRegion[] chefIdleFrames = new TextureRegion[6];
+        //int index = 0;
+        //for (int i = 0; i < 1; i++) {
+        //    for (int j = 0; j < 6; j++) {
+        //        chefIdleFrames[index++] = tmp[i][j];
+        //    }
+        //}
+        //
+        //chefIdle = new Animation<TextureRegion>(1 / 9f, chefIdleFrames);
+        //stateTime = 0f;
 
-        TextureRegion[] chefIdleFrames = new TextureRegion[6];
-        int index = 0;
-        for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < 6; j++) {
-                chefIdleFrames[index++] = tmp[i][j];
-            }
-        }
-
-        chefIdle = new Animation<TextureRegion>(1/9f, chefIdleFrames);
-        stateTime = 0f;
-        
         //menus.add(MenuFactory.createMainMenu());
         //menus.add(MenuFactory.createOptionsMenu());
         // menus.add(MenuFactory.createCoordGrid());
@@ -100,20 +102,20 @@ public class PiazzaPanic extends ApplicationAdapter {
         viewport.apply();
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
 
-        stateTime += Gdx.graphics.getDeltaTime(); // Accumulate elapsed animation time
+        //stateTime += Gdx.graphics.getDeltaTime(); // Accumulate elapsed animation time
 
         Base.batch.begin();
         // Base.batch.draw(img, 0, 0);
         //menus.get(0).render();
-
+        stageManager.getActiveStage().act();
         stageManager.getActiveStage().draw();
-        if(stageManager.getActiveStage() == stageManager.getStage("MainMenu")){
-            TextureRegion currentFrame = chefIdle.getKeyFrame(stateTime, true);
-		
-		    Base.batch.draw(currentFrame, 50, 50,154,307); // Draw current frame at (50, 50)
-        }
+        //if (stageManager.getActiveStage() == stageManager.getStage("MainMenu")) {
+        //    TextureRegion currentFrame = chefIdle.getKeyFrame(stateTime, true);
+        //
+        //    Base.batch.draw(currentFrame, 50, 50, 154, 307); // Draw current frame at (50, 50)
+        //}
 
-		// Get current frame of animation for the current stateTime
+        // Get current frame of animation for the current stateTime
 
         //button.draw(Base.batch, 100);
         Base.batch.end();

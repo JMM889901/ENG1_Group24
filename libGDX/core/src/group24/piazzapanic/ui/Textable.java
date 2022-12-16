@@ -5,12 +5,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import group24.piazzapanic.maths.Vector2;
 
-
+/**
+ * Deprecated, use https://libgdx.com/wiki/graphics/2d/scene2d/scene2d and stages
+ */
 public abstract class Textable extends Wigit {
     protected String text;
     protected BitmapFont textFormat;
     protected int textAlignment;
-    
+
     public Textable(String wigitID, Vector2 relativeLocation) {
         super(wigitID, relativeLocation);
     }
@@ -19,7 +21,7 @@ public abstract class Textable extends Wigit {
     protected void alignText() {
         GlyphLayout layout = new GlyphLayout();
         layout.setText(this.textFormat, this.text);
-        
+
         // Handling X axis manipulation.
         if (Align.getColumn(textAlignment) == Align.COLUMN_RIGHT) {
             // Shift text to the right.

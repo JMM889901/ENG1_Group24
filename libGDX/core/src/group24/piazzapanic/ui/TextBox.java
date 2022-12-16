@@ -11,6 +11,9 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.Align;
 
+/**
+ * Deprecated, use https://libgdx.com/wiki/graphics/2d/scene2d/scene2d and stages
+ */
 public class TextBox extends Textable {
     private Color colour;
 

@@ -8,6 +8,9 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
+/**
+ * Deprecated, use stages instead, see StageFactory.java
+ */
 public class Menu extends InputAdapter {
     private String stageID;
     private ArrayList<Wigit> wigits;
