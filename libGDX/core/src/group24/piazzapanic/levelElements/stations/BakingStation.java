@@ -1,4 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 public class BakingStation extends Station{
 

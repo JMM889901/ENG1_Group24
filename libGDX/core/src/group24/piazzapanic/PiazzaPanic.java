@@ -20,7 +20,7 @@ import com.badlogic.gdx.Gdx;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.ui.FontHandler;
-import group24.piazzapanic.ui.StageManager;;
+import group24.piazzapanic.ui.StageManager;
 
 public class PiazzaPanic extends ApplicationAdapter {
     Texture img;
@@ -67,8 +67,8 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
 
         Base.batch.begin();
-        stageManager.getActiveStage().act();
-        stageManager.getActiveStage().draw();
+        StageManager.getActiveStage().act();
+        StageManager.getActiveStage().draw();
 
         Base.batch.end();
     }

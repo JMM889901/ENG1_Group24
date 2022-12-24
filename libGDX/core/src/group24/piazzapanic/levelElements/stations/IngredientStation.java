@@ -2,7 +2,7 @@ package group24.piazzapanic.levelElements.stations;
 
 public class IngredientStation extends Station{
 
-    private Ingredient ingredientType;
+    private final Ingredient ingredientType;
 
     public IngredientStation(Texture sprite, Vector2 location, Ingredient ingredientType){
         this.sprite = sprite;

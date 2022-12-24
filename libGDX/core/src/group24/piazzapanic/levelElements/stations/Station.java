@@ -1,7 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 
 public class Station {
@@ -19,8 +18,7 @@ public class Station {
     }
     
     private boolean canPlaceItem() {
-        if (hasItem()) return false;
-        else return true;
+        return !hasItem();
     }
 
     public boolean hasItem(){
