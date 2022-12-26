@@ -56,8 +56,7 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
-        stageManager = new StageManager();
-
+        StageManager.init();
     }
 
     @Override

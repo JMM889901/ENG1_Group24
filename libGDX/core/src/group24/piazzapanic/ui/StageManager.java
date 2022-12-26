@@ -6,6 +6,8 @@ import java.util.HashMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import group24.piazzapanic.game.GameLoop;
+
 public class StageManager {
     private static HashMap<String, Stage> stages;
     private static Stage activeStage;
@@ -14,11 +16,12 @@ public class StageManager {
      * Stage manager manages active screens and buttons, currently lacks multi stage input support so this may need to be looked at
      * Currently will only draw and recieve inputs from the active stage, no multi-stage support yet
      */
-    public StageManager() {
+    public static void init() {
         stages = new HashMap<String, Stage>();
         stages.put("MainMenu", StageFactory.createMainMenuStage());
         setActiveStage("MainMenu");
         stages.put("Options", StageFactory.createOptionsMenuStage());
+        stages.put("Game", new GameLoop());
     }
 
     /**

@@ -3,7 +3,6 @@ package group24.piazzapanic;
 import java.util.Scanner;
 import java.io.File;
 
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
@@ -37,7 +36,7 @@ public class Base {
                 }
                 String key = lineSplit[0];
                 String value = lineSplit[1];
-                
+
                 if (key.equals("resolution")) {
                     String[] resolutionSplit = value.split("x");
                     if (resolutionSplit.length != 2) {
@@ -51,9 +50,11 @@ public class Base {
                 }
             }
             configScanner.close();
-        } catch (Exception e) {
-            System.out.println("Error reading config file");
-            e.printStackTrace();
+        } catch (Exception exception) {
+            System.out.println("Error reading config file, Using default settings");
+            WINDOW_WIDTH = 1280;
+            WINDOW_HEIGHT = 720;
+            exception.printStackTrace();
         }
     }
 }

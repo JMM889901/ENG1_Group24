@@ -50,6 +50,7 @@ public class StageFactory {
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO Auto-generated method stub
                 System.out.print("Play game");
+                StageManager.setActiveStage("Game");
             }
 
         });

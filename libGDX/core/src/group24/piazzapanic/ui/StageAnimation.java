@@ -1,4 +1,4 @@
-package group24.piazzapanic.ui; 
+package group24.piazzapanic.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,21 +6,25 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.utils.compression.lzma.Base;
+import com.badlogic.gdx.utils.reflect.Constructor;
+
+import group24.piazzapanic.maths.Vector2;
 
 public class StageAnimation extends Image {
     Animation<TextureRegion> animation;
     Texture animationSheet;
     Float stateTime;
-    int x;
-    int y;
-    int width;
-    int height;
+    public int width;
+    public int height;
     TextureRegion currentFrame;
 
-    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, int x, int y, int width,
+            int height) {
+        super();
+        this.setY(y);
+        this.setX(x);
         this.width = width;
         this.height = height;
         animationSheet = new Texture(path);
@@ -33,7 +37,7 @@ public class StageAnimation extends Image {
         int index = 0;
         for (int i = 0; i < numberOfLines; i++) {
             for (int j = 0; j < framesPerLine; j++) {
-                if (framesAdded < frameCount){
+                if (framesAdded < frameCount) {
                     frames[index++] = tmp[i][j];
                     framesAdded++;
                 }
@@ -44,10 +48,18 @@ public class StageAnimation extends Image {
         currentFrame = this.animation.getKeyFrame(stateTime, true);
     }
 
+    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, Vector2 pos, int width,
+            int height) {
+        this(path, frameCount, framesPerLine, numberOfLines, pos.getAbsoluteX(),
+                pos.getAbsoluteY(),
+                width,
+                height);
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
-        batch.draw(currentFrame, x, y, width, height); // Draw current frame at (50, 50)
+        batch.draw(currentFrame, getX(), getY(), width, height); // Draw current frame at (50, 50)
     }
 
     @Override
