@@ -3,12 +3,13 @@ package group24.piazzapanic.maths;
 import java.lang.Math;
 
 import group24.piazzapanic.Base;
-import group24.piazzapanic.maths.Vector2i;
 
-/** This class is a simple 2D vector class. It uses doubles so can store non-integers. */
-public class Vector2 {
-    // To be honest I just got sick of pissing around with libGDX's way of doing things and Java
-    // just mucking things up.
+/**
+ * This class is a simple 2D vector class. It uses doubles so can store non-integers. Do not use
+ * with level elements, UI elements only.
+ */
+public class Vector2 extends com.badlogic.gdx.math.Vector2 {
+    // These should only be from 0 to 1, -1 means unset and anything else is a worrying mistake.
     public double x;
     public double y;
 
@@ -17,16 +18,11 @@ public class Vector2 {
         this.y = y;
     }
 
-    /** Takes decimal values between 0 and 1 (fractions of the whole screen) and translates them
-     * into absolute coordinates.
-     * @param relativeLocation The location of the object with each value a proportion of the
-     *                         respective dimension.
-     * @return The absolute location of the object.
-     */
-    public Vector2i translateToAbsoluteLocation() {
-        return new Vector2i(
-                Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH)),
-                Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT)));
+    public Vector2(int x, int y) {
+        // This will lead to slight innacuracies, but they get rounded away anyway so it won't
+        // change the integer values. (eg 500 / 1280, * 1280 = 500.0000000000001)
+        this.x = x / (double) Base.WINDOW_WIDTH;
+        this.y = y / (double) Base.WINDOW_HEIGHT;
     }
 
     public int getAbsoluteX() {
@@ -35,5 +31,9 @@ public class Vector2 {
 
     public int getAbsoluteY() {
         return Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT));
+    }
+
+    public static Vector2 gridUnitTranslate(float gridX, float gridY) {
+        return new Vector2(gridX * Base.TILE_GRID_UNIT, gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.io.File;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Texture;
+
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
@@ -14,13 +16,30 @@ public class Base {
     public static int WINDOW_WIDTH = 100;
     public static int WINDOW_HEIGHT = 100;
 
+    // These 2 numbers below work best if they make a nice ratio (eg 1:2).
+    public static final int TILE_TEXTURE_WIDTH = 100;
+    public static final int TILE_TEXTURE_HEIGHT = 200;
+    public static final float TILE_GRID_UNIT = 0.05f; // 20 tiles fit within one screen width.
+    public static int tile_pixel_width;
+    public static int tile_pixel_height;
+
     public static SpriteBatch batch;
+
+
+    public static Texture floorTexture;
+    public static Texture wallTexture;
+    public static Texture bakingStationTexture;
+    public static Texture counterTopTexture;
+
+    public static Texture errorTexture;
+    // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
+    
 
     /** Read the config file and set the values of the variables in this class.
      * This method should be called before any other code runs.
      */
     public static void init() {
-        // This has just been spat out by Copilot, so we definitely need to refactor it for plagiarism reasons lol.
+        // Read config file.
         try {
             File configFile = new File(CONFIG_PATH);
             Scanner configScanner = new Scanner(configFile);
@@ -56,5 +75,26 @@ public class Base {
             WINDOW_HEIGHT = 720;
             exception.printStackTrace();
         }
+        
+        tile_pixel_width = (int) Math.floor(TILE_GRID_UNIT * WINDOW_WIDTH);
+        tile_pixel_height = (int) Math.round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);
+
+        // Load station textures.
+        floorTexture = new Texture("stations/floor.png");
+        wallTexture = new Texture("stations/wall.png");
+        bakingStationTexture = new Texture("stations/bakingstation.png");
+        counterTopTexture = new Texture("stations/countertop.png");
+
+        errorTexture = new Texture("stations/err.png");
+    }
+
+    public static void dispose() {
+        batch.dispose();
+        floorTexture.dispose();
+        wallTexture.dispose();
+        bakingStationTexture.dispose();
+        counterTopTexture.dispose();
+        
+        errorTexture.dispose();
     }
 }

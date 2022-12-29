@@ -25,8 +25,6 @@ import group24.piazzapanic.ui.StageManager;
 public class PiazzaPanic extends ApplicationAdapter {
     Texture img;
 
-    private String state;
-
     SpriteBatch batch;
     PerspectiveCamera camera;
     Viewport viewport;
@@ -35,7 +33,7 @@ public class PiazzaPanic extends ApplicationAdapter {
     StageManager stageManager;
     Float stateTime;
     Animation<TextureRegion> chefIdle;
-    Texture idleChefSheet;
+    //Texture idleChefSheet;
 
     @Override
     public void create() {
@@ -59,6 +57,8 @@ public class PiazzaPanic extends ApplicationAdapter {
         StageManager.init();
     }
 
+
+
     @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
@@ -68,7 +68,6 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.begin();
         StageManager.getActiveStage().act();
         StageManager.getActiveStage().draw();
-
         Base.batch.end();
     }
 
@@ -79,9 +78,9 @@ public class PiazzaPanic extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        Base.batch.dispose();
+        Base.dispose();
         FontHandler.dispose();
         img.dispose();
-        idleChefSheet.dispose();
+        //idleChefSheet.dispose();
     }
 }

@@ -19,9 +19,10 @@ public class StageManager {
     public static void init() {
         stages = new HashMap<String, Stage>();
         stages.put("MainMenu", StageFactory.createMainMenuStage());
-        setActiveStage("MainMenu");
         stages.put("Options", StageFactory.createOptionsMenuStage());
         stages.put("Game", new GameLoop());
+
+        setActiveStage("MainMenu");
     }
 
     /**

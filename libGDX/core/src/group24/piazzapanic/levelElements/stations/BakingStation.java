@@ -2,6 +2,8 @@ package group24.piazzapanic.levelElements.stations;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+import group24.piazzapanic.levelElements.Movable;
+
 public class BakingStation extends Station{
 
     public BakingStation(Texture sprite, Vector2 location){

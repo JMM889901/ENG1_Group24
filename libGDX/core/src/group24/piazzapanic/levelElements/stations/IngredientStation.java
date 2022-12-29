@@ -1,5 +1,11 @@
 package group24.piazzapanic.levelElements.stations;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
+
+import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.levelElements.Ingredient;
+
 public class IngredientStation extends Station{
 
     private final Ingredient ingredientType;
@@ -24,8 +30,10 @@ public class IngredientStation extends Station{
             Movable tmp = this.item;
             this.item = null;
             return tmp;
+        } else {
+            return new Movable(ingredientType);
         }
-        else return ingredientType;
+        
     }
     
 }

@@ -29,17 +29,18 @@ import com.badlogic.gdx.utils.Align;
  * */
 public class StageFactory {
 
-    //Main menu
+    // Main menu
     public static Stage createMainMenuStage() {
-        //Title
+        // Title
         Stage stage = new Stage();
         CharSequence TitleText = "Piazza Panic!";
         Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        //Title.setAlignment(Align.CENTRE);
         stage.addActor(Title);
-        //Play game button
+
+
+        // Play button
         TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.5), "Play game", Align.center);
         button.getStyle().overFontColor = Color.BLUE;
@@ -48,15 +49,15 @@ public class StageFactory {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO Auto-generated method stub
-                System.out.print("Play game");
+                System.out.print("Open Game");
                 StageManager.setActiveStage("Game");
             }
 
         });
         stage.addActor(button);
 
-        //Open options button
+
+        // Options button
         TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.4), "Options", Align.center);
         button2.getStyle().overFontColor = Color.BLUE;
@@ -71,6 +72,8 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
+
+        // Temporary (?) dancing chef.
         StageAnimation ChefAnimation = new StageAnimation("chef-idle/chef_idle.png", 6, 6, 1, 20, 20, 154, 307);
         stage.addActor(ChefAnimation);
         return stage;
@@ -107,7 +110,6 @@ public class StageFactory {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO Auto-generated method stub
                 System.out.print("Open Main");
                 StageManager.setActiveStage("MainMenu");
             }
