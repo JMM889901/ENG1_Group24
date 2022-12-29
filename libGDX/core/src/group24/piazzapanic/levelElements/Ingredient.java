@@ -6,7 +6,7 @@ import group24.piazzapanic.maths.Vector2;
 import java.util.concurrent.TimeUnit;
 
 // Needs to extend Movable when this is implemented
-public class Ingredient {gi
+public class Ingredient {
     // Three integers with 0-1 values representing cutting/baking/frying progress
     // These are NEGATIVE if cutting/baking/frying isn't supported
     // for a given ingredient
