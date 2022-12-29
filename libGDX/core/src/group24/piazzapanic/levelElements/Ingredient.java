@@ -14,9 +14,9 @@ public class Ingredient {
     // Three floats with 0-1 values representing cutting/baking/frying progress
     // These are NEGATIVE if cutting/baking/frying isn't supported
     // for a given ingredient
-    protected Float cuttingProgress;
-    protected Float bakingProgress;
-    protected Float fryingProgress;
+    protected Integer cuttingProgress;
+    protected Integer bakingProgress;
+    protected Integer fryingProgress;
     protected Texture sprite;
     protected String ingredientType;
 
@@ -29,52 +29,32 @@ public class Ingredient {
         // assuming they are all raw when initialised
         switch (this.ingredientType){
             case "tomato":
-                this.cuttingProgress = 0f;
-                this.bakingProgress = -1f;
-                this.fryingProgress = -1f;
+                this.cuttingProgress = 0;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
             case "lettuce":
-                this.cuttingProgress = 0f;
-                this.bakingProgress = -1f;
-                this.fryingProgress = -1f;
+                this.cuttingProgress = 0;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
             case "onions":
-                this.cuttingProgress = 0f;
-                this.bakingProgress = -1f;
-                this.fryingProgress = -1f;
+                this.cuttingProgress = 0;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
         }
 
     }
     // TODO - add constraints on operations on Ingredients
+    // i.e. "You can't cut this because it's already been cut"
 
 
-    /*
-    This function increments the cutting value by (1/[cutting time])
-    It returns the cutting progress of the ingredient
-    which is then handled by the station
-     */
-    public float incrementalCut() throws InterruptedException {
-        // For now, every ingredient takes max 20 seconds to cut
-        // TODO - implement interaction checks in CuttingStation.
-        TimeUnit.SECONDS.sleep(1);
-        this.cuttingProgress = this.cuttingProgress + 0.05f;
-        return this.cuttingProgress;
-    }
-    public float incrementalBake() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        this.bakingProgress = this.bakingProgress + 0.05f;
-        return this.bakingProgress;
-    }
-    public float incrementalFry() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        this.fryingProgress = this.fryingProgress += 1;
-        return this.fryingProgress;
-    }
+
     public void cuttingComplete(){
         // this.sprite = cut sprite
         // Update what we can do with each ingredient now that it's cut
         switch (this.ingredientType){
             case "tomato":
-                this.bakingProgress = -1f;
-                this.fryingProgress = 0f;
+                this.bakingProgress = -1;
+                this.fryingProgress = 0;
             // TODO - this is a method stub, as the salad recipe doesn't require anything beyond just
             // cutting and combining all the items.
         }
