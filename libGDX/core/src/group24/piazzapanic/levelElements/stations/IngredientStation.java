@@ -10,16 +10,16 @@ public class IngredientStation extends Station{
 
     private final Ingredient ingredientType;
 
-    public IngredientStation(Texture sprite, Vector2 location, Ingredient ingredientType){
-        this.sprite = sprite;
-        this.location = location;
+    public IngredientStation(/*Texture sprite, Vector2 location, */Ingredient ingredientType){
+        /*this.sprite = sprite;
+        this.location = location;*/
         this.item = null;
         this.ingredientType = ingredientType;
     }
     
-    public IngredientStation(Texture sprite, Vector2 location, Movable item, Ingredient ingredientType){
-        this.sprite = sprite;
-        this.location = location;
+    public IngredientStation(/*Texture sprite, Vector2 location, */Movable item, Ingredient ingredientType){
+        /*this.sprite = sprite;
+        this.location = location;*/
         this.item = item;
         this.ingredientType = ingredientType;
     }

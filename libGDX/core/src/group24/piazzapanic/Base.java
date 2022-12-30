@@ -5,6 +5,7 @@ import java.io.File;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Input.Keys;
 
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
@@ -27,13 +28,19 @@ public class Base {
 
 
     public static Texture floorTexture;
-    public static Texture wallTexture;
     public static Texture bakingStationTexture;
     public static Texture counterTopTexture;
+    public static Texture cuttingStationTexture;
+    public static Texture fryingStationTexture;
+    public static Texture ingredientStationTexture;
+    public static Texture obstacleTexture;
 
     public static Texture errorTexture;
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     
+    // This is a placeholder but can be changed just once if we change our mind since it's global.
+    public static final int ACT_KEY = Keys.F;
+
 
     /** Read the config file and set the values of the variables in this class.
      * This method should be called before any other code runs.
@@ -81,9 +88,12 @@ public class Base {
 
         // Load station textures.
         floorTexture = new Texture("stations/floor.png");
-        wallTexture = new Texture("stations/wall.png");
         bakingStationTexture = new Texture("stations/bakingstation.png");
         counterTopTexture = new Texture("stations/countertop.png");
+        cuttingStationTexture = new Texture("stations/notimplemented.png");
+        fryingStationTexture = new Texture("stations/notimplemented.png");
+        ingredientStationTexture = new Texture("stations/notimplemented.png");
+        obstacleTexture = new Texture("stations/wall.png");
 
         errorTexture = new Texture("stations/err.png");
     }
@@ -91,9 +101,12 @@ public class Base {
     public static void dispose() {
         batch.dispose();
         floorTexture.dispose();
-        wallTexture.dispose();
         bakingStationTexture.dispose();
         counterTopTexture.dispose();
+        cuttingStationTexture.dispose();
+        fryingStationTexture.dispose();
+        ingredientStationTexture.dispose();
+        obstacleTexture.dispose();
         
         errorTexture.dispose();
     }

@@ -3,11 +3,12 @@ package group24.piazzapanic.game;
 import java.io.File;
 import java.util.Scanner;
 
-import group24.piazzapanic.game.Tile;
+import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.levelElements.stations.*;
 
 public class Level {
     private String levelName;
-    private Tile[][] grid;
+    private Station[][] grid;
     private int width;
     private int height;
 
@@ -26,7 +27,7 @@ public class Level {
             width = Integer.parseInt(dimensions[0]);
             height = Integer.parseInt(dimensions[1]);
 
-            grid = new Tile[height][width];
+            grid = new Station[height][width];
 
             int x, y;
             for(int i = 0; i < height; i++) {
@@ -44,31 +45,34 @@ public class Level {
                     y = j;
                     switch(line.charAt(j)) {
                         case '.':
-                            grid[x][y] = Tile.EMPTY;
+                            grid[x][y] = null;
                             break;
                         case '*':
-                            grid[x][y] = Tile.EMPTY;
+                            grid[x][y] = null;
                             startX = j;
                             startY = i;
                             break;
 
-                        case 'w':
-                            grid[x][y] = Tile.WALL;
+                        case 'B':
+                            grid[x][y] = new BakingStation();
                             break;
-                        case 'b':
-                            grid[x][y] = Tile.BAKING_STATION;
+                        case 'T':
+                            grid[x][y] = new CounterTop();
                             break;
-                        case 't':
-                            grid[x][y] = Tile.COUNTER_TOP;
+                        case 'C':
+                            grid[x][y] = new CuttingStation();
                             break;
-                        case 'c':
-                            grid[x][y] = Tile.CUTTING_STATION;
+                        case 'F':
+                            grid[x][y] = new FryingStation();
                             break;
-                        case 'f':
-                            grid[x][y] = Tile.FRYING_STATION;
+
+                        case 't':  // tomato  // TODO: add the other ingredients.
+                        case 'o':  // onion
+                            grid[x][y] = new IngredientStation(new Ingredient(extrapolateIngredient(line.charAt(j)), null));
                             break;
-                        case 'i':
-                            grid[x][y] = Tile.INGREDIENT_STATION;
+
+                            case 'W':
+                            grid[x][y] = new Obstacle();
                             break;
                         
                         default:
@@ -83,7 +87,23 @@ public class Level {
         }
     }
 
-    public Tile getTile(int x, int y) {
+    private static String extrapolateIngredient(char abbrevation) {
+        switch(abbrevation) {
+            case 't':
+                return "tomato";
+            case 'o':
+                return "onion";
+            default:
+                System.out.println("Unknown ingredient '" + abbrevation + "'.");
+                return null;
+        }
+    }
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public Station getStation(int x, int y) {
         return grid[y][x];
     }
 

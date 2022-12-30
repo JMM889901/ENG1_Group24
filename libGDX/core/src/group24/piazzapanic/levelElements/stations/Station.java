@@ -8,8 +8,8 @@ import group24.piazzapanic.levelElements.Movable;
 
 public class Station extends Image{
 
-    protected Vector2 location;
-    protected Texture sprite;
+    //protected Vector2 location;
+    //protected Texture sprite;
     protected Movable item; 
 
     /**

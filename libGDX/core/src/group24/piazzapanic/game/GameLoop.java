@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.Base;
+import group24.piazzapanic.levelElements.stations.*;
 
 public class GameLoop extends Stage {
     private float gameTime;
@@ -91,12 +92,15 @@ public class GameLoop extends Stage {
         // Iterate through level array and draw tiles.
         Vector2 curPosition;
         Texture curTexture = Base.errorTexture;
+        Station curStation;
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
                 Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + offsetX, curPosition.getAbsoluteY() + offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
 
+                curStation = level.getStation(x, y);
+                /*
                 switch (level.getTile(x, y)) {
                     case EMPTY:
                         continue;
@@ -114,6 +118,27 @@ public class GameLoop extends Stage {
                         System.out.println("Unknown tile type: " + level.getTile(x, y) + ", defaulting to floor.");
                         curTexture = Base.errorTexture;
                         break;
+                }*/
+
+                
+                if (curStation == null) {
+                    // In this case you only need to draw the floor, which has already been done.
+                    continue;
+                } else if (curStation instanceof BakingStation) {
+                    curTexture = Base.bakingStationTexture;
+                } else if (curStation instanceof CounterTop) {
+                    curTexture = Base.counterTopTexture;
+                } else if (curStation instanceof CuttingStation) {
+                    curTexture = Base.cuttingStationTexture;
+                } else if (curStation instanceof FryingStation) {
+                    curTexture = Base.fryingStationTexture;
+                } else if (curStation instanceof IngredientStation) {
+                    curTexture = Base.ingredientStationTexture;
+                } else if (curStation instanceof Obstacle) {
+                    curTexture = Base.obstacleTexture;
+                } else {
+                    System.out.println("Unknown station type: " + curStation + ", defaulting to floor.");
+                    curTexture = Base.errorTexture;
                 }
 
                 Base.batch.draw(curTexture, curPosition.getAbsoluteX() + offsetX, curPosition.getAbsoluteY() + offsetY, Base.tile_pixel_width, Base.tile_pixel_height);

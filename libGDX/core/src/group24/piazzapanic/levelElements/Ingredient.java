@@ -3,7 +3,7 @@ package group24.piazzapanic.levelElements;
 import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.maths.Vector2;
 
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.TimeUnit;
 
 // Needs to extend Movable when this is implemented
 public class Ingredient {
@@ -43,7 +43,9 @@ public class Ingredient {
     // i.e. "You can't cut this because it's already been cut"
 
 
-
+    /**
+     * Record that the ingredient has been cut.
+     */
     public void cuttingComplete(){
         // this.sprite = cut sprite
         // Update what we can do with each ingredient now that it's cut
@@ -55,11 +57,18 @@ public class Ingredient {
             // cutting and combining all the items.
         }
     }
+
+    /**
+     * Record that the ingredient has been fried.
+     */
     public void fryingComplete(){
         // this.sprite = fried sprite
         // update constraints
     }
 
+    /**
+     * Record that the ingredient has been baked.
+     */
     public void bakingComplete(){
         // this.sprite = baked sprite
         // update constraints
