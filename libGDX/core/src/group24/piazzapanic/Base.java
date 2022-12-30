@@ -26,6 +26,7 @@ public class Base {
 
     public static SpriteBatch batch;
 
+    public static Texture tempChefTexture;
 
     public static Texture floorTexture;
     public static Texture bakingStationTexture;
@@ -39,6 +40,10 @@ public class Base {
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     
     // This is a placeholder but can be changed just once if we change our mind since it's global.
+    public static final int UP_KEY = Keys.W;
+    public static final int DOWN_KEY = Keys.S;
+    public static final int LEFT_KEY = Keys.A;
+    public static final int RIGHT_KEY = Keys.D;
     public static final int ACT_KEY = Keys.F;
 
 
@@ -86,6 +91,11 @@ public class Base {
         tile_pixel_width = (int) Math.floor(TILE_GRID_UNIT * WINDOW_WIDTH);
         tile_pixel_height = (int) Math.round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);
 
+
+        batch = new SpriteBatch();
+
+        tempChefTexture = new Texture("chef-idle/chef_idle_1.png");
+
         // Load station textures.
         floorTexture = new Texture("stations/floor.png");
         bakingStationTexture = new Texture("stations/bakingstation.png");
@@ -100,6 +110,9 @@ public class Base {
 
     public static void dispose() {
         batch.dispose();
+
+        tempChefTexture.dispose();
+
         floorTexture.dispose();
         bakingStationTexture.dispose();
         counterTopTexture.dispose();

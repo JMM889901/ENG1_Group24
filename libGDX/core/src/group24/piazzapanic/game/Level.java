@@ -6,6 +6,11 @@ import java.util.Scanner;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.stations.*;
 
+/**
+ * Reads level environment data from a file and stores it in a 2D array of stations.
+ * It stores a grid, integer positions refer to the top left corner of a station/tile as shown on
+ * screen to the player.
+ */
 public class Level {
     private String levelName;
     private Station[][] grid;

@@ -51,7 +51,6 @@ public class PiazzaPanic extends ApplicationAdapter {
         Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
         FontHandler.create();
 
-        Base.batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
 
         StageManager.init();
