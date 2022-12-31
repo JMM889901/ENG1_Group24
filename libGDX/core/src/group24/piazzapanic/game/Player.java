@@ -8,16 +8,17 @@ public class Player {
     public static final int TEXTURE_HEIGHT = 96;
 
     // How wide the player is in grid units. Applies to both "width" and "length"/"height".
-    public static final double GRID_WIDTH = 0.8; // Don't set to more than 1.
+    public static final double GRID_WIDTH = 0.6; // Don't set to more than 1.
+    public static final float TEXTURE_SCALE = 1.3f; // Texture is scaled with this and GRID_WIDTH.
 
     public double x;
     public double y;
     public double x_vel = 0;
     public double y_vel = 0;
-    public static double acceleration = 5; // Grid units per second squared.
-    public static double deacceleration = 10;
-    public static double maxSpeed = 4; // Grid units per second.
-    public static double minSpeed = 0.1; // The player is deemed still if they are below this.
+    public static double acceleration = 25; // Grid units per second squared.
+    public static double deacceleration = 20;
+    public static double maxSpeed = 3; // Grid units per second.
+    public static double minSpeed = 0.4; // The player is deemed still if they are below this.
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                   //collidable objects.
 

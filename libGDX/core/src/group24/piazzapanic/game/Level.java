@@ -32,9 +32,10 @@ public class Level {
             width = Integer.parseInt(dimensions[0]);
             height = Integer.parseInt(dimensions[1]);
 
-            grid = new Station[height][width];
+            grid = new Station[width][height];
 
             int x, y;
+            // Be aware that i is the outer loop, controlling the y coordinate.
             for(int i = 0; i < height; i++) {
                 if(!levelScanner.hasNextLine()) {
                     throw new Exception("Expected " + height + " lines in level file, but found " + i + ".");
@@ -46,8 +47,8 @@ public class Level {
                 }
 
                 for(int j = 0; j < width; j++) {
-                    x = width - i - 2;
-                    y = j;
+                    y = height - i - 1;
+                    x = j;
                     switch(line.charAt(j)) {
                         case '.':
                             grid[x][y] = null;
@@ -55,7 +56,7 @@ public class Level {
                         case '*':
                             grid[x][y] = null;
                             startX = j;
-                            startY = i;
+                            startY = height - i - 1;
                             break;
 
                         case 'B':
@@ -109,7 +110,7 @@ public class Level {
     }
 
     public Station getStation(int x, int y) {
-        return grid[y][x];
+        return grid[x][y];
     }
 
     public int getWidth() {

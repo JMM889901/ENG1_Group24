@@ -12,6 +12,7 @@ import com.badlogic.gdx.Input.Keys;
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
  */
 public class Base {
+    public static final boolean DEBUG = false;
     public static String CONFIG_PATH = "config.txt";
 
     public static int WINDOW_WIDTH = 100;
@@ -27,6 +28,7 @@ public class Base {
     public static SpriteBatch batch;
 
     public static Texture tempChefTexture;
+    public static Texture debugSquareTexture;
 
     public static Texture floorTexture;
     public static Texture bakingStationTexture;
@@ -95,6 +97,7 @@ public class Base {
         batch = new SpriteBatch();
 
         tempChefTexture = new Texture("chef-idle/chef_idle_1.png");
+        debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
         floorTexture = new Texture("stations/floor.png");
@@ -112,6 +115,7 @@ public class Base {
         batch.dispose();
 
         tempChefTexture.dispose();
+        debugSquareTexture.dispose();
 
         floorTexture.dispose();
         bakingStationTexture.dispose();
