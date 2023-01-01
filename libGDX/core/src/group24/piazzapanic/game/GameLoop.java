@@ -86,6 +86,22 @@ public class GameLoop extends Stage {
     }
 
     /**
+     * Checks if the player is close to a station.
+     * @param x Integer x position of station.
+     * @param y Integer y position of station.
+     * @param player The player.
+     * @return True if player near the station, false otherwise.
+     */
+    public boolean isNear(int x, int y, Player player){
+        double deltaX = player.x - x;
+        double deltaY = player.y - y;
+        if (Math.abs(deltaX) <= 0.3 || Math.abs(deltaY) <= 0.3){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Checks if the given coordinates are solid (i.e. a station is there).
      * @param x Decimal x position.
      * @param y Decimal y position.

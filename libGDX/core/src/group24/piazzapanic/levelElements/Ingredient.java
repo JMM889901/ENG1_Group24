@@ -44,9 +44,10 @@ public class Ingredient {
 
 
     /**
-     * Record that the ingredient has been cut.
+     * Cut the ingredient.
      */
-    public void cuttingComplete(){
+    public void cut(){
+        this.cuttingProgress = 1;
         // this.sprite = cut sprite
         // Update what we can do with each ingredient now that it's cut
         switch (this.ingredientType){
@@ -59,17 +60,19 @@ public class Ingredient {
     }
 
     /**
-     * Record that the ingredient has been fried.
+     * Fry the ingredient
      */
-    public void fryingComplete(){
+    public void fry(){
+        this.fryingProgress = 1;
         // this.sprite = fried sprite
         // update constraints
     }
 
     /**
-     * Record that the ingredient has been baked.
+     * Bake the ingredient
      */
-    public void bakingComplete(){
+    public void bake(){
+        this.bakingProgress = 1;
         // this.sprite = baked sprite
         // update constraints
     }

@@ -1,5 +1,7 @@
 package group24.piazzapanic.game;
 
+import group24.piazzapanic.levelElements.Movable;
+
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but does nothing itself.
  */
@@ -21,6 +23,7 @@ public class Player {
     public static double minSpeed = 0.4; // The player is deemed still if they are below this.
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                   //collidable objects.
+    public Movable holding; // The player's one-item inventory.
 
     public Player(double x, double y) {
         this.x = x;
