@@ -4,6 +4,7 @@ package group24.piazzapanic.levelElements.stations;
 import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.Base;
+import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.levelElements.Movable;
 
 public class BakingStation extends Station{
@@ -30,14 +31,12 @@ public class BakingStation extends Station{
     }
 
     public void act(float delta) {
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY)) { // I've chosen F as a way to interact with the station but this is a
-                                              // placeholder.
-            // I've moved `Key.F` into Base so that every station uses the same key - Joss.
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameLoop.activeGameLoop.isNear()) {
                                             
             timeKeyHeld += delta;
             if (timeKeyHeld > 10 && super.item.ingredient.getBakingProgress() == 0) { 
                 // Cutting is done! poggers
-                super.item.ingredient.bakingComplete();
+                super.item.ingredient.bake();
             } else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
