@@ -55,34 +55,69 @@ public class Base {
     public static void init() {
         // Read config file.
         try {
-            File configFile = new File(CONFIG_PATH);
-            Scanner configScanner = new Scanner(configFile);
-            while (configScanner.hasNextLine()) {
-                String line = configScanner.nextLine();
+            Scanner scanner = new Scanner(new File(CONFIG_PATH));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                
                 if (line.strip().equals("")) {
                     continue;
                 }
-                String[] lineSplit = line.split("=");
-                if (lineSplit.length != 2) {
-                    System.out.println("Invalid syntax: " + line);
-                    throw new Exception("Invalid config file - key without value");
-                }
-                String key = lineSplit[0];
-                String value = lineSplit[1];
 
-                if (key.equals("resolution")) {
-                    String[] resolutionSplit = value.split("x");
-                    if (resolutionSplit.length != 2) {
-                        throw new Exception("Invalid config file - too many arguments for resolution");
+                String[] split = line.split("=");
+                if (split.length != 2) {
+                    System.out.println("Invalid line syntax: '" + line + "'.");
+                    if (split.length == 1)
+                    {
+                        throw new Exception("Invalid config file - no argument supplied.");
+                    } else if (split.length > 2) {
+                        throw new Exception("Invalid config file - too many arguments.");
+                    } else {
+                        throw new Exception("Invalid config file - bad length array (" + split.length + ").");
                     }
-                    WINDOW_WIDTH = Integer.parseInt(resolutionSplit[0]);
-                    WINDOW_HEIGHT = Integer.parseInt(resolutionSplit[1]);
+                }
+                String left = split[0];
+                String right = split[1];
+
+                if (left.equals("resolution")) {
+                    String[] resolutionStr = right.split("x");
+                    if (resolutionStr.length != 2) {
+                        System.out.println("Bad resolution: '" + right + "'.");
+                        if (resolutionStr.length == 1)
+                        {
+                            throw new Exception("Invalid config file - only one dimension supplied.");
+                        } else if (resolutionStr.length > 2) {
+                            throw new Exception("Invalid config file - too many dimensions supplied.");
+                        } else {
+                            throw new Exception("Invalid config file - bad dimensions (" + resolutionStr.length + " parameters given).");
+                        }
+                    }
+
+                    // Check if the strings are numeric.
+                    for (int i = 0; i < resolutionStr[0].length(); i++)
+                    {
+                        if (!Character.isDigit(resolutionStr[0].charAt(i)))
+                        {
+                            System.out.println("Bad Dimension: '" + resolutionStr[0] + "'.");
+                            throw new Exception("Invalid config file - non-numeric width.");
+                        }
+                    }
+                    for (int i = 0; i < resolutionStr[1].length(); i++)
+                    {
+                        if (!Character.isDigit(resolutionStr[1].charAt(i)))
+                        {
+                            System.out.println("Bad Dimension: '" + resolutionStr[1] + "'.");
+                            throw new Exception("Invalid config file - non-numeric height.");
+                        }
+                    }
+                    
+                    WINDOW_WIDTH = Integer.parseInt(resolutionStr[0]);
+                    WINDOW_HEIGHT = Integer.parseInt(resolutionStr[1]);
                 } else {
-                    System.out.println("Unknown key: " + key);
+                    System.out.println("Unknown key: '" + left + "=...' .");
                     throw new Exception("Invalid config file - unknown key");
                 }
             }
-            configScanner.close();
+            scanner.close();
         } catch (Exception exception) {
             System.out.println("Error reading config file, Using default settings");
             WINDOW_WIDTH = 1280;
