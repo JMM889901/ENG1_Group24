@@ -24,9 +24,9 @@ public class Base {
         // This has just been spat out by Copilot, so we definitely need to refactor it for plagiarism reasons lol.
         
         // I feel obligated to mention that the above comment was largely a joke, Copilot did do things like File configFile...
-        // but the error messaging and parsing on "=" and "x" was a decision made before Copilot even touched the project.
-        // The code below, while some is taken from Copilot, had already been changed quite a bit from the "plagiarised" original form
-        // before the code had made its way to GitHub. - Joss
+        // but the error print messaging (not the exceptions raised obviously) and parsing on "=" and "x" was a decision made
+        // before Copilot even touched the project. The code below, while some is taken from Copilot, had already been changed
+        // quite a bit from the "plagiarised" original form before the code had made its way to GitHub. - Joss
         try {
             File configFile = new File(CONFIG_PATH);
             Scanner configScanner = new Scanner(configFile);
