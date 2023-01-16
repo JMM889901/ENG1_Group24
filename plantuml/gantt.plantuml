@@ -18,7 +18,8 @@ Project starts 2022-11-10
 note bottom
 Low priority
 end note
-[Finish requirements document] happens at 2023-1-23
+[Format requirements document] on {Louise} starts 2022-12-30 and lasts 4 days
+[Req1.pdf] happens at 2023-1-3
 --Website--
 [Website development] on {Emily} starts 2022-11-24 and lasts 1 week
 note bottom
@@ -28,11 +29,13 @@ end note
 --Method Selection and Planning--
 [Write up Methods and planning section] on {Louise} starts 2022-11-24
 [Write up Methods and planning section] ends 2022-11-28
-[Work on Gantt chart] on {Louise} starts 2022-11-24
-[Work on Gantt chart] ends 2022-12-12
+[Start on Gantt chart] on {Louise} starts 2022-11-24 and lasts 4 days
 note bottom
 Low priority
 end note
+[Update Gantt Chart] on {Louise} starts 2022-12-14 and lasts 2 days
+[Keep updating Gantt Chart] on {Louise} starts 2023-1-13 and lasts 2 days
+[Finish Gantt Chart] on {Louise} starts 2023-1-22
 [Finish methods and planning document] happens at 2023-1-23
 --Risk Assessment and Mitigation--
 [Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
@@ -41,13 +44,16 @@ note bottom
 High priority
 end note
 [Review risk assessment] on {Louise} starts 2022-12-1 and lasts 1 day
-[Finish risk assessment document] happens at 2023-1-23
+[Format risk assessment] on {Louise} starts 2022-12-30 and lasts 4 days
+[Risk1.pdf] happens at 2023-1-3
 --Implementation--
 [Started creating classes] on {Joss} {Josh} {Amber} starts 2022-11-24 and lasts 2 weeks
 [Started creating and importing diagrams for code] on {Joss} {Amber} starts 2022-11-29
 [Get visuals/sprites] on {Amber} starts 2022-11-29
 [Get visuals/sprites] ends 2022-11-30
 [Sort game engine/asset stuff] on {Joss} starts 2022-11-29 and lasts 5 days
+[UI framework] on {Josh} {Joss} {Amber} starts 2022-12-13
+[UI framework] ends 2022-12-16
 [Implementation] on {Joss} {Josh} {Amber} starts 2022-12-1
 [Implementation] ends 2023-1-8
 note bottom
@@ -60,6 +66,7 @@ end note
 note bottom 
 Low priority
 end note
+[Added to Architecture document] on {Joe} starts 2022-12-10
 [Finish architecture document] happens at 2023-1-23
 --Bug Snagging--
 [Bug testing] on {all} starts 2023-1-18 and lasts 14 days
