@@ -41,11 +41,19 @@ public class GameLoop extends Stage {
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5);
     }
 
+    
+    /** 
+     * @param score
+     */
     public void addScore(int score) {
         CharSequence count = Integer.toString(score);
         this.scoreCounter.setText(count);
     }
 
+    
+    /** 
+     * @param delta
+     */
     @Override
     public void act(float delta) {
         super.act(delta);

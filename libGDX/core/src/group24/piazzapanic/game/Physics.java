@@ -42,6 +42,11 @@ public class Physics {
         return GameData.level.getStation((int) x, (int) y) != null;
     }
 
+    
+    /** 
+     * @param player
+     * @param delta
+     */
     public static void playerMovement(Player player, float delta) {
         /*
         We know:

@@ -102,6 +102,11 @@ public class Level {
         }
     }
 
+    
+    /** 
+     * @param abbrevation
+     * @return String
+     */
     private static String extrapolateIngredient(char abbrevation) {
         switch (abbrevation) {
             case 't':
@@ -114,18 +119,36 @@ public class Level {
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getLevelName() {
         return levelName;
     }
 
+    
+    /** 
+     * @param x
+     * @param y
+     * @return Station
+     */
     public Station getStation(int x, int y) {
         return grid[x][y];
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getWidth() {
         return width;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getHeight() {
         return height;
     }

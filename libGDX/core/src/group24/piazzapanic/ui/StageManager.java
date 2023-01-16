@@ -49,6 +49,10 @@ public class StageManager {
         Gdx.input.setInputProcessor(activeStage);
     }
 
+    
+    /** 
+     * @return Stage
+     */
     public static Stage getActiveStage() {
         return activeStage;
     }
