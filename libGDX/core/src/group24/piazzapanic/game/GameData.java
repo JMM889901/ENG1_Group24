@@ -15,6 +15,10 @@ public class GameData {
     public static Player player;
     
 
+    
+    /** 
+     * @param score
+     */
     public static void addScore(int score) {
         GameData.score += score;
         gameLoop.addScore(score);

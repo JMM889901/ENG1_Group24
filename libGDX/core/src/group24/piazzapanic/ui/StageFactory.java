@@ -29,6 +29,10 @@ import com.badlogic.gdx.utils.Align;
  * */
 public class StageFactory {
 
+    
+    /** 
+     * @return Stage
+     */
     // Main menu
     public static Stage createMainMenuStage() {
         // Title
@@ -79,6 +83,10 @@ public class StageFactory {
         return stage;
     }
 
+    
+    /** 
+     * @return Stage
+     */
     public static Stage createOptionsMenuStage() {
         //Title
         Stage stage = new Stage();

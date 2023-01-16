@@ -56,12 +56,21 @@ public class StageAnimation extends Image {
                 height);
     }
 
+    
+    /** 
+     * @param batch
+     * @param parentAlpha
+     */
     @Override
     public void draw(Batch batch, float parentAlpha) {
 
         batch.draw(currentFrame, getX(), getY(), width, height); // Draw current frame at (50, 50)
     }
 
+    
+    /** 
+     * @param delta
+     */
     @Override
     public void act(float delta) {
         this.stateTime += Gdx.graphics.getDeltaTime(); // Accumulate elapsed animation time

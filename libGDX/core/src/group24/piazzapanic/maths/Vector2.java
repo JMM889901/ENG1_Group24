@@ -25,10 +25,18 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         this.y = y / (double) Base.WINDOW_HEIGHT;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getAbsoluteX() {
         return Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH));
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getAbsoluteY() {
         return Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT));
     }

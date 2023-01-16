@@ -70,6 +70,11 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.end();
     }
 
+    
+    /** 
+     * @param width
+     * @param height
+     */
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);

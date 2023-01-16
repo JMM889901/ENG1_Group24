@@ -34,6 +34,10 @@ public class Customer extends StageAnimation {
         GameData.addScore(1);
     }
 
+    
+    /** 
+     * @param x
+     */
     //Update text box with the customer
     @Override
     public void setX(float x) {
@@ -42,6 +46,10 @@ public class Customer extends StageAnimation {
             this.textBubble.setX(x);
     }
 
+    
+    /** 
+     * @param y
+     */
     @Override
     public void setY(float y) {
         super.setY(y);
@@ -49,6 +57,11 @@ public class Customer extends StageAnimation {
             this.textBubble.setY(y + entityHeight);
     }
 
+    
+    /** 
+     * @param batch
+     * @param parentAlpha
+     */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
