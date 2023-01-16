@@ -28,14 +28,12 @@ end note
 [Finish website] happens at 2023-1-23
 --Method Selection and Planning--
 [Write up Methods and planning section] on {Louise} starts 2022-11-24
-[Write up Methods and planning section] ends 2022-11-28
-[Start on Gantt chart] on {Louise} starts 2022-11-24 and lasts 4 days
+[Write up Methods and planning section] ends 2022-11-29
+[Work on Gantt chart] on {Louise} starts 2022-11-30
+[Work on Gantt chart] ends 2023-1-16
 note bottom
 Low priority
 end note
-[Update Gantt Chart] on {Louise} starts 2022-12-14 and lasts 2 days
-[Keep updating Gantt Chart] on {Louise} starts 2023-1-13 and lasts 2 days
-[Finish Gantt Chart] on {Louise} starts 2023-1-22
 [Finish methods and planning document] happens at 2023-1-23
 --Risk Assessment and Mitigation--
 [Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
@@ -43,29 +41,21 @@ end note
 note bottom 
 High priority
 end note
-[Review risk assessment] on {Louise} starts 2022-12-1 and lasts 1 day
+[Create risk register] on {Emily} {Joe} starts 2022-11-29 and lasts 2 days
+[Review risk assessment] on {Louise} starts 2022-12-5
 [Format risk assessment] on {Louise} starts 2022-12-30 and lasts 4 days
 [Risk1.pdf] happens at 2023-1-3
 --Implementation--
 [Started creating classes] on {Joss} {Josh} {Amber} starts 2022-11-24 and lasts 2 weeks
-[Started creating and importing diagrams for code] on {Joss} {Amber} starts 2022-11-29
-[Get visuals/sprites] on {Amber} starts 2022-11-29
-[Get visuals/sprites] ends 2022-11-30
-[Sort game engine/asset stuff] on {Joss} starts 2022-11-29 and lasts 5 days
+[Get diagrams and visuals/sprites] on {Josh} {Amber} starts 2022-11-29 and lasts 2 days
+[Sort game engine/asset stuff/UML diagram] on {Joss} starts 2022-12-1 and lasts 4 days
+[Create working menu] on {Josh} {Joss} {Amber} starts 2022-12-5
+[Create working menu] ends 2022-12-12
 [UI framework] on {Josh} {Joss} {Amber} starts 2022-12-13
 [UI framework] ends 2022-12-16
-[Implementation] on {Joss} {Josh} {Amber} starts 2022-12-1
-[Implementation] ends 2023-1-8
-note bottom
-High priority
-end note
-[Start getting tests] on {Josh} starts 2022-12-1 and lasts 1 week
 [Finish implementation document] happens at 2023-1-23
 --Architecture--
-[Writing up document for Architecture] on {Emily} starts 2022-11-29 and lasts 5 days
-note bottom 
-Low priority
-end note
+[Start creating architecture document] on {Emily} starts 2022-12-7
 [Added to Architecture document] on {Joss} starts 2022-12-10
 [Finish architecture document] happens at 2023-1-23
 --Bug Snagging--
