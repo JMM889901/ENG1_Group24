@@ -3,20 +3,23 @@ package group24.piazzapanic.game;
 import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.Base;
+import group24.piazzapanic.levelElements.stations.Station;
 
 public class Physics {
 
     /**
-     * Checks if the player is close to a station.
-     * @param x Integer x position of station.
-     * @param y Integer y position of station.
+     * Checks if the player is close to a station. 
+     * @param station The station which we want to check if it's near.
      * @param player The player.
      * @return True if player near the station, false otherwise.
      */
-    public static boolean isNear(int x, int y, Player player) {
-        double deltaX = player.x - x;
-        double deltaY = player.y - y;
-        if (Math.abs(deltaX) <= 0.3 || Math.abs(deltaY) <= 0.3) {
+    public static boolean isNear(Station station, Player player) {
+        double deltaX = player.x - station.getX();
+        double deltaY = player.y - station.getY();
+        double threshold = (station.getWidth()) / 3; // Station width in pixels divided by three
+        if (Math.abs(deltaX) <= threshold || Math.abs(deltaY) <= threshold) { // If closer than Threshold
+            // if (Player.direction ==   TODO implement me. 
+            System.out.println("Poggers, you are indeed near.");
             return true;
         }
         return false;

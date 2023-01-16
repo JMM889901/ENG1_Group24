@@ -66,23 +66,6 @@ public class GameLoop extends Stage {
     }
 
     /**
-     * Checks if the given coordinates are solid (i.e. a station is there).
-     * @param x Decimal x position.
-     * @param y Decimal y position.
-     * @return Whether there is not a station at grid[floor(x)][floor(y)].
-     */
-    public boolean isSolid(double x, double y) {
-        x = Math.floor(x);
-        y = Math.floor(y);
-
-        if (x < 0 || y < 0 || x >= GameData.level.getWidth() || y >= GameData.level.getHeight()) {
-            return true;
-        }
-
-        return GameData.level.getStation((int) x, (int) y) != null;
-    }
-
-    /**
      * Draws all level elements, floor tiles, players and (yet to be implemented) customers.
      */
     @Override
