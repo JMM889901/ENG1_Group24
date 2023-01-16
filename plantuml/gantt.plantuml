@@ -66,7 +66,7 @@ end note
 note bottom 
 Low priority
 end note
-[Added to Architecture document] on {Joe} starts 2022-12-10
+[Added to Architecture document] on {Joss} starts 2022-12-10
 [Finish architecture document] happens at 2023-1-23
 --Bug Snagging--
 [Bug testing] on {all} starts 2023-1-18 and lasts 14 days
