@@ -34,7 +34,7 @@ public class BakingStation extends Station {
     }
 
     public void act(float delta) {
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(0, 0, GameData.player)) {
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player)) {
 
             timeKeyHeld += delta;
             if (timeKeyHeld > 10 && super.item.ingredient.getBakingProgress() == 0) {
