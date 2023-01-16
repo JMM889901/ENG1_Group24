@@ -3,6 +3,7 @@ package group24.piazzapanic.game;
 import java.io.File;
 import java.util.Scanner;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 
 import group24.piazzapanic.levelElements.Ingredient;
@@ -16,7 +17,7 @@ import group24.piazzapanic.maths.Vector2;
  */
 public class Level {
     private String levelName;
-    private Station[][] grid;
+    public Station[][] grid;
     private int width;
     private int height;
 
@@ -53,46 +54,40 @@ public class Level {
                 for (int j = 0; j < width; j++) {
                     y = height - i - 1;
                     x = j;
-                    Vector2 pos = Vector2.gridUnitTranslate(x, i);
+                    Vector2 pos = Vector2.gridUnitTranslate(x, y);
                     switch (line.charAt(j)) {
                         case '.':
                             grid[x][y] = null;
-                            break;
+                            continue;
                         case '*':
                             grid[x][y] = null;
                             startX = j;
                             startY = height - i - 1;
-                            break;
-
+                            continue;
                         case 'B':
                             grid[x][y] = new BakingStation();
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         case 'T':
                             grid[x][y] = new CounterTop();
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         case 'C':
                             grid[x][y] = new CuttingStation();
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         case 'F':
                             grid[x][y] = new FryingStation();
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         case 't': // tomato  // TODO: add the other ingredients.
                         case 'o': // onion
                             grid[x][y] = new IngredientStation(
                                     new Ingredient(extrapolateIngredient(line.charAt(j)), null));
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         case 'W':
                             grid[x][y] = new Obstacle();
-                            grid[x][y].setPosition(pos.getAbsoluteX(), pos.getAbsoluteX(), Align.center);
                             break;
                         default:
                             throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
                     }
+                    grid[x][y].setPosition(pos.getAbsoluteX() + 300, pos.getAbsoluteY() + 100);
                 }
             }
             levelScanner.close();
@@ -102,7 +97,6 @@ public class Level {
         }
     }
 
-    
     /** 
      * @param abbrevation
      * @return String
@@ -119,7 +113,6 @@ public class Level {
         }
     }
 
-    
     /** 
      * @return String
      */
@@ -127,7 +120,6 @@ public class Level {
         return levelName;
     }
 
-    
     /** 
      * @param x
      * @param y
@@ -137,7 +129,6 @@ public class Level {
         return grid[x][y];
     }
 
-    
     /** 
      * @return int
      */
@@ -145,11 +136,11 @@ public class Level {
         return width;
     }
 
-    
     /** 
      * @return int
      */
     public int getHeight() {
         return height;
     }
+
 }
