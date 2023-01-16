@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.GameLoop;
 
 public class StageManager {
@@ -20,7 +21,8 @@ public class StageManager {
         stages = new HashMap<String, Stage>();
         stages.put("MainMenu", StageFactory.createMainMenuStage());
         stages.put("Options", StageFactory.createOptionsMenuStage());
-        stages.put("Game", new GameLoop());
+        GameData.gameLoop = new GameLoop();
+        stages.put("Game", GameData.gameLoop);
 
         setActiveStage("MainMenu");
     }

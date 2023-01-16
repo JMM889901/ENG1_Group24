@@ -26,7 +26,7 @@ public class Level {
         try {
             File levelFile = new File(levelName);
             Scanner levelScanner = new Scanner(levelFile);
-            
+
             String[] dimensions = levelScanner.nextLine().split("x");
 
             width = Integer.parseInt(dimensions[0]);
@@ -36,20 +36,21 @@ public class Level {
 
             int x, y;
             // Be aware that i is the outer loop, controlling the y coordinate.
-            for(int i = 0; i < height; i++) {
-                if(!levelScanner.hasNextLine()) {
+            for (int i = 0; i < height; i++) {
+                if (!levelScanner.hasNextLine()) {
                     throw new Exception("Expected " + height + " lines in level file, but found " + i + ".");
                 }
 
                 String line = levelScanner.nextLine();
-                if(line.length() != width) {
-                    throw new Exception("Expected " + width + " characters in line " + i + ", but found " + line.length() + ".");
+                if (line.length() != width) {
+                    throw new Exception(
+                            "Expected " + width + " characters in line " + i + ", but found " + line.length() + ".");
                 }
 
-                for(int j = 0; j < width; j++) {
+                for (int j = 0; j < width; j++) {
                     y = height - i - 1;
                     x = j;
-                    switch(line.charAt(j)) {
+                    switch (line.charAt(j)) {
                         case '.':
                             grid[x][y] = null;
                             break;
@@ -72,15 +73,16 @@ public class Level {
                             grid[x][y] = new FryingStation();
                             break;
 
-                        case 't':  // tomato  // TODO: add the other ingredients.
-                        case 'o':  // onion
-                            grid[x][y] = new IngredientStation(new Ingredient(extrapolateIngredient(line.charAt(j)), null));
+                        case 't': // tomato  // TODO: add the other ingredients.
+                        case 'o': // onion
+                            grid[x][y] = new IngredientStation(
+                                    new Ingredient(extrapolateIngredient(line.charAt(j)), null));
                             break;
 
-                            case 'W':
+                        case 'W':
                             grid[x][y] = new Obstacle();
                             break;
-                        
+
                         default:
                             throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
                     }
@@ -94,7 +96,7 @@ public class Level {
     }
 
     private static String extrapolateIngredient(char abbrevation) {
-        switch(abbrevation) {
+        switch (abbrevation) {
             case 't':
                 return "tomato";
             case 'o':

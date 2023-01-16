@@ -31,7 +31,7 @@ public class Customer extends StageAnimation {
 
     public void fulfillOrder() {
         this.textBubble.setText("Done");
-        GameLoop.addScore(1);
+        GameData.addScore(1);
     }
 
     //Update text box with the customer
