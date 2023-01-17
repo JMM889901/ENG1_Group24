@@ -54,7 +54,7 @@ public class Level {
                 for (int j = 0; j < width; j++) {
                     y = height - i - 1;
                     x = j;
-                    Vector2 pos = Vector2.gridUnitTranslate(x, y);
+
                     switch (line.charAt(j)) {
                         case '.':
                             grid[x][y] = null;
@@ -87,6 +87,7 @@ public class Level {
                         default:
                             throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
                     }
+                    Vector2 pos = Vector2.gridUnitTranslate(x, y);
                     grid[x][y].setPosition(pos.getAbsoluteX() + 300, pos.getAbsoluteY() + 100);
                 }
             }
