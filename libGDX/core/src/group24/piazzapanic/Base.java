@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Input.Keys;
 
+import group24.piazzapanic.Physics.AnimatedMovable;
+import group24.piazzapanic.game.Player;
+import group24.piazzapanic.ui.StageAnimation;
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
@@ -27,7 +30,7 @@ public class Base {
 
     public static SpriteBatch batch;
 
-    public static Texture tempChefTexture;
+    public static StageAnimation initialChefAnimation;
     public static Texture debugSquareTexture;
 
     public static Texture floorTexture;
@@ -131,7 +134,7 @@ public class Base {
 
         batch = new SpriteBatch();
 
-        tempChefTexture = new Texture("chef-idle/chef_idle_1.png");
+        initialChefAnimation = new AnimatedMovable("chef/chef_idle_front.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
@@ -149,7 +152,6 @@ public class Base {
     public static void dispose() {
         batch.dispose();
 
-        tempChefTexture.dispose();
         debugSquareTexture.dispose();
 
         floorTexture.dispose();

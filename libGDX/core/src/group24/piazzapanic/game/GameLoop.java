@@ -38,7 +38,7 @@ public class GameLoop extends Stage {
         this.addActor(scoreCounter);
 
         GameData.level = new Level("levels/Level 1");
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5);
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, Base.initialChefAnimation);
     }
 
     
@@ -68,7 +68,7 @@ public class GameLoop extends Stage {
             this.addActor(customer);
             GameData.sinceLastSpawn = 0;
         }
-
+        GameData.player.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
     }
@@ -96,7 +96,7 @@ public class GameLoop extends Stage {
                     Vector2 playerPosition = Vector2.gridUnitTranslate(
                             GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                             GameData.player.y - Player.GRID_WIDTH / 2);
-                    Base.batch.draw(Base.tempChefTexture, playerPosition.getAbsoluteX() + offsetX,
+                    Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(), playerPosition.getAbsoluteX() + offsetX,
                             playerPosition.getAbsoluteY() + offsetY,
                             (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
                             (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width

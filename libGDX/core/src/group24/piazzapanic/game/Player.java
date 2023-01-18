@@ -1,6 +1,7 @@
 package group24.piazzapanic.game;
-
+import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.ui.StageAnimation;
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but does nothing itself.
@@ -25,9 +26,22 @@ public class Player {
                                                   //collidable objects.
     public Movable holding; // The player's one-item inventory.
 
-    public Player(double x, double y) {
+    public StageAnimation animation;
+
+    public enum facing{
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+
+    public facing direction;
+
+    public Player(double x, double y, StageAnimation animation) {
         this.x = x;
         this.y = y;
+        direction = facing.DOWN;
+        this.animation = animation;
     }
 
     /**
