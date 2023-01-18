@@ -42,7 +42,7 @@ public class GameLoop extends Stage {
         GameData.level = new Level("levels/Level 1");
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, Base.initialChefAnimation);
 
-        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png","customers/customer_1_idle.png","customers/customer_1_idle.png"));
+        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png","customers/customer_2_idle.png","customers/customer_3_idle.png"));
         GameData.rand = new Random();
     }
 
