@@ -78,7 +78,7 @@ public class StageFactory {
         stage.addActor(button2);
 
         // Temporary (?) dancing chef.
-        StageAnimation ChefAnimation = new StageAnimation("chef-idle/chef_idle.png", 6, 6, 1, 20, 20, 154, 307);
+        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front.png", 6, 6, 1, 20, 20, 154, 307);
         stage.addActor(ChefAnimation);
         return stage;
     }
