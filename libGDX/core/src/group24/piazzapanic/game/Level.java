@@ -3,8 +3,12 @@ package group24.piazzapanic.game;
 import java.io.File;
 import java.util.Scanner;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Align;
+
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.stations.*;
+import group24.piazzapanic.maths.Vector2;
 
 /**
  * Reads level environment data from a file and stores it in a 2D array of stations.
@@ -13,7 +17,7 @@ import group24.piazzapanic.levelElements.stations.*;
  */
 public class Level {
     private String levelName;
-    private Station[][] grid;
+    public Station[][] grid;
     private int width;
     private int height;
 
@@ -50,16 +54,16 @@ public class Level {
                 for (int j = 0; j < width; j++) {
                     y = height - i - 1;
                     x = j;
+
                     switch (line.charAt(j)) {
                         case '.':
                             grid[x][y] = null;
-                            break;
+                            continue;
                         case '*':
                             grid[x][y] = null;
                             startX = j;
                             startY = height - i - 1;
-                            break;
-
+                            continue;
                         case 'B':
                             grid[x][y] = new BakingStation();
                             break;
@@ -72,20 +76,19 @@ public class Level {
                         case 'F':
                             grid[x][y] = new FryingStation();
                             break;
-
                         case 't': // tomato  // TODO: add the other ingredients.
                         case 'o': // onion
                             grid[x][y] = new IngredientStation(
                                     new Ingredient(extrapolateIngredient(line.charAt(j)), null));
                             break;
-
                         case 'W':
                             grid[x][y] = new Obstacle();
                             break;
-
                         default:
                             throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
                     }
+                    Vector2 pos = Vector2.gridUnitTranslate(x, y);
+                    grid[x][y].setPosition(pos.getAbsoluteX() + 300, pos.getAbsoluteY() + 100);
                 }
             }
             levelScanner.close();
@@ -95,7 +98,6 @@ public class Level {
         }
     }
 
-    
     /** 
      * @param abbrevation
      * @return String
@@ -112,7 +114,6 @@ public class Level {
         }
     }
 
-    
     /** 
      * @return String
      */
@@ -120,7 +121,6 @@ public class Level {
         return levelName;
     }
 
-    
     /** 
      * @param x
      * @param y
@@ -130,7 +130,6 @@ public class Level {
         return grid[x][y];
     }
 
-    
     /** 
      * @return int
      */
@@ -138,11 +137,11 @@ public class Level {
         return width;
     }
 
-    
     /** 
      * @return int
      */
     public int getHeight() {
         return height;
     }
+
 }

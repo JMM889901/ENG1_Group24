@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Input.Keys;
 
+
 import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.game.Player;
 import group24.piazzapanic.ui.StageAnimation;
@@ -15,7 +16,7 @@ import group24.piazzapanic.ui.StageAnimation;
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
  */
 public class Base {
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
     public static String CONFIG_PATH = "config.txt";
 
     public static int WINDOW_WIDTH = 100;
@@ -43,7 +44,7 @@ public class Base {
 
     public static Texture errorTexture;
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
-    
+
     public static final int UP_KEY = Keys.W;
     public static final int DOWN_KEY = Keys.S;
     public static final int LEFT_KEY = Keys.A;
@@ -52,7 +53,6 @@ public class Base {
     public static final int SELECT_KEY = Keys.ENTER;
     // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
     // developing non-UI features.
-
 
     /** Read the config file and set the values of the variables in this class.
      * This method should be called before any other code runs.
@@ -63,7 +63,7 @@ public class Base {
             Scanner scanner = new Scanner(new File(CONFIG_PATH));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                
+
                 if (line.strip().equals("")) {
                     continue;
                 }
@@ -71,8 +71,7 @@ public class Base {
                 String[] split = line.split("=");
                 if (split.length != 2) {
                     System.out.println("Invalid line syntax: '" + line + "'.");
-                    if (split.length == 1)
-                    {
+                    if (split.length == 1) {
                         throw new Exception("Invalid config file - no argument supplied.");
                     } else if (split.length > 2) {
                         throw new Exception("Invalid config file - too many arguments.");
@@ -87,34 +86,30 @@ public class Base {
                     String[] resolutionStr = right.split("x");
                     if (resolutionStr.length != 2) {
                         System.out.println("Bad resolution: '" + right + "'.");
-                        if (resolutionStr.length == 1)
-                        {
+                        if (resolutionStr.length == 1) {
                             throw new Exception("Invalid config file - only one dimension supplied.");
                         } else if (resolutionStr.length > 2) {
                             throw new Exception("Invalid config file - too many dimensions supplied.");
                         } else {
-                            throw new Exception("Invalid config file - bad dimensions (" + resolutionStr.length + " parameters given).");
+                            throw new Exception("Invalid config file - bad dimensions (" + resolutionStr.length
+                                    + " parameters given).");
                         }
                     }
 
                     // Check if the strings are numeric.
-                    for (int i = 0; i < resolutionStr[0].length(); i++)
-                    {
-                        if (!Character.isDigit(resolutionStr[0].charAt(i)))
-                        {
+                    for (int i = 0; i < resolutionStr[0].length(); i++) {
+                        if (!Character.isDigit(resolutionStr[0].charAt(i))) {
                             System.out.println("Bad Dimension: '" + resolutionStr[0] + "'.");
                             throw new Exception("Invalid config file - non-numeric width.");
                         }
                     }
-                    for (int i = 0; i < resolutionStr[1].length(); i++)
-                    {
-                        if (!Character.isDigit(resolutionStr[1].charAt(i)))
-                        {
+                    for (int i = 0; i < resolutionStr[1].length(); i++) {
+                        if (!Character.isDigit(resolutionStr[1].charAt(i))) {
                             System.out.println("Bad Dimension: '" + resolutionStr[1] + "'.");
                             throw new Exception("Invalid config file - non-numeric height.");
                         }
                     }
-                    
+
                     WINDOW_WIDTH = Integer.parseInt(resolutionStr[0]);
                     WINDOW_HEIGHT = Integer.parseInt(resolutionStr[1]);
                 } else {
@@ -129,10 +124,10 @@ public class Base {
             WINDOW_HEIGHT = 720;
             exception.printStackTrace();
         }
-        
-        tile_pixel_width = (int) Math.floor(TILE_GRID_UNIT * WINDOW_WIDTH);
-        tile_pixel_height = (int) Math.round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);
 
+        tile_pixel_width = (int) Math.floor(TILE_GRID_UNIT * WINDOW_WIDTH);
+        tile_pixel_height = (int) Math
+                .round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);
 
         batch = new SpriteBatch();
 
@@ -163,7 +158,7 @@ public class Base {
         fryingStationTexture.dispose();
         ingredientStationTexture.dispose();
         obstacleTexture.dispose();
-        
+
         errorTexture.dispose();
     }
 }

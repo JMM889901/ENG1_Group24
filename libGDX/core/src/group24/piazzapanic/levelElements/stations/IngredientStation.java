@@ -4,20 +4,23 @@ package group24.piazzapanic.levelElements.stations;
 //import com.badlogic.gdx.math.Vector2;
 
 import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Ingredient;
 
-public class IngredientStation extends Station{
+public class IngredientStation extends Station {
 
     private final Ingredient ingredientType;
 
-    public IngredientStation(/*Texture sprite, Vector2 location, */Ingredient ingredientType){
+    public IngredientStation(/*Texture sprite, Vector2 location, */Ingredient ingredientType) {
+        super(Base.ingredientStationTexture);
         /*this.sprite = sprite;
         this.location = location;*/
         this.item = null;
         this.ingredientType = ingredientType;
     }
-    
-    public IngredientStation(/*Texture sprite, Vector2 location, */Movable item, Ingredient ingredientType){
+
+    public IngredientStation(/*Texture sprite, Vector2 location, */Movable item, Ingredient ingredientType) {
+        super(Base.ingredientStationTexture);
         /*this.sprite = sprite;
         this.location = location;*/
         this.item = item;
@@ -25,15 +28,15 @@ public class IngredientStation extends Station{
     }
 
     @Override
-    public Movable takeItem(){
-        if(hasItem()) {
+    public Movable takeItem() {
+        if (hasItem()) {
             Movable tmp = this.item;
             this.item = null;
             return tmp;
         } else {
             return new Movable(ingredientType);
         }
-        
+
     }
-    
+
 }
