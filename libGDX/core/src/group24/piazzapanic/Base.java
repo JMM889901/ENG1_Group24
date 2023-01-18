@@ -7,6 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Input.Keys;
 
+
+import group24.piazzapanic.Physics.AnimatedMovable;
+import group24.piazzapanic.game.Player;
+import group24.piazzapanic.ui.StageAnimation;
+
 /** Core values like screen size, that will need to access, but nothing will need to modify.
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
  */
@@ -26,7 +31,7 @@ public class Base {
 
     public static SpriteBatch batch;
 
-    public static Texture tempChefTexture;
+    public static StageAnimation initialChefAnimation;
     public static Texture debugSquareTexture;
 
     public static Texture floorTexture;
@@ -40,12 +45,14 @@ public class Base {
     public static Texture errorTexture;
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
 
-    // This is a placeholder but can be changed just once if we change our mind since it's global.
     public static final int UP_KEY = Keys.W;
     public static final int DOWN_KEY = Keys.S;
     public static final int LEFT_KEY = Keys.A;
     public static final int RIGHT_KEY = Keys.D;
     public static final int ACT_KEY = Keys.F;
+    public static final int SELECT_KEY = Keys.ENTER;
+    // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
+    // developing non-UI features.
 
     /** Read the config file and set the values of the variables in this class.
      * This method should be called before any other code runs.
@@ -124,7 +131,7 @@ public class Base {
 
         batch = new SpriteBatch();
 
-        tempChefTexture = new Texture("chef-idle/chef_idle_1.png");
+        initialChefAnimation = new AnimatedMovable("chef/chef_idle_front.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
@@ -142,7 +149,6 @@ public class Base {
     public static void dispose() {
         batch.dispose();
 
-        tempChefTexture.dispose();
         debugSquareTexture.dispose();
 
         floorTexture.dispose();

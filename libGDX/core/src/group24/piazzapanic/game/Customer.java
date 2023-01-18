@@ -1,5 +1,6 @@
 package group24.piazzapanic.game;
 
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -18,7 +19,7 @@ public class Customer extends StageAnimation {
     private Label textBubble;
 
     public Customer() {
-        super("chef-idle/chef_idle.png", 6, 6, 1, 20, 20, entityWidth, entityHeight);
+        super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1, 20, 20, entityWidth, entityHeight);
         timeLimit = 30f;
         this.timeLimit = 15;
         this.orderText = "Text";

@@ -1,6 +1,8 @@
 package group24.piazzapanic.game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -19,8 +21,8 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     private Label scoreCounter;
 
-    private int offsetX = 300; //offsets for the camera, in pixels.
-    private int offsetY = 100;
+    private int offsetX = 100; //offsets for the camera, in pixels.
+    private int offsetY = 50;
 
     public GameLoop() {
         GameData.gameTime = 0f;
@@ -38,7 +40,10 @@ public class GameLoop extends Stage {
         this.addActor(scoreCounter);
 
         GameData.level = new Level("levels/Level 1");
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5);
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, Base.initialChefAnimation);
+
+        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png","customers/customer_2_idle.png","customers/customer_3_idle.png"));
+        GameData.rand = new Random();
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 if (GameData.level.grid[x][y] != null) {
@@ -73,7 +78,7 @@ public class GameLoop extends Stage {
             this.addActor(customer);
             GameData.sinceLastSpawn = 0;
         }
-
+        GameData.player.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
     }
@@ -97,30 +102,19 @@ public class GameLoop extends Stage {
                 Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + offsetX,
                         curPosition.getAbsoluteY() + offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
 
-                //curStation = GameData.level.getStation(x, y);
-                //
-                //if (curStation == null) {
-                //    // In this case you only need to draw the floor, which has already been done.
-                //    continue;
-                //} else if (curStation instanceof BakingStation) {
-                //    curTexture = Base.bakingStationTexture;
-                //} else if (curStation instanceof CounterTop) {
-                //    curTexture = Base.counterTopTexture;
-                //} else if (curStation instanceof CuttingStation) {
-                //    curTexture = Base.cuttingStationTexture;
-                //} else if (curStation instanceof FryingStation) {
-                //    curTexture = Base.fryingStationTexture;
-                //} else if (curStation instanceof IngredientStation) {
-                //    curTexture = Base.ingredientStationTexture;
-                //} else if (curStation instanceof Obstacle) {
-                //    curTexture = Base.obstacleTexture;
-                //} else {
-                //    System.out.println("Unknown station type: " + curStation + ", defaulting to floor.");
-                //    curTexture = Base.errorTexture;
-                //}
-                //
-                //Base.batch.draw(curTexture, curPosition.getAbsoluteX() + offsetX, curPosition.getAbsoluteY() + offsetY,
-                //        Base.tile_pixel_width, Base.tile_pixel_height);
+
+                if (y == (int) Math.floor(GameData.player.bottom())) {
+                    Vector2 playerPosition = Vector2.gridUnitTranslate(
+                            GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                            GameData.player.y - Player.GRID_WIDTH / 2);
+                    Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(), playerPosition.getAbsoluteX() + offsetX,
+                            playerPosition.getAbsoluteY() + offsetY,
+                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
+                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
+                                    * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
+                }
+
+
             }
 
         }
@@ -135,14 +129,7 @@ public class GameLoop extends Stage {
                     bottomLeft.getAbsoluteY() + offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
                     topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }
-        Vector2 playerPosition = Vector2.gridUnitTranslate(
-                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                GameData.player.y - Player.GRID_WIDTH / 2);
-        Base.batch.draw(Base.tempChefTexture, playerPosition.getAbsoluteX() + offsetX,
-                playerPosition.getAbsoluteY() + offsetY,
-                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
-                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
-                        * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
+
         super.draw();
         // Todo: draw the player at the right z level depending on its y position.
     }
