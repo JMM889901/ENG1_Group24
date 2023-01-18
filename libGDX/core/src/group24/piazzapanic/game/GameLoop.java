@@ -21,8 +21,8 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     private Label scoreCounter;
 
-    private int offsetX = 300; //offsets for the camera, in pixels.
-    private int offsetY = 100;
+    private int offsetX = 100; //offsets for the camera, in pixels.
+    private int offsetY = 50;
 
     public GameLoop() {
         GameData.gameTime = 0f;

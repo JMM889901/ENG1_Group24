@@ -44,12 +44,14 @@ public class Base {
     public static Texture errorTexture;
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     
-    // This is a placeholder but can be changed just once if we change our mind since it's global.
     public static final int UP_KEY = Keys.W;
     public static final int DOWN_KEY = Keys.S;
     public static final int LEFT_KEY = Keys.A;
     public static final int RIGHT_KEY = Keys.D;
     public static final int ACT_KEY = Keys.F;
+    public static final int SELECT_KEY = Keys.ENTER;
+    // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
+    // developing non-UI features.
 
 
     /** Read the config file and set the values of the variables in this class.

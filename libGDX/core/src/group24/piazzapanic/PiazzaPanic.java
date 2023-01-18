@@ -64,6 +64,14 @@ public class PiazzaPanic extends ApplicationAdapter {
         viewport.apply();
         Base.batch.setProjectionMatrix(viewport.getCamera().combined);
 
+        // Bypass some UI for sake of testing.
+        if (StageManager.getActiveStageName().equals("MainMenu")) {
+            if (Gdx.input.isKeyPressed(Base.SELECT_KEY)) {
+                StageManager.setActiveStage("Game");
+            }
+        }
+        
+
         Base.batch.begin();
         StageManager.getActiveStage().act();
         StageManager.getActiveStage().draw();
