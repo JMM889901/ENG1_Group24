@@ -19,20 +19,19 @@ public class Physics {
                 GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                 GameData.player.y - Player.GRID_WIDTH / 2);
         double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
-        double deltaY = pos.getAbsoluteY() - 13 - station.getY(); //Magic numbers go BRRRR
+        double deltaY = pos.getAbsoluteY() - ((0.01 * Base.WINDOW_WIDTH)) - station.getY(); //Magic numbers go BRRRR
         //Why do we have so many different types of positions and offsets
 
-        double Threshhold = Base.tile_pixel_width; // Station width in pixels divided by three
+        double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
         if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
-            if(Gdx.input.isKeyPressed(Base.ACT_KEY)){
+            if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
                 // if (Player.direction ==   TODO implement me. 
                 System.out.println("near! " + deltaX + " " + deltaY);
                 return true;
             }
         }
         //System.out.println("No");
-      //  System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
-        System.out.println(GameData.player.x + " " + GameData.player.y);
+        //System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
         return false;
     }
 
