@@ -19,9 +19,9 @@ public class GameData {
     public static Player player;
     public static List<String> customerSpriteSheets;
     public static Random rand;
-    
+    public static int offsetX = 100; //offsets for the camera, in pixels.
+    public static int offsetY = 50;
 
-    
     /** 
      * @param score
      */
