@@ -31,7 +31,8 @@ public class Physics {
             }
         }
         //System.out.println("No");
-        System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
+      //  System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
+        System.out.println(GameData.player.x + " " + GameData.player.y);
         return false;
     }
 
