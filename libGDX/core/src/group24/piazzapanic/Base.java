@@ -32,6 +32,7 @@ public class Base {
     public static SpriteBatch batch;
 
     public static StageAnimation initialChefAnimation;
+    public static StageAnimation initialChef1Animation;
     public static Texture debugSquareTexture;
 
     public static Texture floorTexture;
@@ -132,7 +133,8 @@ public class Base {
 
         batch = new SpriteBatch();
 
-        initialChefAnimation = new AnimatedMovable("chef/chef_idle_front.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
+        initialChefAnimation = new AnimatedMovable("chef/chef_idle_front_selected.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
+        initialChef1Animation = new AnimatedMovable("chef/chef_idle_front_selected.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
