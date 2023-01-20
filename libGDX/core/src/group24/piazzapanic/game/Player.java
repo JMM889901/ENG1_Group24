@@ -1,18 +1,25 @@
 package group24.piazzapanic.game;
+
+import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.levelElements.Movable;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.levelElements.stations.*;
 
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
+import com.badlogic.gdx.Gdx;
 
 /**
- * The Player class encapsulates player data (position, veolocity etc.), but does nothing itself.
+ * The Player class encapsulates player data (position, veolocity etc.), but
+ * does nothing itself.
  */
 public class Player {
     public static final int TEXTURE_WIDTH = 48;
     public static final int TEXTURE_HEIGHT = 96;
 
-    // How wide the player is in grid units. Applies to both "width" and "length"/"height".
+    // How wide the player is in grid units. Applies to both "width" and
+    // "length"/"height".
     public static final double GRID_WIDTH = 0.6; // Don't set to more than 1.
     public static final float TEXTURE_SCALE = 1.3f; // Texture is scaled with this and GRID_WIDTH.
 
@@ -25,12 +32,12 @@ public class Player {
     public static double maxSpeed = 3; // Grid units per second.
     public static double minSpeed = 0.4; // The player is deemed still if they are below this.
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
-                                                  //collidable objects.
+                                                 // collidable objects.
     public Movable holding; // The player's one-item inventory.
 
     public StageAnimation animation;
 
-    public enum facing{
+    public enum facing {
         UP,
         DOWN,
         LEFT,
@@ -74,23 +81,27 @@ public class Player {
         return x - GRID_WIDTH / 2;
     }
 
-    public boolean pickUp(){
+    public boolean pickUp() {
         // Find the direction the player is facing
         // Then find the nearest object.
         Station activeStation;
 
-        switch(this.direction){
+        switch (this.direction) {
             case UP:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y + 1))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
+                        Math.toIntExact(Math.round(Math.floor(this.y + 1))));
                 break;
             case DOWN:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y - 1))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
+                        Math.toIntExact(Math.round(Math.floor(this.y - 1))));
                 break;
             case LEFT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))),
+                        Math.toIntExact(Math.round(Math.floor(this.y))));
                 break;
-            case RIGHT: 
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+            case RIGHT:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))),
+                        Math.toIntExact(Math.round(Math.floor(this.y))));
                 break;
             default:
                 System.out.println("Bruh.");
@@ -100,28 +111,53 @@ public class Player {
         return true;
     }
 
-    public boolean putDown(){
+    public boolean putDown() {
         // Find the direction the player is facing
         // Then find the nearest object.
         Station activeStation;
 
-        switch(this.direction){
+        switch (this.direction) {
             case UP:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y + 1))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
+                        Math.toIntExact(Math.round(Math.floor(this.y + 1))));
                 break;
             case DOWN:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y - 1))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
+                        Math.toIntExact(Math.round(Math.floor(this.y - 1))));
                 break;
             case LEFT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))),
+                        Math.toIntExact(Math.round(Math.floor(this.y))));
                 break;
-            case RIGHT: 
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+            case RIGHT:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))),
+                        Math.toIntExact(Math.round(Math.floor(this.y))));
                 break;
             default:
                 System.out.println("Bruh.");
                 return false;
         }
-        return activeStation.placeItem(this.holding);
+        if (activeStation != null) {
+            boolean Result = activeStation.placeItem(this.holding);
+            if (Result == true) {
+                this.holding = null;
+                return Result;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public void act(float delta) {
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
+            if (this.holding != null) {
+                System.out.println("uwu");
+                this.pickUp();
+            } else {
+                System.out.println("uwu");
+                this.putDown();
+            }
+        }
     }
 }
