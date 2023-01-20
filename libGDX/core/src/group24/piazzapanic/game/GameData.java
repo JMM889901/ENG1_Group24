@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Music;
+
 
 /*
  * Globally accessible functions and variables should be stored here.
@@ -17,11 +19,12 @@ public class GameData {
     public static float sinceLastSpawn;
     public static Level level;
     public static Player player;
+    public static Music music;
     public static List<String> customerSpriteSheets;
     public static Random rand;
-    
+    public static int offsetX = 100; //offsets for the camera, in pixels.
+    public static int offsetY = 50;
 
-    
     /** 
      * @param score
      */

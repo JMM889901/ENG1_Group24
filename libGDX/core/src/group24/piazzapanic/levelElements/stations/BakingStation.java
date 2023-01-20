@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.game.Physics;
 import group24.piazzapanic.levelElements.Movable;
 
@@ -15,6 +14,7 @@ public class BakingStation extends Station {
     float timeKeyHeld;
 
     public BakingStation(/*Texture sprite, Vector2 location*/) {
+        super(Base.bakingStationTexture);
         //this.sprite = sprite;
         //this.location = location;
 
@@ -28,6 +28,7 @@ public class BakingStation extends Station {
     }
 
     public BakingStation(/*Texture sprite, Vector2 location,*/ Movable item) {
+        super(Base.bakingStationTexture);
         /*this.sprite = sprite;
         this.location = location;*/
         this.item = item;
@@ -44,6 +45,9 @@ public class BakingStation extends Station {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
+        }
+        if (Physics.isNear(this, GameData.player)) {
+            System.out.println("hi");
         }
 
     }

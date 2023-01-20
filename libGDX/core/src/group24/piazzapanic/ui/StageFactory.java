@@ -2,10 +2,14 @@ package group24.piazzapanic.ui;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import org.w3c.dom.Text;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture; // This isn't needed yet, but will be when implementing images.
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -14,6 +18,7 @@ import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -21,6 +26,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
 
@@ -29,7 +36,6 @@ import com.badlogic.gdx.utils.Align;
  * */
 public class StageFactory {
 
-    
     /** 
      * @return Stage
      */
@@ -37,12 +43,14 @@ public class StageFactory {
     public static Stage createMainMenuStage() {
         // Title
         Stage stage = new Stage();
+        GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
+        GameData.music.setLooping(true);
+        GameData.music.play();
         CharSequence TitleText = "Piazza Panic!";
         Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(Title);
-
 
         // Play button
         TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
@@ -54,6 +62,10 @@ public class StageFactory {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.print("Open Game");
+                GameData.music.dispose();
+                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
+                GameData.music.setLooping(true);
+                GameData.music.play();
                 StageManager.setActiveStage("Game");
             }
 

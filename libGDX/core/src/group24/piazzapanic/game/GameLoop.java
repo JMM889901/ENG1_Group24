@@ -21,9 +21,6 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     private Label scoreCounter;
 
-    private int offsetX = 100; //offsets for the camera, in pixels.
-    private int offsetY = 50;
-
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -38,18 +35,27 @@ public class GameLoop extends Stage {
         style.fontColor = Color.WHITE;
         CharSequence count = Integer.toString(GameData.score);
         scoreCounter = new Label(count, style);
-        Vector2 pos = new Vector2(0.95, 0.9);  // Score counter position.
+        Vector2 pos = new Vector2(0.95, 0.9); // Score counter position.
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
         GameData.level = new Level("levels/Level 1");
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, Base.initialChefAnimation);
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                Base.initialChefAnimation);
+        this.addActor(GameData.player);
 
-        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png","customers/customer_1_idle.png","customers/customer_1_idle.png"));
+        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
+                "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
+        for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
+            for (int x = 0; x < GameData.level.getWidth(); x++) {
+                if (GameData.level.grid[x][y] != null) {
+                    this.addActor(GameData.level.grid[x][y]);
+                }
+            }
+        }
     }
 
-    
     /** 
      * @param score
      */
@@ -58,7 +64,6 @@ public class GameLoop extends Stage {
         this.scoreCounter.setText(count);
     }
 
-    
     /** 
      * @param delta
      */
@@ -78,6 +83,7 @@ public class GameLoop extends Stage {
         }
         GameData.player.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
+        GameData.player.act(delta);
         Physics.playerMovement(GameData.player, delta);
     }
 
@@ -86,58 +92,20 @@ public class GameLoop extends Stage {
      */
     @Override
     public void draw() {
+
         ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
-        super.draw();
 
         // Iterate through level array and draw tiles.
         Vector2 curPosition;
-        Texture curTexture = Base.errorTexture;
-        Station curStation;
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
-                Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + offsetX,
-                        curPosition.getAbsoluteY() + offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
+                Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
+                        curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
 
-                if (y == (int) Math.floor(GameData.player.bottom())) {
-                    Vector2 playerPosition = Vector2.gridUnitTranslate(
-                            GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                            GameData.player.y - Player.GRID_WIDTH / 2);
-                    Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(), playerPosition.getAbsoluteX() + offsetX,
-                            playerPosition.getAbsoluteY() + offsetY,
-                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
-                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
-                                    * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
-                }
-
-                curStation = GameData.level.getStation(x, y);
-
-                if (curStation == null) {
-                    // In this case you only need to draw the floor, which has already been done.
-                    continue;
-                } else if (curStation instanceof BakingStation) {
-                    curTexture = Base.bakingStationTexture;
-                } else if (curStation instanceof CounterTop) {
-                    curTexture = Base.counterTopTexture;
-                } else if (curStation instanceof CuttingStation) {
-                    curTexture = Base.cuttingStationTexture;
-                } else if (curStation instanceof FryingStation) {
-                    curTexture = Base.fryingStationTexture;
-                } else if (curStation instanceof IngredientStation) {
-                    curTexture = Base.ingredientStationTexture;
-                } else if (curStation instanceof Obstacle) {
-                    curTexture = Base.obstacleTexture;
-                } else if (curStation instanceof ErrorStation) {
-                    curTexture = Base.errorTexture;
-                } else {
-                    System.out.println("Unknown station type: " + curStation + ", defaulting to floor.");
-                    curTexture = Base.errorTexture;
-                }
-
-                Base.batch.draw(curTexture, curPosition.getAbsoluteX() + offsetX, curPosition.getAbsoluteY() + offsetY,
-                        Base.tile_pixel_width, Base.tile_pixel_height);
             }
+
         }
 
         if (Base.DEBUG) {
@@ -146,10 +114,12 @@ public class GameLoop extends Stage {
                     GameData.player.y - Player.GRID_WIDTH / 2);
             Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2,
                     GameData.player.y + Player.GRID_WIDTH / 2);
-            Base.batch.draw(Base.debugSquareTexture, bottomLeft.getAbsoluteX() + offsetX,
-                    bottomLeft.getAbsoluteY() + offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
+            Base.batch.draw(Base.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX,
+                    bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
                     topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }
+
+        super.draw();
 
         // Todo: draw the player at the right z level depending on its y position.
     }

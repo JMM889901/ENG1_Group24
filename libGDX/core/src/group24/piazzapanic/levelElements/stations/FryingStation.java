@@ -1,11 +1,16 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.Gdx;
+
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.Physics;
 
 public class FryingStation extends Station {
+    public FryingStation() {
+        super(Base.fryingStationTexture);
+    }
+
     float timeKeyHeld; // Time key is held for
 
     @Override
