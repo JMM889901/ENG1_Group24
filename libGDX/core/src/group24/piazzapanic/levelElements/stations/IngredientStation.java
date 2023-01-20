@@ -22,22 +22,26 @@ public class IngredientStation extends Station {
 
     private final IngredientType ingredientType;
 
-    public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
-        super(Base.ingredientStationTexture);
-        Texture newTexture = Base.ingredientStationTexture;
-        switch (ingredientType.getName()) {
+    public static Texture getIngredientStationAsset(IngredientType type) {
+        Texture texture = Base.ingredientStationTexture;
+        switch (type.getName()) {
             case "tomato":
-                newTexture = Base.tomatoStationTexture;
+                texture = Base.tomatoStationTexture;
             case "onion":
-                newTexture = Base.onionStationTexture;
+                texture = Base.onionStationTexture;
             case "lettuce":
-                newTexture = Base.lettuceStationTexture;
+                texture = Base.lettuceStationTexture;
             case "bread":
-                newTexture = Base.breadStationTexture;
+                texture = Base.breadStationTexture;
             case "meat":
-                newTexture = Base.meatStationTexture;
+                texture = Base.meatStationTexture;
         }
-        this.setDrawable(new SpriteDrawable(new Sprite(newTexture)));
+        return texture;
+    }
+
+    public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
+        super(getIngredientStationAsset(ingredientType));
+
         // TODO - you've got your texture.
         // now we just have to update the texture?
         // which I do not know how to do at all.
