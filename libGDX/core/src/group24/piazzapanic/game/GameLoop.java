@@ -21,9 +21,6 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     private Label scoreCounter;
 
-    private int offsetX = 100; //offsets for the camera, in pixels.
-    private int offsetY = 50;
-
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -38,13 +35,14 @@ public class GameLoop extends Stage {
         style.fontColor = Color.WHITE;
         CharSequence count = Integer.toString(GameData.score);
         scoreCounter = new Label(count, style);
-        Vector2 pos = new Vector2(0.95, 0.9);  // Score counter position.
+        Vector2 pos = new Vector2(0.95, 0.9); // Score counter position.
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
         GameData.level = new Level("levels/Level 1");
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
                 Base.initialChefAnimation);
+        this.addActor(GameData.player);
 
         GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
                 "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
@@ -99,8 +97,6 @@ public class GameLoop extends Stage {
 
         // Iterate through level array and draw tiles.
         Vector2 curPosition;
-        Texture curTexture = Base.errorTexture;
-        Station curStation;
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
@@ -124,15 +120,7 @@ public class GameLoop extends Stage {
         }
 
         super.draw();
-        Vector2 playerPosition = Vector2.gridUnitTranslate(
-                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                GameData.player.y - Player.GRID_WIDTH / 2);
-        Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(),
-                playerPosition.getAbsoluteX() + GameData.offsetX,
-                playerPosition.getAbsoluteY() + GameData.offsetY,
-                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
-                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
-                        * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
+
         // Todo: draw the player at the right z level depending on its y position.
     }
 }

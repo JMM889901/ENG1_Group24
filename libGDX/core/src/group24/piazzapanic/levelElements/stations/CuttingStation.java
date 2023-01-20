@@ -1,7 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 
 import group24.piazzapanic.Base;
 
