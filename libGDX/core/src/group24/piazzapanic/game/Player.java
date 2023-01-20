@@ -2,7 +2,7 @@ package group24.piazzapanic.game;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.AnimatedMovable;
-import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
@@ -92,6 +92,12 @@ public class Player extends Actor {
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
                         * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
+
+        if (this.holding != null) {
+            System.out.println(this.holding);
+            this.holding.drawItem(playerPosition.getAbsoluteX() + GameData.offsetX,
+                    playerPosition.getAbsoluteY() + GameData.offsetY);
+        }
     }
 
     public boolean pickUp() {
@@ -117,7 +123,7 @@ public class Player extends Actor {
                 System.out.println("Bruh.");
                 return false;
         }
-        if (activeStation != null){ // Check that we do have a station! 
+        if (activeStation != null) { // Check that we do have a station! 
             this.holding = activeStation.takeItem();
         }
         return true;
@@ -164,7 +170,7 @@ public class Player extends Actor {
     @Override
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
-            if (this.holding != null) {
+            if (this.holding == null) {
                 System.out.println("owo");
                 this.pickUp();
             } else {

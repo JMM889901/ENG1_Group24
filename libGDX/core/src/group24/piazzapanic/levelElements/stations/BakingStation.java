@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.Physics;
-import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.Physics.Movable;;
 
 public class BakingStation extends Station {
 
@@ -38,9 +38,9 @@ public class BakingStation extends Station {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player)) {
 
             timeKeyHeld += delta;
-            if (timeKeyHeld > 10 && super.item.ingredient.getBakingProgress() == 0) {
+            if (timeKeyHeld > 10 && super.item.getIngredient().getBakingProgress() == 0) {
                 // Cutting is done! poggers
-                super.item.ingredient.bake();
+                super.item.getIngredient().bake();
             } else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }

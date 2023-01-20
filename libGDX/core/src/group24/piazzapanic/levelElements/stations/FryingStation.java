@@ -18,9 +18,9 @@ public class FryingStation extends Station {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player)) {
 
             timeKeyHeld += delta;
-            if (timeKeyHeld > 10 && super.item.ingredient.getCuttingProgress() == 0) {
+            if (timeKeyHeld > 10 && super.item.getIngredient().getCuttingProgress() == 0) {
                 // Cutting is done! poggers
-                super.item.ingredient.cut();
+                super.item.getIngredient().cut();
             } else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
