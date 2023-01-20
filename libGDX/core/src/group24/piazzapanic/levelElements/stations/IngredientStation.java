@@ -10,15 +10,15 @@ import group24.piazzapanic.levelElements.IngredientType;
 
 public class IngredientStation extends Station {
 
-    private final Ingredient ingredientType;
+    private final IngredientType ingredientType;
 
-    public IngredientStation(int gridX, int gridY, Ingredient ingredientType) {
+    public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
         super(Base.ingredientStationTexture);
         this.item = null;
         this.ingredientType = ingredientType;
     }
 
-    public IngredientStation(int gridX, int gridY, Movable item, Ingredient ingredientType) {
+    public IngredientStation(int gridX, int gridY, Movable item, IngredientType ingredientType) {
         super(gridX, gridY);
         System.out.println("Deprecated constructor called for IngredientStation.");
         this.item = item;

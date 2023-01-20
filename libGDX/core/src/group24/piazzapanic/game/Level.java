@@ -79,13 +79,14 @@ public class Level {
                         case 't': // tomato // TODO: add the other ingredients.
                         case 'o': // onion
                             grid[x][y] = new IngredientStation(x, y,
-                                    new Ingredient(extrapolateIngredient(line.charAt(j)), null));
+                                    extrapolateIngredient(line.charAt(j)));
                             break;
                         case 'W':
                             grid[x][y] = new Obstacle();
                             break;
                         default:
-                            System.out.println("Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");
+                            System.out.println(
+                                    "Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");
                             grid[x][y] = new ErrorStation();
                     }
                     Vector2 pos = Vector2.gridUnitTranslate(x, y);
@@ -110,6 +111,8 @@ public class Level {
                 return new IngredientType("tomato");
             case 'o':
                 return new IngredientType("onion");
+            case 'L':
+                return new IngredientType("Lettuce");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;

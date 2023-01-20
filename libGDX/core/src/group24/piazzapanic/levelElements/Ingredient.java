@@ -46,8 +46,8 @@ public class Ingredient extends ImageMovable {
     // TODO - add constraints on operations on Ingredients
     // i.e. "You can't cut this because it's already been cut"
 
-    public Ingredient(Ingredient ingredientType2) {
-        this(new IngredientType("hi"), new Vector2(0, 0));
+    public Ingredient(IngredientType ingredientType) {
+        this(ingredientType, new Vector2(0, 0));
     }
 
     /**
