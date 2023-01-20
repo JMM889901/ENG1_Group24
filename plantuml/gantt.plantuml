@@ -28,12 +28,14 @@ end note
 [Finish website] happens at 2023-1-23
 --Method Selection and Planning--
 [Write up Methods and planning section] on {Louise} starts 2022-11-24
-[Write up Methods and planning section] ends 2022-11-29
-[Work on Gantt chart] on {Louise} starts 2022-11-30
-[Work on Gantt chart] ends 2023-1-16
+[Write up Methods and planning section] ends 2022-11-28
+[Start on Gantt chart] on {Louise} starts 2022-11-24 and lasts 4 days
 note bottom
 Low priority
 end note
+[Update Gantt Chart] on {Louise} starts 2022-12-14 and lasts 2 days
+[Keep updating Gantt Chart] on {Louise} starts 2023-1-13 and lasts 2 days
+[Finish Gantt Chart] on {Louise} starts 2023-1-22
 [Finish methods and planning document] happens at 2023-1-23
 --Risk Assessment and Mitigation--
 [Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
