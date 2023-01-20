@@ -15,21 +15,21 @@ public class Physics {
      * @return True if player near the station, false otherwise.
      */
     public static boolean isNear(Station station, Player player) {
-        Vector2 pos = Vector2.gridUnitTranslate(
+        Vector2 pos = Vector2.worldUnitTranslate(
                 GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                 GameData.player.y - Player.GRID_WIDTH / 2);
-        double deltaX = pos.getAbsoluteX() + 300 - 7 - station.getX();
-        double deltaY = pos.getAbsoluteY() + 100 - 13 - station.getY(); //Magic numbers go BRRRR
+        double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
+        double deltaY = pos.getAbsoluteY() - 13 - station.getY(); //Magic numbers go BRRRR
         //Why do we have so many different types of positions and offsets
 
         double Threshhold = Base.tile_pixel_width; // Station width in pixels divided by three
         if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
             // if (Player.direction ==   TODO implement me. 
-            System.out.println("Poggers, you are indeed near.");// + deltaX + " " + deltaY);
+            System.out.println("Poggers, you are indeed near." + deltaX + " " + deltaY);
             return true;
         }
         //System.out.println("No");
-        //System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
+        System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
         return false;
     }
 
@@ -72,14 +72,14 @@ public class Physics {
             // This is just the implementation of the formula above.
             player.y_vel += Player.acceleration * delta;
 
-            if  (player.direction != Player.facing.UP){
+            if (player.direction != Player.facing.UP) {
                 player.direction = Player.facing.UP;
                 player.animation.setAnimation("chef/chef_walk_back.png", 6, 1, 6);
             }
         } else if (Gdx.input.isKeyPressed(Base.DOWN_KEY)) {
             player.y_vel -= Player.acceleration * delta;
 
-            if  (player.direction != Player.facing.DOWN){
+            if (player.direction != Player.facing.DOWN) {
                 player.direction = Player.facing.DOWN;
                 player.animation.setAnimation("chef/chef_walk_front.png", 6, 1, 6);
             }
@@ -94,10 +94,9 @@ public class Physics {
             // If the player has decelerated past a certain point, stop them moving.
             if (Math.abs(player.y_vel) < Player.minSpeed && Math.abs(player.y_vel) != 0) {
                 player.y_vel = 0;
-                if  (player.direction == Player.facing.UP){
+                if (player.direction == Player.facing.UP) {
                     player.animation.setAnimation("chef/chef_idle_back.png", 6, 1, 6);
-                }
-                else if (player.direction == Player.facing.DOWN){
+                } else if (player.direction == Player.facing.DOWN) {
                     player.animation.setAnimation("chef/chef_idle_front.png", 6, 1, 6);
                 }
             }
@@ -106,14 +105,14 @@ public class Physics {
         if (Gdx.input.isKeyPressed(Base.LEFT_KEY)) {
             player.x_vel -= Player.acceleration * delta;
 
-            if  (player.direction != Player.facing.LEFT){
+            if (player.direction != Player.facing.LEFT) {
                 player.direction = Player.facing.LEFT;
                 player.animation.setAnimation("chef/chef_walk_left.png", 6, 1, 6);
             }
         } else if (Gdx.input.isKeyPressed(Base.RIGHT_KEY)) {
             player.x_vel += Player.acceleration * delta;
 
-            if  (player.direction != Player.facing.RIGHT){
+            if (player.direction != Player.facing.RIGHT) {
                 player.direction = Player.facing.RIGHT;
                 player.animation.setAnimation("chef/chef_walk_right.png", 6, 1, 6);
             }
@@ -127,10 +126,9 @@ public class Physics {
 
             if (Math.abs(player.x_vel) < Player.minSpeed && Math.abs(player.x_vel) != 0) {
                 player.x_vel = 0;
-                if  (player.direction == Player.facing.RIGHT){
+                if (player.direction == Player.facing.RIGHT) {
                     player.animation.setAnimation("chef/chef_idle_right.png", 6, 1, 6);
-                }
-                else if (player.direction == Player.facing.LEFT){
+                } else if (player.direction == Player.facing.LEFT) {
                     player.animation.setAnimation("chef/chef_idle_left.png", 6, 1, 6);
                 }
             }

@@ -3,9 +3,6 @@ package group24.piazzapanic.game;
 import java.io.File;
 import java.util.Scanner;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Align;
-
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
@@ -88,7 +85,8 @@ public class Level {
                             throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
                     }
                     Vector2 pos = Vector2.gridUnitTranslate(x, y);
-                    grid[x][y].setPosition(pos.getAbsoluteX() + 300, pos.getAbsoluteY() + 100);
+                    grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,
+                            pos.getAbsoluteY() + GameData.offsetY);
                 }
             }
             levelScanner.close();
