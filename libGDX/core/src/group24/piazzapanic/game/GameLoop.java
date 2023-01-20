@@ -21,9 +21,12 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     private Label scoreCounter;
 
-    private int offsetX = 300; //offsets for the camera, in pixels.
-    private int offsetY = 100;
+    private int offsetX = 100; //offsets for the camera, in pixels.
+    private int offsetY = 50;
 
+    /**
+     * GameLoop constructor, adds a score counter and sets up level data.
+     */
     public GameLoop() {
         GameData.gameTime = 0f;
         GameData.sinceLastSpawn = 0f;
@@ -35,7 +38,7 @@ public class GameLoop extends Stage {
         style.fontColor = Color.WHITE;
         CharSequence count = Integer.toString(GameData.score);
         scoreCounter = new Label(count, style);
-        Vector2 pos = new Vector2(0.95, 0.9);
+        Vector2 pos = new Vector2(0.95, 0.9);  // Score counter position.
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
@@ -125,6 +128,8 @@ public class GameLoop extends Stage {
                     curTexture = Base.ingredientStationTexture;
                 } else if (curStation instanceof Obstacle) {
                     curTexture = Base.obstacleTexture;
+                } else if (curStation instanceof ErrorStation) {
+                    curTexture = Base.errorTexture;
                 } else {
                     System.out.println("Unknown station type: " + curStation + ", defaulting to floor.");
                     curTexture = Base.errorTexture;

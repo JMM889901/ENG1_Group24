@@ -5,21 +5,21 @@ package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.levelElements.Movable;
 import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.levelElements.IngredientType;
 
 public class IngredientStation extends Station{
 
     private final Ingredient ingredientType;
 
-    public IngredientStation(/*Texture sprite, Vector2 location, */Ingredient ingredientType){
-        /*this.sprite = sprite;
-        this.location = location;*/
+    public IngredientStation(int gridX, int gridY, Ingredient ingredientType){
+        super(gridX, gridY);
         this.item = null;
         this.ingredientType = ingredientType;
     }
     
-    public IngredientStation(/*Texture sprite, Vector2 location, */Movable item, Ingredient ingredientType){
-        /*this.sprite = sprite;
-        this.location = location;*/
+    public IngredientStation(int gridX, int gridY, Movable item, Ingredient ingredientType){
+        super(gridX, gridY);
+        System.out.println("Deprecated constructor called for IngredientStation.");
         this.item = item;
         this.ingredientType = ingredientType;
     }

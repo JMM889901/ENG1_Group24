@@ -10,7 +10,29 @@ public class Station extends Image{
 
     //protected Vector2 location;
     //protected Texture sprite;
-    protected Movable item; 
+    protected Movable item;
+    
+    protected int gridX; // Once these are set, don't change them.
+    protected int gridY;
+
+    /**
+     * Creates a new station, which knows it's own location to be as specified.
+     * @param gridX The x coordinate of the station in the grid.
+     * @param gridY The y coordinate of the station in the grid.
+     */
+    public Station(int gridX, int gridY) {
+        super();
+        this.gridX = gridX;
+        this.gridY = gridY;
+    }
+
+    /**
+     * Creates a new station without specifiying it's location. Deprecated.
+     */
+    public Station() {
+        super();
+        System.out.println("Deprecated constructor called for Station.");
+    }
 
     /**
      * Puts `item` on the station if there is no item already.
