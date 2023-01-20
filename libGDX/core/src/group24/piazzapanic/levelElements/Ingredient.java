@@ -36,7 +36,7 @@ public class Ingredient extends ImageMovable {
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-            case "onions":
+            case "onion":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
