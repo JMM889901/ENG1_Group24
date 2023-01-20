@@ -36,18 +36,16 @@ public class BakingStation extends Station {
 
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player)) {
-
+            System.out.println("Baking..." + delta);
             timeKeyHeld += delta;
             if (timeKeyHeld > 10 && super.item.getIngredient().getBakingProgress() == 0) {
                 // Cutting is done! poggers
+                
                 super.item.getIngredient().bake();
             } else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
-        }
-        if (Physics.isNear(this, GameData.player)) {
-            System.out.println("hi");
         }
 
     }

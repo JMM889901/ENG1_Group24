@@ -48,7 +48,8 @@ public class Base {
     public static final int DOWN_KEY = Keys.S;
     public static final int LEFT_KEY = Keys.A;
     public static final int RIGHT_KEY = Keys.D;
-    public static final int ACT_KEY = Keys.F;
+    public static final int ACT_KEY = Keys.F; // Interact with a station
+    public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items 
     public static final int SELECT_KEY = Keys.ENTER;
     // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
     // developing non-UI features.

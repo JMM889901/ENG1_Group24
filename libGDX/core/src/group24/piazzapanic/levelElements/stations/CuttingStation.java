@@ -17,9 +17,11 @@ public class CuttingStation extends Station {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
 
             timeKeyHeld += delta;
+            System.out.println("We're doing it...");
             if (timeKeyHeld > 10 && super.item.getIngredient().getCuttingProgress() == 0) {
                 // Cutting is done! poggers
                 super.item.getIngredient().cut();
+                System.out.println("Cutting complete...");
             } else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
