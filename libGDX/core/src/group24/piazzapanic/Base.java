@@ -46,6 +46,7 @@ public class Base {
     public static Texture lettuceStationTexture;
     public static Texture breadStationTexture;
     public static Texture meatStationTexture;
+    public static Texture assemblyStationTexture;
 
     public static Texture obstacleTexture;
 
