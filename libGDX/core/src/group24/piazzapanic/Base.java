@@ -5,6 +5,7 @@ import java.io.File;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData.TextureDataType;
 import com.badlogic.gdx.Input.Keys;
 
 import group24.piazzapanic.Physics.AnimatedMovable;
@@ -43,8 +44,20 @@ public class Base {
     public static Texture obstacleTexture;
 
     public static Texture errorTexture;
-
-    public static Texture tomatoTexture;
+    // Ingredient textures
+    public static Texture rawTomatoTexture;
+    public static Texture cutTomatoTexture;
+    public static Texture rawOnionTexture;
+    public static Texture cutOnionTexture;
+    public static Texture friedOnionTexture;
+    public static Texture rawLettuceTexture;
+    public static Texture cutLettuceTexture;
+    public static Texture rawBreadTexture;
+    public static Texture cutBreadTexture;
+    public static Texture friedBreadTexture; // Do we want to fry/toast the bread?
+    public static Texture rawMeatTexture;
+    public static Texture cutMeatTexture;
+    public static Texture friedMeatTexture; // Do we want to have a Burger texture too?
 
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     public static final int UP_KEY = Keys.W;
@@ -141,13 +154,28 @@ public class Base {
 
         // Load station textures.
         floorTexture = new Texture("stations/floor.png");
-        bakingStationTexture = new Texture("stations/bakingstation.png");
+        bakingStationTexture = new Texture("stations/baking_station_closed.png");
         counterTopTexture = new Texture("stations/countertop.png");
-        cuttingStationTexture = new Texture("stations/notimplemented.png");
-        fryingStationTexture = new Texture("stations/notimplemented.png");
+        cuttingStationTexture = new Texture("stations/cutting_station.png");
+        fryingStationTexture = new Texture("stations/frying_station_off.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
         obstacleTexture = new Texture("stations/wall.png");
-        tomatoTexture = new Texture("food/tomato.png");
+
+        // Ingredient Textures
+        rawTomatoTexture = new Texture("food/tomato.png");
+        cutTomatoTexture = new Texture("stations/sourceerr.png");
+        rawOnionTexture = new Texture("stations/sourceerr.png");
+        cutOnionTexture = new Texture("stations/sourceerr.png");
+        friedOnionTexture = new Texture("stations/sourceerr.png");
+        rawLettuceTexture = new Texture("stations/sourceerr.png");
+        cutLettuceTexture = new Texture("stations/sourceerr.png");
+        rawBreadTexture = new Texture("stations/sourceerr.png");
+        cutBreadTexture = new Texture("stations/sourceerr.png");
+        friedBreadTexture = new Texture("stations/sourceerr.png");
+        rawMeatTexture = new Texture("food/raw_meat.png");
+        cutMeatTexture = new Texture("stations/sourceerr.png");
+        friedMeatTexture = new Texture("stations/sourceerr.png");
+
 
         errorTexture = new Texture("stations/sourceerr.png");
     }

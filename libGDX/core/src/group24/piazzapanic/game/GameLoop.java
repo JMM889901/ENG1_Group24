@@ -39,7 +39,7 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
-        GameData.level = new Level("levels/Level 1");
+        GameData.level = new Level("levels/Level 3");
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
                 Base.initialChefAnimation);
         this.addActor(GameData.player);

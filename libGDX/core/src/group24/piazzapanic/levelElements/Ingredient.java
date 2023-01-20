@@ -37,23 +37,28 @@ public class Ingredient extends ImageMovable {
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.tomatoTexture;
+                this.texture = Base.rawTomatoTexture;
+                break;
             case "lettuce":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                break;
             case "onion":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                break;
             case "bread":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                break;
             case "meat":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = 0;
+                break;
         }
 
     }
@@ -75,6 +80,27 @@ public class Ingredient extends ImageMovable {
             case "tomato":
                 this.bakingProgress = -1;
                 this.fryingProgress = 0;
+                this.texture = Base.cutTomatoTexture;
+                break;
+            case "onion":
+                this.bakingProgress = 0;
+                this.fryingProgress = 0;
+                this.texture = Base.cutOnionTexture;
+                break;
+            case "lettuce":
+                this.bakingProgress = 0;
+                this.fryingProgress = 0;
+                this.texture = Base.cutLettuceTexture;
+                break;
+            case "bread":
+                this.bakingProgress = 0;
+                this.fryingProgress = 0;
+                this.texture = Base.cutOnionTexture;
+                break;
+            case "meat":
+                this.bakingProgress = 0;
+                this.fryingProgress = 0;
+                this.texture = Base.cutMeatTexture;
                 // TODO - this is a method stub, as the salad recipe doesn't require anything beyond just
                 // cutting and combining all the items.
         }
