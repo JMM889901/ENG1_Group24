@@ -5,8 +5,14 @@ package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.Physics.Movable;
 
+import javax.swing.Spring;
+
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Ingredient;
@@ -19,9 +25,9 @@ public class IngredientStation extends Station {
     public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
         super(Base.ingredientStationTexture);
         Texture newTexture = Base.ingredientStationTexture;
-        switch (ingredientType.getName()){ 
-            case "tomato":                       
-                newTexture = Base.tomatoStationTexture; 
+        switch (ingredientType.getName()) {
+            case "tomato":
+                newTexture = Base.tomatoStationTexture;
                 newTexture = Base.onionStationTexture;
             case "lettuce":
                 newTexture = Base.lettuceStationTexture;
@@ -30,6 +36,7 @@ public class IngredientStation extends Station {
             case "meat":
                 newTexture = Base.meatStationTexture;
         }
+        this.setDrawable(new SpriteDrawable(new Sprite(newTexture)));
         // TODO - you've got your texture.
         // now we just have to update the texture?
         // which I do not know how to do at all.

@@ -95,8 +95,11 @@ public class Player extends Actor {
 
         if (this.holding != null) {
             System.out.println(this.holding);
-            this.holding.drawItem(playerPosition.getAbsoluteX() + GameData.offsetX,
-                    playerPosition.getAbsoluteY() + GameData.offsetY);
+            this.holding.drawItem(
+                    (int) playerPosition.getAbsoluteX() + GameData.offsetX
+                            + ((int) (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width)) / 2,
+                    (int) (playerPosition.getAbsoluteY() + GameData.offsetY
+                            + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
         }
     }
 
