@@ -97,9 +97,9 @@ public class Physics {
             if (Math.abs(player.y_vel) < Player.minSpeed && Math.abs(player.y_vel) != 0) {
                 player.y_vel = 0;
                 if (player.direction == Player.facing.UP) {
-                    player.animation.setAnimation("chef/chef_idle_back.png", 6, 1, 6);
+                    player.animation.setAnimation("chef/chef_idle_back_selected.png", 6, 1, 6);
                 } else if (player.direction == Player.facing.DOWN) {
-                    player.animation.setAnimation("chef/chef_idle_front.png", 6, 1, 6);
+                    player.animation.setAnimation("chef/chef_idle_front_selected.png", 6, 1, 6);
                 }
             }
         }
@@ -129,9 +129,9 @@ public class Physics {
             if (Math.abs(player.x_vel) < Player.minSpeed && Math.abs(player.x_vel) != 0) {
                 player.x_vel = 0;
                 if (player.direction == Player.facing.RIGHT) {
-                    player.animation.setAnimation("chef/chef_idle_right.png", 6, 1, 6);
+                    player.animation.setAnimation("chef/chef_idle_right_selected.png", 6, 1, 6);
                 } else if (player.direction == Player.facing.LEFT) {
-                    player.animation.setAnimation("chef/chef_idle_left.png", 6, 1, 6);
+                    player.animation.setAnimation("chef/chef_idle_left_selected.png", 6, 1, 6);
                 }
             }
         }
