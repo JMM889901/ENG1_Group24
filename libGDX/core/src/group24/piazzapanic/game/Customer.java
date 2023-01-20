@@ -22,7 +22,7 @@ public class Customer extends StageAnimation {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1, 20, 20, entityWidth, entityHeight);
         timeLimit = 30f;
         this.timeLimit = 15;
-        this.orderText = "SUS";
+        this.orderText = ":3";
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
