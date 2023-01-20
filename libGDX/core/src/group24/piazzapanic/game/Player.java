@@ -168,7 +168,7 @@ public class Player extends Actor {
                 System.out.println("owo");
                 this.pickUp();
             } else {
-                System.out.println("uwu");
+                System.out.println("cuwwentwy howwding: " + this.holding);
                 this.putDown();
             }
         }

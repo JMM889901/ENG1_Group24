@@ -2,6 +2,8 @@ package group24.piazzapanic.ui;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import org.w3c.dom.Text;
 
 import com.badlogic.gdx.Gdx;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -48,7 +51,6 @@ public class StageFactory {
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(Title);
-
 
         // Play button
         TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
