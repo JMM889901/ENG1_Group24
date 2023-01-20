@@ -27,6 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
@@ -90,8 +91,11 @@ public class StageFactory {
         stage.addActor(button2);
 
         // Temporary (?) dancing chef.
-        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front.png", 6, 6, 1, 20, 20, 154, 307);
+        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154, 307);
+        StageAnimation ChefAnimation1 = new StageAnimation("chef/chef_1_idle_front_selected.png", 6, 6, 1, Base.WINDOW_WIDTH -180, 20, 154, 307);
+
         stage.addActor(ChefAnimation);
+        stage.addActor(ChefAnimation1);
         return stage;
     }
 

@@ -13,19 +13,24 @@ public class FryingStation extends Station {
 
     float timeKeyHeld; // Time key is held for
 
-    @Override
     public void act(float delta) {
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player)) {
-
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this && Physics.isNear(this, GameData.player)) {
+            if (super.item.getIngredient().getFryingProgress() == 1){
+                System.out.println("Already fried..........");
+                return; // The item is already fried, don't go any further. 
+            }
+            System.out.println("fry" + timeKeyHeld);
             timeKeyHeld += delta;
-            if (timeKeyHeld > 10 && super.item.getIngredient().getCuttingProgress() == 0) {
+            if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
                 // Cutting is done! poggers
-                super.item.getIngredient().cut();
-            } else {
+                System.out.println("Hm.");
+                super.item.getIngredient().fry();
+                System.out.println(" get fried idiot...");
+            }
+        }
+        else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
         }
-
-    }
 }
