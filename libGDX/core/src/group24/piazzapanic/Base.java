@@ -41,6 +41,12 @@ public class Base {
     public static Texture cuttingStationTexture;
     public static Texture fryingStationTexture;
     public static Texture ingredientStationTexture;
+    public static Texture tomatoStationTexture;
+    public static Texture onionStationTexture;
+    public static Texture lettuceStationTexture;
+    public static Texture breadStationTexture;
+    public static Texture meatStationTexture;
+
     public static Texture obstacleTexture;
 
     public static Texture errorTexture;
@@ -159,6 +165,13 @@ public class Base {
         cuttingStationTexture = new Texture("stations/cutting_station.png");
         fryingStationTexture = new Texture("stations/frying_station_off.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
+        tomatoStationTexture = new Texture("stations/ingredientstation.png");
+        onionStationTexture = new Texture("stations/ingredientstation.png");
+        lettuceStationTexture = new Texture("stations/ingredientstation.png");
+        breadStationTexture = new Texture("stations/ingredientstation.png");
+        meatStationTexture = new Texture("stations/ingredient_station_meat.png");
+    
+        
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures

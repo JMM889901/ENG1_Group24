@@ -87,13 +87,10 @@ public class Ingredient extends ImageMovable {
                 this.fryingProgress = 0;
                 this.texture = Base.cutOnionTexture;
                 break;
-            case "lettuce":
-                this.bakingProgress = 0;
-                this.fryingProgress = 0;
+            case "lettuce": // You can't cut or fry lettuce!
                 this.texture = Base.cutLettuceTexture;
                 break;
-            case "bread":
-                this.bakingProgress = 0;
+            case "bread": // Why would you bake bread?
                 this.fryingProgress = 0;
                 this.texture = Base.cutOnionTexture;
                 break;
@@ -111,9 +108,27 @@ public class Ingredient extends ImageMovable {
      */
     public void fry() {
         this.fryingProgress = 1;
-        // this.sprite = fried sprite
-        // update constraints
+        switch (this.ingredientType.getName()) {
+            case "tomato":
+                this.bakingProgress = -1;
+                this.texture = Base.cutTomatoTexture;
+                break;
+            case "onion":
+                this.bakingProgress = 0;
+                this.texture = Base.cutOnionTexture;
+                break;
+            case "lettuce":
+                this.texture = Base.cutLettuceTexture;
+                break;
+            case "bread":
+                this.bakingProgress = 0;
+                this.texture = Base.cutOnionTexture;
+                break;
+            case "meat":
+                this.bakingProgress = 0;
+                this.texture = Base.cutMeatTexture;
     }
+}
 
     /**
      * Bake the ingredient

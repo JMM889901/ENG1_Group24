@@ -4,6 +4,10 @@ package group24.piazzapanic.levelElements.stations;
 //import com.badlogic.gdx.math.Vector2;
 
 import group24.piazzapanic.Physics.Movable;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
@@ -14,6 +18,22 @@ public class IngredientStation extends Station {
 
     public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
         super(Base.ingredientStationTexture);
+        Texture newTexture = Base.ingredientStationTexture;
+        switch (ingredientType.getName()){ 
+            case "tomato":                       
+                newTexture = Base.tomatoStationTexture; 
+                newTexture = Base.onionStationTexture;
+            case "lettuce":
+                newTexture = Base.lettuceStationTexture;
+            case "bread":
+                newTexture = Base.breadStationTexture;
+            case "meat":
+                newTexture = Base.meatStationTexture;
+        }
+        // TODO - you've got your texture.
+        // now we just have to update the texture?
+        // which I do not know how to do at all.
+        // pls help me lol         
         this.item = null;
         this.ingredientType = ingredientType;
     }
