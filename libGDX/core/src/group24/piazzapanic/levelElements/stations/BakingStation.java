@@ -34,20 +34,26 @@ public class BakingStation extends Station {
         this.item = item;
     }
 
+    @Override
     public void act(float delta) {
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && Physics.isNear(this, GameData.player) && GameData.player.getFacingStation() == this) {
-            System.out.println("Baking..." + timeKeyHeld + " " + delta);
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this && Physics.isNear(this, GameData.player)) {
+            if (super.item.getIngredient().getBakingProgress() == 1){
+                System.out.println("Already baked......");
+                return; // The item is already baked, don't go any further. 
+            }
+            System.out.println("bake" + timeKeyHeld);
             timeKeyHeld += delta;
-            if (timeKeyHeld > 10 && super.item.getIngredient().getBakingProgress() == 0) {
+            if (timeKeyHeld > 3 && super.item.getIngredient().getBakingProgress() == 0) {
                 // Cutting is done! poggers
-
+                System.out.println("Hm.");
                 super.item.getIngredient().bake();
-            } else {
+                System.out.println(" baing complete...");
+            }
+        }
+        else {
                 timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
         }
-
-    }
 
 }

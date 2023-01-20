@@ -76,8 +76,11 @@ public class Level {
                         case 'F':
                             grid[x][y] = new FryingStation();
                             break;
-                        case 't': // tomato // TODO: add the other ingredients.
+                        case 't': // tomato
                         case 'o': // onion
+                        case 'l': // lettuce pray. 
+                        case 'b': // breat
+                        case 'm': // meat
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
                             break;
@@ -111,7 +114,7 @@ public class Level {
                 return new IngredientType("tomato");
             case 'o':
                 return new IngredientType("onion");
-            case 'L':
+            case 'l':
                 return new IngredientType("lettuce");
             case 'm':
                 return new IngredientType("meat");
