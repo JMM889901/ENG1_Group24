@@ -2,6 +2,7 @@ package group24.piazzapanic.levelElements;
 
 import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.maths.Vector2;
+import group24.piazzapanic.levelElements.IngredientType;
 
 //import java.util.concurrent.TimeUnit;
 
@@ -14,16 +15,16 @@ public class Ingredient {
     protected Integer bakingProgress;
     protected Integer fryingProgress;
     protected Texture sprite;
-    protected String ingredientType;
+    protected IngredientType ingredientType;
 
-    public Ingredient(String ingredientType, Vector2 location){
+    public Ingredient(IngredientType ingredientType, Vector2 location){
         this.ingredientType = ingredientType;
         // TODO - add in sprite: this.sprite = sprite;
 
 
         // Set constraints for ingredients
         // assuming they are all raw when initialised
-        switch (this.ingredientType){
+        switch (this.ingredientType.getName()){
             case "tomato":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
@@ -50,7 +51,7 @@ public class Ingredient {
         this.cuttingProgress = 1;
         // this.sprite = cut sprite
         // Update what we can do with each ingredient now that it's cut
-        switch (this.ingredientType){
+        switch (this.ingredientType.getName()){
             case "tomato":
                 this.bakingProgress = -1;
                 this.fryingProgress = 0;

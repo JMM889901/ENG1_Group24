@@ -12,6 +12,7 @@ import group24.piazzapanic.game.GameLoop;
 public class StageManager {
     private static HashMap<String, Stage> stages;
     private static Stage activeStage;
+    private static String activeStageName;
 
     /**
      * Stage manager manages active screens and buttons, currently lacks multi stage input support so this may need to be looked at
@@ -46,15 +47,23 @@ public class StageManager {
      */
     public static void setActiveStage(String stage) {
         activeStage = getStage(stage);
+        activeStageName = stage;
         Gdx.input.setInputProcessor(activeStage);
     }
 
     
     /** 
-     * @return Stage
+     * @return The Stage class of the active stage.
      */
     public static Stage getActiveStage() {
         return activeStage;
+    }
+
+    /**
+     * @return the name of the active stage
+     */
+    public static String getActiveStageName() {
+        return activeStageName;
     }
 
     /**
