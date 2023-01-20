@@ -17,9 +17,13 @@ public class CuttingStation extends Station {
     @Override
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this && Physics.isNear(this, GameData.player)) {
+            if (super.item.getIngredient().getCuttingProgress() == 1){
+                System.out.println("Already cut...");
+                return; // The item is already cut, don't go any further. 
+            }
             System.out.println(timeKeyHeld);
             timeKeyHeld += delta;
-            if (timeKeyHeld > 10 && super.item.getIngredient().getCuttingProgress() == 0) {
+            if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                 // Cutting is done! poggers
                 super.item.getIngredient().cut();
                 System.out.println("Cutting complete...");
