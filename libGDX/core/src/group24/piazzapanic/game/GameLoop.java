@@ -83,7 +83,6 @@ public class GameLoop extends Stage {
         }
         GameData.player.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
-        GameData.player.act(delta);
         Physics.playerMovement(GameData.player, delta);
     }
 

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import group24.piazzapanic.Base;
-import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.Physics.Movable;;
 
 public class Station extends Image {
 
@@ -18,7 +18,7 @@ public class Station extends Image {
     //protected Vector2 location;
     //protected Texture sprite;
     protected Movable item;
-    
+
     protected int gridX; // Once these are set, don't change them.
     protected int gridY;
 

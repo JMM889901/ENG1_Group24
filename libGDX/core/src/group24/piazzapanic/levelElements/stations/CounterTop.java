@@ -1,7 +1,7 @@
 package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.Base;
-import group24.piazzapanic.levelElements.Movable;
+import group24.piazzapanic.Physics.Movable;;
 
 public class CounterTop extends Station {
 
