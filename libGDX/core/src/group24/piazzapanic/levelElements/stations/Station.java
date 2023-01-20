@@ -1,12 +1,19 @@
 package group24.piazzapanic.levelElements.stations;
 
-
-//import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture;
 //import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
+import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Movable;
 
-public class Station extends Image{
+public class Station extends Image {
+
+    public Station(Texture Texture) {
+        super(Texture);
+        super.setWidth(Base.tile_pixel_width);
+        super.setHeight(Base.tile_pixel_height);
+    }
 
     //protected Vector2 location;
     //protected Texture sprite;
@@ -39,14 +46,14 @@ public class Station extends Image{
      * @param item
      * @return true if the item was placed, false if there was already an item on the station.
      */
-    public boolean placeItem(Movable item){
-        if (canPlaceItem()){
+    public boolean placeItem(Movable item) {
+        if (canPlaceItem()) {
             this.item = item;
             return true;
-        }
-        else return false;
+        } else
+            return false;
     }
-    
+
     /**
      * A private convenience method to check if an item can be placed on the station.
      * @return Whether an item can be placed on the station.
@@ -59,17 +66,17 @@ public class Station extends Image{
      * Checks if the station has an item on it.
      * @return Whether the station has an item/items on it.
      */
-    public boolean hasItem(){
+    public boolean hasItem() {
         return this.item != null;
     }
 
-    public Movable takeItem(){
-        if(hasItem()) {
+    public Movable takeItem() {
+        if (hasItem()) {
             Movable tmp = this.item;
             this.item = null;
             return tmp;
-        }
-        else return null;
+        } else
+            return null;
     }
 
 }

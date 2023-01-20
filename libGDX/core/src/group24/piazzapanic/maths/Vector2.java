@@ -3,6 +3,7 @@ package group24.piazzapanic.maths;
 import java.lang.Math;
 
 import group24.piazzapanic.Base;
+import group24.piazzapanic.game.GameData;
 
 /**
  * This class is a simple 2D vector class. It uses doubles so can store non-integers. Do not use
@@ -25,7 +26,6 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         this.y = y / (double) Base.WINDOW_HEIGHT;
     }
 
-    
     /** 
      * @return int
      */
@@ -33,7 +33,6 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         return Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH));
     }
 
-    
     /** 
      * @return int
      */
@@ -53,7 +52,8 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         // the width of one tile in grid units. Doing the same for gridY means it would be scaled
         // as a proportion of the screen height, but we want it on the same scaling as gridX, which
         // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
-        return new Vector2(gridX * Base.TILE_GRID_UNIT, gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+        return new Vector2(gridX * Base.TILE_GRID_UNIT,
+                gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
     /**
@@ -68,6 +68,21 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         // the width of one tile in grid units. Doing the same for gridY means it would be scaled
         // as a proportion of the screen height, but we want it on the same scaling as gridX, which
         // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
-        return new Vector2(gridX * Base.TILE_GRID_UNIT, gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+        return new Vector2(gridX * Base.TILE_GRID_UNIT,
+                gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+    }
+
+    public static Vector2 worldUnitTranslate(float gridX, float gridY) {
+        Vector2 pos = gridUnitTranslate(gridX, gridY);
+        pos.x += GameData.offsetX;
+        pos.y += GameData.offsetY;
+        return pos;
+    }
+
+    public static Vector2 worldUnitTranslate(Double gridX, Double gridY) {
+        Vector2 pos = gridUnitTranslate(gridX, gridY);
+        pos.x += GameData.offsetX / (double) Base.WINDOW_WIDTH;
+        pos.y += GameData.offsetY / (double) Base.WINDOW_HEIGHT;
+        return pos;
     }
 }

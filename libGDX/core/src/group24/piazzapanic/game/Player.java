@@ -2,6 +2,8 @@ package group24.piazzapanic.game;
 import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.levelElements.Movable;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.levelElements.stations.*;
+
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but does nothing itself.
@@ -70,5 +72,56 @@ public class Player {
      */
     public double left() {
         return x - GRID_WIDTH / 2;
+    }
+
+    public boolean pickUp(){
+        // Find the direction the player is facing
+        // Then find the nearest object.
+        Station activeStation;
+
+        switch(this.direction){
+            case UP:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y + 1))));
+                break;
+            case DOWN:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y - 1))));
+                break;
+            case LEFT:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                break;
+            case RIGHT: 
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                break;
+            default:
+                System.out.println("Bruh.");
+                return false;
+        }
+        this.holding = activeStation.takeItem();
+        return true;
+    }
+
+    public boolean putDown(){
+        // Find the direction the player is facing
+        // Then find the nearest object.
+        Station activeStation;
+
+        switch(this.direction){
+            case UP:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y + 1))));
+                break;
+            case DOWN:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))), Math.toIntExact(Math.round(Math.floor(this.y - 1))));
+                break;
+            case LEFT:
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                break;
+            case RIGHT: 
+                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))), Math.toIntExact(Math.round(Math.floor(this.y))));
+                break;
+            default:
+                System.out.println("Bruh.");
+                return false;
+        }
+        return activeStation.placeItem(this.holding);
     }
 }
