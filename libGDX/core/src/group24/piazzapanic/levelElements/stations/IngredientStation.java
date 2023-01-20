@@ -28,6 +28,7 @@ public class IngredientStation extends Station {
         switch (ingredientType.getName()) {
             case "tomato":
                 newTexture = Base.tomatoStationTexture;
+            case "onion":
                 newTexture = Base.onionStationTexture;
             case "lettuce":
                 newTexture = Base.lettuceStationTexture;

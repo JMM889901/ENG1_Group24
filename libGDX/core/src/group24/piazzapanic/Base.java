@@ -165,7 +165,7 @@ public class Base {
         cuttingStationTexture = new Texture("stations/cutting_station.png");
         fryingStationTexture = new Texture("stations/frying_station_off.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
-        tomatoStationTexture = new Texture("stations/ingredientstation.png");
+        tomatoStationTexture = new Texture("stations/BLOOD-FOR-THE-MEAT-GOD.png");
         onionStationTexture = new Texture("stations/ingredientstation.png");
         lettuceStationTexture = new Texture("stations/ingredientstation.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
