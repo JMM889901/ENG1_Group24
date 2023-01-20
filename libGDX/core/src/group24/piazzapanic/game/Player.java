@@ -169,8 +169,8 @@ public class Player extends Actor {
 
     @Override
     public void act(float delta) {
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
-            if (this.holding != null) {
+        if (Gdx.input.isKeyJustPressed(Base.ACT_KEY)) {
+            if (this.holding == null) {
                 System.out.println("owo");
                 this.pickUp();
             } else {
