@@ -79,6 +79,7 @@ public class GameLoop extends Stage {
         }
         GameData.player.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
+        GameData.player.act(delta);
         Physics.playerMovement(GameData.player, delta);
     }
 
@@ -101,18 +102,6 @@ public class GameLoop extends Stage {
                 Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
                         curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
 
-                if (y == (int) Math.floor(GameData.player.bottom())) {
-                    Vector2 playerPosition = Vector2.gridUnitTranslate(
-                            GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                            GameData.player.y - Player.GRID_WIDTH / 2);
-                    Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(),
-                            playerPosition.getAbsoluteX() + GameData.offsetX,
-                            playerPosition.getAbsoluteY() + GameData.offsetY,
-                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
-                            (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
-                                    * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
-                }
-
             }
 
         }
@@ -129,6 +118,15 @@ public class GameLoop extends Stage {
         }
 
         super.draw();
+        Vector2 playerPosition = Vector2.gridUnitTranslate(
+                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                GameData.player.y - Player.GRID_WIDTH / 2);
+        Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(),
+                playerPosition.getAbsoluteX() + GameData.offsetX,
+                playerPosition.getAbsoluteY() + GameData.offsetY,
+                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
+                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
+                        * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
         // Todo: draw the player at the right z level depending on its y position.
     }
 }
