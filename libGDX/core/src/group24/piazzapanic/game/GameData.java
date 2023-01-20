@@ -21,7 +21,7 @@ public class GameData {
     public static Music music;
     public static List<String> customerSpriteSheets;
     public static Random rand;
-    public static int offsetX = 300; //offsets for the camera, in pixels.
+    public static int offsetX = 400; //offsets for the camera, in pixels.
     public static int offsetY = 200;
 
     /** 
