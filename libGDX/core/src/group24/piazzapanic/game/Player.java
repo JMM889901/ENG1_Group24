@@ -123,7 +123,7 @@ public class Player extends Actor {
                 System.out.println("Bruh.");
                 return false;
         }
-        if (activeStation != null){ // Check that we do have a station! 
+        if (activeStation != null) { // Check that we do have a station! 
             this.holding = activeStation.takeItem();
         }
         return true;

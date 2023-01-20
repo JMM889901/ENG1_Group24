@@ -1,6 +1,7 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 //import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -77,6 +78,14 @@ public class Station extends Image {
             return tmp;
         } else
             return null;
+    }
+
+    @Override
+    public void draw(Batch arg0, float arg1) {
+        super.draw(arg0, arg1);
+        if (this.item != null) {
+            this.item.drawItem((int) this.getX(), (int) this.getY());
+        }
     }
 
 }
