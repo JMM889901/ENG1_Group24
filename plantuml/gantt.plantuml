@@ -5,6 +5,9 @@ Project starts 2022-11-10
 [Christmas Holidays] starts 2022-12-3
 [Christmas Holidays] ends 2023-1-8
 [Christmas Holidays] is colored in Fuchsia/FireBrick
+[Exam week] starts 2023-1-9
+[Exam week] ends 2023-1-13
+[Exam week] is colored in DarkGrey
 [Submit everything] happens at 2023-1-27
 --Requirements Elicitation--
 [Make interview questions] on {all} lasts 13 days
@@ -20,6 +23,7 @@ Low priority
 end note
 [Format requirements document] on {Louise} starts 2022-12-30 and lasts 4 days
 [Req1.pdf] happens at 2023-1-3
+[Review final Req1 document] on {Joe} starts 2023-1-16
 --Website--
 [Website development] on {Emily} starts 2022-11-24 and lasts 1 week
 note bottom
@@ -34,7 +38,7 @@ note bottom
 Low priority
 end note
 [Update Gantt Chart] on {Louise} starts 2022-12-14 and lasts 2 days
-[Keep updating Gantt Chart] on {Louise} starts 2023-1-13 and lasts 2 days
+[Keep updating Gantt Chart] on {Louise} starts 2023-1-14 and lasts 2 days
 [Finish Gantt Chart] on {Louise} starts 2023-1-22
 [Finish methods and planning document] happens at 2023-1-23
 --Risk Assessment and Mitigation--
@@ -45,21 +49,35 @@ High priority
 end note
 [Create risk register] on {Emily} {Joe} starts 2022-11-29 and lasts 2 days
 [Review risk assessment] on {Louise} starts 2022-12-5
-[Format risk assessment] on {Louise} starts 2022-12-30 and lasts 4 days
-[Risk1.pdf] happens at 2023-1-3
+[Format risk assessment] on {Louise} starts 2023-1-3 and lasts 4 days
+[Risk1.pdf] happens at 2023-1-7
+[Review final Risk1 document] on {Joe} starts 2023-1-8
 --Implementation--
 [Started creating classes] on {Joss} {Josh} {Amber} starts 2022-11-24 and lasts 2 weeks
 [Get diagrams and visuals/sprites] on {Josh} {Amber} starts 2022-11-29 and lasts 2 days
-[Sort game engine/asset stuff/UML diagram] on {Joss} starts 2022-12-1 and lasts 4 days
+[Sort game engine/assets/UML diagram] on {Joss} starts 2022-12-1 and lasts 4 days
 [Create working menu] on {Josh} {Joss} {Amber} starts 2022-12-5
 [Create working menu] ends 2022-12-12
 [UI framework] on {Josh} {Joss} {Amber} starts 2022-12-13
-[UI framework] ends 2022-12-16
-[Finish implementation document] happens at 2023-1-23
+[UI framework] ends 2022-12-15
+[Develop level branch and classes] on {Josh} {Joss} {Amber} starts 2022-12-16 and lasts 1 week
+[Make movable interface] on {Josh} {Joss} starts 2023-1-3
+[Animate characters; Use IsNear to put stuff on counters] on {Amber} {Emily} starts 2023-1-3
+[Make movable interface] ends 2023-1-8
+[Animate characters; Use IsNear to put stuff on counters] ends 2023-1-8
+[Sprite animation; Docstrings] on {Amber} {Emily} starts 2023-1-16
+[Sprite animation; Docstrings] ends 2023-1-19
+[Sort pickup functions; Split and rewrite GameLoop] on {Joss} {Josh} starts 2023-1-16
+[Sort pickup functions; Split and rewrite GameLoop] ends 2023-1-19
+[Implement code for ingredient becoming dish] on {Alan} starts 2023-1-16
+[Finish any missing code parts] on {Josh} {Joss} {Amber} starts 2023-1-20
+[Finish any missing code parts] ends 2023-1-25
+[Finish implementation document] happens at 2023-1-26
 --Architecture--
 [Start creating architecture document] on {Emily} starts 2022-12-7
 [Added to Architecture document] on {Joss} starts 2022-12-10
+[Write up Architecture document] on {Joe} starts 2023-1-5
 [Finish architecture document] happens at 2023-1-23
 --Bug Snagging--
-[Bug testing] on {all} starts 2023-1-18 and lasts 14 days
+[Bug testing] on {all} starts 2023-1-23 and lasts 1 week
 @endgantt
