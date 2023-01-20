@@ -112,7 +112,11 @@ public class Level {
             case 'o':
                 return new IngredientType("onion");
             case 'L':
-                return new IngredientType("Lettuce");
+                return new IngredientType("lettuce");
+            case 'm':
+                return new IngredientType("meat");
+            case 'b':
+                return new IngredientType("bread");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;

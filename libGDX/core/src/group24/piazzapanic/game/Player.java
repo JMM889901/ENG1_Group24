@@ -100,9 +100,7 @@ public class Player extends Actor {
         }
     }
 
-    public boolean pickUp() {
-        // Find the direction the player is facing
-        // Then find the nearest object.
+    public Station getFacingStation() {
         Station activeStation;
         int roundedX = (int) (Math.floor(this.x));
         int roundedY = (int) (Math.floor(this.y));
@@ -121,8 +119,16 @@ public class Player extends Actor {
                 break;
             default:
                 System.out.println("Bruh.");
-                return false;
+                return null;
         }
+        return activeStation;
+    }
+
+    public boolean pickUp() {
+        // Find the direction the player is facing
+        // Then find the nearest object.
+        Station activeStation;
+        activeStation = getFacingStation();
         if (activeStation != null) { // Check that we do have a station! 
             this.holding = activeStation.takeItem();
         }
@@ -134,28 +140,11 @@ public class Player extends Actor {
         // Then find the nearest object.
         Station activeStation;
 
-        switch (this.direction) {
-            case UP:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
-                        Math.toIntExact(Math.round(Math.floor(this.y + 1))));
-                break;
-            case DOWN:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
-                        Math.toIntExact(Math.round(Math.floor(this.y - 1))));
-                break;
-            case LEFT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))),
-                        Math.toIntExact(Math.round(Math.floor(this.y))));
-                break;
-            case RIGHT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))),
-                        Math.toIntExact(Math.round(Math.floor(this.y))));
-                break;
-            default:
-                System.out.println("Bruh.");
-                return false;
-        }
-        if (activeStation != null && Physics.isNear(activeStation, GameData.player)) {
+        activeStation = getFacingStation();
+
+        if (activeStation != null && Physics.isNear(activeStation, GameData.player))
+
+        {
             boolean Result = activeStation.placeItem(this.holding);
             if (Result == true) {
                 this.holding = null;
