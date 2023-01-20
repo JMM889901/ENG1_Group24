@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.game.Physics;
 import group24.piazzapanic.levelElements.Movable;
 

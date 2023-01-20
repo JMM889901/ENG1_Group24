@@ -5,16 +5,19 @@ import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.levelElements.Movable;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.levelElements.stations.*;
+import group24.piazzapanic.maths.Vector2;
 
 import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but
  * does nothing itself.
  */
-public class Player {
+public class Player extends Actor {
     public static final int TEXTURE_WIDTH = 48;
     public static final int TEXTURE_HEIGHT = 96;
 
@@ -38,10 +41,7 @@ public class Player {
     public StageAnimation animation;
 
     public enum facing {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        UP, DOWN, LEFT, RIGHT
     }
 
     public facing direction;
@@ -79,6 +79,19 @@ public class Player {
      */
     public double left() {
         return x - GRID_WIDTH / 2;
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        Vector2 playerPosition = Vector2.gridUnitTranslate(
+                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                GameData.player.y - Player.GRID_WIDTH / 2);
+        Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(),
+                playerPosition.getAbsoluteX() + GameData.offsetX,
+                playerPosition.getAbsoluteY() + GameData.offsetY,
+                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
+                (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
+                        * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
     }
 
     public boolean pickUp() {
@@ -148,6 +161,7 @@ public class Player {
         return false;
     }
 
+    @Override
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
             if (this.holding != null) {

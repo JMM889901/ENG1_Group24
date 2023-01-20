@@ -53,7 +53,7 @@ public class StageManager {
 
     
     /** 
-     * @return Stage
+     * @return The Stage class of the active stage.
      */
     public static Stage getActiveStage() {
         return activeStage;

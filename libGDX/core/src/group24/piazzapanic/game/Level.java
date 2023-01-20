@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
 
@@ -77,14 +78,15 @@ public class Level {
                             break;
                         case 't': // tomato // TODO: add the other ingredients.
                         case 'o': // onion
-                            grid[x][y] = new IngredientStation(
+                            grid[x][y] = new IngredientStation(x, y,
                                     new Ingredient(extrapolateIngredient(line.charAt(j)), null));
                             break;
                         case 'W':
                             grid[x][y] = new Obstacle();
                             break;
                         default:
-                            throw new Exception("Unknown character '" + line.charAt(j) + "' in level file.");
+                            System.out.println("Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");
+                            grid[x][y] = new ErrorStation();
                     }
                     Vector2 pos = Vector2.gridUnitTranslate(x, y);
                     grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,
@@ -100,14 +102,14 @@ public class Level {
 
     /**
      * @param abbrevation
-     * @return String
+     * @return The type of the ingredient.
      */
-    private static String extrapolateIngredient(char abbrevation) {
+    private static IngredientType extrapolateIngredient(char abbrevation) {
         switch (abbrevation) {
             case 't':
-                return "tomato";
+                return new IngredientType("tomato");
             case 'o':
-                return "onion";
+                return new IngredientType("onion");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;
