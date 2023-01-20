@@ -123,7 +123,7 @@ public class Player extends Actor {
                 System.out.println("Bruh.");
                 return false;
         }
-        if (activeStation != null){ // Check that we do have a station! 
+        if (activeStation != null) { // Check that we do have a station! 
             this.holding = activeStation.takeItem();
         }
         return true;
@@ -170,7 +170,7 @@ public class Player extends Actor {
     @Override
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
-            if (this.holding != null) {
+            if (this.holding == null) {
                 System.out.println("owo");
                 this.pickUp();
             } else {
