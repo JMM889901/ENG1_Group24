@@ -8,8 +8,10 @@ import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
 
 /**
- * Reads level environment data from a file and stores it in a 2D array of stations.
- * It stores a grid, integer positions refer to the top left corner of a station/tile as shown on
+ * Reads level environment data from a file and stores it in a 2D array of
+ * stations.
+ * It stores a grid, integer positions refer to the top left corner of a
+ * station/tile as shown on
  * screen to the player.
  */
 public class Level {
@@ -73,7 +75,7 @@ public class Level {
                         case 'F':
                             grid[x][y] = new FryingStation();
                             break;
-                        case 't': // tomato  // TODO: add the other ingredients.
+                        case 't': // tomato // TODO: add the other ingredients.
                         case 'o': // onion
                             grid[x][y] = new IngredientStation(
                                     new Ingredient(extrapolateIngredient(line.charAt(j)), null));
@@ -96,7 +98,7 @@ public class Level {
         }
     }
 
-    /** 
+    /**
      * @param abbrevation
      * @return String
      */
@@ -112,30 +114,36 @@ public class Level {
         }
     }
 
-    /** 
+    /**
      * @return String
      */
     public String getLevelName() {
         return levelName;
     }
 
-    /** 
+    /**
      * @param x
      * @param y
-     * @return Station
+     * @return Station or Null if no station
      */
     public Station getStation(int x, int y) {
-        return grid[x][y];
+        // Bounds check
+        if (x < GameData.level.getWidth() && y < GameData.level.getHeight()) {
+            if (x >= 0 && y >= 0) {
+                return grid[x][y];
+            }
+        }
+        return null;
     }
 
-    /** 
+    /**
      * @return int
      */
     public int getWidth() {
         return width;
     }
 
-    /** 
+    /**
      * @return int
      */
     public int getHeight() {

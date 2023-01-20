@@ -85,29 +85,28 @@ public class Player {
         // Find the direction the player is facing
         // Then find the nearest object.
         Station activeStation;
-
+        int roundedX = (int) (Math.floor(this.x));
+        int roundedY = (int) (Math.floor(this.y));
         switch (this.direction) {
             case UP:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
-                        Math.toIntExact(Math.round(Math.floor(this.y + 1))));
+                activeStation = GameData.level.getStation(roundedX, roundedY + 1);
                 break;
             case DOWN:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x))),
-                        Math.toIntExact(Math.round(Math.floor(this.y - 1))));
+                activeStation = GameData.level.getStation(roundedX, roundedY - 1);
                 break;
             case LEFT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x - 1))),
-                        Math.toIntExact(Math.round(Math.floor(this.y))));
+                activeStation = GameData.level.getStation(roundedX - 1, roundedY);
                 break;
             case RIGHT:
-                activeStation = GameData.level.getStation(Math.toIntExact(Math.round(Math.floor(this.x + 1))),
-                        Math.toIntExact(Math.round(Math.floor(this.y))));
+                activeStation = GameData.level.getStation(roundedX + 1, roundedY);
                 break;
             default:
                 System.out.println("Bruh.");
                 return false;
         }
-        this.holding = activeStation.takeItem();
+        if (activeStation != null){ // Check that we do have a station! 
+            this.holding = activeStation.takeItem();
+        }
         return true;
     }
 
@@ -152,7 +151,7 @@ public class Player {
     public void act(float delta) {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {
             if (this.holding != null) {
-                System.out.println("uwu");
+                System.out.println("owo");
                 this.pickUp();
             } else {
                 System.out.println("uwu");
