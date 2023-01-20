@@ -79,7 +79,7 @@ public class Level {
                         case 't': // tomato
                         case 'o': // onion
                         case 'l': // lettuce pray. 
-                        case 'b': // breat
+                        case 'b': // bread
                         case 'm': // meat
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
