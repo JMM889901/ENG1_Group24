@@ -84,7 +84,8 @@ public class Station extends Image {
     public void draw(Batch arg0, float arg1) {
         super.draw(arg0, arg1);
         if (this.item != null) {
-            this.item.drawItem((int) this.getX(), (int) this.getY());
+            this.item.drawItem((int) (this.getX() + ((Base.tile_pixel_width / 2))),
+                    (int) (this.getY() + (Base.tile_pixel_height / 2)));
         }
     }
 

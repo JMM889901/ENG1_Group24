@@ -1,6 +1,11 @@
 package group24.piazzapanic.levelElements;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
@@ -32,6 +37,7 @@ public class Ingredient extends ImageMovable {
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                this.texture = Base.tomatoTexture;
             case "lettuce":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;

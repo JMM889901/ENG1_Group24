@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.Input.Keys;
 
-
 import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.game.Player;
 import group24.piazzapanic.ui.StageAnimation;
@@ -44,6 +43,9 @@ public class Base {
     public static Texture obstacleTexture;
 
     public static Texture errorTexture;
+
+    public static Texture tomatoTexture;
+
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     public static final int UP_KEY = Keys.W;
     public static final int DOWN_KEY = Keys.S;
@@ -145,6 +147,7 @@ public class Base {
         fryingStationTexture = new Texture("stations/notimplemented.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
         obstacleTexture = new Texture("stations/wall.png");
+        tomatoTexture = new Texture("food/tomato.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
     }
