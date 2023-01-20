@@ -24,17 +24,18 @@ public class IngredientStation extends Station {
 
     public static Texture getIngredientStationAsset(IngredientType type) {
         Texture texture = Base.ingredientStationTexture;
+        System.out.println(type.getName());
         switch (type.getName()) {
             case "tomato":
-                texture = Base.tomatoStationTexture;
+                return Base.tomatoStationTexture;
             case "onion":
-                texture = Base.onionStationTexture;
+                return Base.onionStationTexture;
             case "lettuce":
-                texture = Base.lettuceStationTexture;
+                return Base.lettuceStationTexture;
             case "bread":
-                texture = Base.breadStationTexture;
+                return Base.breadStationTexture;
             case "meat":
-                texture = Base.meatStationTexture;
+                return Base.meatStationTexture;
         }
         return texture;
     }
