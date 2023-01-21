@@ -206,6 +206,7 @@ public class Base {
         lettuceStationTexture = new Texture("stations/ingredientstation.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
+        assemblyStationTexture = new Texture("stations/err.png");
 
         obstacleTexture = new Texture("stations/wall.png");
 
