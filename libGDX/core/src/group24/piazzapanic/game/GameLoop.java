@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
+import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
@@ -39,13 +40,21 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
-        GameData.level = new Level("levels/Level 3");
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                Base.initialChefAnimation);
+        //Inventory Panel
+        StageAnimation ChefAnimation = new StageAnimation(Base.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
+                new Vector2(0.85, 0.85), 50, 100);
+        StageAnimation ChefAnimation1 = new StageAnimation(Base.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
+                new Vector2(0.8, 0.85), 50, 100);
 
+        this.addActor(ChefAnimation);
+        this.addActor(ChefAnimation1);
+
+        //Customers
         GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
                 "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
+        //Level
+        GameData.level = new Level("levels/Level 3");
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 if (GameData.level.grid[x][y] != null) {
@@ -53,7 +62,16 @@ public class GameLoop extends Stage {
                 }
             }
         }
-        this.addActor(GameData.player);
+        //Player creation
+
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                Base.initialChef1Animation, Base.chef1Animations);
+        GameData.player1 = GameData.player;
+        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                Base.initialChef2Animation, Base.chef2Animations);
+
+        this.addActor(GameData.player1);
+        this.addActor(GameData.player2);
     }
 
     /** 
@@ -69,7 +87,6 @@ public class GameLoop extends Stage {
      */
     @Override
     public void act(float delta) {
-        super.act(delta);
         GameData.gameTime += delta;
         GameData.sinceLastSpawn += delta;
 
@@ -81,9 +98,20 @@ public class GameLoop extends Stage {
             this.addActor(customer);
             GameData.sinceLastSpawn = 0;
         }
-        GameData.player.animation.act(1);
+        if (Gdx.input.isKeyJustPressed(Base.SWAP_KEY)) {
+            if (GameData.player == GameData.player1) {
+                System.out.println("Swapping player 1 to 2");
+                GameData.player = GameData.player2;
+            } else if (GameData.player == GameData.player2) {
+                System.out.println("Swapping player 2 to 1");
+                GameData.player = GameData.player1;
+            }
+        }
+        //GameData.player1.animation.act(1);
+        //GameData.player2.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
+        super.act(delta);
     }
 
     /**
@@ -118,6 +146,15 @@ public class GameLoop extends Stage {
                     topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }
 
+        //Draw the player inventory
+        if (GameData.player1.holding != null) {
+            Vector2 pos = new Vector2(0.85, 0.85);
+            GameData.player1.holding.drawItem(pos.getAbsoluteX(), (int) (pos.getAbsoluteY() - 50), 50, 50);
+        }
+        if (GameData.player2.holding != null) {
+            Vector2 pos = new Vector2(0.8, 0.85);
+            GameData.player2.holding.drawItem(pos.getAbsoluteX(), (int) (pos.getAbsoluteY() - 50), 50, 50);
+        }
         super.draw();
 
         // Todo: draw the player at the right z level depending on its y position.

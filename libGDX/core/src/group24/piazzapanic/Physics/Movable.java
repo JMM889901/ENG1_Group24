@@ -9,5 +9,7 @@ public interface Movable {
 
     public void drawItem(int x, int y);
 
+    public void drawItem(int x, int y, int width, int height);
+
     public Ingredient getIngredient();
 }

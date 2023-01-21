@@ -18,6 +18,8 @@ public class GameData {
     public static float sinceLastSpawn;
     public static Level level;
     public static Player player;
+    public static Player player1;
+    public static Player player2;
     public static Music music;
     public static List<String> customerSpriteSheets;
     public static Random rand;

@@ -35,4 +35,10 @@ public class AnimatedMovable extends StageAnimation implements Movable {
         // TODO Auto-generated method stub
         return ingredient;
     }
+
+    @Override
+    public void drawItem(int x, int y, int width, int height) {
+        // TODO Auto-generated method stub
+
+    }
 }

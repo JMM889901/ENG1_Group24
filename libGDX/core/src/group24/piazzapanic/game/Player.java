@@ -7,10 +7,14 @@ import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
 
+import java.util.HashMap;
+
 import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
@@ -39,18 +43,25 @@ public class Player extends Actor {
     public Movable holding; // The player's one-item inventory.
 
     public StageAnimation animation;
+    public HashMap<String, String> AnimMap;
 
-    public enum facing {
+    public static enum facing {
         UP, DOWN, LEFT, RIGHT
     }
 
     public facing direction;
+    private String currentKey;
 
     public Player(double x, double y, StageAnimation animation) {
+        this(x, y, animation, Base.chef1Animations);
+    }
+
+    public Player(double x, double y, StageAnimation animation, HashMap<String, String> AnimMap) {
         this.x = x;
         this.y = y;
         direction = facing.DOWN;
         this.animation = animation;
+        this.AnimMap = AnimMap;
     }
 
     /**
@@ -84,23 +95,23 @@ public class Player extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         Vector2 playerPosition = Vector2.gridUnitTranslate(
-                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                GameData.player.y - Player.GRID_WIDTH / 2);
-        Base.batch.draw(Base.initialChefAnimation.getCurrentFrame(),
+                this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                this.y - Player.GRID_WIDTH / 2);
+        Base.batch.draw(this.animation.getCurrentFrame(),
                 playerPosition.getAbsoluteX() + GameData.offsetX,
                 playerPosition.getAbsoluteY() + GameData.offsetY,
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
                         * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
 
-        if (this.holding != null) {
-            System.out.println(this.holding);
-            this.holding.drawItem(
-                    (int) playerPosition.getAbsoluteX() + GameData.offsetX
-                            + ((int) (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width)) / 2,
-                    (int) (playerPosition.getAbsoluteY() + GameData.offsetY
-                            + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
-        }
+        //if (this.holding != null) {
+        //    System.out.println(this.holding);
+        //    this.holding.drawItem(
+        //            (int) playerPosition.getAbsoluteX() + GameData.offsetX
+        //                    + ((int) (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width)) / 2,
+        //            (int) (playerPosition.getAbsoluteY() + GameData.offsetY
+        //                    + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
+        //}
     }
 
     public Station getFacingStation() {
@@ -161,6 +172,39 @@ public class Player extends Actor {
 
     @Override
     public void act(float delta) {
+        String key;
+        switch (this.direction) {
+            case DOWN:
+                key = "Front";
+                break;
+            case LEFT:
+                key = "Left";
+                break;
+            case RIGHT:
+                key = "Right";
+                break;
+            case UP:
+                key = "Back";
+                break;
+            default:
+                key = "Front";
+                break;
+
+        }
+        if (this != GameData.player) {
+            key = "Idle" + key;
+        } else if (this.x_vel == 0 && this.y_vel == 0) {
+            key = "Idle" + key + "Selected";
+        }
+        if (key != this.currentKey) {
+            currentKey = key;
+            this.animation.setAnimation(this.AnimMap.get(key), 6, 1, 6);
+        }
+
+        this.animation.act(delta);
+        if (GameData.player != this) {
+            return;
+        }
         if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY)) {
             if (this.holding == null) {
                 System.out.println("owo");

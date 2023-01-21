@@ -1,5 +1,6 @@
 package group24.piazzapanic;
 
+import java.util.HashMap;
 import java.util.Scanner;
 import java.io.File;
 
@@ -31,8 +32,11 @@ public class Base {
 
     public static SpriteBatch batch;
 
-    public static StageAnimation initialChefAnimation;
     public static StageAnimation initialChef1Animation;
+    public static StageAnimation initialChef2Animation;
+    public static HashMap<String, String> chef1Animations;
+    public static HashMap<String, String> chef2Animations;
+
     public static Texture debugSquareTexture;
 
     public static Texture floorTexture;
@@ -74,6 +78,7 @@ public class Base {
     public static final int ACT_KEY = Keys.F; // Interact with a station
     public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items 
     public static final int SELECT_KEY = Keys.ENTER;
+    public static final int SWAP_KEY = Keys.Q;
     // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
     // developing non-UI features.
 
@@ -154,9 +159,39 @@ public class Base {
                 .round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);
 
         batch = new SpriteBatch();
+        //Chef animations
+        chef1Animations = new HashMap<String, String>();
+        chef1Animations.put("IdleFrontSelected", "chef/chef_idle_front_selected.png");
+        chef1Animations.put("IdleBackSelected", "chef/chef_idle_back_selected.png");
+        chef1Animations.put("IdleLeftSelected", "chef/chef_idle_left_selected.png");
+        chef1Animations.put("IdleRightSelected", "chef/chef_idle_right_selected.png");
+        chef1Animations.put("IdleFront", "chef/chef_idle_front.png");
+        chef1Animations.put("IdleBack", "chef/chef_idle_back.png");
+        chef1Animations.put("IdleLeft", "chef/chef_idle_left.png");
+        chef1Animations.put("IdleRight", "chef/chef_idle_right.png");
+        chef1Animations.put("Front", "chef/chef_walk_front.png");
+        chef1Animations.put("Back", "chef/chef_walk_back.png");
+        chef1Animations.put("Left", "chef/chef_walk_left.png");
+        chef1Animations.put("Right", "chef/chef_walk_right.png");
 
-        initialChefAnimation = new AnimatedMovable("chef/chef_idle_front_selected.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
-        initialChef1Animation = new AnimatedMovable("chef/chef_idle_front_selected.png", 6, 6, 1, 0, 0, Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
+        chef2Animations = new HashMap<String, String>();
+        chef2Animations.put("IdleFrontSelected", "chef/chef_1_idle_front_selected.png");
+        chef2Animations.put("IdleBackSelected", "chef/chef_1_idle_back_selected.png");
+        chef2Animations.put("IdleLeftSelected", "chef/chef_1_idle_left_selected.png");
+        chef2Animations.put("IdleRightSelected", "chef/chef_1_idle_right_selected.png");
+        chef2Animations.put("IdleFront", "chef/chef_1_idle_front.png");
+        chef2Animations.put("IdleBack", "chef/chef_1_idle_back.png");
+        chef2Animations.put("IdleLeft", "chef/chef_1_idle_left.png");
+        chef2Animations.put("IdleRight", "chef/chef_1_idle_right.png");
+        chef2Animations.put("Front", "chef/chef_1_walk_front.png");
+        chef2Animations.put("Back", "chef/chef_1_walk_back.png");
+        chef2Animations.put("Left", "chef/chef_1_walk_left.png");
+        chef2Animations.put("Right", "chef/chef_1_walk_right.png");
+
+        initialChef1Animation = new AnimatedMovable(chef1Animations.get("IdleFrontSelected"), 6, 6, 1, 0, 0,
+                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
+        initialChef2Animation = new AnimatedMovable(chef2Animations.get("IdleFrontSelected"), 6, 6, 1, 0, 0,
+                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
@@ -171,8 +206,7 @@ public class Base {
         lettuceStationTexture = new Texture("stations/ingredientstation.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
-    
-        
+
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures
@@ -189,7 +223,6 @@ public class Base {
         rawMeatTexture = new Texture("food/raw_meat.png");
         cutMeatTexture = new Texture("stations/sourceerr.png");
         friedMeatTexture = new Texture("stations/sourceerr.png");
-
 
         errorTexture = new Texture("stations/sourceerr.png");
     }

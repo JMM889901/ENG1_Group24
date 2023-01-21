@@ -20,7 +20,8 @@ public class StageAnimation extends Image {
     public int height;
     TextureRegion currentFrame;
 
-    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, int x, int y, int width, int height) {
+    public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, int x, int y, int width,
+            int height) {
         super();
         this.setY(y);
         this.setX(x);
@@ -38,7 +39,6 @@ public class StageAnimation extends Image {
                 height);
     }
 
-    
     /** 
      * @param batch
      * @param parentAlpha
@@ -49,7 +49,6 @@ public class StageAnimation extends Image {
         batch.draw(currentFrame, getX(), getY(), width, height); // Draw current frame at (50, 50)
     }
 
-    
     /** 
      * @param delta
      */
@@ -61,7 +60,7 @@ public class StageAnimation extends Image {
 
     }
 
-    public void setAnimation(String path, int frameCount, int numberOfLines, int framesPerLine){
+    public void setAnimation(String path, int frameCount, int numberOfLines, int framesPerLine) {
         animationSheet = new Texture(path);
         TextureRegion[][] tmp = TextureRegion.split(animationSheet,
                 animationSheet.getWidth() / framesPerLine,
@@ -80,10 +79,10 @@ public class StageAnimation extends Image {
         }
         this.animation = new Animation<TextureRegion>(1 / 9f, frames);
         stateTime = 0f;
-        
+        Thread.currentThread().getStackTrace();
     }
 
-    public TextureRegion getCurrentFrame(){
+    public TextureRegion getCurrentFrame() {
         return this.currentFrame;
     }
 }
