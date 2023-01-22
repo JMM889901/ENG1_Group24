@@ -13,9 +13,12 @@ import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but
@@ -44,6 +47,8 @@ public class Player extends Actor {
 
     public StageAnimation animation;
     public HashMap<String, String> AnimMap;
+    ProgressBar bar;
+    boolean DrawBar;
 
     public static enum facing {
         UP, DOWN, LEFT, RIGHT
@@ -62,6 +67,14 @@ public class Player extends Actor {
         direction = facing.DOWN;
         this.animation = animation;
         this.AnimMap = AnimMap;
+
+        this.bar = new ProgressBar(0, 3, 0.1f, false, new Skin(Gdx.files.internal("testSkin/uiskin.json")));
+
+        bar.setSize(Player.TEXTURE_WIDTH, bar.getPrefHeight());
+        bar.setColor(Color.PINK);
+        System.out.println(Color.GREEN);
+        //bar.setAnimateDuration(2);
+        //bar.draw(null, 0);
     }
 
     /**
@@ -112,6 +125,10 @@ public class Player extends Actor {
         //            (int) (playerPosition.getAbsoluteY() + GameData.offsetY
         //                    + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
         //}
+        if (DrawBar) {
+            bar.draw(batch, parentAlpha);
+        }
+
     }
 
     public Station getFacingStation() {
@@ -172,6 +189,7 @@ public class Player extends Actor {
 
     @Override
     public void act(float delta) {
+
         String key;
         switch (this.direction) {
             case DOWN:
@@ -213,6 +231,23 @@ public class Player extends Actor {
                 System.out.println("cuwwentwy howwding: " + this.holding);
                 this.putDown();
             }
+        }
+        Station station = this.getFacingStation();
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && station != null) {
+            float progress = station.progress;
+            if (progress > 0.1) {
+                Vector2 playerPosition = Vector2.gridUnitTranslate(
+                        this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                        this.y - Player.GRID_WIDTH / 2);
+                bar.setPosition(playerPosition.getAbsoluteX() + GameData.offsetX,
+                        playerPosition.getAbsoluteY() + GameData.offsetY + Player.TEXTURE_HEIGHT + 5);
+                bar.setValue(progress);
+                DrawBar = true;
+            } else {
+                DrawBar = false;
+            }
+        } else {
+            DrawBar = false;
         }
     }
 }

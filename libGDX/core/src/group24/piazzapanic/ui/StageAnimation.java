@@ -79,7 +79,6 @@ public class StageAnimation extends Image {
         }
         this.animation = new Animation<TextureRegion>(1 / 9f, frames);
         stateTime = 0f;
-        Thread.currentThread().getStackTrace();
     }
 
     public TextureRegion getCurrentFrame() {
