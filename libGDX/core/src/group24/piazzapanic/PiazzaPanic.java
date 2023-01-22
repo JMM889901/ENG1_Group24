@@ -56,8 +56,6 @@ public class PiazzaPanic extends ApplicationAdapter {
         StageManager.init();
     }
 
-
-
     @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
@@ -70,15 +68,13 @@ public class PiazzaPanic extends ApplicationAdapter {
                 StageManager.setActiveStage("Game");
             }
         }
-        
-
-        Base.batch.begin();
         StageManager.getActiveStage().act();
+        Base.batch.begin();
+
         StageManager.getActiveStage().draw();
         Base.batch.end();
     }
 
-    
     /** 
      * @param width
      * @param height

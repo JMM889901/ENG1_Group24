@@ -31,9 +31,30 @@ public class StageAnimation extends Image {
         currentFrame = this.animation.getKeyFrame(stateTime, true);
     }
 
+    public StageAnimation(Animation<TextureRegion> anim, int frameCount, int framesPerLine, int numberOfLines, int x,
+            int y, int width,
+            int height) {
+        super();
+        this.setY(y);
+        this.setX(x);
+        this.width = width;
+        this.height = height;
+        setAnimation(anim);
+        currentFrame = this.animation.getKeyFrame(stateTime, true);
+    }
+
     public StageAnimation(String path, int frameCount, int framesPerLine, int numberOfLines, Vector2 pos, int width,
             int height) {
         this(path, frameCount, framesPerLine, numberOfLines, pos.getAbsoluteX(),
+                pos.getAbsoluteY(),
+                width,
+                height);
+    }
+
+    public StageAnimation(Animation<TextureRegion> anim, int frameCount, int framesPerLine, int numberOfLines,
+            Vector2 pos, int width,
+            int height) {
+        this(anim, frameCount, framesPerLine, numberOfLines, pos.getAbsoluteX(),
                 pos.getAbsoluteY(),
                 width,
                 height);
@@ -79,6 +100,33 @@ public class StageAnimation extends Image {
         }
         this.animation = new Animation<TextureRegion>(1 / 9f, frames);
         stateTime = 0f;
+    }
+
+    public void setAnimation(Animation<TextureRegion> animation) {
+        this.animation = animation;
+        stateTime = 0f;
+    }
+
+    //Should really not be in this class but oh well
+    public static Animation<TextureRegion> makeAnimation(String path, int frameCount, int numberOfLines,
+            int framesPerLine) {
+        Texture animationSheet = new Texture(path);
+        TextureRegion[][] tmp = TextureRegion.split(animationSheet,
+                animationSheet.getWidth() / framesPerLine,
+                animationSheet.getHeight() / numberOfLines);
+
+        int framesAdded = 0;
+        TextureRegion[] frames = new TextureRegion[frameCount];
+        int index = 0;
+        for (int i = 0; i < numberOfLines; i++) {
+            for (int j = 0; j < framesPerLine; j++) {
+                if (framesAdded < frameCount) {
+                    frames[index++] = tmp[i][j];
+                    framesAdded++;
+                }
+            }
+        }
+        return new Animation<TextureRegion>(1 / 9f, frames);
     }
 
     public TextureRegion getCurrentFrame() {

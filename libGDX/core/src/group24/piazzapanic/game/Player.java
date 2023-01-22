@@ -14,7 +14,9 @@ import javax.swing.text.DefaultStyledDocument.ElementSpec;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
@@ -43,10 +45,11 @@ public class Player extends Actor {
     public static double minSpeed = 0.4; // The player is deemed still if they are below this.
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                  // collidable objects.
+    Vector2 playerPosition; //Meant to prevent mem leaks, otherwise this would be in the draw func
     public Movable holding; // The player's one-item inventory.
 
     public StageAnimation animation;
-    public HashMap<String, String> AnimMap;
+    public HashMap<String, Animation<TextureRegion>> AnimMap;
     ProgressBar bar;
     boolean DrawBar;
 
@@ -56,12 +59,13 @@ public class Player extends Actor {
 
     public facing direction;
     private String currentKey;
+    private String key;
 
     public Player(double x, double y, StageAnimation animation) {
         this(x, y, animation, Base.chef1Animations);
     }
 
-    public Player(double x, double y, StageAnimation animation, HashMap<String, String> AnimMap) {
+    public Player(double x, double y, StageAnimation animation, HashMap<String, Animation<TextureRegion>> AnimMap) {
         this.x = x;
         this.y = y;
         direction = facing.DOWN;
@@ -107,7 +111,7 @@ public class Player extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        Vector2 playerPosition = Vector2.gridUnitTranslate(
+        playerPosition = Vector2.gridUnitTranslate(
                 this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                 this.y - Player.GRID_WIDTH / 2);
         Base.batch.draw(this.animation.getCurrentFrame(),
@@ -190,7 +194,6 @@ public class Player extends Actor {
     @Override
     public void act(float delta) {
 
-        String key;
         switch (this.direction) {
             case DOWN:
                 key = "Front";
@@ -216,7 +219,7 @@ public class Player extends Actor {
         }
         if (key != this.currentKey) {
             currentKey = key;
-            this.animation.setAnimation(this.AnimMap.get(key), 6, 1, 6);
+            this.animation.setAnimation(this.AnimMap.get(key));
         }
 
         this.animation.act(delta);
