@@ -5,11 +5,13 @@ import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.levelElements.Dish;
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class CounterTop extends Station {
 
     ArrayList item = new ArrayList<>();
-    public CounterTop() {
-        super(Base.counterTopTexture);
+    public CounterTop(Texture t) {
+        super(t);
         this.item = null;
     }
 

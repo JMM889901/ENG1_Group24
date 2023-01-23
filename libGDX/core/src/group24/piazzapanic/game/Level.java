@@ -3,6 +3,7 @@ package group24.piazzapanic.game;
 import java.io.File;
 import java.util.Scanner;
 
+import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
@@ -67,8 +68,17 @@ public class Level {
                         case 'B':
                             grid[x][y] = new BakingStation();
                             break;
-                        case 'T':
-                            grid[x][y] = new CounterTop();
+                        case '1':
+                            grid[x][y] = new CounterTop(Base.counterTopTexture);
+                            break;
+                        case '2':
+                            grid[x][y] = new CounterTop(Base.counterRightCornerTexture);
+                            break;
+                        case '3':
+                            grid[x][y] = new CounterTop(Base.counterRightTexture);
+                            break;
+                        case '4':
+                            grid[x][y] = new CounterTop(Base.counterEndTexture);
                             break;
                         case 'C':
                             grid[x][y] = new CuttingStation();
@@ -84,7 +94,7 @@ public class Level {
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
                             break;
-                        case 'W':
+                        case 'W': //wall
                             grid[x][y] = new Obstacle();
                             break;
                         default:

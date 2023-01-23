@@ -44,6 +44,9 @@ public class Base {
     public static Texture floorTexture;
     public static Texture bakingStationTexture;
     public static Texture counterTopTexture;
+    public static Texture counterRightCornerTexture;
+    public static Texture counterRightTexture;
+    public static Texture counterEndTexture;
     public static Texture cuttingStationTexture;
     public static Texture fryingStationTexture;
     public static Texture ingredientStationTexture;
@@ -209,12 +212,15 @@ public class Base {
         floorTexture = new Texture("stations/kitchen_floor_2.png");
         bakingStationTexture = new Texture("stations/baking_station_closed.png");
         counterTopTexture = new Texture("stations/countertop.png");
+        counterRightCornerTexture = new Texture("stations/countertop_rightcorner.png");
+        counterRightTexture = new Texture("stations/counterside.png");
+        counterEndTexture = new Texture("stations/counterend.png");
         cuttingStationTexture = new Texture("stations/cutting_station.png");
         fryingStationTexture = new Texture("stations/frying_station_off.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
         tomatoStationTexture = new Texture("stations/BLOOD-FOR-THE-MEAT-GOD.png");
         onionStationTexture = new Texture("stations/ingredientstation.png");
-        lettuceStationTexture = new Texture("stations/ingredientstation.png");
+        lettuceStationTexture = new Texture("stations/lettuce_sack.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         assemblyStationTexture = new Texture("stations/err.png");
