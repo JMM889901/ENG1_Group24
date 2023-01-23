@@ -37,6 +37,7 @@ public class IngredientStation extends Station {
             case "meat":
                 return Base.meatStationTexture;
             case "dish":
+                System.out.println("It's DIsh Time");
                 return Base.dishStationTexture;
         }
         return texture;
@@ -67,9 +68,9 @@ public class IngredientStation extends Station {
             this.item = null;
             return tmp;
         } else {
-            if(this.ingredientType.getName() == "dish"){ // dish station! 
-                return new Dish();
-            }
+            // if(this.ingredientType.getName() == "dish"){ // dish station! 
+            //     return new Dish();
+            // }
             return new Ingredient(ingredientType);
         }
 
