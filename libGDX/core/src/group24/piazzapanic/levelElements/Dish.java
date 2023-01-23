@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Dish {
-    public static ArrayList<Dish> Dishes;
+    public static ArrayList<Ingredient> Ingredients;
 
     public static void init() {
 
