@@ -37,6 +37,7 @@ public class IngredientStation extends Station {
             case "meat":
                 return Base.meatStationTexture;
             case "dish":
+                System.out.println("It's DIsh Time");
                 return Base.dishStationTexture;
         }
         return texture;
