@@ -132,7 +132,7 @@ public class GameLoop extends Stage {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
                 Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
-                        curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
+                        curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
 
             }
         }
