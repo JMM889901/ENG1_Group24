@@ -206,7 +206,7 @@ public class Base {
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
-        floorTexture = new Texture("stations/floor.png");
+        floorTexture = new Texture("stations/kitchen_floor.png");
         bakingStationTexture = new Texture("stations/baking_station_closed.png");
         counterTopTexture = new Texture("stations/countertop.png");
         cuttingStationTexture = new Texture("stations/cutting_station.png");
@@ -223,18 +223,18 @@ public class Base {
 
         // Ingredient Textures
         rawTomatoTexture = new Texture("food/tomato.png");
-        cutTomatoTexture = new Texture("stations/sourceerr.png");
+        cutTomatoTexture = new Texture("stations/chopped_tomato.png");
         rawOnionTexture = new Texture("stations/sourceerr.png");
         cutOnionTexture = new Texture("stations/sourceerr.png");
         friedOnionTexture = new Texture("stations/sourceerr.png");
-        rawLettuceTexture = new Texture("stations/sourceerr.png");
-        cutLettuceTexture = new Texture("stations/sourceerr.png");
+        rawLettuceTexture = new Texture("stations/lettuce.png");
+        cutLettuceTexture = new Texture("stations/chopped_lettuce.png");
         rawBreadTexture = new Texture("stations/sourceerr.png");
         cutBreadTexture = new Texture("stations/sourceerr.png");
         friedBreadTexture = new Texture("stations/sourceerr.png");
         rawMeatTexture = new Texture("food/raw_meat.png");
-        cutMeatTexture = new Texture("stations/sourceerr.png");
-        friedMeatTexture = new Texture("stations/sourceerr.png");
+        cutMeatTexture = new Texture("stations/raw_burger.png");
+        friedMeatTexture = new Texture("stations/burger.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
     }
