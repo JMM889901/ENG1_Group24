@@ -27,7 +27,7 @@ public class CounterTop extends Station {
     @Override
     public boolean placeItem(Movable item) {
         boolean hasDish = false;
-        if (this.items != null)
+        //if (this.items != null){
             if (this.items.size() > 0) { // If it currently has items on it.
                 for (Movable currentItem : this.items) { // If one of these is a dish.
                     if (currentItem instanceof Dish) {
@@ -35,6 +35,7 @@ public class CounterTop extends Station {
                     }
                 }
             }
+        //}
         if (hasDish){
             this.items.add(item);
             return true;
@@ -43,10 +44,10 @@ public class CounterTop extends Station {
                 this.items.add(item);
                 return true;
             }
-            if (this.items == null){
-                this.items = new ArrayList<Movable>();
-                this.items.add(item);
-            }
+           // if (this.items == null){
+            //    this.items = new ArrayList<Movable>();
+            //    this.items.add(item);
+            //}
         }
         return false;
     }
