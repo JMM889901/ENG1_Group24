@@ -223,24 +223,26 @@ public class Base {
         lettuceStationTexture = new Texture("stations/lettuce_sack.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
+        dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         counterTopTexture = new Texture("stations/countertop.png");
 
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures
-        rawTomatoTexture = new Texture("food/tomato.png");
-        cutTomatoTexture = new Texture("food/chopped_tomato.png");
+        rawTomatoTexture = new Texture("ingredients/tomato.png");
+        cutTomatoTexture = new Texture("ingredients/chopped_tomato.png");
         rawOnionTexture = new Texture("stations/sourceerr.png");
         cutOnionTexture = new Texture("stations/sourceerr.png");
         friedOnionTexture = new Texture("stations/sourceerr.png");
-        rawLettuceTexture = new Texture("food/lettuce.png");
-        cutLettuceTexture = new Texture("food/chopped_lettuce.png");
+        rawLettuceTexture = new Texture("ingredients/lettuce.png");
+        cutLettuceTexture = new Texture("ingredients/chopped_lettuce.png");
         rawBreadTexture = new Texture("stations/sourceerr.png");
         cutBreadTexture = new Texture("stations/sourceerr.png");
         friedBreadTexture = new Texture("stations/sourceerr.png");
-        rawMeatTexture = new Texture("food/raw_meat.png");
-        cutMeatTexture = new Texture("food/raw_burger.png");
-        friedMeatTexture = new Texture("food/burger.png");
+        rawMeatTexture = new Texture("ingredients/raw_meat.png");
+        cutMeatTexture = new Texture("ingredients/raw_burger.png");
+        friedMeatTexture = new Texture("ingredients/burger.png");
+        dishTexture = new Texture("ingredients/plate.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
     }
@@ -261,6 +263,7 @@ public class Base {
         fryingStationTexture.dispose();
         ingredientStationTexture.dispose();
         obstacleTexture.dispose();
+        dishStationTexture.dispose();
 
         errorTexture.dispose();
     }

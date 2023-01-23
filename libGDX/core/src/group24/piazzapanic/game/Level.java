@@ -91,11 +91,10 @@ public class Level {
                         case 'l': // lettuce pray. 
                         case 'b': // bread
                         case 'm': // meat
+                        case 'd': // dish (plate)
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
                             break;
-                        case 'd': // dish station
-                            grid[x][y] = new IngredientStation(x, y, extrapolateIngredient(line.charAt(j)));
                         case 'W': //wall
                             grid[x][y] = new Obstacle();
                             break;

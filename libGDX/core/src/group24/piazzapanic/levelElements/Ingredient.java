@@ -62,6 +62,12 @@ public class Ingredient extends ImageMovable {
                 this.fryingProgress = -1;
                 this.texture = Base.rawMeatTexture;
                 break;
+            case "dish":
+                this.cuttingProgress = -1;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
+                this.texture = Base.dishTexture;
+                break;
         }
 
     }
