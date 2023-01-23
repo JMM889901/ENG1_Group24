@@ -223,18 +223,18 @@ public class Base {
 
         // Ingredient Textures
         rawTomatoTexture = new Texture("food/tomato.png");
-        cutTomatoTexture = new Texture("stations/chopped_tomato.png");
+        cutTomatoTexture = new Texture("food/chopped_tomato.png");
         rawOnionTexture = new Texture("stations/sourceerr.png");
         cutOnionTexture = new Texture("stations/sourceerr.png");
         friedOnionTexture = new Texture("stations/sourceerr.png");
-        rawLettuceTexture = new Texture("stations/lettuce.png");
-        cutLettuceTexture = new Texture("stations/chopped_lettuce.png");
+        rawLettuceTexture = new Texture("food/lettuce.png");
+        cutLettuceTexture = new Texture("food/chopped_lettuce.png");
         rawBreadTexture = new Texture("stations/sourceerr.png");
         cutBreadTexture = new Texture("stations/sourceerr.png");
         friedBreadTexture = new Texture("stations/sourceerr.png");
         rawMeatTexture = new Texture("food/raw_meat.png");
-        cutMeatTexture = new Texture("stations/raw_burger.png");
-        friedMeatTexture = new Texture("stations/burger.png");
+        cutMeatTexture = new Texture("food/raw_burger.png");
+        friedMeatTexture = new Texture("food/burger.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
     }
