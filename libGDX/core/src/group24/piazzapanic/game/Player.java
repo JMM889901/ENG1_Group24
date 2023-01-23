@@ -226,10 +226,10 @@ public class Player extends Actor {
         }
         if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY)) {
             if (this.holding == null) {
-                System.out.println("owo");
+                System.out.println("Inventory is empty.");
                 this.pickUp();
             } else {
-                System.out.println("cuwwentwy howwding: " + this.holding);
+                System.out.println("Currently holding: " + this.holding);
                 this.putDown();
             }
         }
