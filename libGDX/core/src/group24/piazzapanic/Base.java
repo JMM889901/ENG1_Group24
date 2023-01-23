@@ -55,8 +55,8 @@ public class Base {
     public static Texture lettuceStationTexture;
     public static Texture breadStationTexture;
     public static Texture meatStationTexture;
-    public static Texture assemblyStationTexture;
-    public static Texture plateStationTexture;
+    public static Texture dishStationTexture;
+    public static Texture dishTexture;
 
     public static Texture obstacleTexture;
 
@@ -223,7 +223,6 @@ public class Base {
         lettuceStationTexture = new Texture("stations/lettuce_sack.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
-        assemblyStationTexture = new Texture("stations/err.png");
 
         obstacleTexture = new Texture("stations/wall.png");
 

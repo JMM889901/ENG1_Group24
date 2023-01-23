@@ -94,6 +94,8 @@ public class Level {
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
                             break;
+                        case 'd': // dish station
+                            grid[x][y] = new IngredientStation(x, y, extrapolateIngredient(line.charAt(j)));
                         case 'W': //wall
                             grid[x][y] = new Obstacle();
                             break;
@@ -130,6 +132,8 @@ public class Level {
                 return new IngredientType("meat");
             case 'b':
                 return new IngredientType("bread");
+            case 'd':
+                return new IngredientType("dish");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;
