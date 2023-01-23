@@ -206,7 +206,7 @@ public class Base {
         debugSquareTexture = new Texture("debugsquare.png");
 
         // Load station textures.
-        floorTexture = new Texture("stations/kitchen_floor.png");
+        floorTexture = new Texture("stations/kitchen_floor_2.png");
         bakingStationTexture = new Texture("stations/baking_station_closed.png");
         counterTopTexture = new Texture("stations/countertop.png");
         cuttingStationTexture = new Texture("stations/cutting_station.png");
