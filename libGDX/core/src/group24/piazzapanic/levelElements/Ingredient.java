@@ -43,21 +43,25 @@ public class Ingredient extends ImageMovable {
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                this.texture = Base.rawLettuceTexture;
                 break;
             case "onion":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                this.texture = Base.rawOnionTexture;
                 break;
             case "bread":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
+                this.texture = Base.rawBreadTexture;
                 break;
             case "meat":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
-                this.fryingProgress = 0;
+                this.fryingProgress = -1;
+                this.texture = Base.rawMeatTexture;
                 break;
         }
 
@@ -125,10 +129,10 @@ public class Ingredient extends ImageMovable {
                 this.texture = Base.cutOnionTexture;
                 break;
             case "meat":
-                this.bakingProgress = 0;
-                this.texture = Base.cutMeatTexture;
+                this.bakingProgress = -1;
+                this.texture = Base.friedMeatTexture;
+        }
     }
-}
 
     /**
      * Bake the ingredient
