@@ -68,9 +68,9 @@ public class IngredientStation extends Station {
             this.item = null;
             return tmp;
         } else {
-            if(this.ingredientType.getName() == "dish"){ // dish station! 
-                return new Dish();
-            }
+            // if(this.ingredientType.getName() == "dish"){ // dish station! 
+            //     return new Dish();
+            // }
             return new Ingredient(ingredientType);
         }
 

@@ -223,6 +223,7 @@ public class Base {
         lettuceStationTexture = new Texture("stations/lettuce_sack.png");
         breadStationTexture = new Texture("stations/ingredientstation.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
+        counterTopTexture = new Texture("stations/countertop.png");
 
         obstacleTexture = new Texture("stations/wall.png");
 
