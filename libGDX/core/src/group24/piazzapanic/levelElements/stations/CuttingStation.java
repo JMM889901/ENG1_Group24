@@ -12,8 +12,6 @@ public class CuttingStation extends Station {
         super(Base.cuttingStationTexture);
     }
 
-    float timeKeyHeld; // Time key is held for
-
     @Override
     public void act(float delta) {
         if (super.item != null) {
@@ -23,15 +21,20 @@ public class CuttingStation extends Station {
                     System.out.println("Already cut...");
                     return; // The item is already cut, don't go any further.
                 }
-                System.out.println(timeKeyHeld);
-                timeKeyHeld += delta;
-                if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
+                if (super.item.getIngredient().getCuttingProgress() == -1) {
+                    progress = 0;
+                    return;
+                }
+                System.out.println(progress);
+                progress += delta;
+                if (progress > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                     // Cutting is done! poggers
                     super.item.getIngredient().cut();
                     System.out.println("Cutting complete...");
+                    progress = 0;
                 }
             } else {
-                timeKeyHeld = 0; // Not pressing the button? sadge.
+                progress = 0; // Not pressing the button? sadge.
             }
 
         }

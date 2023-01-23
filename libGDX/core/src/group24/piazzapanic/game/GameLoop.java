@@ -7,6 +7,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -21,6 +22,7 @@ import group24.piazzapanic.levelElements.stations.*;
 
 public class GameLoop extends Stage {
     private Label scoreCounter;
+    private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
 
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
@@ -30,6 +32,7 @@ public class GameLoop extends Stage {
         GameData.sinceLastSpawn = 0f;
         GameData.customers = new ArrayList<Customer>();
 
+        this.curPosition = new Vector2(0, 0);
         //Create score counter
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
@@ -123,7 +126,7 @@ public class GameLoop extends Stage {
         ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
 
         // Iterate through level array and draw tiles.
-        Vector2 curPosition;
+
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
@@ -132,9 +135,9 @@ public class GameLoop extends Stage {
                         curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_height);
 
             }
-
         }
 
+        //This code causes a slight memory leak
         if (Base.DEBUG) {
             // Set to true to see the chef's hitbox.
             Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2,
@@ -148,13 +151,21 @@ public class GameLoop extends Stage {
 
         //Draw the player inventory
         if (GameData.player1.holding != null) {
-            Vector2 pos = new Vector2(0.85, 0.85);
-            GameData.player1.holding.drawItem(pos.getAbsoluteX(), (int) (pos.getAbsoluteY() - 50), 50, 50);
+            curPosition.x = 0.85;
+            curPosition.y = 0.85;
+            //curPosition = new Vector2(0.85, 0.85);
+            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), (int) (curPosition.getAbsoluteY() - 50), 50,
+                    50);
         }
         if (GameData.player2.holding != null) {
-            Vector2 pos = new Vector2(0.8, 0.85);
-            GameData.player2.holding.drawItem(pos.getAbsoluteX(), (int) (pos.getAbsoluteY() - 50), 50, 50);
+            //curPosition = new Vector2(0.8, 0.85);
+            curPosition.y = 0.85;
+            curPosition.x = 0.8;
+            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), (int) (curPosition.getAbsoluteY() - 50), 50,
+                    50);
         }
+        Base.batch.end();
+        Base.batch.begin();
         super.draw();
 
         // Todo: draw the player at the right z level depending on its y position.
