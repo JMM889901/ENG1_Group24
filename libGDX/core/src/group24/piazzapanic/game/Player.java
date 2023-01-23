@@ -75,8 +75,6 @@ public class Player extends Actor {
         this.bar = new ProgressBar(0, 3, 0.1f, false, new Skin(Gdx.files.internal("testSkin/uiskin.json")));
 
         bar.setSize(Player.TEXTURE_WIDTH, bar.getPrefHeight());
-        bar.setColor(Color.PINK);
-        System.out.println(Color.GREEN);
         //bar.setAnimateDuration(2);
         //bar.draw(null, 0);
     }
