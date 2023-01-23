@@ -13,9 +13,14 @@ import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but
@@ -40,10 +45,13 @@ public class Player extends Actor {
     public static double minSpeed = 0.4; // The player is deemed still if they are below this.
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                  // collidable objects.
+    Vector2 playerPosition; //Meant to prevent mem leaks, otherwise this would be in the draw func
     public Movable holding; // The player's one-item inventory.
 
     public StageAnimation animation;
-    public HashMap<String, String> AnimMap;
+    public HashMap<String, Animation<TextureRegion>> AnimMap;
+    ProgressBar bar;
+    boolean DrawBar;
 
     public static enum facing {
         UP, DOWN, LEFT, RIGHT
@@ -51,17 +59,24 @@ public class Player extends Actor {
 
     public facing direction;
     private String currentKey;
+    private String key;
 
     public Player(double x, double y, StageAnimation animation) {
         this(x, y, animation, Base.chef1Animations);
     }
 
-    public Player(double x, double y, StageAnimation animation, HashMap<String, String> AnimMap) {
+    public Player(double x, double y, StageAnimation animation, HashMap<String, Animation<TextureRegion>> AnimMap) {
         this.x = x;
         this.y = y;
         direction = facing.DOWN;
         this.animation = animation;
         this.AnimMap = AnimMap;
+
+        this.bar = new ProgressBar(0, 3, 0.1f, false, new Skin(Gdx.files.internal("testSkin/uiskin.json")));
+
+        bar.setSize(Player.TEXTURE_WIDTH, bar.getPrefHeight());
+        //bar.setAnimateDuration(2);
+        //bar.draw(null, 0);
     }
 
     /**
@@ -94,7 +109,7 @@ public class Player extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        Vector2 playerPosition = Vector2.gridUnitTranslate(
+        playerPosition = Vector2.gridUnitTranslate(
                 this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                 this.y - Player.GRID_WIDTH / 2);
         Base.batch.draw(this.animation.getCurrentFrame(),
@@ -112,6 +127,10 @@ public class Player extends Actor {
         //            (int) (playerPosition.getAbsoluteY() + GameData.offsetY
         //                    + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
         //}
+        if (DrawBar) {
+            bar.draw(batch, parentAlpha);
+        }
+
     }
 
     public Station getFacingStation() {
@@ -172,7 +191,7 @@ public class Player extends Actor {
 
     @Override
     public void act(float delta) {
-        String key;
+
         switch (this.direction) {
             case DOWN:
                 key = "Front";
@@ -198,7 +217,7 @@ public class Player extends Actor {
         }
         if (key != this.currentKey) {
             currentKey = key;
-            this.animation.setAnimation(this.AnimMap.get(key), 6, 1, 6);
+            this.animation.setAnimation(this.AnimMap.get(key));
         }
 
         this.animation.act(delta);
@@ -207,12 +226,29 @@ public class Player extends Actor {
         }
         if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY)) {
             if (this.holding == null) {
-                System.out.println("owo");
+                System.out.println("Inventory is empty.");
                 this.pickUp();
             } else {
-                System.out.println("cuwwentwy howwding: " + this.holding);
+                System.out.println("Currently holding: " + this.holding);
                 this.putDown();
             }
+        }
+        Station station = this.getFacingStation();
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && station != null) {
+            float progress = station.progress;
+            if (progress > 0.1) {
+                Vector2 playerPosition = Vector2.gridUnitTranslate(
+                        this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+                        this.y - Player.GRID_WIDTH / 2);
+                bar.setPosition(playerPosition.getAbsoluteX() + GameData.offsetX,
+                        playerPosition.getAbsoluteY() + GameData.offsetY + Player.TEXTURE_HEIGHT + 5);
+                bar.setValue(progress);
+                DrawBar = true;
+            } else {
+                DrawBar = false;
+            }
+        } else {
+            DrawBar = false;
         }
     }
 }

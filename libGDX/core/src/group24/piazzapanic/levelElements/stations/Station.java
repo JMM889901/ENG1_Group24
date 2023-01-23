@@ -1,14 +1,19 @@
 package group24.piazzapanic.levelElements.stations;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 //import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;;
 
 public class Station extends Image {
+
+    public float progress; // Time key is held for
 
     public Station(Texture Texture) {
         super(Texture);
@@ -22,6 +27,7 @@ public class Station extends Image {
 
     protected int gridX; // Once these are set, don't change them.
     protected int gridY;
+    ProgressBar bar;
 
     /**
      * Creates a new station, which knows it's own location to be as specified.
@@ -32,6 +38,7 @@ public class Station extends Image {
         super();
         this.gridX = gridX;
         this.gridY = gridY;
+
     }
 
     /**
@@ -80,14 +87,13 @@ public class Station extends Image {
             return null;
     }
 
-
-
     @Override
     public void draw(Batch arg0, float arg1) {
         super.draw(arg0, arg1);
         if (this.item != null) {
-            this.item.drawItem((int) (this.getX() + ((Base.tile_pixel_width / 2))),
-                    (int) (this.getY() + (Base.tile_pixel_height / 2)));
+            this.item.drawItem((int) (this.getX() + ((Base.tile_pixel_width / 3))),
+                    (int) (this.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2,
+                    Base.tile_pixel_width / 2);
         }
     }
 

@@ -66,13 +66,12 @@ public class StageFactory {
                 GameData.music.dispose();
                 GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
                 GameData.music.setLooping(true);
-              //  GameData.music.play();
+                //  GameData.music.play();
                 StageManager.setActiveStage("Game");
             }
 
         });
         stage.addActor(button);
-
 
         // Options button
         TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
@@ -91,15 +90,16 @@ public class StageFactory {
         stage.addActor(button2);
 
         // Temporary (?) dancing chef.
-        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154, 307);
-        StageAnimation ChefAnimation1 = new StageAnimation("chef/chef_1_idle_front_selected.png", 6, 6, 1, Base.WINDOW_WIDTH -180, 20, 154, 307);
+        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154,
+                307);
+        StageAnimation ChefAnimation1 = new StageAnimation("chef/chef_1_idle_front_selected.png", 6, 6, 1,
+                Base.WINDOW_WIDTH - 180, 20, 154, 307);
 
         stage.addActor(ChefAnimation);
         stage.addActor(ChefAnimation1);
         return stage;
     }
 
-    
     /** 
      * @return Stage
      */

@@ -72,6 +72,12 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
                 gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
+    /**
+     * Converts grid units to on screen positions inlcuding offset
+     * @param gridX
+     * @param gridY
+     * @return
+     */
     public static Vector2 worldUnitTranslate(float gridX, float gridY) {
         Vector2 pos = gridUnitTranslate(gridX, gridY);
         pos.x += GameData.offsetX;

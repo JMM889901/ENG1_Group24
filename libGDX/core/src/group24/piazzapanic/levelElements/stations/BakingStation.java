@@ -11,8 +11,6 @@ import group24.piazzapanic.Physics.Movable;;
 
 public class BakingStation extends Station {
 
-    float timeKeyHeld;
-
     public BakingStation(/* Texture sprite, Vector2 location */) {
         super(Base.bakingStationTexture);
         // this.sprite = sprite;
@@ -49,16 +47,21 @@ public class BakingStation extends Station {
                     System.out.println("Already baked......");
                     return; // The item is already baked, don't go any further.
                 }
-                System.out.println("bake" + timeKeyHeld);
-                timeKeyHeld += delta;
-                if (timeKeyHeld > 3 && super.item.getIngredient().getBakingProgress() == 0) {
+                if (super.item.getIngredient().getBakingProgress() == -1) {
+                    progress = 0;
+                    return;
+                }
+                System.out.println("bake" + progress);
+                progress += delta;
+                if (progress > 3 && super.item.getIngredient().getBakingProgress() == 0) {
                     // Cutting is done! poggers
                     System.out.println("Hm.");
                     super.item.getIngredient().bake();
                     System.out.println(" baing complete...");
+                    progress = 0;
                 }
             } else {
-                timeKeyHeld = 0; // Not pressing the button? sadge.
+                progress = 0; // Not pressing the button? sadge.
             }
 
         }
