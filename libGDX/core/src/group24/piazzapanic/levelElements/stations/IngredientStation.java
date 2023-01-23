@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import group24.piazzapanic.Base;
+import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 
@@ -35,6 +36,8 @@ public class IngredientStation extends Station {
                 return Base.breadStationTexture;
             case "meat":
                 return Base.meatStationTexture;
+            case "dish":
+                return Base.dishStationTexture;
         }
         return texture;
     }
@@ -64,6 +67,9 @@ public class IngredientStation extends Station {
             this.item = null;
             return tmp;
         } else {
+            if(this.ingredientType.getName() == "dish"){ // dish station! 
+                return new Dish();
+            }
             return new Ingredient(ingredientType);
         }
 

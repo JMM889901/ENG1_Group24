@@ -27,7 +27,6 @@ public class Ingredient extends ImageMovable {
     public Ingredient(IngredientType ingredientType, Vector2 location) {
         super(Base.errorTexture);
         this.ingredientType = ingredientType;
-        this.ingredient = this;
         // TODO - add in sprite: this.sprite = sprite;
 
         // Set constraints for ingredients
@@ -66,8 +65,6 @@ public class Ingredient extends ImageMovable {
         }
 
     }
-    // TODO - add constraints on operations on Ingredients
-    // i.e. "You can't cut this because it's already been cut"
 
     public Ingredient(IngredientType ingredientType) {
         this(ingredientType, new Vector2(0, 0));
