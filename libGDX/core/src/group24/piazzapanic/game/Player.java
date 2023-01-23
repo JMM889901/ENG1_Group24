@@ -222,6 +222,7 @@ public class Player extends Actor {
 
         this.animation.act(delta);
         if (GameData.player != this) {
+            DrawBar = false;
             return;
         }
         if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY)) {
