@@ -1,5 +1,7 @@
 package group24.piazzapanic.levelElements.stations;
 
+import javax.print.event.PrintEvent;
+
 import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.Base;
@@ -14,9 +16,13 @@ public class CuttingStation extends Station {
 
     @Override
     public void act(float delta) {
+        
         if (super.item != null) {
+            System.out.println("item not null");
+            if(super.item.getIngredient()== null) System.out.println("null ingredient");
             if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
                     && Physics.isNear(this, GameData.player)) {
+                System.out.println("try to interact");
                 if (super.item.getIngredient().getCuttingProgress() == 1) {
                     System.out.println("Already cut...");
                     return; // The item is already cut, don't go any further.

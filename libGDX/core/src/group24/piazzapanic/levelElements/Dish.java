@@ -14,8 +14,8 @@ import group24.piazzapanic.maths.Vector2;
 
 public class Dish extends ImageMovable{
     public ArrayList<Ingredient> Ingredients;
-    ArrayList<Ingredient> BurgerIngredients = new ArrayList<Ingredient>();
-    ArrayList<Ingredient> SaladIngredients = new ArrayList<Ingredient>();
+    ArrayList<Ingredient> BurgerIngredients = new ArrayList<Ingredient>(Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
+    ArrayList<Ingredient> SaladIngredients = new ArrayList<Ingredient>(Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_LETTUCE));
     ArrayList<Ingredient> CurrentIngredients = new ArrayList<Ingredient>();
     public static void init() {
 

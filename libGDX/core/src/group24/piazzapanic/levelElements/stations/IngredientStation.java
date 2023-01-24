@@ -57,7 +57,7 @@ public class IngredientStation extends Station {
     public IngredientStation(int gridX, int gridY, Movable item, IngredientType ingredientType) {
         super(gridX, gridY);
         System.out.println("Deprecated constructor called for IngredientStation.");
-        this.item = item;
+        this.item = null;
         this.ingredientType = ingredientType;
     }
 

@@ -27,6 +27,7 @@ public class Ingredient extends ImageMovable {
     public Ingredient(IngredientType ingredientType, Vector2 location) {
         super(Base.errorTexture);
         this.ingredientType = ingredientType;
+        this.ingredient = this; //converts Movable object to Ingredient
         // TODO - add in sprite: this.sprite = sprite;
 
         // Set constraints for ingredients
@@ -74,6 +75,15 @@ public class Ingredient extends ImageMovable {
 
     public Ingredient(IngredientType ingredientType) {
         this(ingredientType, new Vector2(0, 0));
+    }
+
+    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress, Integer fryingProgress) {
+        super(Base.errorTexture);
+        this.ingredientType = ingredientType;
+        this.ingredient = this;
+        this.cuttingProgress = cuttingProgress;
+        this.bakingProgress = bakingProgress;
+        this.fryingProgress = fryingProgress;
     }
 
     /**

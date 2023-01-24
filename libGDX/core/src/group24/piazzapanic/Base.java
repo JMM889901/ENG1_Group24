@@ -13,6 +13,8 @@ import com.badlogic.gdx.Input.Keys;
 
 import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.game.Player;
+import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.ui.StageAnimation;
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
@@ -85,6 +87,14 @@ public class Base {
     public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items 
     public static final int SELECT_KEY = Keys.ENTER;
     public static final int SWAP_KEY = Keys.Q;
+
+    //ingredients with states to use in recipes
+    public static final Ingredient CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);
+    public static final Ingredient CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);
+    public static final Ingredient CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);
+    public static final Ingredient BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);
+    public static final Ingredient BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
+    
     // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
     // developing non-UI features.
 
