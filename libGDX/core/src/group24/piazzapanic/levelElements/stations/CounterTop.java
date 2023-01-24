@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class CounterTop extends Station {
 
-    ArrayList<Movable> items = new ArrayList<Movable>();
+    ArrayList items = new ArrayList<>();
 
     public CounterTop(Texture t) {
         super(t);
@@ -23,7 +23,7 @@ public class CounterTop extends Station {
         super(Base.counterTopTexture);
         this.items.add(item);
     }
-
+    /* 
     @Override
     public boolean placeItem(Movable item) {
         boolean hasDish = false;
@@ -50,10 +50,11 @@ public class CounterTop extends Station {
             //}
         }
         return false;
-    }
+    } 
 
     @Override
     public Movable takeItem() {
+        if(this.items == null) return null;
         if (this.items.size() == 1) { // Nice, simple easy. just one item
             return this.items.get(0);
         }
@@ -63,6 +64,6 @@ public class CounterTop extends Station {
         return null; // countertop, her eyes enormous: you STEAL ITEM FROM countertop? you STEAL her
                      // ITEM like the criminal? oh! oh! jail for mother! jail for mother for One
                      // Thousand Years!!!!
-    }
+    }*/
 
 }
