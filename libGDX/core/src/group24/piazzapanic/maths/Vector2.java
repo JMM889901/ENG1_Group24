@@ -72,6 +72,26 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
                 gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
+    //Equivalent of gridunittranslate but does not create a new instance for memory reasons
+    public void gridUnitTranslateInplace(double gridX, double gridY) {
+        // gridX is translated onto the screen by the constant TILE_GRID_UNIT, which is basically
+        // the width of one tile in grid units. Doing the same for gridY means it would be scaled
+        // as a proportion of the screen height, but we want it on the same scaling as gridX, which
+        // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
+        this.x = (gridX * Base.TILE_GRID_UNIT);
+        this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+    }
+
+    //Equivalent of gridunittranslate but does not create a new instance for memory reasons
+    public void gridUnitTranslateInplace(float gridX, float gridY) {
+        // gridX is translated onto the screen by the constant TILE_GRID_UNIT, which is basically
+        // the width of one tile in grid units. Doing the same for gridY means it would be scaled
+        // as a proportion of the screen height, but we want it on the same scaling as gridX, which
+        // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
+        this.x = (gridX * Base.TILE_GRID_UNIT);
+        this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+    }
+
     /**
      * Converts grid units to on screen positions inlcuding offset
      * @param gridX

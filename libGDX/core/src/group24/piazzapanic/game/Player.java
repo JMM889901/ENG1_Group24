@@ -74,6 +74,7 @@ public class Player extends Actor {
 
         this.bar = new ProgressBar(0, 3, 0.1f, false, new Skin(Gdx.files.internal("testSkin/uiskin.json")));
 
+        this.playerPosition = new Vector2(0, 0);
         bar.setSize(Player.TEXTURE_WIDTH, bar.getPrefHeight());
         //bar.setAnimateDuration(2);
         //bar.draw(null, 0);
@@ -109,7 +110,7 @@ public class Player extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        playerPosition = Vector2.gridUnitTranslate(
+        playerPosition.gridUnitTranslateInplace(
                 this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                 this.y - Player.GRID_WIDTH / 2);
         Base.batch.draw(this.animation.getCurrentFrame(),
@@ -238,7 +239,7 @@ public class Player extends Actor {
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && station != null) {
             float progress = station.progress;
             if (progress > 0.1) {
-                Vector2 playerPosition = Vector2.gridUnitTranslate(
+                playerPosition.gridUnitTranslateInplace(
                         this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                         this.y - Player.GRID_WIDTH / 2);
                 bar.setPosition(playerPosition.getAbsoluteX() + GameData.offsetX,
