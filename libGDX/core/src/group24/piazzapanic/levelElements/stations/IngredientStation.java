@@ -50,7 +50,11 @@ public class IngredientStation extends Station {
         // now we just have to update the texture?
         // which I do not know how to do at all.
         // pls help me lol         
-        this.item = new Ingredient(ingredientType);
+        if (ingredientType.getName() == "dish") {
+            this.item = new Dish();
+        } else {
+            this.item = new Ingredient(ingredientType);
+        }
         this.ingredientType = ingredientType;
     }
 
@@ -71,6 +75,10 @@ public class IngredientStation extends Station {
             // if(this.ingredientType.getName() == "dish"){ // dish station! 
             //     return new Dish();
             // }
+            if (ingredientType.getName() == "dish") {
+                return new Dish();
+            }
+
             return new Ingredient(ingredientType);
         }
 

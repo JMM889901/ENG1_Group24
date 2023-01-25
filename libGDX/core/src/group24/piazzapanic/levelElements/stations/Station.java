@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import group24.piazzapanic.Base;
-import group24.piazzapanic.Physics.Movable;;
+import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.levelElements.Dish;
+import group24.piazzapanic.levelElements.Ingredient;;
 
 public class Station extends Image {
 
@@ -56,6 +58,11 @@ public class Station extends Image {
      */
     public boolean placeItem(Movable item) {
         if (canPlaceItem()) {
+            if (this.item instanceof Dish && item instanceof Ingredient) {
+                System.out.println("adding ingredient");
+                return ((Dish) this.item).addIngredient((Ingredient) item);
+
+            }
             this.item = item;
             return true;
         } else
@@ -67,7 +74,13 @@ public class Station extends Image {
      * @return Whether an item can be placed on the station.
      */
     private boolean canPlaceItem() {
-        return !hasItem();
+        if (hasItem()) {
+            if (this.item instanceof Dish) {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     /**

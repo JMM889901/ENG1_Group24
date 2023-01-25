@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -24,6 +26,8 @@ public class GameLoop extends Stage {
     private Label scoreCounter;
     private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
 
+    private ArrayList<Group> rows;
+
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -31,6 +35,20 @@ public class GameLoop extends Stage {
         GameData.gameTime = 0f;
         GameData.sinceLastSpawn = 0f;
         GameData.customers = new ArrayList<Customer>();
+        this.rows = new ArrayList<Group>();
+        //Level
+        GameData.level = new Level("levels/Level 3");
+        for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
+            Group group = new Group();
+            for (int x = 0; x < GameData.level.getWidth(); x++) {
+                if (GameData.level.grid[x][y] != null) {
+
+                    group.addActor(GameData.level.grid[x][y]);
+                }
+            }
+            this.addActor(group);
+            this.rows.add(group);
+        }
 
         this.curPosition = new Vector2(0, 0);
         //Create score counter
@@ -56,15 +74,7 @@ public class GameLoop extends Stage {
         GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
                 "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
-        //Level
-        GameData.level = new Level("levels/Level 3");
-        for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
-            for (int x = 0; x < GameData.level.getWidth(); x++) {
-                if (GameData.level.grid[x][y] != null) {
-                    this.addActor(GameData.level.grid[x][y]);
-                }
-            }
-        }
+
         //Player creation
 
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
@@ -114,7 +124,28 @@ public class GameLoop extends Stage {
         //GameData.player2.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
+        resortActors();
         super.act(delta);
+    }
+
+    //Resort z levels of actors
+    private void resortActors() {
+        int ylevel = 0;
+        int offset = 0;
+        for (Actor actor : this.rows) {
+            if (GameData.level.getHeight() - 1 - ((int) Math.floor(GameData.player1.y)) == ylevel - offset) {
+                GameData.player1.setZIndex(ylevel);
+                offset++;
+                ylevel++;
+            }
+            if (GameData.level.getHeight() - 1 - ((int) Math.floor(GameData.player2.y)) == ylevel - offset) {
+                GameData.player2.setZIndex(ylevel);
+                offset++;
+                ylevel++;
+            }
+            actor.setZIndex(ylevel);
+            ylevel++;
+        }
     }
 
     /**

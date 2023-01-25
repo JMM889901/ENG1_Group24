@@ -63,12 +63,7 @@ public class Ingredient extends ImageMovable {
                 this.fryingProgress = -1;
                 this.texture = Base.rawMeatTexture;
                 break;
-            case "dish":
-                this.cuttingProgress = -1;
-                this.bakingProgress = -1;
-                this.fryingProgress = -1;
-                this.texture = Base.dishTexture;
-                break;
+
         }
 
     }
@@ -77,7 +72,8 @@ public class Ingredient extends ImageMovable {
         this(ingredientType, new Vector2(0, 0));
     }
 
-    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress, Integer fryingProgress) {
+    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress,
+            Integer fryingProgress) {
         super(Base.errorTexture);
         this.ingredientType = ingredientType;
         this.ingredient = this;
@@ -112,10 +108,9 @@ public class Ingredient extends ImageMovable {
                 this.texture = Base.cutOnionTexture;
                 break;
             case "meat":
-                this.bakingProgress = 0;
+                //this.bakingProgress = 0;
                 this.fryingProgress = 0;
                 this.texture = Base.cutMeatTexture;
-                // TODO - this is a method stub, as the salad recipe doesn't require anything beyond just
                 // cutting and combining all the items.
         }
     }
