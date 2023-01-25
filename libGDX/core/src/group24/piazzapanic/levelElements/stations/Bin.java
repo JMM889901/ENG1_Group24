@@ -6,7 +6,7 @@ import group24.piazzapanic.Physics.Movable;
 public class Bin extends Station {
 
     public Bin() {
-        super(Base.errorTexture);
+        super(Base.binTexture);
         this.item = null;
     }
 

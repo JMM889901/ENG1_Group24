@@ -107,7 +107,7 @@ public class Ingredient extends ImageMovable {
                 break;
             case "bread": // Why would you bake bread?
                 this.fryingProgress = 0;
-                this.texture = Base.cutOnionTexture;
+                this.texture = Base.cutBreadTexture;
                 break;
             case "meat":
                 //this.bakingProgress = 0;

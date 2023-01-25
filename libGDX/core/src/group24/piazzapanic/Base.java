@@ -59,6 +59,7 @@ public class Base {
     public static Texture meatStationTexture;
     public static Texture dishStationTexture;
     public static Texture dishTexture;
+    public static Texture binTexture;
 
     public static Texture obstacleTexture;
 
@@ -229,26 +230,27 @@ public class Base {
         cuttingStationTexture = new Texture("stations/cutting_station.png");
         fryingStationTexture = new Texture("stations/frying_station_off.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
-        tomatoStationTexture = new Texture("stations/BLOOD-FOR-THE-MEAT-GOD.png");
-        onionStationTexture = new Texture("stations/ingredientstation.png");
+        tomatoStationTexture = new Texture("stations/tomato_sack.png");
+        onionStationTexture = new Texture("stations/onion_sack.png");
         lettuceStationTexture = new Texture("stations/lettuce_sack.png");
-        breadStationTexture = new Texture("stations/ingredientstation.png");
+        breadStationTexture = new Texture("stations/bread_sack.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
+        binTexture = new Texture("stations/bin.png");
 
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures
         rawTomatoTexture = new Texture("ingredients/tomato.png");
         cutTomatoTexture = new Texture("ingredients/chopped_tomato.png");
-        rawOnionTexture = new Texture("stations/sourceerr.png");
-        cutOnionTexture = new Texture("stations/sourceerr.png");
-        friedOnionTexture = new Texture("stations/sourceerr.png");
+        rawOnionTexture = new Texture("ingredients/onion.png");
+        cutOnionTexture = new Texture("ingredients/chopped_onion.png");
+        friedOnionTexture = new Texture("stations/sourceerr.png");//remove?
         rawLettuceTexture = new Texture("ingredients/lettuce.png");
         cutLettuceTexture = new Texture("ingredients/chopped_lettuce.png");
-        rawBreadTexture = new Texture("stations/sourceerr.png");
-        cutBreadTexture = new Texture("stations/sourceerr.png");
-        friedBreadTexture = new Texture("stations/sourceerr.png");
+        rawBreadTexture = new Texture("ingredients/bread.png");
+        cutBreadTexture = new Texture("ingredients/sliced_bread.png");
+        friedBreadTexture = new Texture("stations/sourceerr.png"); //remove?
         rawMeatTexture = new Texture("ingredients/raw_meat.png");
         cutMeatTexture = new Texture("ingredients/raw_burger.png");
         friedMeatTexture = new Texture("ingredients/burger.png");
