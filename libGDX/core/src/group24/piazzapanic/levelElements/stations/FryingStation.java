@@ -23,7 +23,6 @@ public class FryingStation extends Station {
                     progress = 0;
                     return;
                 }
-                System.out.println("fry" + progress);
                 progress += delta;
                 if (progress > 3 && super.item.getIngredient().getFryingProgress() == 0) {
                     // Cutting is done! poggers

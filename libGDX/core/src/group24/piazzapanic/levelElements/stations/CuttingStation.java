@@ -18,15 +18,12 @@ public class CuttingStation extends Station {
     public void act(float delta) {
 
         if (super.item != null) {
-            System.out.println("item not null");
             if (super.item.getIngredient() == null) {
-                System.out.println("null ingredient");
                 return;
             }
 
             if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
                     && Physics.isNear(this, GameData.player)) {
-                System.out.println("try to interact");
                 if (super.item.getIngredient().getCuttingProgress() == 1) {
                     System.out.println("Already cut...");
                     return; // The item is already cut, don't go any further.
@@ -35,7 +32,6 @@ public class CuttingStation extends Station {
                     progress = 0;
                     return;
                 }
-                System.out.println(progress);
                 progress += delta;
                 if (progress > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                     // Cutting is done! poggers

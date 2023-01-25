@@ -51,7 +51,6 @@ public class BakingStation extends Station {
                     progress = 0;
                     return;
                 }
-                System.out.println("bake" + progress);
                 progress += delta;
                 if (progress > 3 && super.item.getIngredient().getBakingProgress() == 0) {
                     // Cutting is done! poggers
