@@ -1,5 +1,7 @@
 package group24.piazzapanic.levelElements;
 
+import java.util.Comparator;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -96,8 +98,8 @@ public class Ingredient extends ImageMovable {
                 this.texture = Base.cutTomatoTexture;
                 break;
             case "onion":
-                this.bakingProgress = 0;
-                this.fryingProgress = 0;
+                //this.bakingProgress = 0;
+                //this.fryingProgress = 0;
                 this.texture = Base.cutOnionTexture;
                 break;
             case "lettuce": // You can't cut or fry lettuce!
@@ -162,5 +164,29 @@ public class Ingredient extends ImageMovable {
 
     public float getFryingProgress() {
         return this.fryingProgress;
+    }
+
+    public boolean identicalTo(Ingredient o) {
+        if (this.cuttingProgress != o.getCuttingProgress()) {
+            return false;
+        }
+        if (this.bakingProgress != o.getBakingProgress()) {
+            return false;
+        }
+        if (this.fryingProgress != o.getFryingProgress()) {
+            return false;
+        }
+        if (this.ingredientType.getName() != o.ingredientType.getName()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Ingredient)) {
+            return false;
+        } else
+            return this.identicalTo((Ingredient) obj);
     }
 }

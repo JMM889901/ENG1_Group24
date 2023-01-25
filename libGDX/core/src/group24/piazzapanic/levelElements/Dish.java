@@ -16,7 +16,7 @@ public class Dish extends ImageMovable {
     static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
-            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_LETTUCE));
+            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_TOMATO));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     ArrayList<Ingredient> recipe;
     boolean complete;
@@ -38,16 +38,16 @@ public class Dish extends ImageMovable {
         if (recipe.size() == 0) {
             ArrayList<Ingredient> tmp = this.Ingredients;
             tmp.add(item);
-            if (getRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
+            if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
+                return true;
             }
-        } else {
-            if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {
-                this.Ingredients.add(item);
-            }
+        } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {
+            this.Ingredients.add(item);
+            this.complete = checkComplete();
+            return true;
         }
-        this.complete = checkComplete();
-        return true;
+        return false;
     }
 
     //moved recipe checks to separate method so it doesnt check when it doesnt need to
@@ -71,10 +71,14 @@ public class Dish extends ImageMovable {
         */
     }
 
-    private boolean getRecipe(ArrayList<Ingredient> currentIngredients) {
+    private boolean setRecipe(ArrayList<Ingredient> currentIngredients) {
         boolean matchSalad = true;
         boolean matchBurger = true;
         for (Ingredient i : currentIngredients) {
+            System.out.println(i.getCuttingProgress());
+            System.out.println(i.getBakingProgress());
+            System.out.println(i.getFryingProgress());
+            System.out.println(i.ingredientType.getName());
             if (!BURGER_RECIPE.contains(i)) {
                 matchBurger = false;
             }
