@@ -16,7 +16,7 @@ public class Dish extends ImageMovable {
     static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
-            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_LETTUCE));
+            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_TOMATO, Base.CHOPPED_LETTUCE));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     ArrayList<Ingredient> recipe;
     boolean complete;
@@ -41,11 +41,17 @@ public class Dish extends ImageMovable {
             if (getRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
             }
-        } else {
-            if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {
-                this.Ingredients.add(item);
-            }
+        } 
+        else if (!this.recipe.contains(item) || this.Ingredients.contains(item)) {
+            System.out.println("failed to add to dish");
+                return false;
         }
+        else{
+            this.Ingredients.add(item);
+        }
+        System.out.println("added to dish");
+        System.out.println(Ingredients);
+        System.out.println(recipe);
         this.complete = checkComplete();
         return true;
     }

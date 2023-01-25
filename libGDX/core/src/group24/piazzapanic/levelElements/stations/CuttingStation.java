@@ -18,9 +18,7 @@ public class CuttingStation extends Station {
     public void act(float delta) {
 
         if (super.item != null) {
-            System.out.println("item not null");
             if (super.item.getIngredient() == null) {
-                System.out.println("null ingredient");
                 return;
             }
 
