@@ -33,7 +33,6 @@ public class CuttingStation extends Station {
                     progress = 0;
                     return;
                 }
-                System.out.println(progress);
                 progress += delta;
                 if (progress > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                     // Cutting is done! poggers
