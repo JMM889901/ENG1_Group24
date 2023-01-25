@@ -40,15 +40,33 @@ public class Dish extends ImageMovable {
             tmp.add(item);
             if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
+                this.complete = checkComplete();
+                System.out.println("added to dish\ncurrent:");
+                for (Ingredient i : Ingredients) {
+                    System.out.println(i.ingredientType.getName());
+                }
+                System.out.println("recipe:");
+                for (Ingredient i : recipe) {
+                    System.out.println(i.ingredientType.getName());
+                }
                 return true;
             }
         } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {
             this.Ingredients.add(item);
             this.complete = checkComplete();
+            System.out.println("added to dish\ncurrent:");
+                for (Ingredient i : Ingredients) {
+                    System.out.println(i.ingredientType.getName());
+                }
+                System.out.println("recipe:");
+            for (Ingredient i : recipe) {
+                System.out.println(i.ingredientType.getName());
+            }
             return true;
         }
         return false;
     }
+
 
     //moved recipe checks to separate method so it doesnt check when it doesnt need to
     public void act(float delta) {
@@ -103,6 +121,8 @@ public class Dish extends ImageMovable {
                     return false;
                 }
             }
+            if(recipe == BURGER_RECIPE) this.texture = Base.burgerDishTexture;
+            else if(recipe == SALAD_RECIPE) this.texture = Base.saladDishTexture;
             return true;
         }
         return false;

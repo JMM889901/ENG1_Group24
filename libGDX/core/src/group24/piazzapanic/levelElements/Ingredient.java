@@ -93,8 +93,7 @@ public class Ingredient extends ImageMovable {
         // Update what we can do with each ingredient now that it's cut
         switch (this.ingredientType.getName()) {
             case "tomato":
-                this.bakingProgress = -1;
-                this.fryingProgress = 0;
+                //this.fryingProgress = 0;
                 this.texture = Base.cutTomatoTexture;
                 break;
             case "onion":
@@ -106,7 +105,6 @@ public class Ingredient extends ImageMovable {
                 this.texture = Base.cutLettuceTexture;
                 break;
             case "bread": // Why would you bake bread?
-                this.fryingProgress = 0;
                 this.texture = Base.cutBreadTexture;
                 break;
             case "meat":

@@ -79,6 +79,10 @@ public class Base {
     public static Texture cutMeatTexture;
     public static Texture friedMeatTexture; // Do we want to have a Burger texture too?
 
+    //completed dish textures
+    public static Texture burgerDishTexture;
+    public static Texture saladDishTexture;
+
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
     public static final int UP_KEY = Keys.W;
     public static final int DOWN_KEY = Keys.S;
@@ -253,8 +257,12 @@ public class Base {
         friedBreadTexture = new Texture("stations/sourceerr.png"); //remove?
         rawMeatTexture = new Texture("ingredients/raw_meat.png");
         cutMeatTexture = new Texture("ingredients/raw_burger.png");
-        friedMeatTexture = new Texture("ingredients/burger.png");
+        friedMeatTexture = new Texture("ingredients/cooked_burger.png");
         dishTexture = new Texture("ingredients/plate.png");
+
+        //dish textures
+        burgerDishTexture = new Texture("ingredients/assembled_burger.png");
+        saladDishTexture = new Texture("ingredients/salad.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
 
