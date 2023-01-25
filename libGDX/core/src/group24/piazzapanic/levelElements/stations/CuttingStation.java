@@ -24,7 +24,6 @@ public class CuttingStation extends Station {
 
             if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
                     && Physics.isNear(this, GameData.player)) {
-                System.out.println("try to interact");
                 if (super.item.getIngredient().getCuttingProgress() == 1) {
                     System.out.println("Already cut...");
                     return; // The item is already cut, don't go any further.

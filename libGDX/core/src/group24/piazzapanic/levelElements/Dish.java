@@ -50,8 +50,12 @@ public class Dish extends ImageMovable {
             this.Ingredients.add(item);
         }
         System.out.println("added to dish");
-        System.out.println(Ingredients);
-        System.out.println(recipe);
+        for (Ingredient i : Ingredients) {
+            System.out.println(i.ingredientType.getName());
+        }
+        for (Ingredient i : recipe) {
+            System.out.println(i.ingredientType.getName());
+        }
         this.complete = checkComplete();
         return true;
     }
