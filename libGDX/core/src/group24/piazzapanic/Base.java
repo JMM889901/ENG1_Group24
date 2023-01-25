@@ -89,12 +89,12 @@ public class Base {
     public static final int SWAP_KEY = Keys.Q;
 
     //ingredients with states to use in recipes
-    public static final Ingredient CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);
-    public static final Ingredient CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);
-    public static final Ingredient CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);
-    public static final Ingredient BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);
-    public static final Ingredient BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
-    
+    public static Ingredient CHOPPED_TOMATO;
+    public static Ingredient CHOPPED_LETTUCE;
+    public static Ingredient CHOPPED_ONION;
+    public static Ingredient BURGER_BUN;
+    public static Ingredient BURGER;
+
     // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
     // developing non-UI features.
 
@@ -254,6 +254,12 @@ public class Base {
         dishTexture = new Texture("ingredients/plate.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
+
+        CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);
+        CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);
+        CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);
+        BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);
+        BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
     }
 
     /**
