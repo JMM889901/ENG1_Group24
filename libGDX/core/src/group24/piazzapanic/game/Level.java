@@ -98,6 +98,9 @@ public class Level {
                         case 'W': //wall
                             grid[x][y] = new Obstacle();
                             break;
+                        case 'g':
+                            grid[x][y] = new Bin();
+                            break;
                         default:
                             System.out.println(
                                     "Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");

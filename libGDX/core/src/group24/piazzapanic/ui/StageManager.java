@@ -24,8 +24,12 @@ public class StageManager {
         stages.put("Options", StageFactory.createOptionsMenuStage());
         GameData.gameLoop = new GameLoop();
         stages.put("Game", GameData.gameLoop);
-
+        stages.put("Pause", StageFactory.createPauseMenuStage());
         setActiveStage("MainMenu");
+    }
+
+    public static void addStage(String key, Stage stage) {
+        stages.put(key, stage);
     }
 
     /**
@@ -51,7 +55,6 @@ public class StageManager {
         Gdx.input.setInputProcessor(activeStage);
     }
 
-    
     /** 
      * @return The Stage class of the active stage.
      */

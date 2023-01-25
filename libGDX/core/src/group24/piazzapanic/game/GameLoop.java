@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageManager;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
@@ -119,6 +120,9 @@ public class GameLoop extends Stage {
                 System.out.println("Swapping player 2 to 1");
                 GameData.player = GameData.player1;
             }
+        }
+        if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
+            StageManager.setActiveStage("Pause");
         }
         //GameData.player1.animation.act(1);
         //GameData.player2.animation.act(1);

@@ -175,10 +175,7 @@ public class Player extends Actor {
         Station activeStation;
 
         activeStation = getFacingStation();
-
-        if (activeStation != null && Physics.isNear(activeStation, GameData.player))
-
-        {
+        if (activeStation != null && Physics.isNear(activeStation, GameData.player)) {
             boolean Result = activeStation.placeItem(this.holding);
             if (Result == true) {
                 this.holding = null;

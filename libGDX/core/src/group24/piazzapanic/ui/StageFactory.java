@@ -29,6 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
 
@@ -141,6 +142,51 @@ public class StageFactory {
         });
         stage.addActor(button2);
 
+        return stage;
+    }
+
+    public static Stage createPauseMenuStage() {
+        Stage stage = new Stage() {
+            @Override
+            public void act() {
+                if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
+                    StageManager.setActiveStage("Game");
+                }
+                super.act();
+            }
+        };
+        TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.5), "Return to game", Align.center);
+        button.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Game");
+                //  GameData.music.play();
+                StageManager.setActiveStage("Game");
+            }
+
+        });
+        stage.addActor(button);
+
+        TextButton restart = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.4), "Restart", Align.center);
+        restart.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        restart.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Game");
+                GameData.gameLoop = new GameLoop();
+                StageManager.addStage("Game", GameData.gameLoop);
+                StageManager.setActiveStage("Game");
+            }
+
+        });
+        stage.addActor(restart);
         return stage;
     }
 }

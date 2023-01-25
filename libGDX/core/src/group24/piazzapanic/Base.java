@@ -87,6 +87,7 @@ public class Base {
     public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items 
     public static final int SELECT_KEY = Keys.ENTER;
     public static final int SWAP_KEY = Keys.Q;
+    public static final int PAUSE_KEY = Keys.ESCAPE;
 
     //ingredients with states to use in recipes
     public static Ingredient CHOPPED_TOMATO;
