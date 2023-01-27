@@ -30,27 +30,29 @@ public class FryingStation extends Station {
      * @param delta Time in seconds since the last frame.
      */
     public void act(float delta) {
-        if (super.item != null) { // Avoid null pointer errors.
-            if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this && Physics.isNear(this, GameData.player)) {
-                // Checks the user is pressing the interaction key, is facing the station, and is near the station.
-                if (super.item.getIngredient().getFryingProgress() == 1) {  // The item is already fried.
-                    return;
-                }
-                if (super.item.getIngredient().getFryingProgress() == -1) { // The item cannot be fried.
-//                    timeKeyHeld = 0;
-                    return;
-                }
-                timeKeyHeld += delta;
-                if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
-                    // Frying is done! poggers
-                    super.item.getIngredient().fry();
-                    // System.out.println(" get fried idiot...");
-                    timeKeyHeld = 0; // Reset to avoid horrible loop!
-                }
-            } else {
-                timeKeyHeld = 0; // Reset to avoid horrible loop!
-            }
 
+    }
+
+    @Override
+    public void interact(float delta) {
+        if (super.item == null) {
+            return;
+        }
+        if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.
+            System.out.println("Already fried..........");
+            return; // The item is already fried, don't go any further.
+        }
+        if (super.item.getIngredient().getFryingProgress() == -1) { // The item cannot be fried.
+            timeKeyHeld = 0;
+            return;
+        }
+        timeKeyHeld += delta;
+        if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
+            // Cutting is done! poggers
+            System.out.println("Hm.");
+            super.item.getIngredient().fry();
+            System.out.println(" get fried idiot...");
+            timeKeyHeld = 0; // Reset to avoid horrible loop!
         }
     }
 }
