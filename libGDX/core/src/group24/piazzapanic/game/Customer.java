@@ -29,6 +29,7 @@ public class Customer extends StageAnimation {
         style.fontColor = Color.WHITE;
         this.textBubble = new Label(orderText, style);
         this.textBubble.setPosition(this.getX(), this.getY() + entityHeight);
+        this.order = Dish.Dishes.get(GameData.rand.nextInt(Dish.Dishes.size()));
     }
 
     public void fulfillOrder() {

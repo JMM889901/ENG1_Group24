@@ -1,12 +1,14 @@
 package group24.piazzapanic;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData.TextureDataType;
 import com.badlogic.gdx.Input.Keys;
@@ -242,7 +244,7 @@ public class Base {
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         binTexture = new Texture("stations/bin.png");
-        servingStationTexture = new Texture("stations/notimplemented.png"); // get new texture
+        servingStationTexture = new Texture("stations/customer_station.png"); // get new texture
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures

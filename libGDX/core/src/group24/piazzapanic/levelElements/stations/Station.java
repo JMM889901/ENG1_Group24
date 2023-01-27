@@ -32,7 +32,7 @@ public class Station extends Image {
 
     //protected Vector2 location;
     //protected Texture sprite;
-    protected Movable item; // The Movable the station holds.
+    public Movable item;// The Movable the station holds.
 
     protected int gridX; // Once these are set, don't change them.
     protected int gridY;
@@ -112,11 +112,7 @@ public class Station extends Image {
     @Override
     public void draw(Batch arg0, float arg1) {
         super.draw(arg0, arg1);
-        if (this.item != null) {
-            this.item.drawItem((int) (this.getX() + ((Base.tile_pixel_width / 3))),
-                    (int) (this.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2,
-                    Base.tile_pixel_width / 2);
-        }
+
     }
 
 }
