@@ -8,7 +8,7 @@ Project starts 2022-11-10
 [Exam week] starts 2023-1-9
 [Exam week] ends 2023-1-13
 [Exam week] is colored in DarkGrey
-[Submit everything] happens at 2023-1-27
+[Submit everything] happens at 2023-1-31
 --Requirements Elicitation--
 [Make interview questions] on {all} lasts 13 days
 [Interview] happens at 2022-11-22
@@ -29,7 +29,7 @@ end note
 note bottom
 Low priority
 end note
-[Finish website] happens at 2023-1-23
+[url1.txt] on {Emily} happens at 2023-1-26
 --Method Selection and Planning--
 [Write up Methods and planning section] on {Louise} starts 2022-11-24
 [Write up Methods and planning section] ends 2022-11-28
@@ -40,7 +40,7 @@ end note
 [Update Gantt Chart] on {Louise} starts 2022-12-14 and lasts 2 days
 [Keep updating Gantt Chart] on {Louise} starts 2023-1-14 and lasts 2 days
 [Finish Gantt Chart] on {Louise} starts 2023-1-22
-[Finish methods and planning document] happens at 2023-1-23
+[Plan1.pdf] happens at 2023-1-26
 --Risk Assessment and Mitigation--
 [Writing up document for risk assessment] on {Joe} {Emily} starts 2022-11-24 and lasts 5 days
 [Finish risk assessment] on {Alan} starts 2022-11-29 and lasts 2 days
@@ -69,15 +69,15 @@ end note
 [Sprite animation; Docstrings] ends 2023-1-19
 [Sort pickup functions; Split and rewrite GameLoop] on {Joss} {Josh} starts 2023-1-16
 [Sort pickup functions; Split and rewrite GameLoop] ends 2023-1-19
-[Implement code for ingredient becoming dish] on {Alan} starts 2023-1-16
+[Write docstrings] on {Emily} starts 2023-1-27 and lasts 3 days
 [Finish any missing code parts] on {Josh} {Joss} {Amber} starts 2023-1-20
-[Finish any missing code parts] ends 2023-1-25
-[Finish implementation document] happens at 2023-1-26
+[Finish any missing code parts] ends 2023-1-30
+[Impl1.pdf] happens at 2023-1-30
 --Architecture--
 [Start creating architecture document] on {Emily} starts 2022-12-7
 [Added to Architecture document] on {Joss} starts 2022-12-10
-[Write up Architecture document] on {Joe} starts 2023-1-5
-[Finish architecture document] happens at 2023-1-23
+[Write up Architecture document] on {Louise} starts 2023-1-20 and lasts 2 days
+[Arch1.pdf] happens at 2023-1-28
 --Bug Snagging--
 [Bug testing] on {all} starts 2023-1-23 and lasts 1 week
 @endgantt
