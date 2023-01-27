@@ -38,7 +38,6 @@ public class CuttingStation extends Station {
             if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
                     && Physics.isNear(this, GameData.player)) {
                 if (super.item.getIngredient().getCuttingProgress() == 1) {
-                    System.out.println("Already cut...");
                     return; // The item is already cut, don't go any further.
                 }
                 if (super.item.getIngredient().getCuttingProgress() == -1) {
@@ -48,7 +47,6 @@ public class CuttingStation extends Station {
                 timeKeyHeld += delta;
                 if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                     super.item.getIngredient().cut();
-                    System.out.println("Cutting complete...");
                     timeKeyHeld = 0;
                 }
             } else {

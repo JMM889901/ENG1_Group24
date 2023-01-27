@@ -1,31 +1,27 @@
 package group24.piazzapanic;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-import java.io.File;
-
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData.TextureDataType;
-import com.badlogic.gdx.Input.Keys;
-
-import group24.piazzapanic.Physics.AnimatedMovable;
 import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.ui.StageAnimation;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Scanner;
+
 /** Core values like screen size, that will need to access, but nothing will need to modify.
  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
  */
 public class Base {
-    public static final boolean DEBUG = false;
-    public static String CONFIG_PATH = "config.txt";
 
+    public static final boolean DEBUG = false;
+    /** The path to the config file. */
+    public static String CONFIG_PATH = "config.txt";
     public static int WINDOW_WIDTH = 100;
     public static int WINDOW_HEIGHT = 100;
 
