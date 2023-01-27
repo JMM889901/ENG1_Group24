@@ -1,13 +1,9 @@
 package group24.piazzapanic.levelElements.stations;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-//import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.levelElements.Dish;
@@ -22,7 +18,7 @@ import group24.piazzapanic.levelElements.Ingredient;
  */
 public class Station extends Image {
 
-    public float timeKeyHeld; // Time key is held for
+    public float timeKeyHeld; // A counter of how long the player has been holding the BASE.ACT_KEYkey for.
 
     /**
      * Initialise the station class
@@ -36,7 +32,7 @@ public class Station extends Image {
 
     //protected Vector2 location;
     //protected Texture sprite;
-    protected Movable item;
+    protected Movable item; // The Movable the station holds.
 
     protected int gridX; // Once these are set, don't change them.
     protected int gridY;
@@ -44,7 +40,6 @@ public class Station extends Image {
 
     /**
      * Creates a new station. Each station knows its own location.
-     *
      * @param gridX The x coordinate of the station in the grid.
      * @param gridY The y coordinate of the station in the grid.
      */
@@ -108,6 +103,12 @@ public class Station extends Image {
             return null;
     }
 
+    /**
+     * Draw the station graphic to Batch.
+     * @param arg0 libGDX batch to draw to
+     * @param arg1 The parent alpha, to be multiplied with this actor's alpha, allowing the parent's alpha to affect all
+     *           children.
+     */
     @Override
     public void draw(Batch arg0, float arg1) {
         super.draw(arg0, arg1);

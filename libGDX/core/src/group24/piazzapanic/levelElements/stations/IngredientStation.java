@@ -1,28 +1,26 @@
 package group24.piazzapanic.levelElements.stations;
 
-//import com.badlogic.gdx.graphics.Texture;
-//import com.badlogic.gdx.math.Vector2;
-
-import group24.piazzapanic.Physics.Movable;
-
-import javax.swing.Spring;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
 import group24.piazzapanic.Base;
+import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 
+/**
+ * IngredientStations provide the player with a supply of ingredients.
+ * Their Item is always the Ingredient specified in IngredientType
+ * allowing players to pick up the Ingredient.
+ */
 public class IngredientStation extends Station {
+    private final IngredientType ingredientType; // The type of ingredient the IngredientStation serves.
 
-    private final IngredientType ingredientType;
-
+    /**
+     * Find and return the correct texture for the given ingredient type
+     * @param type The IngredientType we want the texture for.
+     * @return a Texture for the ingredientStation
+     */
     public static Texture getIngredientStationAsset(IngredientType type) {
         Texture texture = Base.ingredientStationTexture;
         switch (type.getName()) {
@@ -37,31 +35,19 @@ public class IngredientStation extends Station {
             case "meat":
                 return Base.meatStationTexture;
             case "dish":
-                System.out.println("It's DIsh Time");
                 return Base.dishStationTexture;
         }
         return texture;
     }
 
+    /**
+     * uwu.
+     * @param gridX
+     * @param gridY
+     * @param ingredientType
+     */
     public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
         super(getIngredientStationAsset(ingredientType));
-
-        // TODO - you've got your texture.
-        // now we just have to update the texture?
-        // which I do not know how to do at all.
-        // pls help me lol         
-        //if (ingredientType.getName() == "dish") {
-        //    this.item = new Dish();
-        //} else {
-        //    this.item = new Ingredient(ingredientType);
-        //}
-        this.ingredientType = ingredientType;
-    }
-
-    public IngredientStation(int gridX, int gridY, Movable item, IngredientType ingredientType) {
-        super(gridX, gridY);
-        System.out.println("Deprecated constructor called for IngredientStation.");
-        this.item = null;
         this.ingredientType = ingredientType;
     }
 
@@ -72,13 +58,9 @@ public class IngredientStation extends Station {
             this.item = null;
             return tmp;
         } else {
-            // if(this.ingredientType.getName() == "dish"){ // dish station! 
-            //     return new Dish();
-            // }
             if (ingredientType.getName() == "dish") {
                 return new Dish();
             }
-
             return new Ingredient(ingredientType);
         }
 
