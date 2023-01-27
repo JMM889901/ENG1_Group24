@@ -9,6 +9,7 @@ import group24.piazzapanic.levelElements.Dish;
 /**
  * ServingStation allows users to submit completed {@link Dish}es to fulfill orders.
  */
+
 public class ServingStation extends Station {
 
     /**

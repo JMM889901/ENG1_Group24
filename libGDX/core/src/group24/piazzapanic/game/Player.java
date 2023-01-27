@@ -1,26 +1,19 @@
 package group24.piazzapanic.game;
 
-import group24.piazzapanic.Base;
-import group24.piazzapanic.Physics.AnimatedMovable;
-import group24.piazzapanic.Physics.Movable;
-import group24.piazzapanic.ui.StageAnimation;
-import group24.piazzapanic.levelElements.stations.*;
-import group24.piazzapanic.maths.Vector2;
-
-import java.util.HashMap;
-
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import group24.piazzapanic.Base;
+import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.levelElements.stations.Station;
+import group24.piazzapanic.maths.Vector2;
+import group24.piazzapanic.ui.StageAnimation;
+
+import java.util.HashMap;
 
 /**
  * The Player class encapsulates player data (position, veolocity etc.), but
@@ -28,17 +21,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  */
 
 public class Player extends Actor {
+    /**
+     * The width of the player's texture in pixels.
+     */
     public static final int TEXTURE_WIDTH = 48;
+    /**
+     * The height of the player's texture in pixels.
+     */
     public static final int TEXTURE_HEIGHT = 96;
 
-    // How wide the player is in grid units. Applies to both "width" and
-    // "length"/"height".
-    public static final double GRID_WIDTH = 0.6; // Don't set to more than 1.
-    public static final float TEXTURE_SCALE = 1.3f; // Texture is scaled with this and GRID_WIDTH.
+    /**How wide the player is in grid units. Applies to both {@link #width} and {@link #height}. Do not set to more than 1.*/
+    public static final double GRID_WIDTH = 0.6;
+    /** Texture is scaled with this and {@link #GRID_WIDTH}.*/
+    public static final float TEXTURE_SCALE = 1.3f;
 
+    /** The x coordinate of the player. */
     public double x;
+    /** The y coordinate of the player. */
     public double y;
+    /** The x velocity of the player. */
     public double x_vel = 0;
+    /** The y velocity of the player. */
     public double y_vel = 0;
     public static double acceleration = 25; // Grid units per second squared.
     public static double deacceleration = 20;
