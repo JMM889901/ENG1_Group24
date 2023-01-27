@@ -27,7 +27,9 @@ public class GameLoop extends Stage {
     private final Label scoreCounter;
     private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
 
-    private final ArrayList<Group> rows;
+    private final ArrayList<Group> rows; //Rows of stations for z level purposes
+
+    private ArrayList<Station> stations;
 
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
@@ -37,6 +39,7 @@ public class GameLoop extends Stage {
         GameData.sinceLastSpawn = 0f;
         GameData.customers = new ArrayList<Customer>();
         this.rows = new ArrayList<Group>();
+        this.stations = new ArrayList<Station>();
         //Level
         GameData.level = new Level("levels/Level 3");
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
@@ -45,11 +48,23 @@ public class GameLoop extends Stage {
                 if (GameData.level.grid[x][y] != null) {
 
                     group.addActor(GameData.level.grid[x][y]);
+                    this.stations.add(GameData.level.grid[x][y]);
                 }
             }
             this.addActor(group);
             this.rows.add(group);
         }
+
+        //Player creation
+
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                Base.initialChef1Animation, Base.chef1Animations);
+        GameData.player1 = GameData.player;
+        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                Base.initialChef2Animation, Base.chef2Animations);
+
+        this.addActor(GameData.player1);
+        this.addActor(GameData.player2);
 
         this.curPosition = new Vector2(0, 0);
         //Create score counter
@@ -76,16 +91,6 @@ public class GameLoop extends Stage {
                 "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
 
-        //Player creation
-
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                Base.initialChef1Animation, Base.chef1Animations);
-        GameData.player1 = GameData.player;
-        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                Base.initialChef2Animation, Base.chef2Animations);
-
-        this.addActor(GameData.player1);
-        this.addActor(GameData.player2);
     }
 
     /** 
@@ -201,8 +206,17 @@ public class GameLoop extends Stage {
         }
         Base.batch.end();
         Base.batch.begin();
-        super.draw();
-
+        super.draw();//Draw stations and player
+        Base.batch.end();
+        Base.batch.begin();
+        //Draw items
+        for (Station station : this.stations) {
+            if (station.item != null) {
+                station.item.drawItem((int) (station.getX() + ((Base.tile_pixel_width / 3))),
+                        (int) (station.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2,
+                        Base.tile_pixel_width / 2);
+            }
+        }
         // Todo: draw the player at the right z level depending on its y position.
     }
 }
