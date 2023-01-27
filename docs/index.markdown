@@ -9,23 +9,16 @@ Excitement! Knives! Catgirl chefs! The University Of York's Piazza Building! Sal
 
 It's all here, in Team24™'s hit new game: Piazza Panic!1!!1!!!!
 
-<button name="button">Download Here</button>
-
-## Images 
-Not yet sold on Team24™'s finest work? Have some images of the game! 
-
-\[put these in once they're done\]
-
 ## Downloads 
 
-Download our game ->HERE<- 
+Download an executable JAR of the game [here](https://www.youtube.com/watch?v=tDTrOPqBXxI) 
 
 Requires Java 11
 
-## Instructions
-
-Documentation can be found ->HERE<-
-
 ## Developer Information
 
-Want to develop our game more? Information for devs is ->HERE<-
+Want to develop our game more? Information for devs (javadocs, etc) is [here](https://www.youtube.com/watch?v=tDTrOPqBXxI)
+
+## PDF Documents for assessment
+
+The PDF documents for our assessment can be found [Here](https://www.youtube.com/watch?v=tDTrOPqBXxI)
