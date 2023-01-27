@@ -1,13 +1,11 @@
 package group24.piazzapanic.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.GameLoop;
+
+import java.util.HashMap;
 
 public class StageManager {
     private static HashMap<String, Stage> stages;
@@ -36,7 +34,7 @@ public class StageManager {
      * Set the active stage by passing the stage itself, 
      * does not add it to stages so should only be used for temporary menus that are destroyed after use
      * sets the specified stage as the input processor and the drawn stage
-     * @param stage
+     * @param stage The Stage to be made active
      */
     public static void setActiveStage(Stage stage) {
         activeStage = stage;
@@ -47,7 +45,7 @@ public class StageManager {
      * Set the active stage by passing the name
      * sets the specified stage as the input processor and the drawn stage
      * for stage names check the stage manager constructor
-     * @param stage
+     * @param stage The Stage to be made active
      */
     public static void setActiveStage(String stage) {
         activeStage = getStage(stage);
@@ -55,7 +53,8 @@ public class StageManager {
         Gdx.input.setInputProcessor(activeStage);
     }
 
-    /** 
+    /**
+     * Gets the active stage.
      * @return The Stage class of the active stage.
      */
     public static Stage getActiveStage() {
@@ -63,6 +62,7 @@ public class StageManager {
     }
 
     /**
+     * Gets the active stage name
      * @return the name of the active stage
      */
     public static String getActiveStageName() {
