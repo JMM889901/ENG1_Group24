@@ -11,14 +11,14 @@ It's all here, in Team24™'s hit new game: Piazza Panic!1!!1!!!!
 
 ## Downloads 
 
-Download an executable JAR of the game [here](https://www.youtube.com/watch?v=tDTrOPqBXxI) 
+Download an executable JAR of the game 
 
 Requires Java 11
 
 ## Developer Information
 
-Want to develop our game more? Information for devs (javadocs, etc) is [here](https://www.youtube.com/watch?v=tDTrOPqBXxI)
+Want to develop our game more? Information for devs (javadocs, etc) is 
 
 ## PDF Documents for assessment
 
-The PDF documents for our assessment can be found [Here](https://www.youtube.com/watch?v=tDTrOPqBXxI)
+The PDF documents for our assessment can be found 
