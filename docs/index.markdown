@@ -9,7 +9,8 @@ Excitement! Knives! Catgirl chefs! The University Of York's Piazza Building! Sal
 
 It's all here, in Team24™'s hit new game: Piazza Panic!1!!1!!!!
 
-<button name="button">Download Here</button>
+<li class="fork"><a href="https://github.com/JMM889901/ENG1_Group24">Download Game</a></li>
+
 
 ## Images 
 Not yet sold on Team24™'s finest work? Have some images of the game! 
