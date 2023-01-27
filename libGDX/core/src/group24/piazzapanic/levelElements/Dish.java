@@ -17,6 +17,7 @@ public class Dish extends ImageMovable {
             Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_TOMATO));
+    public static ArrayList<Dish> Dishes = new ArrayList<Dish>(Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     ArrayList<Ingredient> recipe;
     boolean complete;
@@ -32,6 +33,15 @@ public class Dish extends ImageMovable {
         super.setHeight(Base.tile_pixel_height);
         this.complete = false;
         this.recipe = new ArrayList<Ingredient>();
+    }
+
+    public Dish(ArrayList<Ingredient> recipe) {
+        super(Base.dishTexture);
+        super.setWidth(Base.tile_pixel_width);
+        super.setHeight(Base.tile_pixel_height);
+        this.complete = true;
+        this.recipe = recipe;
+        this.Ingredients = recipe;
     }
 
     public boolean addIngredient(Ingredient item) {
@@ -97,6 +107,9 @@ public class Dish extends ImageMovable {
             System.out.println(i.getBakingProgress());
             System.out.println(i.getFryingProgress());
             System.out.println(i.ingredientType.getName());
+            // for (Dish d : Dishes) {
+            //     if(d.recipe.c)
+            // }
             if (!BURGER_RECIPE.contains(i)) {
                 matchBurger = false;
             }

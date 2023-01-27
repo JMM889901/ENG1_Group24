@@ -1,22 +1,17 @@
 package group24.piazzapanic.levelElements.stations;
 
-import javax.print.event.PrintEvent;
-
 import com.badlogic.gdx.Gdx;
-
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.Physics;
 
 public class CuttingStation extends Station {
-
     public CuttingStation() {
         super(Base.cuttingStationTexture);
     }
 
     @Override
     public void act(float delta) {
-
     }
 
     @Override
@@ -38,7 +33,7 @@ public class CuttingStation extends Station {
             // Cutting is done! poggers
             super.item.getIngredient().cut();
             System.out.println("Cutting complete...");
-            timeKeyHeld = 0;
+            timeKeyHeld = 0; // Not pressing the button? sadge.
         }
     }
 }
