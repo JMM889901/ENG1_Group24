@@ -57,31 +57,55 @@ public class GameData {
     public static Ingredient BURGER_BUN;
     /** finished burger to be used in {@link group24.piazzapanic.levelElements.Dish} for serving to customers */
     public static Ingredient BURGER;
-
+    /** initial animation for chef 1 */
     public static StageAnimation initialChef1Animation;
+    /** initial animation for chef 2 */
     public static StageAnimation initialChef2Animation;
+    /** HashMap of all animations for chef1 */
     public static HashMap<String, Animation<TextureRegion>> chef1Animations;
+    /** HashMap of all animations for chef2 */
     public static HashMap<String, Animation<TextureRegion>> chef2Animations;
 
+    /** The texture for the debug square */
     public static Texture debugSquareTexture;
-
+    /** The texture for the floor */
     public static Texture floorTexture;
+    /** The texture for the {@link group24.piazzapanic.levelElements.stations.BakingStation} */
     public static Texture bakingStationTexture;
+    /** A texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
     public static Texture counterTopTexture;
+    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterRightCornerTexture;
+    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterRightTexture;
+    /** An end texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterEndTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.CuttingStation} */
     public static Texture cuttingStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.FryingStation} */
     public static Texture fryingStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture ingredientStationTexture;
+    /** Texture for the TomatoStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture tomatoStationTexture;
+    /** Texture for the OnionStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture onionStationTexture;
+    /** Texture for the LettuceStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture lettuceStationTexture;
+    /** Texture for the BreadStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture breadStationTexture;
+    /** Texture for the MeatStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture meatStationTexture;
+    /** Texture for the DishStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture dishStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.Dish} type */
     public static Texture dishTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.Bin} */
     public static Texture binTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.ServingStation} */
     public static Texture servingStationTexture;
 
     public static Texture obstacleTexture;

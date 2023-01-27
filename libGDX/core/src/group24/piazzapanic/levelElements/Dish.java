@@ -133,6 +133,7 @@ public class Dish extends ImageMovable {
 
     }
 
+
     private boolean checkComplete() {
         if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {
             for (Ingredient i : recipe) {
@@ -149,6 +150,10 @@ public class Dish extends ImageMovable {
         return false;
     }
 
+    /**
+     * Gets the dish's completeness.
+     * @return true if the dish is complete, false otherwise.
+     */
     public boolean isComplete() {
         return complete;
     }

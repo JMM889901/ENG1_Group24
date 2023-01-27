@@ -7,7 +7,7 @@ import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
 
 /**
- * Serving station allows users to submit completed dishes to fulfill orders.
+ * ServingStation allows users to submit completed {@link Dish}es to fulfill orders.
  */
 public class ServingStation extends Station {
 
@@ -20,6 +20,11 @@ public class ServingStation extends Station {
         this.item = null;
     }
 
+   /**
+     * Overwriting station.placeItem as only dishes can be placed on the serving station
+     * @param item Item to be placed on the station
+     * @return true if item is a {@link Dish} which matches a {@link Customer}'s order, false otherwise
+     */
     @Override
     public boolean placeItem(Movable item) {
         if (item instanceof Dish)
@@ -30,8 +35,8 @@ public class ServingStation extends Station {
 
     /**
      * Checks if a customer has ordered the submitted dish, if yes fulfils order of that customer
-     * @param dish Dish placed on the station
-     * @return true if dish matches a customers order, false otherwise
+     * @param dish Movable placed on the station
+     * @return true if the item placed on the station is a {@link Dish} and matches a customers order, false otherwise
      */
     private boolean serveOrder(Movable dish) {
         for (Customer c : GameData.customers) {
@@ -44,8 +49,8 @@ public class ServingStation extends Station {
     }
 
     /**
-     * Overwriting station.takeItem as items cannot be picked up from serving station
-     * so always null
+     * Overriding station.takeItem as items cannot be picked up from serving station
+     * @return null as items cannot be picked up from the serving station.
      */
     @Override
     public Movable takeItem() {
