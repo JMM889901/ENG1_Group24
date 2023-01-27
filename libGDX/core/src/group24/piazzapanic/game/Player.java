@@ -16,7 +16,7 @@ import group24.piazzapanic.ui.StageAnimation;
 import java.util.HashMap;
 
 /**
- * The Player class encapsulates player data (position, veolocity etc.), but
+ * The Player class encapsulates player data (position, velocity etc.), but
  * does nothing itself.
  */
 
