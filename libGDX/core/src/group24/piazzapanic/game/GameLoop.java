@@ -107,9 +107,11 @@ public class GameLoop extends Stage {
     @Override
     public void act(float delta) {
         GameData.gameTime += delta;
-        GameData.sinceLastSpawn += delta;
 
-        if (GameData.sinceLastSpawn >= 5 && GameData.customers.size() < 5) {
+        if (GameData.customers.size() < 5) {
+            GameData.sinceLastSpawn += delta;
+        }
+        if (GameData.sinceLastSpawn >= 5) {
             //Create new customer offset location.
             Customer customer = new Customer();
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
@@ -154,6 +156,14 @@ public class GameLoop extends Stage {
             }
             actor.setZIndex(ylevel);
             ylevel++;
+        }
+    }
+
+    public void resortCustomers() {
+        int i = 0;
+        for (Customer customer : GameData.customers) {
+            customer.setX(i * (Customer.entityWidth + 30));
+            i++;
         }
     }
 

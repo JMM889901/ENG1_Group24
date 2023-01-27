@@ -187,7 +187,7 @@ public class GameData {
      */
     public static void addScore(int score) {
         GameData.score += score;
-        gameLoop.addScore(score);
+        gameLoop.addScore(GameData.score);
     }
 
     public static void dispose() {

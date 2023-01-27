@@ -18,8 +18,9 @@ public class CuttingStation extends Station {
     public CuttingStation() {
         super(GameData.cuttingStationTexture);
     }
+
     @Override
-    
+
     /**
      * Allows the player to cut the item.
      * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.
@@ -30,31 +31,26 @@ public class CuttingStation extends Station {
      * @param delta Time in seconds since the last frame.
      */
     public void act(float delta) {
-        if (super.item != null) { // Avoid null pointer errors.
-            if (super.item.getIngredient() == null) { // Avoid null pointer errors.
-                return;
-            }
-            // Checks the user is pressing the interaction key, is facing the station, and is near the station.
-            if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
-                    && Physics.isNear(this, GameData.player)) {
-                if (super.item.getIngredient().getCuttingProgress() == 1) {
-                    System.out.println("Already cut...");
-                    return; // The item is already cut, don't go any further.
-                }
-                if (super.item.getIngredient().getCuttingProgress() == -1) {
-                    timeKeyHeld = 0;
-                    return;
-                }
-                timeKeyHeld += delta;
-                if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
-                    super.item.getIngredient().cut();
-                    System.out.println("Cutting complete...");
-                    timeKeyHeld = 0;
-                }
-            } else {
-                timeKeyHeld = 0; // Not pressing the button? sadge.
-            }
+    }
 
+    @Override
+    public void interact(float delta) {
+        if (super.item == null) {
+            return;
+        }
+        if (super.item.getIngredient().getCuttingProgress() == 1) {
+            System.out.println("Already cut...");
+            return; // The item is already cut, don't go any further.
+        }
+        if (super.item.getIngredient().getCuttingProgress() == -1) {
+            timeKeyHeld = 0;
+            return;
+        }
+        timeKeyHeld += delta;
+        if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
+            super.item.getIngredient().cut();
+            System.out.println("Cutting complete...");
+            timeKeyHeld = 0;
         }
     }
 }

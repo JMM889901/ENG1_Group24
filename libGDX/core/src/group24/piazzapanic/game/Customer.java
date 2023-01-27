@@ -34,6 +34,9 @@ public class Customer extends StageAnimation {
 
     public void fulfillOrder() {
         this.textBubble.setText("Done");
+        GameData.customers.remove(this);
+        this.remove();
+        GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
     }
 

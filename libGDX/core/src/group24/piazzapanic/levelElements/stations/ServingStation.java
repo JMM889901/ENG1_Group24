@@ -35,8 +35,9 @@ public class ServingStation extends Station {
      */
     private boolean serveOrder(Movable dish) {
         for (Customer c : GameData.customers) {
-            if (dish == c.getOrder()) {
+            if (dish.equals(c.getOrder())) {
                 c.fulfillOrder();
+
                 return true;
             }
         }

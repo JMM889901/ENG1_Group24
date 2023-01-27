@@ -148,4 +148,18 @@ public class Dish extends ImageMovable {
         return complete;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Dish)) {
+            return false;
+        }
+        Dish dish = (Dish) obj;
+        if (this.complete != dish.complete) {
+            return false;
+        }
+        if (this.recipe != dish.recipe) {
+            return false;
+        }
+        return true;
+    }
 }
