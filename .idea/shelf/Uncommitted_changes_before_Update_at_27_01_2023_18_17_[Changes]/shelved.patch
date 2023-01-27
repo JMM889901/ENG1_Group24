@@ -1,0 +1,98 @@
+Index: libGDX/core/src/group24/piazzapanic/game/GameData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic.game;\r\n\r\nimport com.badlogic.gdx.audio.Music;\r\nimport com.badlogic.gdx.graphics.Texture;\r\nimport com.badlogic.gdx.graphics.g2d.Animation;\r\nimport com.badlogic.gdx.graphics.g2d.TextureRegion;\r\nimport group24.piazzapanic.levelElements.Ingredient;\r\nimport group24.piazzapanic.levelElements.IngredientType;\r\nimport group24.piazzapanic.ui.StageAnimation;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.Random;\r\n\r\n/**\r\n * The GameData class contains globally accessible functions and variables.\r\n */\r\npublic class GameData {\r\n    /** The active {@link GameLoop} */\r\n    public static GameLoop gameLoop;\r\n    /** The game's score */\r\n    public static Integer score = 0;\r\n    /** The customers waiting to be served */\r\n    public static ArrayList<Customer> customers;\r\n    /** The in-game timer, updated every frame */\r\n    public static float gameTime;\r\n    /** The time since the last customer was spawned */\r\n    public static float sinceLastSpawn;\r\n    /** The active {@link Level} */\r\n    public static Level level;\r\n    /** The active {@link Player}. Points to either {@link #player1} or {@link #player2} */\r\n    public static Player player;\r\n    /** The first player */\r\n    public static Player player1;\r\n    /** The second player */\r\n    public static Player player2;\r\n    /** The active {@link Music} */\r\n    public static Music music;\r\n    /** A list of all the possible customer sprites */\r\n    public static List<String> customerSpriteSheets;\r\n    /** Random number generator used while instantiating customers and dishes */\r\n    public static Random rand;\r\n    /** x offset for the camera, in pixels */\r\n    public static int offsetX = 400;\r\n    /** y offset for the camera, in pixels */\r\n    public static int offsetY = 200;\r\n\r\n    //ingredients with states to use in recipes\r\n    /** tomato ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes*/\r\n    public static Ingredient CHOPPED_TOMATO;\r\n    /** chopped lettuce ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */\r\n    public static Ingredient CHOPPED_LETTUCE;\r\n    /** chopped onion ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */\r\n    public static Ingredient CHOPPED_ONION;\r\n    /** chopped burger bun ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */\r\n    public static Ingredient BURGER_BUN;\r\n    /** finished burger to be used in {@link group24.piazzapanic.levelElements.Dish} for serving to customers */\r\n    public static Ingredient BURGER;\r\n    /** initial animation for chef 1 */\r\n    public static StageAnimation initialChef1Animation;\r\n    /** initial animation for chef 2 */\r\n    public static StageAnimation initialChef2Animation;\r\n    /** HashMap of all animations for chef1 */\r\n    public static HashMap<String, Animation<TextureRegion>> chef1Animations;\r\n    /** HashMap of all animations for chef2 */\r\n    public static HashMap<String, Animation<TextureRegion>> chef2Animations;\r\n\r\n    /** The texture for the debug square */\r\n    public static Texture debugSquareTexture;\r\n    /** The texture for the floor */\r\n    public static Texture floorTexture;\r\n    /** The texture for the {@link group24.piazzapanic.levelElements.stations.BakingStation} */\r\n    public static Texture bakingStationTexture;\r\n    /** A texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */\r\n    public static Texture counterTopTexture;\r\n    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */\r\n\r\n    public static Texture counterRightCornerTexture;\r\n    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */\r\n\r\n    public static Texture counterRightTexture;\r\n    /** An end texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */\r\n\r\n    public static Texture counterEndTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.stations.CuttingStation} */\r\n    public static Texture cuttingStationTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.stations.FryingStation} */\r\n    public static Texture fryingStationTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture ingredientStationTexture;\r\n    /** Texture for the TomatoStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture tomatoStationTexture;\r\n    /** Texture for the OnionStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture onionStationTexture;\r\n    /** Texture for the LettuceStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture lettuceStationTexture;\r\n    /** Texture for the BreadStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture breadStationTexture;\r\n    /** Texture for the MeatStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture meatStationTexture;\r\n    /** Texture for the DishStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */\r\n    public static Texture dishStationTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.Dish} type */\r\n    public static Texture dishTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.stations.Bin} */\r\n    public static Texture binTexture;\r\n    /** Texture for the {@link group24.piazzapanic.levelElements.stations.ServingStation} */\r\n    public static Texture servingStationTexture;\r\n\r\n    public static Texture obstacleTexture;\r\n\r\n    public static Texture errorTexture;\r\n    // Ingredient textures\r\n    public static Texture rawTomatoTexture;\r\n    public static Texture cutTomatoTexture;\r\n    public static Texture rawOnionTexture;\r\n    public static Texture cutOnionTexture;\r\n    public static Texture friedOnionTexture;\r\n    public static Texture rawLettuceTexture;\r\n    public static Texture cutLettuceTexture;\r\n    public static Texture rawBreadTexture;\r\n    public static Texture cutBreadTexture;\r\n    public static Texture friedBreadTexture; // Do we want to fry/toast the bread?\r\n    public static Texture rawMeatTexture;\r\n    public static Texture cutMeatTexture;\r\n    public static Texture friedMeatTexture; // Do we want to have a Burger texture too?\r\n\r\n    //completed dish textures\r\n    public static Texture burgerDishTexture;\r\n    public static Texture saladDishTexture;\r\n\r\n    public static void init() {\r\n        //Chef animations\r\n        chef1Animations = new HashMap<String, Animation<TextureRegion>>();\r\n        chef1Animations.put(\"IdleFrontSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_front_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleBackSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_back_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleLeftSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_left_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleRightSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_right_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleFront\", StageAnimation.makeAnimation(\"chef/chef_idle_front.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleBack\", StageAnimation.makeAnimation(\"chef/chef_idle_back.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleLeft\", StageAnimation.makeAnimation(\"chef/chef_idle_left.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleRight\", StageAnimation.makeAnimation(\"chef/chef_idle_right.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Front\", StageAnimation.makeAnimation(\"chef/chef_walk_front.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Back\", StageAnimation.makeAnimation(\"chef/chef_walk_back.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Left\", StageAnimation.makeAnimation(\"chef/chef_walk_left.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Right\", StageAnimation.makeAnimation(\"chef/chef_walk_right.png\", 6, 1, 6));\r\n\r\n        chef2Animations = new HashMap<String, Animation<TextureRegion>>();\r\n        chef2Animations.put(\"IdleFrontSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_front_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleBackSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_back_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleLeftSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_left_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleRightSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_right_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleFront\", StageAnimation.makeAnimation(\"chef/chef_1_idle_front.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleBack\", StageAnimation.makeAnimation(\"chef/chef_1_idle_back.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleLeft\", StageAnimation.makeAnimation(\"chef/chef_1_idle_left.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleRight\", StageAnimation.makeAnimation(\"chef/chef_1_idle_right.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Front\", StageAnimation.makeAnimation(\"chef/chef_1_walk_front.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Back\", StageAnimation.makeAnimation(\"chef/chef_1_walk_back.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Left\", StageAnimation.makeAnimation(\"chef/chef_1_walk_left.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Right\", StageAnimation.makeAnimation(\"chef/chef_1_walk_right.png\", 6, 1, 6));\r\n\r\n        initialChef1Animation = new StageAnimation(chef1Animations.get(\"IdleFrontSelected\"), 6, 6, 1, 0, 0,\r\n                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);\r\n        initialChef2Animation = new StageAnimation(chef2Animations.get(\"IdleFrontSelected\"), 6, 6, 1, 0, 0,\r\n                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);\r\n        debugSquareTexture = new Texture(\"debugsquare.png\");\r\n\r\n        // Load station textures.\r\n        floorTexture = new Texture(\"stations/kitchen_floor_2.png\");\r\n        bakingStationTexture = new Texture(\"stations/baking_station_closed.png\");\r\n        counterTopTexture = new Texture(\"stations/countertop.png\");\r\n        counterRightCornerTexture = new Texture(\"stations/countertop_rightcorner.png\");\r\n        counterRightTexture = new Texture(\"stations/counterside.png\");\r\n        counterEndTexture = new Texture(\"stations/counterend.png\");\r\n        cuttingStationTexture = new Texture(\"stations/cutting_station.png\");\r\n        fryingStationTexture = new Texture(\"stations/frying_station_off.png\");\r\n        ingredientStationTexture = new Texture(\"stations/ingredientstation.png\");\r\n        tomatoStationTexture = new Texture(\"stations/tomato_sack.png\");\r\n        onionStationTexture = new Texture(\"stations/onion_sack.png\");\r\n        lettuceStationTexture = new Texture(\"stations/lettuce_sack.png\");\r\n        breadStationTexture = new Texture(\"stations/bread_sack.png\");\r\n        meatStationTexture = new Texture(\"stations/ingredient_station_meat.png\");\r\n        dishStationTexture = new Texture(\"stations/ingredient_station_plate.png\");\r\n        binTexture = new Texture(\"stations/bin.png\");\r\n        servingStationTexture = new Texture(\"stations/customer_station.png\"); // get new texture\r\n        obstacleTexture = new Texture(\"stations/wall.png\");\r\n\r\n        // Ingredient Textures\r\n        rawTomatoTexture = new Texture(\"ingredients/tomato.png\");\r\n        cutTomatoTexture = new Texture(\"ingredients/chopped_tomato.png\");\r\n        rawOnionTexture = new Texture(\"ingredients/onion.png\");\r\n        cutOnionTexture = new Texture(\"ingredients/chopped_onion.png\");\r\n        friedOnionTexture = new Texture(\"stations/sourceerr.png\");//remove?\r\n        rawLettuceTexture = new Texture(\"ingredients/lettuce.png\");\r\n        cutLettuceTexture = new Texture(\"ingredients/chopped_lettuce.png\");\r\n        rawBreadTexture = new Texture(\"ingredients/bread.png\");\r\n        cutBreadTexture = new Texture(\"ingredients/sliced_bread.png\");\r\n        friedBreadTexture = new Texture(\"stations/sourceerr.png\"); //remove?\r\n        rawMeatTexture = new Texture(\"ingredients/raw_meat.png\");\r\n        cutMeatTexture = new Texture(\"ingredients/raw_burger.png\");\r\n        friedMeatTexture = new Texture(\"ingredients/cooked_burger.png\");\r\n        dishTexture = new Texture(\"ingredients/plate.png\");\r\n\r\n        //dish textures\r\n        burgerDishTexture = new Texture(\"ingredients/assembled_burger.png\");\r\n        saladDishTexture = new Texture(\"ingredients/salad.png\");\r\n\r\n        errorTexture = new Texture(\"stations/sourceerr.png\");\r\n\r\n        CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);\r\n        CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);\r\n        CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);\r\n        BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);\r\n        BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);\r\n    }\r\n\r\n    /** \r\n     * @param score\r\n     */\r\n    public static void addScore(int score) {\r\n        GameData.score += score;\r\n        gameLoop.addScore(score);\r\n    }\r\n\r\n    public static void dispose() {\r\n        debugSquareTexture.dispose();\r\n\r\n        floorTexture.dispose();\r\n        bakingStationTexture.dispose();\r\n        counterTopTexture.dispose();\r\n        cuttingStationTexture.dispose();\r\n        fryingStationTexture.dispose();\r\n        ingredientStationTexture.dispose();\r\n        obstacleTexture.dispose();\r\n        dishStationTexture.dispose();\r\n\r\n        errorTexture.dispose();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/game/GameData.java b/libGDX/core/src/group24/piazzapanic/game/GameData.java
+--- a/libGDX/core/src/group24/piazzapanic/game/GameData.java	(revision 5ccdc5f79cb3d271c246fff445f4076d898517ae)
++++ b/libGDX/core/src/group24/piazzapanic/game/GameData.java	(date 1674837377897)
+@@ -108,30 +108,55 @@
+     /** Texture for the {@link group24.piazzapanic.levelElements.stations.ServingStation} */
+     public static Texture servingStationTexture;
+ 
++    /** Texture for the {@link group24.piazzapanic.levelElements.stations.Obstacle} */
+     public static Texture obstacleTexture;
+-
++    /** Error texture for when a texture is not found */
+     public static Texture errorTexture;
+     // Ingredient textures
++    /** Texture for a raw tomato */
+     public static Texture rawTomatoTexture;
++    /** Texture for a cut tomato */
+     public static Texture cutTomatoTexture;
++    /** Texture for a raw onion */
+     public static Texture rawOnionTexture;
++    /** Texture for a cut onion */
+     public static Texture cutOnionTexture;
++    /** Texture for a fried onion */
+     public static Texture friedOnionTexture;
++    /** Texture for a raw lettuce */
+     public static Texture rawLettuceTexture;
++    /** Texture for a cut lettuce */
+     public static Texture cutLettuceTexture;
++    /**Texture for raw bread */
+     public static Texture rawBreadTexture;
++    /**Texture for cut bread */
+     public static Texture cutBreadTexture;
++    /**Texture for fried bread */
+     public static Texture friedBreadTexture; // Do we want to fry/toast the bread?
++    /**Texture for raw meat */
+     public static Texture rawMeatTexture;
++    /**Texture for cut meat */
+     public static Texture cutMeatTexture;
+-    public static Texture friedMeatTexture; // Do we want to have a Burger texture too?
++    /**Texture for fried meat */
++    public static Texture friedMeatTexture;
+ 
+     //completed dish textures
++    /** Texture for a completed burger {@link group24.piazzapanic.levelElements.Dish } */
+     public static Texture burgerDishTexture;
++    /** Texture for a Salad {@link group24.piazzapanic.levelElements.Dish} */
+     public static Texture saladDishTexture;
+ 
++    /**
++     * Initializes all the textures and animations
++     */
+     public static void init() {
+         //Chef animations
++        /*
++        Okay, so why is this done this way? You are probably looking at this and your eyes are bleeding.
++        but worry not, this is actually the best way to do it lol.
++        This is mostly done to avoid recreating animations that are already present in memory each time the player needs to change animations, so they are all made in advance.
++        Otherwise, this would lead to a memory leak. which is not poggers.
++         */
+         chef1Animations = new HashMap<String, Animation<TextureRegion>>();
+         chef1Animations.put("IdleFrontSelected",
+                 StageAnimation.makeAnimation("chef/chef_idle_front_selected.png", 6, 1, 6));
+@@ -191,7 +216,7 @@
+         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
+         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
+         binTexture = new Texture("stations/bin.png");
+-        servingStationTexture = new Texture("stations/customer_station.png"); // get new texture
++        servingStationTexture = new Texture("stations/customer_station.png");
+         obstacleTexture = new Texture("stations/wall.png");
+ 
+         // Ingredient Textures
+@@ -223,14 +248,18 @@
+         BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
+     }
+ 
+-    /** 
+-     * @param score
++    /**
++     * Adds an integer to the current score.
++     * @param score the integer to add to the score.
+      */
+     public static void addScore(int score) {
+         GameData.score += score;
+         gameLoop.addScore(score);
+     }
+ 
++    /**
++     * Free up memory when the game is closed.
++     */
+     public static void dispose() {
+         debugSquareTexture.dispose();
+ 

@@ -1,0 +1,313 @@
+Index: libGDX/core/src/group24/piazzapanic/levelElements/stations/FryingStation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic.levelElements.stations;\r\n\r\nimport com.badlogic.gdx.Gdx;\r\n\r\nimport group24.piazzapanic.Base;\r\nimport group24.piazzapanic.game.GameData;\r\nimport group24.piazzapanic.game.Physics;\r\nimport group24.piazzapanic.levelElements.Ingredient;\r\n\r\n/**\r\n * FryingStations allow users to fry Ingredients.\r\n * They interact with {@link Ingredient}'s {@link Ingredient#fry()}  and {@link Ingredient#getFryingProgress()} methods.\r\n * This class extends {@link Station}.\r\n */\r\npublic class FryingStation extends Station {\r\n    /**\r\n     * Initialise the FryingStation and set its texture\r\n     */\r\n    public FryingStation() {\r\n        super(Base.fryingStationTexture);\r\n    }\r\n\r\n    /**\r\n     * Allows the player to fry the item.\r\n     * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.\r\n     * Checks if the item has already been fried or can't be fried.\r\n     * If it can be fried increases timeKeyHeld by act until timeKeyHeld > 3 seconds. Then fries the item.\r\n     * n.b. act(float delta) is called every frame.\r\n     *\r\n     * @param delta Time in seconds since the last frame.\r\n     */\r\n    public void act(float delta) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void interact(float delta) {\r\n        if (super.item == null) {\r\n            return;\r\n        }\r\n        if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.\r\n            System.out.println(\"Already fried..........\");\r\n            return; // The item is already fried, don't go any further.\r\n        }\r\n        if (super.item.getIngredient().getFryingProgress() == -1) { // The item cannot be fried.\r\n            timeKeyHeld = 0;\r\n            return;\r\n        }\r\n        timeKeyHeld += delta;\r\n        if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {\r\n            // Cutting is done! poggers\r\n            System.out.println(\"Hm.\");\r\n            super.item.getIngredient().fry();\r\n            System.out.println(\" get fried idiot...\");\r\n            timeKeyHeld = 0; // Reset to avoid horrible loop!\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/levelElements/stations/FryingStation.java b/libGDX/core/src/group24/piazzapanic/levelElements/stations/FryingStation.java
+--- a/libGDX/core/src/group24/piazzapanic/levelElements/stations/FryingStation.java	(revision 48f731624dbed2e420f63db0356fe75af0085bcd)
++++ b/libGDX/core/src/group24/piazzapanic/levelElements/stations/FryingStation.java	(date 1674834933638)
+@@ -1,10 +1,6 @@
+ package group24.piazzapanic.levelElements.stations;
+ 
+-import com.badlogic.gdx.Gdx;
+-
+ import group24.piazzapanic.Base;
+-import group24.piazzapanic.game.GameData;
+-import group24.piazzapanic.game.Physics;
+ import group24.piazzapanic.levelElements.Ingredient;
+ 
+ /**
+@@ -25,21 +21,16 @@
+      * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.
+      * Checks if the item has already been fried or can't be fried.
+      * If it can be fried increases timeKeyHeld by act until timeKeyHeld > 3 seconds. Then fries the item.
+-     * n.b. act(float delta) is called every frame.
++     * n.b. interact(float delta) is called every frame.
+      *
+      * @param delta Time in seconds since the last frame.
+      */
+-    public void act(float delta) {
+-
+-    }
+-
+     @Override
+     public void interact(float delta) {
+         if (super.item == null) {
+             return;
+         }
+         if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.
+-            System.out.println("Already fried..........");
+             return; // The item is already fried, don't go any further.
+         }
+         if (super.item.getIngredient().getFryingProgress() == -1) { // The item cannot be fried.
+@@ -49,9 +40,7 @@
+         timeKeyHeld += delta;
+         if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
+             // Cutting is done! poggers
+-            System.out.println("Hm.");
+             super.item.getIngredient().fry();
+-            System.out.println(" get fried idiot...");
+             timeKeyHeld = 0; // Reset to avoid horrible loop!
+         }
+     }
+Index: libGDX/core/src/group24/piazzapanic/levelElements/Dish.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic.levelElements;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\nimport java.util.Collections;\r\n\r\nimport com.badlogic.gdx.graphics.Texture;\r\n\r\nimport group24.piazzapanic.Base;\r\nimport group24.piazzapanic.Physics.ImageMovable;\r\nimport group24.piazzapanic.Physics.Movable;\r\nimport group24.piazzapanic.maths.Vector2;\r\n\r\npublic class Dish extends ImageMovable {\r\n    static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(\r\n            Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));\r\n    static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(\r\n            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_TOMATO));\r\n    public static ArrayList<Dish> Dishes = new ArrayList<Dish>(Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));\r\n    ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();\r\n    ArrayList<Ingredient> recipe;\r\n    boolean complete;\r\n\r\n    public static void init() {\r\n\r\n    }\r\n\r\n    public Dish() {\r\n\r\n        super(Base.dishTexture);\r\n        super.setWidth(Base.tile_pixel_width);\r\n        super.setHeight(Base.tile_pixel_height);\r\n        this.complete = false;\r\n        this.recipe = new ArrayList<Ingredient>();\r\n    }\r\n\r\n    public Dish(ArrayList<Ingredient> recipe) {\r\n        super(Base.dishTexture);\r\n        super.setWidth(Base.tile_pixel_width);\r\n        super.setHeight(Base.tile_pixel_height);\r\n        this.complete = true;\r\n        this.recipe = recipe;\r\n        this.Ingredients = recipe;\r\n    }\r\n\r\n    public boolean addIngredient(Ingredient item) {\r\n        if (recipe.size() == 0) {\r\n            ArrayList<Ingredient> tmp = this.Ingredients;\r\n            tmp.add(item);\r\n            if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients\r\n                this.Ingredients.add(item);\r\n                this.complete = checkComplete();\r\n                System.out.println(\"added to dish\\ncurrent:\");\r\n                for (Ingredient i : Ingredients) {\r\n                    System.out.println(i.ingredientType.getName());\r\n                }\r\n                System.out.println(\"recipe:\");\r\n                for (Ingredient i : recipe) {\r\n                    System.out.println(i.ingredientType.getName());\r\n                }\r\n                return true;\r\n            }\r\n        } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {\r\n            this.Ingredients.add(item);\r\n            this.complete = checkComplete();\r\n            System.out.println(\"added to dish\\ncurrent:\");\r\n                for (Ingredient i : Ingredients) {\r\n                    System.out.println(i.ingredientType.getName());\r\n                }\r\n                System.out.println(\"recipe:\");\r\n            for (Ingredient i : recipe) {\r\n                System.out.println(i.ingredientType.getName());\r\n            }\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n\r\n    //moved recipe checks to separate method so it doesnt check when it doesnt need to\r\n    public void act(float delta) {\r\n        /*\r\n        ArrayList<String> CurrentIngredients = new ArrayList<String>();\r\n        // Get arraylist of all ingredient names, sort it, compare it, return it otherwise. \r\n        for (Ingredient item : Ingredients) {\r\n            CurrentIngredients.add(item.getName());\r\n        }\r\n        Collections.sort(CurrentIngredients); // Sort the ArrayList of Strings of ingredients\r\n        if (CurrentIngredients.equals(BURGER_RECIPE)){\r\n            this.Ingredients = null; // IT'S BURGR TIME, BABYE.  \r\n            //TODO - SET ME TO **BORGER**\r\n        }\r\n        else if (CurrentIngredients.equals(SALAD_RECIPE)){\r\n            this.Ingredients = null; // SALAD MOMENt\r\n            //TODO - set me as a salad. \r\n        }\r\n        CurrentIngredients = null; // To avoid a memory leak. \r\n        */\r\n    }\r\n\r\n    private boolean setRecipe(ArrayList<Ingredient> currentIngredients) {\r\n        boolean matchSalad = true;\r\n        boolean matchBurger = true;\r\n        for (Ingredient i : currentIngredients) {\r\n            System.out.println(i.getCuttingProgress());\r\n            System.out.println(i.getBakingProgress());\r\n            System.out.println(i.getFryingProgress());\r\n            System.out.println(i.ingredientType.getName());\r\n            // for (Dish d : Dishes) {\r\n            //     if(d.recipe.c)\r\n            // }\r\n            if (!BURGER_RECIPE.contains(i)) {\r\n                matchBurger = false;\r\n            }\r\n            if (!SALAD_RECIPE.contains(i)) {\r\n                matchSalad = false;\r\n            }\r\n        }\r\n        if (matchSalad && !matchBurger)\r\n            recipe = SALAD_RECIPE; //if it only matches salad set recipe to salad\r\n        else if (matchBurger && !matchSalad)\r\n            recipe = BURGER_RECIPE; //if it only matches burger set recipe to burger\r\n        else return matchBurger || matchSalad; //returns flase if it matches none of the recipes\r\n        return true; //returns true if there is a recipe that matches\r\n\r\n    }\r\n\r\n    private boolean checkComplete() {\r\n        if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {\r\n            for (Ingredient i : recipe) {\r\n                if (!this.Ingredients.contains(i)) {\r\n                    return false;\r\n                }\r\n            }\r\n            if(recipe == BURGER_RECIPE) this.texture = Base.burgerDishTexture;\r\n            else if(recipe == SALAD_RECIPE) this.texture = Base.saladDishTexture;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean isComplete() {\r\n        return complete;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/levelElements/Dish.java b/libGDX/core/src/group24/piazzapanic/levelElements/Dish.java
+--- a/libGDX/core/src/group24/piazzapanic/levelElements/Dish.java	(revision 48f731624dbed2e420f63db0356fe75af0085bcd)
++++ b/libGDX/core/src/group24/piazzapanic/levelElements/Dish.java	(date 1674835193367)
+@@ -1,31 +1,35 @@
+ package group24.piazzapanic.levelElements;
+ 
+-import java.util.ArrayList;
+-import java.util.Arrays;
+-
+-import java.util.Collections;
+-
+-import com.badlogic.gdx.graphics.Texture;
+-
+ import group24.piazzapanic.Base;
+ import group24.piazzapanic.Physics.ImageMovable;
+-import group24.piazzapanic.Physics.Movable;
+-import group24.piazzapanic.maths.Vector2;
+ 
++import java.util.ArrayList;
++import java.util.Arrays;
++
++/**
++ * Dishes are used to serve Ingredients.
++ * They interact with {@link Ingredient}'s {@link Ingredient#fry()}  and {@link Ingredient#getFryingProgress()} methods.
++ * This class extends {@link Station}.
++ * Recipes are stored as an ArrayList of Ingredients.
++ */
+ public class Dish extends ImageMovable {
++    /** The burger recipe. */
+     static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
+             Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
++    /** The Salad recipe. */
+     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
+             Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_TOMATO));
++    /** The list of all dishes. */
+     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
+     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
++    /** Stores the dish's recipe. */
+     ArrayList<Ingredient> recipe;
++    /** Stores the dish's current progress towards completion. */
+     boolean complete;
+ 
+-    public static void init() {
+-
+-    }
+-
++    /**
++     * Initialise the Dish. Set its texture, size, completeness, and recipe.
++     */
+     public Dish() {
+ 
+         super(Base.dishTexture);
+@@ -35,6 +39,10 @@
+         this.recipe = new ArrayList<Ingredient>();
+     }
+ 
++    /**
++     * Initialise the Dish. Set its texture, size, completeness, and recipe.
++     * @param recipe The recipe for the dish.
++     */
+     public Dish(ArrayList<Ingredient> recipe) {
+         super(Base.dishTexture);
+         super.setWidth(Base.tile_pixel_width);
+@@ -44,6 +52,11 @@
+         this.Ingredients = recipe;
+     }
+ 
++    /**
++     * Add an ingredient to the dish.
++     * @param item The ingredient to add.
++     * @return Whether the ingredient was added.
++     */
+     public boolean addIngredient(Ingredient item) {
+         if (recipe.size() == 0) {
+             ArrayList<Ingredient> tmp = this.Ingredients;
+Index: libGDX/core/src/group24/piazzapanic/levelElements/stations/CuttingStation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic.levelElements.stations;\r\n\r\nimport com.badlogic.gdx.Gdx;\r\nimport group24.piazzapanic.Base;\r\nimport group24.piazzapanic.game.GameData;\r\nimport group24.piazzapanic.game.Physics;\r\nimport group24.piazzapanic.levelElements.Ingredient;\r\n\r\n/**\r\n * CuttingStations allow users to cut Ingredients.\r\n * They interact with {@link Ingredient}'s {@link Ingredient#cut()}  and {@link Ingredient#getCuttingProgress()} methods.\r\n * This class extends {@link Station}.\r\n */\r\npublic class CuttingStation extends Station {\r\n    /**\r\n     * Initialise the CuttingStation and set its texture\r\n     */\r\n    public CuttingStation() {\r\n        super(Base.cuttingStationTexture);\r\n    }\r\n    @Override\r\n    \r\n    /**\r\n     * Allows the player to cut the item.\r\n     * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.\r\n     * Checks if the item has already been cut or can't be cut.\r\n     * If it can be cut increases timeKeyHeld by act until timeKeyHeld > 3 seconds. Then cuts the item.\r\n     * n.b. act(float delta) is called every frame.\r\n     *\r\n     * @param delta Time in seconds since the last frame.\r\n     */\r\n    public void act(float delta) {\r\n        if (super.item != null) { // Avoid null pointer errors.\r\n            if (super.item.getIngredient() == null) { // Avoid null pointer errors.\r\n                return;\r\n            }\r\n            // Checks the user is pressing the interaction key, is facing the station, and is near the station.\r\n            if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this\r\n                    && Physics.isNear(this, GameData.player)) {\r\n                if (super.item.getIngredient().getCuttingProgress() == 1) {\r\n                    System.out.println(\"Already cut...\");\r\n                    return; // The item is already cut, don't go any further.\r\n                }\r\n                if (super.item.getIngredient().getCuttingProgress() == -1) {\r\n                    timeKeyHeld = 0;\r\n                    return;\r\n                }\r\n                timeKeyHeld += delta;\r\n                if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {\r\n                    super.item.getIngredient().cut();\r\n                    System.out.println(\"Cutting complete...\");\r\n                    timeKeyHeld = 0;\r\n                }\r\n            } else {\r\n                timeKeyHeld = 0; // Not pressing the button? sadge.\r\n            }\r\n\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/levelElements/stations/CuttingStation.java b/libGDX/core/src/group24/piazzapanic/levelElements/stations/CuttingStation.java
+--- a/libGDX/core/src/group24/piazzapanic/levelElements/stations/CuttingStation.java	(revision 48f731624dbed2e420f63db0356fe75af0085bcd)
++++ b/libGDX/core/src/group24/piazzapanic/levelElements/stations/CuttingStation.java	(date 1674834900899)
+@@ -38,7 +38,6 @@
+             if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
+                     && Physics.isNear(this, GameData.player)) {
+                 if (super.item.getIngredient().getCuttingProgress() == 1) {
+-                    System.out.println("Already cut...");
+                     return; // The item is already cut, don't go any further.
+                 }
+                 if (super.item.getIngredient().getCuttingProgress() == -1) {
+@@ -48,7 +47,6 @@
+                 timeKeyHeld += delta;
+                 if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
+                     super.item.getIngredient().cut();
+-                    System.out.println("Cutting complete...");
+                     timeKeyHeld = 0;
+                 }
+             } else {
+Index: libGDX/core/src/group24/piazzapanic/Base.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\nimport java.io.File;\r\n\r\nimport com.badlogic.gdx.graphics.g2d.Animation;\r\nimport com.badlogic.gdx.graphics.g2d.SpriteBatch;\r\nimport com.badlogic.gdx.graphics.g2d.TextureRegion;\r\n\r\nimport com.badlogic.gdx.graphics.Texture;\r\nimport com.badlogic.gdx.graphics.TextureData.TextureDataType;\r\nimport com.badlogic.gdx.Input.Keys;\r\n\r\nimport group24.piazzapanic.Physics.AnimatedMovable;\r\nimport group24.piazzapanic.game.Player;\r\nimport group24.piazzapanic.levelElements.Ingredient;\r\nimport group24.piazzapanic.levelElements.IngredientType;\r\nimport group24.piazzapanic.ui.StageAnimation;\r\n\r\n/** Core values like screen size, that will need to access, but nothing will need to modify.\r\n * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.\r\n */\r\npublic class Base {\r\n    public static final boolean DEBUG = false;\r\n    public static String CONFIG_PATH = \"config.txt\";\r\n\r\n    public static int WINDOW_WIDTH = 100;\r\n    public static int WINDOW_HEIGHT = 100;\r\n\r\n    // These 2 numbers below work best if they make a nice ratio (eg 1:2).\r\n    public static final int TILE_TEXTURE_WIDTH = 100;\r\n    public static final int TILE_TEXTURE_HEIGHT = 200;\r\n    public static final float TILE_GRID_UNIT = 0.05f; // 20 tiles fit within one screen width.\r\n    public static int tile_pixel_width;\r\n    public static int tile_pixel_height;\r\n\r\n    public static SpriteBatch batch;\r\n\r\n    public static StageAnimation initialChef1Animation;\r\n    public static StageAnimation initialChef2Animation;\r\n    public static HashMap<String, Animation<TextureRegion>> chef1Animations;\r\n    public static HashMap<String, Animation<TextureRegion>> chef2Animations;\r\n\r\n    public static Texture debugSquareTexture;\r\n\r\n    public static Texture floorTexture;\r\n    public static Texture bakingStationTexture;\r\n    public static Texture counterTopTexture;\r\n    public static Texture counterRightCornerTexture;\r\n    public static Texture counterRightTexture;\r\n    public static Texture counterEndTexture;\r\n    public static Texture cuttingStationTexture;\r\n    public static Texture fryingStationTexture;\r\n    public static Texture ingredientStationTexture;\r\n    public static Texture tomatoStationTexture;\r\n    public static Texture onionStationTexture;\r\n    public static Texture lettuceStationTexture;\r\n    public static Texture breadStationTexture;\r\n    public static Texture meatStationTexture;\r\n    public static Texture dishStationTexture;\r\n    public static Texture dishTexture;\r\n    public static Texture binTexture;\r\n    public static Texture servingStationTexture;\r\n\r\n    public static Texture obstacleTexture;\r\n\r\n    public static Texture errorTexture;\r\n    // Ingredient textures\r\n    public static Texture rawTomatoTexture;\r\n    public static Texture cutTomatoTexture;\r\n    public static Texture rawOnionTexture;\r\n    public static Texture cutOnionTexture;\r\n    public static Texture friedOnionTexture;\r\n    public static Texture rawLettuceTexture;\r\n    public static Texture cutLettuceTexture;\r\n    public static Texture rawBreadTexture;\r\n    public static Texture cutBreadTexture;\r\n    public static Texture friedBreadTexture; // Do we want to fry/toast the bread?\r\n    public static Texture rawMeatTexture;\r\n    public static Texture cutMeatTexture;\r\n    public static Texture friedMeatTexture; // Do we want to have a Burger texture too?\r\n\r\n    //completed dish textures\r\n    public static Texture burgerDishTexture;\r\n    public static Texture saladDishTexture;\r\n\r\n    // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.\r\n    public static final int UP_KEY = Keys.W;\r\n    public static final int DOWN_KEY = Keys.S;\r\n    public static final int LEFT_KEY = Keys.A;\r\n    public static final int RIGHT_KEY = Keys.D;\r\n    public static final int ACT_KEY = Keys.F; // Interact with a station\r\n    public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items \r\n    public static final int SELECT_KEY = Keys.ENTER;\r\n    public static final int SWAP_KEY = Keys.Q;\r\n    public static final int PAUSE_KEY = Keys.ESCAPE;\r\n\r\n    //ingredients with states to use in recipes\r\n    public static Ingredient CHOPPED_TOMATO;\r\n    public static Ingredient CHOPPED_LETTUCE;\r\n    public static Ingredient CHOPPED_ONION;\r\n    public static Ingredient BURGER_BUN;\r\n    public static Ingredient BURGER;\r\n\r\n    // SELECT_KEY just clicks the \"first\" option in a given menu. Useful to ignore UI bugs when\r\n    // developing non-UI features.\r\n\r\n    /**\r\n     * Read the config file and set the values of the variables in this class.\r\n     * This method should be called before any other code runs.\r\n     */\r\n    public static void init() {\r\n        // Read config file.\r\n        try {\r\n            Scanner scanner = new Scanner(new File(CONFIG_PATH));\r\n            while (scanner.hasNextLine()) {\r\n                String line = scanner.nextLine();\r\n\r\n                if (line.strip().equals(\"\")) {\r\n                    continue;\r\n                }\r\n\r\n                String[] split = line.split(\"=\");\r\n                if (split.length != 2) {\r\n                    System.out.println(\"Invalid line syntax: '\" + line + \"'.\");\r\n                    if (split.length == 1) {\r\n                        throw new Exception(\"Invalid config file - no argument supplied.\");\r\n                    } else if (split.length > 2) {\r\n                        throw new Exception(\"Invalid config file - too many arguments.\");\r\n                    } else {\r\n                        throw new Exception(\"Invalid config file - bad length array (\" + split.length + \").\");\r\n                    }\r\n                }\r\n                String left = split[0];\r\n                String right = split[1];\r\n\r\n                if (left.equals(\"resolution\")) {\r\n                    String[] resolutionStr = right.split(\"x\");\r\n                    if (resolutionStr.length != 2) {\r\n                        System.out.println(\"Bad resolution: '\" + right + \"'.\");\r\n                        if (resolutionStr.length == 1) {\r\n                            throw new Exception(\"Invalid config file - only one dimension supplied.\");\r\n                        } else if (resolutionStr.length > 2) {\r\n                            throw new Exception(\"Invalid config file - too many dimensions supplied.\");\r\n                        } else {\r\n                            throw new Exception(\"Invalid config file - bad dimensions (\" + resolutionStr.length\r\n                                    + \" parameters given).\");\r\n                        }\r\n                    }\r\n\r\n                    // Check if the strings are numeric.\r\n                    for (int i = 0; i < resolutionStr[0].length(); i++) {\r\n                        if (!Character.isDigit(resolutionStr[0].charAt(i))) {\r\n                            System.out.println(\"Bad Dimension: '\" + resolutionStr[0] + \"'.\");\r\n                            throw new Exception(\"Invalid config file - non-numeric width.\");\r\n                        }\r\n                    }\r\n                    for (int i = 0; i < resolutionStr[1].length(); i++) {\r\n                        if (!Character.isDigit(resolutionStr[1].charAt(i))) {\r\n                            System.out.println(\"Bad Dimension: '\" + resolutionStr[1] + \"'.\");\r\n                            throw new Exception(\"Invalid config file - non-numeric height.\");\r\n                        }\r\n                    }\r\n\r\n                    WINDOW_WIDTH = Integer.parseInt(resolutionStr[0]);\r\n                    WINDOW_HEIGHT = Integer.parseInt(resolutionStr[1]);\r\n                } else {\r\n                    System.out.println(\"Unknown key: '\" + left + \"=...' .\");\r\n                    throw new Exception(\"Invalid config file - unknown key\");\r\n                }\r\n            }\r\n            scanner.close();\r\n        } catch (Exception exception) {\r\n            System.out.println(\"Error reading config file, Using default settings\");\r\n            WINDOW_WIDTH = 1280;\r\n            WINDOW_HEIGHT = 720;\r\n            exception.printStackTrace();\r\n        }\r\n\r\n        tile_pixel_width = (int) Math.floor(TILE_GRID_UNIT * WINDOW_WIDTH);\r\n        tile_pixel_height = (int) Math\r\n                .round(tile_pixel_width * ((double) Base.TILE_TEXTURE_HEIGHT) / Base.TILE_TEXTURE_WIDTH);\r\n\r\n        batch = new SpriteBatch();\r\n        //Chef animations\r\n        chef1Animations = new HashMap<String, Animation<TextureRegion>>();\r\n        chef1Animations.put(\"IdleFrontSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_front_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleBackSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_back_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleLeftSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_left_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleRightSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_idle_right_selected.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleFront\", StageAnimation.makeAnimation(\"chef/chef_idle_front.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleBack\", StageAnimation.makeAnimation(\"chef/chef_idle_back.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleLeft\", StageAnimation.makeAnimation(\"chef/chef_idle_left.png\", 6, 1, 6));\r\n        chef1Animations.put(\"IdleRight\", StageAnimation.makeAnimation(\"chef/chef_idle_right.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Front\", StageAnimation.makeAnimation(\"chef/chef_walk_front.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Back\", StageAnimation.makeAnimation(\"chef/chef_walk_back.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Left\", StageAnimation.makeAnimation(\"chef/chef_walk_left.png\", 6, 1, 6));\r\n        chef1Animations.put(\"Right\", StageAnimation.makeAnimation(\"chef/chef_walk_right.png\", 6, 1, 6));\r\n\r\n        chef2Animations = new HashMap<String, Animation<TextureRegion>>();\r\n        chef2Animations.put(\"IdleFrontSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_front_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleBackSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_back_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleLeftSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_left_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleRightSelected\",\r\n                StageAnimation.makeAnimation(\"chef/chef_1_idle_right_selected.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleFront\", StageAnimation.makeAnimation(\"chef/chef_1_idle_front.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleBack\", StageAnimation.makeAnimation(\"chef/chef_1_idle_back.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleLeft\", StageAnimation.makeAnimation(\"chef/chef_1_idle_left.png\", 6, 1, 6));\r\n        chef2Animations.put(\"IdleRight\", StageAnimation.makeAnimation(\"chef/chef_1_idle_right.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Front\", StageAnimation.makeAnimation(\"chef/chef_1_walk_front.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Back\", StageAnimation.makeAnimation(\"chef/chef_1_walk_back.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Left\", StageAnimation.makeAnimation(\"chef/chef_1_walk_left.png\", 6, 1, 6));\r\n        chef2Animations.put(\"Right\", StageAnimation.makeAnimation(\"chef/chef_1_walk_right.png\", 6, 1, 6));\r\n\r\n        initialChef1Animation = new StageAnimation(chef1Animations.get(\"IdleFrontSelected\"), 6, 6, 1, 0, 0,\r\n                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);\r\n        initialChef2Animation = new StageAnimation(chef2Animations.get(\"IdleFrontSelected\"), 6, 6, 1, 0, 0,\r\n                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);\r\n        debugSquareTexture = new Texture(\"debugsquare.png\");\r\n\r\n        // Load station textures.\r\n        floorTexture = new Texture(\"stations/kitchen_floor_2.png\");\r\n        bakingStationTexture = new Texture(\"stations/baking_station_closed.png\");\r\n        counterTopTexture = new Texture(\"stations/countertop.png\");\r\n        counterRightCornerTexture = new Texture(\"stations/countertop_rightcorner.png\");\r\n        counterRightTexture = new Texture(\"stations/counterside.png\");\r\n        counterEndTexture = new Texture(\"stations/counterend.png\");\r\n        cuttingStationTexture = new Texture(\"stations/cutting_station.png\");\r\n        fryingStationTexture = new Texture(\"stations/frying_station_off.png\");\r\n        ingredientStationTexture = new Texture(\"stations/ingredientstation.png\");\r\n        tomatoStationTexture = new Texture(\"stations/tomato_sack.png\");\r\n        onionStationTexture = new Texture(\"stations/onion_sack.png\");\r\n        lettuceStationTexture = new Texture(\"stations/lettuce_sack.png\");\r\n        breadStationTexture = new Texture(\"stations/bread_sack.png\");\r\n        meatStationTexture = new Texture(\"stations/ingredient_station_meat.png\");\r\n        dishStationTexture = new Texture(\"stations/ingredient_station_plate.png\");\r\n        binTexture = new Texture(\"stations/bin.png\");\r\n        servingStationTexture = new Texture(\"stations/customer_station.png\"); // get new texture\r\n        obstacleTexture = new Texture(\"stations/wall.png\");\r\n\r\n        // Ingredient Textures\r\n        rawTomatoTexture = new Texture(\"ingredients/tomato.png\");\r\n        cutTomatoTexture = new Texture(\"ingredients/chopped_tomato.png\");\r\n        rawOnionTexture = new Texture(\"ingredients/onion.png\");\r\n        cutOnionTexture = new Texture(\"ingredients/chopped_onion.png\");\r\n        friedOnionTexture = new Texture(\"stations/sourceerr.png\");//remove?\r\n        rawLettuceTexture = new Texture(\"ingredients/lettuce.png\");\r\n        cutLettuceTexture = new Texture(\"ingredients/chopped_lettuce.png\");\r\n        rawBreadTexture = new Texture(\"ingredients/bread.png\");\r\n        cutBreadTexture = new Texture(\"ingredients/sliced_bread.png\");\r\n        friedBreadTexture = new Texture(\"stations/sourceerr.png\"); //remove?\r\n        rawMeatTexture = new Texture(\"ingredients/raw_meat.png\");\r\n        cutMeatTexture = new Texture(\"ingredients/raw_burger.png\");\r\n        friedMeatTexture = new Texture(\"ingredients/cooked_burger.png\");\r\n        dishTexture = new Texture(\"ingredients/plate.png\");\r\n\r\n        //dish textures\r\n        burgerDishTexture = new Texture(\"ingredients/assembled_burger.png\");\r\n        saladDishTexture = new Texture(\"ingredients/salad.png\");\r\n\r\n        errorTexture = new Texture(\"stations/sourceerr.png\");\r\n\r\n        CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);\r\n        CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);\r\n        CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);\r\n        BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);\r\n        BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);\r\n    }\r\n\r\n    /**\r\n     * Basically the opposite of init (without the config file reading), this method should be the\r\n     * last thing called before the program exits.\r\n     */\r\n    public static void dispose() {\r\n        batch.dispose();\r\n\r\n        debugSquareTexture.dispose();\r\n\r\n        floorTexture.dispose();\r\n        bakingStationTexture.dispose();\r\n        counterTopTexture.dispose();\r\n        cuttingStationTexture.dispose();\r\n        fryingStationTexture.dispose();\r\n        ingredientStationTexture.dispose();\r\n        obstacleTexture.dispose();\r\n        dishStationTexture.dispose();\r\n\r\n        errorTexture.dispose();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/Base.java b/libGDX/core/src/group24/piazzapanic/Base.java
+--- a/libGDX/core/src/group24/piazzapanic/Base.java	(revision 48f731624dbed2e420f63db0356fe75af0085bcd)
++++ b/libGDX/core/src/group24/piazzapanic/Base.java	(date 1674834889033)
+@@ -1,31 +1,27 @@
+ package group24.piazzapanic;
+ 
+-import java.util.HashMap;
+-import java.util.List;
+-import java.util.Scanner;
+-import java.io.File;
+-
++import com.badlogic.gdx.Input.Keys;
++import com.badlogic.gdx.graphics.Texture;
+ import com.badlogic.gdx.graphics.g2d.Animation;
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+ import com.badlogic.gdx.graphics.g2d.TextureRegion;
+-
+-import com.badlogic.gdx.graphics.Texture;
+-import com.badlogic.gdx.graphics.TextureData.TextureDataType;
+-import com.badlogic.gdx.Input.Keys;
+-
+-import group24.piazzapanic.Physics.AnimatedMovable;
+ import group24.piazzapanic.game.Player;
+ import group24.piazzapanic.levelElements.Ingredient;
+ import group24.piazzapanic.levelElements.IngredientType;
+ import group24.piazzapanic.ui.StageAnimation;
+ 
++import java.io.File;
++import java.util.HashMap;
++import java.util.Scanner;
++
+ /** Core values like screen size, that will need to access, but nothing will need to modify.
+  * THIS CLASS *MUST* HAVE NO DEPENDENCIES ON OTHER CLASSES IN THIS PROJECT.
+  */
+ public class Base {
++
+     public static final boolean DEBUG = false;
++    /** The path to the config file. */
+     public static String CONFIG_PATH = "config.txt";
+-
+     public static int WINDOW_WIDTH = 100;
+     public static int WINDOW_HEIGHT = 100;
+ 
+Index: libGDX/core/src/group24/piazzapanic/levelElements/Ingredient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package group24.piazzapanic.levelElements;\r\n\r\nimport com.badlogic.gdx.graphics.Texture;\r\nimport group24.piazzapanic.Base;\r\nimport group24.piazzapanic.Physics.ImageMovable;\r\nimport group24.piazzapanic.maths.Vector2;\r\n\r\n/**\r\n * A\r\n */\r\npublic class Ingredient extends ImageMovable {\r\n    // Three integers with 0-1 values representing cutting/baking/frying progress\r\n    // These are NEGATIVE if cutting/baking/frying isn't supported\r\n    // for a given ingredient\r\n    /**\r\n     * The cutting progress. -1 if the item cannot be cut, 0 if the item can be cut, 1 if already cut.\r\n     */\r\n    protected Integer cuttingProgress;\r\n    /**\r\n     * The baking progress. -1 if the item cannot be baked, 0 if the item can be baked, 1 if already baked.\r\n     */\r\n    protected Integer bakingProgress;\r\n    /**\r\n     * The frying progress. -1 if the item cannot be fried, 0 if the item can be fried, 1 if already fried.\r\n     */\r\n    protected Integer fryingProgress;\r\n    /**\r\n     * The item's texture.\r\n     */\r\n    protected Texture sprite;\r\n    /**\r\n     * The ingredient's {@link IngredientType}\r\n     */\r\n    protected IngredientType ingredientType;\r\n\r\n    /**\r\n     * Constructor for the Ingredient class.\r\n     * @param ingredientType the type of the ingredient, an {@link IngredientType}.\r\n     * @param location the location of the ingredient, a {@link Vector2}\r\n     */\r\n    public Ingredient(IngredientType ingredientType, Vector2 location) {\r\n        super(Base.errorTexture);\r\n        this.ingredientType = ingredientType;\r\n        this.ingredient = this;\r\n        // Set constraints for ingredients\r\n        // assuming they are all raw when initialised\r\n        switch (this.ingredientType.getName()) {\r\n            case \"tomato\":\r\n                this.cuttingProgress = 0;\r\n                this.bakingProgress = -1;\r\n                this.fryingProgress = -1;\r\n                this.texture = Base.rawTomatoTexture;\r\n                break;\r\n            case \"lettuce\":\r\n                this.cuttingProgress = 0;\r\n                this.bakingProgress = -1;\r\n                this.fryingProgress = -1;\r\n                this.texture = Base.rawLettuceTexture;\r\n                break;\r\n            case \"onion\":\r\n                this.cuttingProgress = 0;\r\n                this.bakingProgress = -1;\r\n                this.fryingProgress = -1;\r\n                this.texture = Base.rawOnionTexture;\r\n                break;\r\n            case \"bread\":\r\n                this.cuttingProgress = 0;\r\n                this.bakingProgress = -1;\r\n                this.fryingProgress = -1;\r\n                this.texture = Base.rawBreadTexture;\r\n                break;\r\n            case \"meat\":\r\n                this.cuttingProgress = 0;\r\n                this.bakingProgress = -1;\r\n                this.fryingProgress = -1;\r\n                this.texture = Base.rawMeatTexture;\r\n                break;\r\n\r\n        }\r\n\r\n    }\r\n\r\n    /**\r\n     * Constructor for Ingredient without a {@link Vector2}\r\n     * Calls {@link #Ingredient(IngredientType ingredientType, Vector2 location)} with a new Vector2\r\n     * with x, y = 0.\r\n     * @param ingredientType the {@link IngredientType} of the Ingredient.\r\n     */\r\n    public Ingredient(IngredientType ingredientType) {\r\n        this(ingredientType, new Vector2(0, 0));\r\n    }\r\n\r\n    /**\r\n     * Constructor for the Ingredient class\r\n     * @param ingredientType An {@link IngredientType} representing the Ingredient's type\r\n     * @param cuttingProgress An integer representing the ingredient's cutting progress.\r\n     * @param bakingProgress An integer representing the ingredient's baking progress\r\n     * @param fryingProgress An integer representing the ingredient's frying progress.\r\n     */\r\n    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress, Integer fryingProgress) {\r\n        super(Base.errorTexture);\r\n        this.ingredientType = ingredientType;\r\n        this.ingredient = this;\r\n        this.cuttingProgress = cuttingProgress;\r\n        this.bakingProgress = bakingProgress;\r\n        this.fryingProgress = fryingProgress;\r\n    }\r\n\r\n    /**\r\n     * Cut the ingredient.\r\n     * Sets cuttingProgress to 1 and updates the texture of the ingredient.\r\n     * Updates the other progress variables to allow baking/frying if relevant.\r\n     */\r\n    public void cut() {\r\n        this.cuttingProgress = 1;\r\n        // Update textures and cutting progress. \r\n        switch (this.ingredientType.getName()) {\r\n            case \"tomato\":\r\n                this.texture = Base.cutTomatoTexture;\r\n                break;\r\n            case \"onion\":\r\n                this.texture = Base.cutOnionTexture;\r\n                break;\r\n            case \"lettuce\":\r\n                this.texture = Base.cutLettuceTexture;\r\n                break;\r\n            case \"bread\":\r\n                this.texture = Base.cutBreadTexture;\r\n                break;\r\n            case \"meat\":\r\n                this.fryingProgress = 0; // We can now fry the cut meat.\r\n                this.texture = Base.cutMeatTexture;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Fry the ingredient\r\n     */\r\n    public void fry() {\r\n        this.fryingProgress = 1;\r\n        switch (this.ingredientType.getName()) {\r\n            case \"tomato\":\r\n                this.bakingProgress = -1;\r\n                this.texture = Base.cutTomatoTexture;\r\n                break;\r\n            case \"onion\":\r\n                this.bakingProgress = 0;\r\n                this.texture = Base.cutOnionTexture;\r\n                break;\r\n            case \"lettuce\":\r\n                this.texture = Base.cutLettuceTexture;\r\n                break;\r\n            case \"bread\":\r\n                this.bakingProgress = 0;\r\n                this.texture = Base.cutOnionTexture;\r\n                break;\r\n            case \"meat\":\r\n                this.bakingProgress = -1;\r\n                this.texture = Base.friedMeatTexture;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Bake the ingredient\r\n     */\r\n    public void bake() {\r\n        this.bakingProgress = 1;\r\n        // this.sprite = baked sprite\r\n        // update constraints\r\n    }\r\n\r\n    // Getters\r\n    public float getCuttingProgress() {\r\n        return this.cuttingProgress;\r\n    }\r\n\r\n    public float getBakingProgress() {\r\n        return this.bakingProgress;\r\n    }\r\n\r\n    public float getFryingProgress() {\r\n        return this.fryingProgress;\r\n    }\r\n\r\n    public boolean identicalTo(Ingredient o) {\r\n        if (this.cuttingProgress != o.getCuttingProgress()) {\r\n            return false;\r\n        }\r\n        if (this.bakingProgress != o.getBakingProgress()) {\r\n            return false;\r\n        }\r\n        if (this.fryingProgress != o.getFryingProgress()) {\r\n            return false;\r\n        }\r\n        return this.ingredientType.getName() == o.ingredientType.getName();\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object obj) {\r\n        if (!(obj instanceof Ingredient)) {\r\n            return false;\r\n        } else return this.identicalTo((Ingredient) obj);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/libGDX/core/src/group24/piazzapanic/levelElements/Ingredient.java b/libGDX/core/src/group24/piazzapanic/levelElements/Ingredient.java
+--- a/libGDX/core/src/group24/piazzapanic/levelElements/Ingredient.java	(revision 48f731624dbed2e420f63db0356fe75af0085bcd)
++++ b/libGDX/core/src/group24/piazzapanic/levelElements/Ingredient.java	(date 1674834847516)
+@@ -6,12 +6,14 @@
+ import group24.piazzapanic.maths.Vector2;
+ 
+ /**
+- * A
+- */
++ * An ingredient is an item that can be used in a recipe.
++ * Ingredients can be cut, baked, and fried.
++ * This is represented by an integer value for each of these actions.
++ * The value is -1 if the item cannot be cut/baked/fried, 0 if the item can be cut/baked/fried, and 1 if the item has already been cut/baked/fried.
++ * This class extends {@link ImageMovable}.
++*/
+ public class Ingredient extends ImageMovable {
+-    // Three integers with 0-1 values representing cutting/baking/frying progress
+-    // These are NEGATIVE if cutting/baking/frying isn't supported
+-    // for a given ingredient
++
+     /**
+      * The cutting progress. -1 if the item cannot be cut, 0 if the item can be cut, 1 if already cut.
+      */
+@@ -113,7 +115,7 @@
+      */
+     public void cut() {
+         this.cuttingProgress = 1;
+-        // Update textures and cutting progress. 
++        // Update textures and cutting progress.
+         switch (this.ingredientType.getName()) {
+             case "tomato":
+                 this.texture = Base.cutTomatoTexture;
+@@ -162,6 +164,8 @@
+ 
+     /**
+      * Bake the ingredient
++     * NOTE - not required for assessment one, think of this
++     * as a fun little bonus for assessment two. :)
+      */
+     public void bake() {
+         this.bakingProgress = 1;
+@@ -170,18 +174,37 @@
+     }
+ 
+     // Getters
+-    public float getCuttingProgress() {
++
++    /**
++     * Get the ingredient's cutting progress.
++     * @return an Integer of the cutting progress
++     */
++    public Integer getCuttingProgress() {
+         return this.cuttingProgress;
+     }
+ 
+-    public float getBakingProgress() {
++    /**
++     * Get the ingredient's baking progress.
++     * @return an Integer of the baking progress
++     */
++
++    public Integer getBakingProgress() {
+         return this.bakingProgress;
+     }
+ 
+-    public float getFryingProgress() {
++    /**
++     * Get the ingredient's frying progress.
++     * @return an Integer of the frying progress
++     */
++    public Integer getFryingProgress() {
+         return this.fryingProgress;
+     }
+ 
++    /**
++     * Check if Ingredients have identical types and cutting/baking/frying progresses
++     * @param o The ingredient to be compared
++     * @return true if the ingredients are identical, false otherwise
++     */
+     public boolean identicalTo(Ingredient o) {
+         if (this.cuttingProgress != o.getCuttingProgress()) {
+             return false;
+@@ -195,6 +218,11 @@
+         return this.ingredientType.getName() == o.ingredientType.getName();
+     }
+ 
++    /**
++     * Check if Ingredients have identical types and cutting/baking/frying progresses
++     * @param obj The ingredient to be compared
++     * @return true if the ingredients are identical, false otherwise
++     */
+     @Override
+     public boolean equals(Object obj) {
+         if (!(obj instanceof Ingredient)) {
