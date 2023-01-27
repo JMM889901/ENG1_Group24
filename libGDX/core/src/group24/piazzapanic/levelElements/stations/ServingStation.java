@@ -7,19 +7,37 @@ import group24.piazzapanic.game.Customer;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
 
+/**
+ * Serving station allows users to submit completed dishes to fulfill orders.
+ */
 public class ServingStation extends Station{
 
+    /**
+     * Creates a new serving station where item = null, calls station with t
+     * @param t The texture of the station
+     */
     public ServingStation(Texture t) {
         super(t);
         this.item = null;
     }
     
+    /**
+     * Tries to place item on the station
+     * If item is a dish attempts to serve to customer 
+     * @param item Movable item representing ingredient or dish carried by player
+     * @return true if item is served successfully (if serveOrder returns true), false otherwise
+     */
     @Override
     public boolean placeItem(Movable item) {
         if (item instanceof Dish) return serveOrder(item);
         else return false;
     }
-
+    
+    /**
+     * Checks if a customer has ordered the submitted dish, if yes fulfils order of that customer
+     * @param dish Dish placed on the station
+     * @return true if dish matches a customers order, false otherwise
+     */
     private boolean serveOrder(Movable dish) {
         for (Customer c : GameData.customers) {
             if (dish == c.getOrder()){
@@ -30,6 +48,10 @@ public class ServingStation extends Station{
         return false;
     }
 
+    /**
+     * Overwriting station.takeItem as items cannot be picked up from serving station
+     * so always null
+     */
     @Override
     public Movable takeItem() {
         this.item = null;
