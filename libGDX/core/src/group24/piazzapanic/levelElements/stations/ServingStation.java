@@ -1,7 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
-
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.Customer;
 import group24.piazzapanic.game.GameData;
@@ -21,12 +20,6 @@ public class ServingStation extends Station{
         this.item = null;
     }
     
-    /**
-     * Tries to place item on the station
-     * If item is a dish attempts to serve to customer 
-     * @param item Movable item representing ingredient or dish carried by player
-     * @return true if item is served successfully (if serveOrder returns true), false otherwise
-     */
     @Override
     public boolean placeItem(Movable item) {
         if (item instanceof Dish) return serveOrder(item);
@@ -40,7 +33,7 @@ public class ServingStation extends Station{
      */
     private boolean serveOrder(Movable dish) {
         for (Customer c : GameData.customers) {
-            if (dish == c.getOrder()){
+            if (dish == c.getOrder()) {
                 c.fulfillOrder();
                 return true;
             }

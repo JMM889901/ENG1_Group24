@@ -1,21 +1,11 @@
 package group24.piazzapanic.levelElements;
 
-import java.util.Comparator;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
-import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
-import group24.piazzapanic.levelElements.IngredientType;
+import group24.piazzapanic.maths.Vector2;
 
-//import java.util.concurrent.TimeUnit;
 
-// Needs to extend Movable when this is implemented
 public class Ingredient extends ImageMovable {
     // Three integers with 0-1 values representing cutting/baking/frying progress
     // These are NEGATIVE if cutting/baking/frying isn't supported
@@ -74,8 +64,7 @@ public class Ingredient extends ImageMovable {
         this(ingredientType, new Vector2(0, 0));
     }
 
-    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress,
-            Integer fryingProgress) {
+    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress, Integer fryingProgress) {
         super(Base.errorTexture);
         this.ingredientType = ingredientType;
         this.ingredient = this;
@@ -101,10 +90,10 @@ public class Ingredient extends ImageMovable {
                 //this.fryingProgress = 0;
                 this.texture = Base.cutOnionTexture;
                 break;
-            case "lettuce": 
+            case "lettuce":
                 this.texture = Base.cutLettuceTexture;
                 break;
-            case "bread": 
+            case "bread":
                 this.texture = Base.cutBreadTexture;
                 break;
             case "meat":
@@ -181,7 +170,6 @@ public class Ingredient extends ImageMovable {
     public boolean equals(Object obj) {
         if (!(obj instanceof Ingredient)) {
             return false;
-        } else
-            return this.identicalTo((Ingredient) obj);
+        } else return this.identicalTo((Ingredient) obj);
     }
 }
