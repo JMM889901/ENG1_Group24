@@ -11,7 +11,7 @@ public class IngredientType{
     public static final IngredientType ONION = new IngredientType("onion");
     public static final IngredientType BREAD = new IngredientType("bread");
 
-    private String name;
+    private final String name;
 
     public IngredientType(String s) {
         name = s;
@@ -31,7 +31,7 @@ public class IngredientType{
         if (obj instanceof IngredientType) {
             return ((IngredientType) obj).getName().equals(name);
         } else if (obj instanceof String) {
-            return ((String) obj).equals(name);
+            return obj.equals(name);
         } else {
             return false;
         }

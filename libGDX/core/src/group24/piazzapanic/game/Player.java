@@ -53,7 +53,7 @@ public class Player extends Actor {
     ProgressBar bar;
     boolean DrawBar;
 
-    public static enum facing {
+    public enum facing {
         UP, DOWN, LEFT, RIGHT
     }
 
@@ -177,7 +177,7 @@ public class Player extends Actor {
         activeStation = getFacingStation();
         if (activeStation != null && Physics.isNear(activeStation, GameData.player)) {
             boolean Result = activeStation.placeItem(this.holding);
-            if (Result == true) {
+            if (Result) {
                 this.holding = null;
                 return Result;
             } else {
@@ -234,14 +234,14 @@ public class Player extends Actor {
         }
         Station station = this.getFacingStation();
         if (Gdx.input.isKeyPressed(Base.ACT_KEY) && station != null) {
-            float progress = station.progress;
-            if (progress > 0.1) {
+            float timeKeyHeld = station.timeKeyHeld;
+            if (timeKeyHeld > 0.1) {
                 playerPosition.gridUnitTranslateInplace(
                         this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
                         this.y - Player.GRID_WIDTH / 2);
                 bar.setPosition(playerPosition.getAbsoluteX() + GameData.offsetX,
                         playerPosition.getAbsoluteY() + GameData.offsetY + Player.TEXTURE_HEIGHT + 5);
-                bar.setValue(progress);
+                bar.setValue(timeKeyHeld);
                 DrawBar = true;
             } else {
                 DrawBar = false;

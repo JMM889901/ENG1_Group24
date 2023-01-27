@@ -11,12 +11,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.levelElements.Dish;
-import group24.piazzapanic.levelElements.Ingredient;;
+import group24.piazzapanic.levelElements.Ingredient;
 
+/**
+ * Stations allow users to interact with the game environment.
+ * Each station holds an "item", a Movable object. If the item is an Ingredient,
+ * it can only hold one item.
+ * If the item is a dish, it can hold the Dish and multiple Ingredients
+ * allowing players to assemble their dishes before they are served to customers.
+ */
 public class Station extends Image {
 
-    public float progress; // Time key is held for
+    public float timeKeyHeld; // Time key is held for
 
+    /**
+     * Initialise the station class
+     * @param Texture the station's texture
+     */
     public Station(Texture Texture) {
         super(Texture);
         super.setWidth(Base.tile_pixel_width);
@@ -32,7 +43,8 @@ public class Station extends Image {
     ProgressBar bar;
 
     /**
-     * Creates a new station, which knows it's own location to be as specified.
+     * Creates a new station. Each station knows its own location.
+     *
      * @param gridX The x coordinate of the station in the grid.
      * @param gridY The y coordinate of the station in the grid.
      */
@@ -44,24 +56,19 @@ public class Station extends Image {
     }
 
     /**
-     * Creates a new station without specifiying it's location. Deprecated.
-     */
-    public Station() {
-        super();
-        System.out.println("Deprecated constructor called for Station.");
-    }
-
-    /**
-     * Puts `item` on the station if there is no item already.
+     * Puts an item on the station.
+     * Stations can either:
+     * hold a single Ingredient (if an ingredient is already on the station, placeItem will return False and not change the existing ingredient).
+     * OR
+     * hold a Dish and an unlimited number of Ingredients (to combine into a finished meal)
+     *
      * @param item
-     * @return true if the item was placed, false if there was already an item on the station.
+     * @return true if the item was placed, false if the item could not be placed
      */
     public boolean placeItem(Movable item) {
         if (canPlaceItem()) {
             if (this.item instanceof Dish && item instanceof Ingredient) {
-                System.out.println("adding ingredient");
                 return ((Dish) this.item).addIngredient((Ingredient) item);
-
             }
             this.item = item;
             return true;
@@ -71,26 +78,27 @@ public class Station extends Image {
 
     /**
      * A private convenience method to check if an item can be placed on the station.
-     * @return Whether an item can be placed on the station.
+     * @return True if item can be placed, False otherwise.
      */
     private boolean canPlaceItem() {
         if (hasItem()) {
-            if (this.item instanceof Dish) {
-                return true;
-            }
-            return false;
+            return this.item instanceof Dish; // If it's a Dish, return True. Otherwise False.
         }
         return true;
     }
 
     /**
      * Checks if the station has an item on it.
-     * @return Whether the station has an item/items on it.
+     * @return True if the station has an item(s) on it. False otherwise.
      */
     public boolean hasItem() {
         return this.item != null;
     }
 
+    /**
+     * Pick up the item from the station.
+     * @return A Movable of the station's current item, null if it doesn't have an item.
+     */
     public Movable takeItem() {
         if (hasItem()) {
             Movable tmp = this.item;

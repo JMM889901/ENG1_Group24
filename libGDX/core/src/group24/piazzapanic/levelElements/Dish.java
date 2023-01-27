@@ -108,8 +108,7 @@ public class Dish extends ImageMovable {
             recipe = SALAD_RECIPE; //if it only matches salad set recipe to salad
         else if (matchBurger && !matchSalad)
             recipe = BURGER_RECIPE; //if it only matches burger set recipe to burger
-        else if (!matchBurger && !matchSalad)
-            return false; //returns flase if it matches none of the recipes
+        else return matchBurger || matchSalad; //returns flase if it matches none of the recipes
         return true; //returns true if there is a recipe that matches
 
     }

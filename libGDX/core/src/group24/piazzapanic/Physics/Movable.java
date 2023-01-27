@@ -5,11 +5,11 @@ import group24.piazzapanic.maths.Vector2;
 
 public interface Movable {
 
-    public void actItem(float delta);
+    void actItem(float delta);
 
-    public void drawItem(int x, int y);
+    void drawItem(int x, int y);
 
-    public void drawItem(int x, int y, int width, int height);
+    void drawItem(int x, int y, int width, int height);
 
-    public Ingredient getIngredient();
+    Ingredient getIngredient();
 }

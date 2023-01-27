@@ -1,6 +1,5 @@
 package group24.piazzapanic.game;
 
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -12,14 +11,15 @@ import group24.piazzapanic.ui.StageAnimation;
 public class Customer extends StageAnimation {
     public static final int entityHeight = 153;
     public static final int entityWidth = 77;
-    private String name; //Probably pointless
-    private int order; //Should be dish class
-    private CharSequence orderText; //temporary
+    private String name; // Probably pointless
+    private int order; // Should be dish class
+    private final CharSequence orderText; // temporary
     private float timeLimit;
-    private Label textBubble;
+    private final Label textBubble;
 
     public Customer() {
-        super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1, 20, 20, entityWidth, entityHeight);
+        super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
+                20, 20, entityWidth, entityHeight);
         timeLimit = 30f;
         this.timeLimit = 15;
         this.orderText = ":3";
@@ -35,11 +35,10 @@ public class Customer extends StageAnimation {
         GameData.addScore(1);
     }
 
-    
-    /** 
+    /**
      * @param x
      */
-    //Update text box with the customer
+    // Update text box with the customer
     @Override
     public void setX(float x) {
         super.setX(x);
@@ -47,8 +46,7 @@ public class Customer extends StageAnimation {
             this.textBubble.setX(x);
     }
 
-    
-    /** 
+    /**
      * @param y
      */
     @Override
@@ -58,8 +56,7 @@ public class Customer extends StageAnimation {
             this.textBubble.setY(y + entityHeight);
     }
 
-    
-    /** 
+    /**
      * @param batch
      * @param parentAlpha
      */
