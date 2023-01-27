@@ -18,9 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Team24 Game
+title: Group 24
 description: >- # this means to ignore newlines until "baseurl:"
-  Test decription, please ignore. 
+  ENG1 Group 24 Assessment 1
 baseurl: "/ENG1_Group24" # the subpath of your site, e.g. /blog
 url: "https://jmm889901.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
