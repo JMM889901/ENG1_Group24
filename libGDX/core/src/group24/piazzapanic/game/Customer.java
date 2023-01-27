@@ -9,6 +9,11 @@ import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
 
+/**
+ * The customer class represents a customer in the game.
+ * It extends {@link StageAnimation} and has a {@link Dish} order.
+ * It also has a time limit for the order to be fulfilled.
+ */
 public class Customer extends StageAnimation {
     /**
      * The height of the customer
