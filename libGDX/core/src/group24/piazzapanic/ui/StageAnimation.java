@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.utils.compression.lzma.Base;
@@ -12,7 +13,7 @@ import com.badlogic.gdx.utils.reflect.Constructor;
 
 import group24.piazzapanic.maths.Vector2;
 
-public class StageAnimation extends Image {
+public class StageAnimation extends Actor {
     Animation<TextureRegion> animation;
     Texture animationSheet;
     Float stateTime;

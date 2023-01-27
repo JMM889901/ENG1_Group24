@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * The Player class encapsulates player data (position, veolocity etc.), but
  * does nothing itself.
  */
+
 public class Player extends Actor {
     public static final int TEXTURE_WIDTH = 48;
     public static final int TEXTURE_HEIGHT = 96;
@@ -119,15 +120,8 @@ public class Player extends Actor {
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
                         * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
-
-        //if (this.holding != null) {
-        //    System.out.println(this.holding);
-        //    this.holding.drawItem(
-        //            (int) playerPosition.getAbsoluteX() + GameData.offsetX
-        //                    + ((int) (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width)) / 2,
-        //            (int) (playerPosition.getAbsoluteY() + GameData.offsetY
-        //                    + (Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width) / 2));
-        //}
+        Base.batch.end(); //Libgdx requires we do this or we get z level tomfoolery
+        Base.batch.begin();
         if (DrawBar) {
             bar.draw(batch, parentAlpha);
         }

@@ -4,18 +4,33 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 
 /**
- * Just something to stand in the way of the player, block off areas, etc.
+ * Obstacles stop the player walking through a specific area
  */
 public class Obstacle extends Station {
+    /**
+     * Class constructor.
+     */
     public Obstacle() {
         super(Base.obstacleTexture);
     }
 
+    /**
+     * obstacles cannot hold items.
+     * this is here to stop players putting items on walls.
+     * @return false
+     */
     @Override
     public boolean hasItem() {
-        return true;
+        return false;
     }
 
+    /**
+     * obstacles do not have items.
+     * you cannot pick up things that don't exist...
+     * or can you?
+     * oooOOOOOoooOOOoOOOOooo!
+     * @return null
+     */
     @Override
     public Movable takeItem() {
         return null;
