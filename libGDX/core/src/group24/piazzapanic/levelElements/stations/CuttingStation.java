@@ -29,18 +29,18 @@ public class CuttingStation extends Station {
                     return; // The item is already cut, don't go any further.
                 }
                 if (super.item.getIngredient().getCuttingProgress() == -1) {
-                    progress = 0;
+                    timeKeyHeld = 0;
                     return;
                 }
-                progress += delta;
-                if (progress > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
+                timeKeyHeld += delta;
+                if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
                     // Cutting is done! poggers
                     super.item.getIngredient().cut();
                     System.out.println("Cutting complete...");
-                    progress = 0;
+                    timeKeyHeld = 0;
                 }
             } else {
-                progress = 0; // Not pressing the button? sadge.
+                timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
         }

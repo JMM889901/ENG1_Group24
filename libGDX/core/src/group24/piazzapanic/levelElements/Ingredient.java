@@ -174,10 +174,7 @@ public class Ingredient extends ImageMovable {
         if (this.fryingProgress != o.getFryingProgress()) {
             return false;
         }
-        if (this.ingredientType.getName() != o.ingredientType.getName()) {
-            return false;
-        }
-        return true;
+        return this.ingredientType.getName() == o.ingredientType.getName();
     }
 
     @Override

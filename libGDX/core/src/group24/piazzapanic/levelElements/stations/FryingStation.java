@@ -20,19 +20,19 @@ public class FryingStation extends Station {
                     return; // The item is already fried, don't go any further.
                 }
                 if (super.item.getIngredient().getFryingProgress() == -1) {
-                    progress = 0;
+                    timeKeyHeld = 0;
                     return;
                 }
-                progress += delta;
-                if (progress > 3 && super.item.getIngredient().getFryingProgress() == 0) {
+                timeKeyHeld += delta;
+                if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
                     // Cutting is done! poggers
                     System.out.println("Hm.");
                     super.item.getIngredient().fry();
                     System.out.println(" get fried idiot...");
-                    progress = 0;
+                    timeKeyHeld = 0;
                 }
             } else {
-                progress = 0; // Not pressing the button? sadge.
+                timeKeyHeld = 0; // Not pressing the button? sadge.
             }
 
         }

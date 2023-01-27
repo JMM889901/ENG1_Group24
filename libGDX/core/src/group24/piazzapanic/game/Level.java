@@ -17,7 +17,7 @@ import group24.piazzapanic.maths.Vector2;
  * screen to the player.
  */
 public class Level {
-    private String levelName;
+    private final String levelName;
     public Station[][] grid;
     private int width;
     private int height;

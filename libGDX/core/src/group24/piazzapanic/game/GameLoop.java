@@ -24,10 +24,10 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
 public class GameLoop extends Stage {
-    private Label scoreCounter;
+    private final Label scoreCounter;
     private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
 
-    private ArrayList<Group> rows;
+    private final ArrayList<Group> rows;
 
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
@@ -189,14 +189,14 @@ public class GameLoop extends Stage {
             curPosition.x = 0.85;
             curPosition.y = 0.85;
             //curPosition = new Vector2(0.85, 0.85);
-            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), (int) (curPosition.getAbsoluteY() - 50), 50,
+            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         if (GameData.player2.holding != null) {
             //curPosition = new Vector2(0.8, 0.85);
             curPosition.y = 0.85;
             curPosition.x = 0.8;
-            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), (int) (curPosition.getAbsoluteY() - 50), 50,
+            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         Base.batch.end();
