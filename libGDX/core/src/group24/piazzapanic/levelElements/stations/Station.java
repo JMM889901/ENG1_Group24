@@ -115,4 +115,7 @@ public class Station extends Image {
 
     }
 
+    public void interact(float delta) {
+    }
+
 }

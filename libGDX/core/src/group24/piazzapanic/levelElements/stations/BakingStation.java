@@ -11,7 +11,6 @@ import group24.piazzapanic.Physics.Movable;
 
 public class BakingStation extends Station {
 
-
     public BakingStation(/* Texture sprite, Vector2 location */) {
         super(Base.bakingStationTexture);
         // this.sprite = sprite;
@@ -47,26 +46,27 @@ public class BakingStation extends Station {
      */
     @Override
     public void act(float delta) {
-        if (super.item != null) { // Avoid null pointer error
-            if (Gdx.input.isKeyPressed(Base.ACT_KEY) && GameData.player.getFacingStation() == this
-                    && Physics.isNear(this, GameData.player)) {
-                if (super.item.getIngredient().getBakingProgress() == 1) { // Item already baked, so can't bake further.
-                    System.out.println("Already baked......");
-                    return;
-                }
-                if (super.item.getIngredient().getBakingProgress() == -1) {  // Item cannot be baked
-//                    timeKeyHeld = 0;
-                    return;
-                }
-                timeKeyHeld += delta; // Increase the
-                if (timeKeyHeld > 3 && super.item.getIngredient().getBakingProgress() == 0) {
-                    super.item.getIngredient().bake(); // Button held for 3 seconds, so item is baked.
-                    timeKeyHeld = 0;
-                }
-            } else {
-                timeKeyHeld = 0; // Not pressing the button, so reset the counter.
-            }
 
+    }
+
+    @Override
+    public void interact(float delta) {
+        // TODO Auto-generated method stub
+        if (super.item == null) {
+            return;
+        }
+        if (super.item.getIngredient().getBakingProgress() == 1) { // Item already baked, so can't bake further.
+            System.out.println("Already baked......");
+            return;
+        }
+        if (super.item.getIngredient().getBakingProgress() == -1) { // Item cannot be baked
+            //                    timeKeyHeld = 0;
+            return;
+        }
+        timeKeyHeld += delta; // Increase the
+        if (timeKeyHeld > 3 && super.item.getIngredient().getBakingProgress() == 0) {
+            super.item.getIngredient().bake(); // Button held for 3 seconds, so item is baked.
+            timeKeyHeld = 0;
         }
     }
 }

@@ -47,6 +47,11 @@ public class Player extends Actor {
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                  // collidable objects.
     Vector2 playerPosition; //Meant to prevent mem leaks, otherwise this would be in the draw func
+    public double playerInteractX;
+    public double playerInteractY;
+    boolean playerInteracting;
+    Station interactingStation;
+
     public Movable holding; // The player's one-item inventory.
 
     public StageAnimation animation;
@@ -213,11 +218,8 @@ public class Player extends Actor {
         }
 
         this.animation.act(delta);
-        if (GameData.player != this) {
-            DrawBar = false;
-            return;
-        }
-        if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY)) {
+
+        if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY) && GameData.player == this) {
             if (this.holding == null) {
                 System.out.println("Inventory is empty.");
                 this.pickUp();
@@ -227,8 +229,23 @@ public class Player extends Actor {
             }
         }
         Station station = this.getFacingStation();
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY) && station != null) {
+        if (Gdx.input.isKeyJustPressed(Base.ACT_KEY) && station != null && GameData.player == this) {
+            this.playerInteracting = true;
+            this.playerInteractX = this.x;
+            this.playerInteractY = this.y;
+            this.interactingStation = station;
+        }
+        if (this.playerInteracting) {
+            if (!(this.x == this.playerInteractX && this.y == this.playerInteractY) || station == null) {
+                this.playerInteracting = false;
+                DrawBar = false;
+                this.interactingStation.timeKeyHeld = 0;
+                this.interactingStation = null;
+                return;
+            }
+            station.interact(delta);
             float timeKeyHeld = station.timeKeyHeld;
+
             if (timeKeyHeld > 0.1) {
                 playerPosition.gridUnitTranslateInplace(
                         this.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
@@ -240,7 +257,9 @@ public class Player extends Actor {
             } else {
                 DrawBar = false;
             }
-        } else {
+        } else
+
+        {
             DrawBar = false;
         }
     }
