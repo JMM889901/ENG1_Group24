@@ -7,10 +7,15 @@ import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
 
+/**
+ * An ingredient is an item that can be used in a recipe.
+ * Ingredients can be cut, baked, and fried.
+ * This is represented by an integer value for each of these actions.
+ * The value is -1 if the item cannot be cut/baked/fried, 0 if the item can be cut/baked/fried, and 1 if the item has already been cut/baked/fried.
+ * This class extends {@link ImageMovable}.
+*/
 public class Ingredient extends ImageMovable {
-    // Three integers with 0-1 values representing cutting/baking/frying progress
-    // These are NEGATIVE if cutting/baking/frying isn't supported
-    // for a given ingredient
+
     /**
      * The cutting progress. -1 if the item cannot be cut, 0 if the item can be cut, 1 if already cut.
      */
@@ -113,7 +118,7 @@ public class Ingredient extends ImageMovable {
      */
     public void cut() {
         this.cuttingProgress = 1;
-        // Update textures and cutting progress. 
+        // Update textures and cutting progress.
         switch (this.ingredientType.getName()) {
             case "tomato":
                 this.texture = GameData.cutTomatoTexture;
@@ -162,6 +167,8 @@ public class Ingredient extends ImageMovable {
 
     /**
      * Bake the ingredient
+     * NOTE - not required for assessment one, think of this
+     * as a fun little bonus for assessment two. :)
      */
     public void bake() {
         this.bakingProgress = 1;
@@ -170,18 +177,37 @@ public class Ingredient extends ImageMovable {
     }
 
     // Getters
-    public float getCuttingProgress() {
+
+    /**
+     * Get the ingredient's cutting progress.
+     * @return an Integer of the cutting progress
+     */
+    public Integer getCuttingProgress() {
         return this.cuttingProgress;
     }
 
-    public float getBakingProgress() {
+    /**
+     * Get the ingredient's baking progress.
+     * @return an Integer of the baking progress
+     */
+
+    public Integer getBakingProgress() {
         return this.bakingProgress;
     }
 
-    public float getFryingProgress() {
+    /**
+     * Get the ingredient's frying progress.
+     * @return an Integer of the frying progress
+     */
+    public Integer getFryingProgress() {
         return this.fryingProgress;
     }
 
+    /**
+     * Check if Ingredients have identical types and cutting/baking/frying progresses
+     * @param o The ingredient to be compared
+     * @return true if the ingredients are identical, false otherwise
+     */
     public boolean identicalTo(Ingredient o) {
         if (this.cuttingProgress != o.getCuttingProgress()) {
             return false;
@@ -195,6 +221,11 @@ public class Ingredient extends ImageMovable {
         return this.ingredientType.getName() == o.ingredientType.getName();
     }
 
+    /**
+     * Check if Ingredients have identical types and cutting/baking/frying progresses
+     * @param obj The ingredient to be compared
+     * @return true if the ingredients are identical, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Ingredient)) {

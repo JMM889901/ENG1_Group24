@@ -1,33 +1,37 @@
 package group24.piazzapanic.levelElements;
 
+import group24.piazzapanic.Base;
+import group24.piazzapanic.Physics.ImageMovable;
+import group24.piazzapanic.game.GameData;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import java.util.Collections;
-
-import com.badlogic.gdx.graphics.Texture;
-
-import group24.piazzapanic.Base;
-import group24.piazzapanic.Physics.ImageMovable;
-import group24.piazzapanic.Physics.Movable;
-import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.maths.Vector2;
-
+/**
+ * Dishes are used to serve Ingredients.
+ * They interact with {@link Ingredient}'s {@link Ingredient#fry()}  and {@link Ingredient#getFryingProgress()} methods.
+ * This class extends {@link Station}.
+ * Recipes are stored as an ArrayList of Ingredients.
+ */
 public class Dish extends ImageMovable {
+    /** The burger recipe. */
     static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.BURGER_BUN, GameData.BURGER, GameData.CHOPPED_LETTUCE));
+    /** The Salad recipe. */
     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
+    /** The list of all dishes. */
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
             Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
+    /** Stores the dish's recipe. */
     ArrayList<Ingredient> recipe;
+    /** Stores the dish's current progress towards completion. */
     boolean complete;
 
-    public static void init() {
-
-    }
-
+    /**
+     * Initialise the Dish. Set its texture, size, completeness, and recipe.
+     */
     public Dish() {
 
         super(GameData.dishTexture);
@@ -79,6 +83,7 @@ public class Dish extends ImageMovable {
         return false;
     }
 
+
     //moved recipe checks to separate method so it doesnt check when it doesnt need to
     public void act(float delta) {
         /*
@@ -128,6 +133,7 @@ public class Dish extends ImageMovable {
 
     }
 
+
     private boolean checkComplete() {
         if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {
             for (Ingredient i : recipe) {
@@ -144,6 +150,10 @@ public class Dish extends ImageMovable {
         return false;
     }
 
+    /**
+     * Gets the dish's completeness.
+     * @return true if the dish is complete, false otherwise.
+     */
     public boolean isComplete() {
         return complete;
     }

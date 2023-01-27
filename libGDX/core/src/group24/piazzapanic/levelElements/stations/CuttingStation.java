@@ -19,8 +19,6 @@ public class CuttingStation extends Station {
         super(GameData.cuttingStationTexture);
     }
 
-    @Override
-
     /**
      * Allows the player to cut the item.
      * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.
@@ -30,9 +28,6 @@ public class CuttingStation extends Station {
      *
      * @param delta Time in seconds since the last frame.
      */
-    public void act(float delta) {
-    }
-
     @Override
     public void interact(float delta) {
         if (super.item == null) {

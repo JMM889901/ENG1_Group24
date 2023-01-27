@@ -1,70 +1,111 @@
 package group24.piazzapanic.game;
 
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.levelElements.IngredientType;
+import group24.piazzapanic.ui.StageAnimation;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import group24.piazzapanic.levelElements.Ingredient;
-import group24.piazzapanic.levelElements.IngredientType;
-import group24.piazzapanic.ui.StageAnimation;
-
-import com.badlogic.gdx.audio.Music;
-
-/*
- * Globally accessible functions and variables should be stored here.
+/**
+ * The GameData class contains globally accessible functions and variables.
  */
 public class GameData {
+    /** The active {@link GameLoop} */
     public static GameLoop gameLoop;
+    /** The game's score */
     public static Integer score = 0;
+    /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
+    /** The in-game timer, updated every frame */
     public static float gameTime;
+    /** The time since the last customer was spawned */
     public static float sinceLastSpawn;
+    /** The active {@link Level} */
     public static Level level;
+    /** The active {@link Player}. Points to either {@link #player1} or {@link #player2} */
     public static Player player;
+    /** The first player */
     public static Player player1;
+    /** The second player */
     public static Player player2;
+    /** The active {@link Music} */
     public static Music music;
+    /** A list of all the possible customer sprites */
     public static List<String> customerSpriteSheets;
+    /** Random number generator used while instantiating customers and dishes */
     public static Random rand;
-    public static int offsetX = 400; //offsets for the camera, in pixels.
+    /** x offset for the camera, in pixels */
+    public static int offsetX = 400;
+    /** y offset for the camera, in pixels */
     public static int offsetY = 200;
 
     //ingredients with states to use in recipes
+    /** tomato ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes*/
     public static Ingredient CHOPPED_TOMATO;
+    /** chopped lettuce ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
     public static Ingredient CHOPPED_LETTUCE;
+    /** chopped onion ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
     public static Ingredient CHOPPED_ONION;
+    /** chopped burger bun ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
     public static Ingredient BURGER_BUN;
+    /** finished burger to be used in {@link group24.piazzapanic.levelElements.Dish} for serving to customers */
     public static Ingredient BURGER;
-
+    /** initial animation for chef 1 */
     public static StageAnimation initialChef1Animation;
+    /** initial animation for chef 2 */
     public static StageAnimation initialChef2Animation;
+    /** HashMap of all animations for chef1 */
     public static HashMap<String, Animation<TextureRegion>> chef1Animations;
+    /** HashMap of all animations for chef2 */
     public static HashMap<String, Animation<TextureRegion>> chef2Animations;
 
+    /** The texture for the debug square */
     public static Texture debugSquareTexture;
-
+    /** The texture for the floor */
     public static Texture floorTexture;
+    /** The texture for the {@link group24.piazzapanic.levelElements.stations.BakingStation} */
     public static Texture bakingStationTexture;
+    /** A texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
     public static Texture counterTopTexture;
+    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterRightCornerTexture;
+    /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterRightTexture;
+    /** An end texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
+
     public static Texture counterEndTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.CuttingStation} */
     public static Texture cuttingStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.FryingStation} */
     public static Texture fryingStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture ingredientStationTexture;
+    /** Texture for the TomatoStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture tomatoStationTexture;
+    /** Texture for the OnionStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture onionStationTexture;
+    /** Texture for the LettuceStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture lettuceStationTexture;
+    /** Texture for the BreadStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture breadStationTexture;
+    /** Texture for the MeatStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture meatStationTexture;
+    /** Texture for the DishStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture dishStationTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.Dish} type */
     public static Texture dishTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.Bin} */
     public static Texture binTexture;
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.ServingStation} */
     public static Texture servingStationTexture;
 
     public static Texture obstacleTexture;
