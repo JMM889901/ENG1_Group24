@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  * The Player class encapsulates player data (position, veolocity etc.), but
  * does nothing itself.
  */
+
 public class Player extends Actor {
     public static final int TEXTURE_WIDTH = 48;
     public static final int TEXTURE_HEIGHT = 96;
