@@ -21,10 +21,10 @@ public class FryingStation extends Station {
     }
 
     /**
-     * Allows the player to interact with the station by frying the item.
+     * Allows the player to fry the item.
      * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.
      * Checks if the item has already been fried or can't be fried.
-     * If it can be fried increments timeKeyHeld by act until timeKeyHeld > 3 seconds. Then fries the item.
+     * If it can be fried increases timeKeyHeld by act until timeKeyHeld > 3 seconds. Then fries the item.
      * n.b. act(float delta) is called every frame.
      *
      * @param delta Time in seconds since the last frame.
