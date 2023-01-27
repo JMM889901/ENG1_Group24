@@ -3,6 +3,7 @@ package group24.piazzapanic.levelElements.stations;
 import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
@@ -22,20 +23,20 @@ public class IngredientStation extends Station {
      * @return a Texture for the ingredientStation
      */
     public static Texture getIngredientStationAsset(IngredientType type) {
-        Texture texture = Base.ingredientStationTexture;
+        Texture texture = GameData.ingredientStationTexture;
         switch (type.getName()) {
             case "tomato":
-                return Base.tomatoStationTexture;
+                return GameData.tomatoStationTexture;
             case "onion":
-                return Base.onionStationTexture;
+                return GameData.onionStationTexture;
             case "lettuce":
-                return Base.lettuceStationTexture;
+                return GameData.lettuceStationTexture;
             case "bread":
-                return Base.breadStationTexture;
+                return GameData.breadStationTexture;
             case "meat":
-                return Base.meatStationTexture;
+                return GameData.meatStationTexture;
             case "dish":
-                return Base.dishStationTexture;
+                return GameData.dishStationTexture;
         }
         return texture;
     }

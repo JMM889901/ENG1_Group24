@@ -58,10 +58,10 @@ public class GameLoop extends Stage {
         //Player creation
 
         GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                Base.initialChef1Animation, Base.chef1Animations);
+                GameData.initialChef1Animation, GameData.chef1Animations);
         GameData.player1 = GameData.player;
         GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                Base.initialChef2Animation, Base.chef2Animations);
+                GameData.initialChef2Animation, GameData.chef2Animations);
 
         this.addActor(GameData.player1);
         this.addActor(GameData.player2);
@@ -78,9 +78,9 @@ public class GameLoop extends Stage {
         this.addActor(scoreCounter);
 
         //Inventory Panel
-        StageAnimation ChefAnimation = new StageAnimation(Base.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
+        StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
                 new Vector2(0.85, 0.85), 50, 100);
-        StageAnimation ChefAnimation1 = new StageAnimation(Base.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
+        StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
                 new Vector2(0.8, 0.85), 50, 100);
 
         this.addActor(ChefAnimation);
@@ -171,7 +171,7 @@ public class GameLoop extends Stage {
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
-                Base.batch.draw(Base.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
+                Base.batch.draw(GameData.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
                         curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
 
             }
@@ -184,7 +184,7 @@ public class GameLoop extends Stage {
                     GameData.player.y - Player.GRID_WIDTH / 2);
             Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2,
                     GameData.player.y + Player.GRID_WIDTH / 2);
-            Base.batch.draw(Base.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX,
+            Base.batch.draw(GameData.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX,
                     bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
                     topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }

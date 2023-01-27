@@ -7,7 +7,7 @@ import group24.piazzapanic.game.Physics;
 
 public class CuttingStation extends Station {
     public CuttingStation() {
-        super(Base.cuttingStationTexture);
+        super(GameData.cuttingStationTexture);
     }
 
     @Override

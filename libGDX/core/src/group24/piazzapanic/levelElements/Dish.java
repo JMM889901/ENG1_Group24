@@ -10,14 +10,16 @@ import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
 
 public class Dish extends ImageMovable {
     static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
-            Arrays.asList(Base.BURGER_BUN, Base.BURGER, Base.CHOPPED_LETTUCE));
+            Arrays.asList(GameData.BURGER_BUN, GameData.BURGER, GameData.CHOPPED_LETTUCE));
     static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
-            Arrays.asList(Base.CHOPPED_ONION, Base.CHOPPED_LETTUCE, Base.CHOPPED_TOMATO));
-    public static ArrayList<Dish> Dishes = new ArrayList<Dish>(Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
+            Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
+    public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
+            Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     ArrayList<Ingredient> recipe;
     boolean complete;
@@ -28,7 +30,7 @@ public class Dish extends ImageMovable {
 
     public Dish() {
 
-        super(Base.dishTexture);
+        super(GameData.dishTexture);
         super.setWidth(Base.tile_pixel_width);
         super.setHeight(Base.tile_pixel_height);
         this.complete = false;
@@ -36,7 +38,7 @@ public class Dish extends ImageMovable {
     }
 
     public Dish(ArrayList<Ingredient> recipe) {
-        super(Base.dishTexture);
+        super(GameData.dishTexture);
         super.setWidth(Base.tile_pixel_width);
         super.setHeight(Base.tile_pixel_height);
         this.complete = true;
@@ -65,10 +67,10 @@ public class Dish extends ImageMovable {
             this.Ingredients.add(item);
             this.complete = checkComplete();
             System.out.println("added to dish\ncurrent:");
-                for (Ingredient i : Ingredients) {
-                    System.out.println(i.ingredientType.getName());
-                }
-                System.out.println("recipe:");
+            for (Ingredient i : Ingredients) {
+                System.out.println(i.ingredientType.getName());
+            }
+            System.out.println("recipe:");
             for (Ingredient i : recipe) {
                 System.out.println(i.ingredientType.getName());
             }
@@ -76,7 +78,6 @@ public class Dish extends ImageMovable {
         }
         return false;
     }
-
 
     //moved recipe checks to separate method so it doesnt check when it doesnt need to
     public void act(float delta) {
@@ -121,7 +122,8 @@ public class Dish extends ImageMovable {
             recipe = SALAD_RECIPE; //if it only matches salad set recipe to salad
         else if (matchBurger && !matchSalad)
             recipe = BURGER_RECIPE; //if it only matches burger set recipe to burger
-        else return matchBurger || matchSalad; //returns flase if it matches none of the recipes
+        else
+            return matchBurger || matchSalad; //returns flase if it matches none of the recipes
         return true; //returns true if there is a recipe that matches
 
     }
@@ -133,8 +135,10 @@ public class Dish extends ImageMovable {
                     return false;
                 }
             }
-            if(recipe == BURGER_RECIPE) this.texture = Base.burgerDishTexture;
-            else if(recipe == SALAD_RECIPE) this.texture = Base.saladDishTexture;
+            if (recipe == BURGER_RECIPE)
+                this.texture = GameData.burgerDishTexture;
+            else if (recipe == SALAD_RECIPE)
+                this.texture = GameData.saladDishTexture;
             return true;
         }
         return false;

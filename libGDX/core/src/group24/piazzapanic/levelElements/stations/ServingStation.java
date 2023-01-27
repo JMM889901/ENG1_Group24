@@ -9,7 +9,7 @@ import group24.piazzapanic.levelElements.Dish;
 /**
  * Serving station allows users to submit completed dishes to fulfill orders.
  */
-public class ServingStation extends Station{
+public class ServingStation extends Station {
 
     /**
      * Creates a new serving station where item = null, calls station with t
@@ -19,13 +19,15 @@ public class ServingStation extends Station{
         super(t);
         this.item = null;
     }
-    
+
     @Override
     public boolean placeItem(Movable item) {
-        if (item instanceof Dish) return serveOrder(item);
-        else return false;
+        if (item instanceof Dish)
+            return serveOrder(item);
+        else
+            return false;
     }
-    
+
     /**
      * Checks if a customer has ordered the submitted dish, if yes fulfils order of that customer
      * @param dish Dish placed on the station

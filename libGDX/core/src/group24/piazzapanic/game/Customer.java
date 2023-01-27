@@ -68,6 +68,7 @@ public class Customer extends StageAnimation {
         textBubble.draw(batch, parentAlpha);
     }
 
-
-    public Dish getOrder(){ return this.order;}
+    public Dish getOrder() {
+        return this.order;
+    }
 }

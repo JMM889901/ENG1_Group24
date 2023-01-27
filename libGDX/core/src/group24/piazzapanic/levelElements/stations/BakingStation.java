@@ -12,7 +12,7 @@ import group24.piazzapanic.Physics.Movable;
 public class BakingStation extends Station {
 
     public BakingStation(/* Texture sprite, Vector2 location */) {
-        super(Base.bakingStationTexture);
+        super(GameData.bakingStationTexture);
         // this.sprite = sprite;
         // this.location = location;
 
@@ -30,7 +30,7 @@ public class BakingStation extends Station {
     }
 
     public BakingStation(/* Texture sprite, Vector2 location, */ Movable item) {
-        super(Base.bakingStationTexture);
+        super(GameData.bakingStationTexture);
         /*
          * this.sprite = sprite;
          * this.location = location;

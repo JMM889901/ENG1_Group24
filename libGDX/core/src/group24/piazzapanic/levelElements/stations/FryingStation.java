@@ -17,7 +17,7 @@ public class FryingStation extends Station {
      * Initialise the FryingStation and set its texture
      */
     public FryingStation() {
-        super(Base.fryingStationTexture);
+        super(GameData.fryingStationTexture);
     }
 
     /**

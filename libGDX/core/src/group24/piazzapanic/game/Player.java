@@ -68,7 +68,7 @@ public class Player extends Actor {
     private String key;
 
     public Player(double x, double y, StageAnimation animation) {
-        this(x, y, animation, Base.chef1Animations);
+        this(x, y, animation, GameData.chef1Animations);
     }
 
     public Player(double x, double y, StageAnimation animation, HashMap<String, Animation<TextureRegion>> AnimMap) {

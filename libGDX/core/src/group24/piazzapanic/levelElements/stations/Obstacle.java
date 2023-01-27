@@ -2,6 +2,7 @@ package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.game.GameData;
 
 /**
  * Obstacles stop the player walking through a specific area
@@ -11,7 +12,7 @@ public class Obstacle extends Station {
      * Class constructor.
      */
     public Obstacle() {
-        super(Base.obstacleTexture);
+        super(GameData.obstacleTexture);
     }
 
     /**

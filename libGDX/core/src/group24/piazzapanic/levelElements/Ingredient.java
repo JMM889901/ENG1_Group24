@@ -3,8 +3,8 @@ package group24.piazzapanic.levelElements;
 import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
-
 
 public class Ingredient extends ImageMovable {
     // Three integers with 0-1 values representing cutting/baking/frying progress
@@ -17,7 +17,7 @@ public class Ingredient extends ImageMovable {
     protected IngredientType ingredientType;
 
     public Ingredient(IngredientType ingredientType, Vector2 location) {
-        super(Base.errorTexture);
+        super(GameData.errorTexture);
         this.ingredientType = ingredientType;
         this.ingredient = this; //converts Movable object to Ingredient
         // TODO - add in sprite: this.sprite = sprite;
@@ -29,31 +29,31 @@ public class Ingredient extends ImageMovable {
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.rawTomatoTexture;
+                this.texture = GameData.rawTomatoTexture;
                 break;
             case "lettuce":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.rawLettuceTexture;
+                this.texture = GameData.rawLettuceTexture;
                 break;
             case "onion":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.rawOnionTexture;
+                this.texture = GameData.rawOnionTexture;
                 break;
             case "bread":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.rawBreadTexture;
+                this.texture = GameData.rawBreadTexture;
                 break;
             case "meat":
                 this.cuttingProgress = 0;
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
-                this.texture = Base.rawMeatTexture;
+                this.texture = GameData.rawMeatTexture;
                 break;
 
         }
@@ -64,8 +64,9 @@ public class Ingredient extends ImageMovable {
         this(ingredientType, new Vector2(0, 0));
     }
 
-    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress, Integer fryingProgress) {
-        super(Base.errorTexture);
+    public Ingredient(IngredientType ingredientType, Integer cuttingProgress, Integer bakingProgress,
+            Integer fryingProgress) {
+        super(GameData.errorTexture);
         this.ingredientType = ingredientType;
         this.ingredient = this;
         this.cuttingProgress = cuttingProgress;
@@ -83,23 +84,23 @@ public class Ingredient extends ImageMovable {
         switch (this.ingredientType.getName()) {
             case "tomato":
                 //this.fryingProgress = 0;
-                this.texture = Base.cutTomatoTexture;
+                this.texture = GameData.cutTomatoTexture;
                 break;
             case "onion":
                 //this.bakingProgress = 0;
                 //this.fryingProgress = 0;
-                this.texture = Base.cutOnionTexture;
+                this.texture = GameData.cutOnionTexture;
                 break;
             case "lettuce":
-                this.texture = Base.cutLettuceTexture;
+                this.texture = GameData.cutLettuceTexture;
                 break;
             case "bread":
-                this.texture = Base.cutBreadTexture;
+                this.texture = GameData.cutBreadTexture;
                 break;
             case "meat":
                 //this.bakingProgress = 0;
                 this.fryingProgress = 0;
-                this.texture = Base.cutMeatTexture;
+                this.texture = GameData.cutMeatTexture;
                 // cutting and combining all the items.
         }
     }
@@ -112,22 +113,22 @@ public class Ingredient extends ImageMovable {
         switch (this.ingredientType.getName()) {
             case "tomato":
                 this.bakingProgress = -1;
-                this.texture = Base.cutTomatoTexture;
+                this.texture = GameData.cutTomatoTexture;
                 break;
             case "onion":
                 this.bakingProgress = 0;
-                this.texture = Base.cutOnionTexture;
+                this.texture = GameData.cutOnionTexture;
                 break;
             case "lettuce":
-                this.texture = Base.cutLettuceTexture;
+                this.texture = GameData.cutLettuceTexture;
                 break;
             case "bread":
                 this.bakingProgress = 0;
-                this.texture = Base.cutOnionTexture;
+                this.texture = GameData.cutOnionTexture;
                 break;
             case "meat":
                 this.bakingProgress = -1;
-                this.texture = Base.friedMeatTexture;
+                this.texture = GameData.friedMeatTexture;
         }
     }
 
@@ -170,6 +171,7 @@ public class Ingredient extends ImageMovable {
     public boolean equals(Object obj) {
         if (!(obj instanceof Ingredient)) {
             return false;
-        } else return this.identicalTo((Ingredient) obj);
+        } else
+            return this.identicalTo((Ingredient) obj);
     }
 }

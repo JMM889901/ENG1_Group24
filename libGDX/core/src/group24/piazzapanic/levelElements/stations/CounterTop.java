@@ -2,6 +2,7 @@ package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.levelElements.Ingredient;
 
@@ -20,7 +21,7 @@ public class CounterTop extends Station {
     }
 
     public CounterTop(Movable item) {
-        super(Base.counterTopTexture);
+        super(GameData.counterTopTexture);
         this.items.add(item);
     }
     /* 
@@ -51,7 +52,7 @@ public class CounterTop extends Station {
         }
         return false;
     } 
-
+    
     @Override
     public Movable takeItem() {
         if(this.items == null) return null;

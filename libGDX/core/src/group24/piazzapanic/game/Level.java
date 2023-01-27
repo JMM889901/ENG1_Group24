@@ -69,16 +69,16 @@ public class Level {
                             grid[x][y] = new BakingStation();
                             break;
                         case '1':
-                            grid[x][y] = new CounterTop(Base.counterTopTexture);
+                            grid[x][y] = new CounterTop(GameData.counterTopTexture);
                             break;
                         case '2':
-                            grid[x][y] = new CounterTop(Base.counterRightCornerTexture);
+                            grid[x][y] = new CounterTop(GameData.counterRightCornerTexture);
                             break;
                         case '3':
-                            grid[x][y] = new CounterTop(Base.counterRightTexture);
+                            grid[x][y] = new CounterTop(GameData.counterRightTexture);
                             break;
                         case '4':
-                            grid[x][y] = new CounterTop(Base.counterEndTexture);
+                            grid[x][y] = new CounterTop(GameData.counterEndTexture);
                             break;
                         case 'C':
                             grid[x][y] = new CuttingStation();
@@ -102,7 +102,7 @@ public class Level {
                             grid[x][y] = new Bin();
                             break;
                         case 's':
-                            grid[x][y] = new ServingStation(Base.servingStationTexture);
+                            grid[x][y] = new ServingStation(GameData.servingStationTexture);
                             break;
                         default:
                             System.out.println(

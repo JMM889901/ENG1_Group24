@@ -19,6 +19,7 @@ import com.badlogic.gdx.Gdx;
 
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.Base;
+import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageManager;
 
@@ -38,6 +39,7 @@ public class PiazzaPanic extends ApplicationAdapter {
     @Override
     public void create() {
         Base.init();
+        GameData.init();
         // In desktop/build/src/group24/piazzapanic/DesktopLauncher.java:
         // `config.setResizable(false)` has been added, so the user can't drag to
         // resize.
