@@ -60,6 +60,7 @@ public class Base {
     public static Texture dishStationTexture;
     public static Texture dishTexture;
     public static Texture binTexture;
+    public static Texture servingStationTexture;
 
     public static Texture obstacleTexture;
 
@@ -241,7 +242,7 @@ public class Base {
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         binTexture = new Texture("stations/bin.png");
-
+        servingStationTexture = new Texture("stations/notimplemented.png"); // get new texture
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures

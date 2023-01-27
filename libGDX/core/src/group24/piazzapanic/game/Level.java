@@ -101,6 +101,9 @@ public class Level {
                         case 'g':
                             grid[x][y] = new Bin();
                             break;
+                        case 's':
+                            grid[x][y] = new ServingStation(Base.servingStationTexture);
+                            break;
                         default:
                             System.out.println(
                                     "Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");
