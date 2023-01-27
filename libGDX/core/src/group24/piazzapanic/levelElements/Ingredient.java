@@ -101,10 +101,10 @@ public class Ingredient extends ImageMovable {
                 //this.fryingProgress = 0;
                 this.texture = Base.cutOnionTexture;
                 break;
-            case "lettuce": // You can't cut or fry lettuce!
+            case "lettuce": 
                 this.texture = Base.cutLettuceTexture;
                 break;
-            case "bread": // Why would you bake bread?
+            case "bread": 
                 this.texture = Base.cutBreadTexture;
                 break;
             case "meat":
