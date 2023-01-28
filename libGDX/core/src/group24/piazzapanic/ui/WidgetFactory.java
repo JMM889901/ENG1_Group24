@@ -7,6 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import group24.piazzapanic.maths.Vector2;
 
 public class WidgetFactory {
+    
+    /** 
+     * @param font
+     * @param color
+     * @param relativePos
+     * @param text
+     * @param align
+     * @return TextButton
+     */
     //Helper function to create text buttons using relative instead of absolute positions and to reduce code bloat
     public static TextButton createTextButton(BitmapFont font, Color color, Vector2 relativePos, String text,
             int align) {
