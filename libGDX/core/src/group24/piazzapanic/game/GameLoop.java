@@ -23,12 +23,20 @@ import group24.piazzapanic.ui.StageManager;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
+/**
+ * The GameLoop class is the main game loop. It handles setting up the game,
+ * spawning customers and the level, spawning players, the game score, and so on. It extends {@link Stage}.
+ */
 public class GameLoop extends Stage {
+    /** The game score */
     private final Label scoreCounter;
-    private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
+    /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
+    private Vector2 curPosition;
 
-    private final ArrayList<Group> rows; //Rows of stations for z level purposes
+    /** The rows of stations. Done this way to avoid Z-level drawing issues */
+    private final ArrayList<Group> rows;
 
+    /** The stations in the game level */
     private ArrayList<Station> stations;
 
     /**
@@ -40,7 +48,7 @@ public class GameLoop extends Stage {
         GameData.customers = new ArrayList<Customer>();
         this.rows = new ArrayList<Group>();
         this.stations = new ArrayList<Station>();
-        //Level
+        //Read level data from file, create stations and add them to the level
         GameData.level = new Level("levels/Level 3");
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             Group group = new Group();
@@ -57,11 +65,9 @@ public class GameLoop extends Stage {
 
         //Player creation
 
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                GameData.initialChef1Animation, GameData.chef1Animations);
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, GameData.initialChef1Animation, GameData.chef1Animations);
         GameData.player1 = GameData.player;
-        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
-                GameData.initialChef2Animation, GameData.chef2Animations);
+        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, GameData.initialChef2Animation, GameData.chef2Animations);
 
         this.addActor(GameData.player1);
         this.addActor(GameData.player2);
@@ -77,32 +83,31 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
-        //Inventory Panel
-        StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
-                new Vector2(0.85, 0.85), 50, 100);
-        StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
-                new Vector2(0.8, 0.85), 50, 100);
+        //Create Inventory Panel
+        StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1, new Vector2(0.85, 0.85), 50, 100);
+        StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1, new Vector2(0.8, 0.85), 50, 100);
 
         this.addActor(ChefAnimation);
         this.addActor(ChefAnimation1);
 
-        //Customers
-        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
-                "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
+        //Create customers
+        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png", "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
 
     }
 
-    /** 
-     * @param score
+    /**
+     * Adds a score to the score counter.
+     * @param score The score to add (Integer)
      */
     public void addScore(int score) {
         CharSequence count = Integer.toString(score);
         this.scoreCounter.setText(count);
     }
 
-    /** 
-     * @param delta
+    /**
+     * Spawns customers, handles swapping players and pausing game.
+     * @param delta Time in seconds since the last frame.
      */
     @Override
     public void act(float delta) {
@@ -131,15 +136,15 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
             StageManager.setActiveStage("Pause");
         }
-        //GameData.player1.animation.act(1);
-        //GameData.player2.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
         resortActors();
         super.act(delta);
     }
 
-    //Resort z levels of actors
+    /**
+     * Resorts the actors in the game loop to avoid Z-level drawing issues.
+     */
     private void resortActors() {
         int ylevel = 0;
         int offset = 0;
@@ -159,6 +164,9 @@ public class GameLoop extends Stage {
         }
     }
 
+    /**
+     * Resorts the customers in the game loop to avoid Z-level drawing issues.
+     */
     public void resortCustomers() {
         int i = 0;
         for (Customer customer : GameData.customers) {
@@ -168,7 +176,7 @@ public class GameLoop extends Stage {
     }
 
     /**
-     * Draws all level elements, floor tiles, players and (yet to be implemented) customers.
+     * Draws all level elements, floor tiles, players and customers.
      */
     @Override
     public void draw() {
@@ -176,43 +184,32 @@ public class GameLoop extends Stage {
         ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
 
         // Iterate through level array and draw tiles.
-
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
-                Base.batch.draw(GameData.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
-                        curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
+                Base.batch.draw(GameData.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX, curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
 
             }
         }
 
         //This code causes a slight memory leak
-        if (Base.DEBUG) {
-            // Set to true to see the chef's hitbox.
-            Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2,
-                    GameData.player.y - Player.GRID_WIDTH / 2);
-            Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2,
-                    GameData.player.y + Player.GRID_WIDTH / 2);
-            Base.batch.draw(GameData.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX,
-                    bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
-                    topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
+        if (Base.DEBUG) { // Draws the player's hitbox area.
+            Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2, GameData.player.y - Player.GRID_WIDTH / 2);
+            Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2, GameData.player.y + Player.GRID_WIDTH / 2);
+            Base.batch.draw(GameData.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX, bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(), topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }
 
         //Draw the player inventory
         if (GameData.player1.holding != null) {
             curPosition.x = 0.85;
             curPosition.y = 0.85;
-            //curPosition = new Vector2(0.85, 0.85);
-            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
-                    50);
+            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50, 50);
         }
         if (GameData.player2.holding != null) {
-            //curPosition = new Vector2(0.8, 0.85);
             curPosition.y = 0.85;
             curPosition.x = 0.8;
-            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
-                    50);
+            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50, 50);
         }
         Base.batch.end();
         Base.batch.begin();
@@ -222,9 +219,7 @@ public class GameLoop extends Stage {
         //Draw items
         for (Station station : this.stations) {
             if (station.item != null) {
-                station.item.drawItem((int) (station.getX() + ((Base.tile_pixel_width / 3))),
-                        (int) (station.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2,
-                        Base.tile_pixel_width / 2);
+                station.item.drawItem((int) (station.getX() + ((Base.tile_pixel_width / 3))), (int) (station.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2, Base.tile_pixel_width / 2);
             }
         }
         // Todo: draw the player at the right z level depending on its y position.
