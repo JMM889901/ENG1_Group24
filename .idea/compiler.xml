@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="libGDX.core" target="1.7" />
-      <module name="libGDX.core.main" target="1.7" />
-      <module name="libGDX.core.test" target="1.7" />
-      <module name="libGDX.desktop" target="1.8" />
-      <module name="libGDX.desktop.main" target="1.8" />
-      <module name="libGDX.desktop.test" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7" />
   </component>
 </project>
