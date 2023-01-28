@@ -9,9 +9,13 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
  * A convenience class to create fonts that will be used in titles, buttons etc.
  */
 public class FontHandler {
+    /** The path to the font used for rendered text. */
     public static final String FONT_PATH = "fonts/ArcadeFont.ttf";
+    /** The font used by large text/menu titles. */
     public static BitmapFont titleFormat;  // Have static objects for the fonts used in the game.
+    /** The font used by subtitles. */
     public static BitmapFont subtitleFormat;
+    /** The font used on smaller buttons. */
     public static BitmapFont textButtonFormat;
 
     /**
