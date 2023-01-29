@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -20,6 +22,7 @@ import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.ui.StageManager;
+import group24.piazzapanic.ui.WidgetFactory;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
@@ -62,6 +65,21 @@ public class GameLoop extends Stage {
             this.addActor(group);
             this.rows.add(group);
         }
+        // //Add pause button
+        // TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+        //         new Vector2(0.15, 0.95), "||", Align.right);
+        // pauseButton.getStyle().overFontColor = Color.BLUE;
+        // //Create onclick function
+        // pauseButton.addListener(new ChangeListener() {
+
+        //     @Override
+        //     public void changed(ChangeEvent event, Actor actor) {
+        //         System.out.print("Open Main");
+        //         StageManager.setActiveStage("Pause");
+        //     }
+
+        // });
+        // stage.addActor(backButton);
 
         //Player creation
 

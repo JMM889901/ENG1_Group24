@@ -13,6 +13,7 @@ public class FontHandler {
     public static BitmapFont titleFormat;  // Have static objects for the fonts used in the game.
     public static BitmapFont subtitleFormat;
     public static BitmapFont textButtonFormat;
+    public static BitmapFont contentFormat;
 
     /**
      * Create the fonts and store them as the statics.
@@ -29,6 +30,9 @@ public class FontHandler {
 
         parameter.size = 24;
         textButtonFormat = generator.generateFont(parameter);
+
+        parameter.size = 24;
+        contentFormat = generator.generateFont(parameter);
 
         generator.dispose();
     }

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
@@ -148,7 +149,7 @@ public class StageFactory {
             }
         };
         TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-                new Vector2(0.5, 0.5), "Return to game", Align.center);
+                new Vector2(0.5, 0.6), "Return to game", Align.center);
         button.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         button.addListener(new ChangeListener() {
@@ -164,7 +165,7 @@ public class StageFactory {
         stage.addActor(button);
 
         TextButton restart = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-                new Vector2(0.5, 0.4), "Restart", Align.center);
+                new Vector2(0.5, 0.5), "Restart", Align.center);
         restart.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         restart.addListener(new ChangeListener() {
@@ -179,6 +180,131 @@ public class StageFactory {
 
         });
         stage.addActor(restart);
+
+        TextButton exit = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.4), "Exit to Menu", Align.center);
+        exit.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        exit.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Quit Game");
+                StageManager.setActiveStage("MainMenu");
+            }
+
+        });
+        stage.addActor(exit);
+
+        TextButton instructions = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.3), "How to Play", Align.center);
+        instructions.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        instructions.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Instructions");
+                StageManager.setActiveStage("Instructions");
+            }
+
+        });
+        stage.addActor(instructions);
+        return stage;
+    }
+
+    public static Stage createInstructionsStage(){
+        Stage stage = new Stage();
+        //Window instructions = new Window("How To Play", new Window.WindowStyle(FontHandler.titleFormat, Color.WHITE,));
+        //instructions.setKeepWithinStage(true);
+        //instructions.setSkin(new Skin());
+        CharSequence Controls = "W - up\nA - left\nS - down\nD - right\nQ - swap chef\nE - Pick up/Put down\nF - Interact\n    (cut/fry/bake)";
+        CharSequence Recipes = "Burger:\n-cut bread\n-cut meat\n-fry meat\n-cut lettuce\n\nSalad:\n-cut onion\n-cut tomato\n-cut lettuce";
+        Label title1 = new Label("Controls", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        Vector2 coords = new Vector2(0.05, 0.85);
+        title1.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
+
+        Label controls = new Label(Controls, new LabelStyle(FontHandler.contentFormat, Color.WHITE));
+        coords = new Vector2(0.05, 0.7);
+        controls.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
+
+        Label title2 = new Label("Recipes", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        coords = new Vector2(0.5, 0.85);
+        title2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
+
+        Label recipes = new Label(Recipes, new LabelStyle(FontHandler.contentFormat, Color.WHITE));
+        coords = new Vector2(0.5, 0.7);
+        recipes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
+        
+        Label dishes = new Label("Place ingredients on top of a plate to combine into a dish", new LabelStyle(FontHandler.contentFormat, Color.WHITE));
+        coords = new Vector2(0.5, 0.2);
+        dishes.setWrap(true);
+        dishes.setWidth((float)(Base.WINDOW_WIDTH * 0.75));
+        dishes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        dishes.setAlignment(Align.center, Align.center);
+
+        Image bun = new Image(GameData.cutBreadTexture);
+        coords = new Vector2(0.93, 0.75);
+        bun.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        bun.setScale((float)0.15);
+
+        Image cutMeat = new Image(GameData.cutMeatTexture);
+        coords = new Vector2(0.7, 0.6);
+        cutMeat.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        cutMeat.setScale((float)1);
+
+        Image cookedMeat = new Image(GameData.friedMeatTexture);
+        coords = new Vector2(0.77, 0.64);
+        cookedMeat.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        cookedMeat.setScale((float)0.32);
+
+        Image lettuce = new Image(GameData.cutLettuceTexture);
+        coords = new Vector2(0.97, 0.82);
+        lettuce.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        lettuce.setScale((float)0.07);
+
+        Image onion = new Image(GameData.cutOnionTexture);
+        coords = new Vector2(0.89, 0.58);
+        onion.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        onion.setScale((float)0.1);
+
+        Image tomato = new Image(GameData.cutTomatoTexture);
+        coords = new Vector2(0.77, 0.41);
+        tomato.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        tomato.setScale((float)0.3);
+
+        Image lettuce2 = new Image(GameData.cutLettuceTexture);
+        coords = new Vector2(0.97, 0.61);
+        lettuce2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        lettuce2.setScale((float)0.07);
+
+        //Add return to pause menu button
+        TextButton backButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+                new Vector2(0.15, 0.95), "Back", Align.right);
+        backButton.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        backButton.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Main");
+                StageManager.setActiveStage("Pause");
+            }
+
+        });
+        stage.addActor(backButton);
+        stage.addActor(dishes);
+        stage.addActor(bun);
+        stage.addActor(cutMeat);
+        stage.addActor(cookedMeat);
+        stage.addActor(lettuce);
+        stage.addActor(onion);
+        stage.addActor(tomato);
+        stage.addActor(lettuce2);
+        stage.addActor(title1);
+        stage.addActor(controls);
+        stage.addActor(title2);
+        stage.addActor(recipes);
         return stage;
     }
 }
