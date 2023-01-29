@@ -7,7 +7,8 @@ import group24.piazzapanic.game.GameData;
 
 /**
  * This class is a simple 2D vector class. It uses doubles so can store non-integers. Do not use
- * with level elements, UI elements only.
+ * Vector2 to *store* level element positions, but Vector2 has some convenient static methods to
+ * help with translating between grid units and screen pixels.
  */
 public class Vector2 extends com.badlogic.gdx.math.Vector2 {
     // These should only be from 0 to 1, -1 means unset and anything else is a worrying mistake.
@@ -27,6 +28,7 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
     }
 
     /** 
+     * Convert a decimal percentage of the screen width to an absolute pixel value.
      * @return int
      */
     public int getAbsoluteX() {
@@ -34,6 +36,7 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
     }
 
     /** 
+     * Convert a decimal percentage of the screen width to an absolute pixel value.
      * @return int
      */
     public int getAbsoluteY() {
@@ -64,36 +67,23 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
      * @return A Vector2 referring to the position of the object on the screen.
      */
     public static Vector2 gridUnitTranslate(double gridX, double gridY) {
-        // gridX is translated onto the screen by the constant TILE_GRID_UNIT, which is basically
-        // the width of one tile in grid units. Doing the same for gridY means it would be scaled
-        // as a proportion of the screen height, but we want it on the same scaling as gridX, which
-        // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
         return new Vector2(gridX * Base.TILE_GRID_UNIT,
                 gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
-    //Equivalent of gridunittranslate but does not create a new instance for memory reasons
+    //Equivalent of gridUnitTranslate but does not create a new instance for memory reasons
     public void gridUnitTranslateInplace(double gridX, double gridY) {
-        // gridX is translated onto the screen by the constant TILE_GRID_UNIT, which is basically
-        // the width of one tile in grid units. Doing the same for gridY means it would be scaled
-        // as a proportion of the screen height, but we want it on the same scaling as gridX, which
-        // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
         this.x = (gridX * Base.TILE_GRID_UNIT);
         this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
-    //Equivalent of gridunittranslate but does not create a new instance for memory reasons
     public void gridUnitTranslateInplace(float gridX, float gridY) {
-        // gridX is translated onto the screen by the constant TILE_GRID_UNIT, which is basically
-        // the width of one tile in grid units. Doing the same for gridY means it would be scaled
-        // as a proportion of the screen height, but we want it on the same scaling as gridX, which
-        // uses the screen width. So gridY / height * width to cancel the maths on line 25 out.
         this.x = (gridX * Base.TILE_GRID_UNIT);
         this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
     /**
-     * Converts grid units to on screen positions inlcuding offset
+     * Convert grid units to on screen positions inlcuding offset.
      * @param gridX
      * @param gridY
      * @return
@@ -105,6 +95,12 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
         return pos;
     }
 
+    /**
+     * Convert grid units to on screen positions inlcuding offset.
+     * @param gridX
+     * @param gridY
+     * @return
+     */
     public static Vector2 worldUnitTranslate(Double gridX, Double gridY) {
         Vector2 pos = gridUnitTranslate(gridX, gridY);
         pos.x += GameData.offsetX / (double) Base.WINDOW_WIDTH;

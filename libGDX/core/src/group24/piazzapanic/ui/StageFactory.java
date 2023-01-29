@@ -1,18 +1,10 @@
 package group24.piazzapanic.ui;
 
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
-import org.w3c.dom.Text;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -27,14 +19,14 @@ import group24.piazzapanic.maths.Vector2;
 import com.badlogic.gdx.utils.Align;
 
 /**
- * Class responsible for creating stages, may get quite long so we may need a better way of doing this
- * */
+ * Class responsible for creating stages.
+ */
 public class StageFactory {
 
-    /** 
-     * @return Stage
+    /**
+     * Create the main menu stage. 
+     * @return The new stage created.
      */
-    // Main menu
     public static Stage createMainMenuStage() {
         // Title
         Stage stage = new Stage();
@@ -94,8 +86,9 @@ public class StageFactory {
         return stage;
     }
 
-    /** 
-     * @return Stage
+    /**
+     * Create the options menu stage.
+     * @return The new stage created.
      */
     public static Stage createOptionsMenuStage() {
         //Title
@@ -138,6 +131,10 @@ public class StageFactory {
         return stage;
     }
 
+    /**
+     * Create the pause menu stage.
+     * @return The new stage created.
+     */
     public static Stage createPauseMenuStage() {
         Stage stage = new Stage() {
             @Override
