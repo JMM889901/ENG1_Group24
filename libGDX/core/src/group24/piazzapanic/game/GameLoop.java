@@ -42,6 +42,9 @@ public class GameLoop extends Stage {
     /** The stations in the game level */
     private ArrayList<Station> stations;
 
+    public int maxCustomers = 5;
+    public int totalCustomers;
+
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -49,6 +52,7 @@ public class GameLoop extends Stage {
         GameData.gameTime = 0f;
         GameData.sinceLastSpawn = 0f;
         GameData.customers = new ArrayList<Customer>();
+        totalCustomers = 0;
         this.rows = new ArrayList<Group>();
         this.stations = new ArrayList<Station>();
         //Read level data from file, create stations and add them to the level
@@ -131,7 +135,7 @@ public class GameLoop extends Stage {
     public void act(float delta) {
         GameData.gameTime += delta;
 
-        if (GameData.customers.size() < 5) {
+        if (this.totalCustomers < this.maxCustomers) {
             GameData.sinceLastSpawn += delta;
         }
         if (GameData.sinceLastSpawn >= 5) {
@@ -141,6 +145,7 @@ public class GameLoop extends Stage {
             GameData.customers.add(customer);
             this.addActor(customer);
             GameData.sinceLastSpawn = 0;
+            this.totalCustomers++;
         }
         if (Gdx.input.isKeyJustPressed(Base.SWAP_KEY)) {
             if (GameData.player == GameData.player1) {
