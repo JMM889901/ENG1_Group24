@@ -16,10 +16,10 @@ import java.util.Arrays;
  */
 public class Dish extends ImageMovable {
     /** The burger recipe. */
-    static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.BURGER_BUN, GameData.BURGER, GameData.CHOPPED_LETTUCE));
     /** The Salad recipe. */
-    static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
     /** The list of all dishes. */
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
@@ -29,6 +29,7 @@ public class Dish extends ImageMovable {
     ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
     boolean complete;
+
 
     /**
      * Initialise the Dish. Set its texture, size, completeness, and recipe.
