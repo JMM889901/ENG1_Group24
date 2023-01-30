@@ -31,19 +31,22 @@ public class BakingStation extends Station {
         this.item = item;
     }
 
-    /**
-     * Bakes the item.
-     * act(float delta) is called by the stage every frame..
-     * @param delta Time in seconds since the last frame.
-     */
+/**
+ * Not implemented
+ */
     @Override
     public void act(float delta) {
 
     }
 
+    
+        /**
+     * Bakes the item.
+     * interact(float delta) is called by the stage every frame..
+     * @param delta Time in seconds since the last frame.
+     */
     @Override
     public void interact(float delta) {
-        // TODO Auto-generated method stub
         if (super.item == null) { // No item to bake.
             return;
         }

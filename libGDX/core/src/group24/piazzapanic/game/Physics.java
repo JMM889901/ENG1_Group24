@@ -27,12 +27,8 @@ public class Physics {
 
         double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
         if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
-            // if (Player.direction ==   TODO implement me.
-            // System.out.println("near! " + deltaX + " " + deltaY);
             return Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY);
         }
-        //System.out.println("No");
-        //System.out.println(deltaX + " " + deltaY + " " + station.getWidth() + " " + station.getHeight());
         return false;
     }
 

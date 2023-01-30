@@ -52,7 +52,6 @@ public class ImageMovable extends Image implements Movable {
     /** Return the {@link Ingredient} that this image represents. */
     @Override
     public Ingredient getIngredient() {
-        // TODO Auto-generated method stub
         return ingredient;
     }
 

@@ -84,36 +84,16 @@ public class Dish extends ImageMovable {
             this.Ingredients.add(item);
             this.complete = checkComplete();
             System.out.println("added to dish\ncurrent:");
-            for (Ingredient i : Ingredients) {
-                System.out.println(i.ingredientType.getName());
-            }
             System.out.println("recipe:");
-            for (Ingredient i : recipe) {
-                System.out.println(i.ingredientType.getName());
-            }
             return true;
         }
         return false;
     }
 
+    /**
+     * Not implemented.
+     */
     public void act(float delta) {
-        /*
-        ArrayList<String> CurrentIngredients = new ArrayList<String>();
-        // Get arraylist of all ingredient names, sort it, compare it, return it otherwise. 
-        for (Ingredient item : Ingredients) {
-            CurrentIngredients.add(item.getName());
-        }
-        Collections.sort(CurrentIngredients); // Sort the ArrayList of Strings of ingredients
-        if (CurrentIngredients.equals(BURGER_RECIPE)){
-            this.Ingredients = null; // IT'S BURGR TIME, BABYE.  
-            //TODO - SET ME TO **BORGER**
-        }
-        else if (CurrentIngredients.equals(SALAD_RECIPE)){
-            this.Ingredients = null; // SALAD MOMENt
-            //TODO - set me as a salad. 
-        }
-        CurrentIngredients = null; // To avoid a memory leak. 
-        */
     }
 
     /**
