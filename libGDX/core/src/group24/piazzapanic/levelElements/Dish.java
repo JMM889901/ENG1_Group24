@@ -22,8 +22,10 @@ public class Dish extends ImageMovable {
     public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
     /** The list of all dishes. */
+    public static Dish BURGER = new Dish(BURGER_RECIPE);
+    public static Dish SALAD = new Dish(SALAD_RECIPE);
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
-            Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
+            Arrays.asList(BURGER, SALAD));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     /** Stores the dish's recipe. */
     ArrayList<Ingredient> recipe;

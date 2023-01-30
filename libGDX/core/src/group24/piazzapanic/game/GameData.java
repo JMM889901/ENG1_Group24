@@ -44,7 +44,7 @@ public class GameData {
     /** x offset for the camera, in pixels */
     public static int offsetX = 300;
     /** y offset for the camera, in pixels */
-    public static int offsetY = 200;
+    public static int offsetY = 300;
 
     //ingredients with states to use in recipes
     /** tomato ingredient to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes*/
