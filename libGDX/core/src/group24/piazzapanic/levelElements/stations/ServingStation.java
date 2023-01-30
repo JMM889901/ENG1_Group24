@@ -9,10 +9,11 @@ import group24.piazzapanic.levelElements.Dish;
 /**
  * ServingStation allows users to submit completed {@link Dish}es to fulfill orders.
  */
+
 public class ServingStation extends Station {
 
     /**
-     * Creates a new serving station where item = null, calls station with t
+     * Creates a new serving station with a specified texture
      * @param t The texture of the station
      */
     public ServingStation(Texture t) {

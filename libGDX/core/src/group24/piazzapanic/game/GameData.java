@@ -108,30 +108,55 @@ public class GameData {
     /** Texture for the {@link group24.piazzapanic.levelElements.stations.ServingStation} */
     public static Texture servingStationTexture;
 
+    /** Texture for the {@link group24.piazzapanic.levelElements.stations.Obstacle} */
     public static Texture obstacleTexture;
-
+    /** Error texture for when a texture is not found */
     public static Texture errorTexture;
     // Ingredient textures
+    /** Texture for a raw tomato */
     public static Texture rawTomatoTexture;
+    /** Texture for a cut tomato */
     public static Texture cutTomatoTexture;
+    /** Texture for a raw onion */
     public static Texture rawOnionTexture;
+    /** Texture for a cut onion */
     public static Texture cutOnionTexture;
+    /** Texture for a fried onion */
     public static Texture friedOnionTexture;
+    /** Texture for a raw lettuce */
     public static Texture rawLettuceTexture;
+    /** Texture for a cut lettuce */
     public static Texture cutLettuceTexture;
+    /**Texture for raw bread */
     public static Texture rawBreadTexture;
+    /**Texture for cut bread */
     public static Texture cutBreadTexture;
+    /**Texture for fried bread */
     public static Texture friedBreadTexture; // Do we want to fry/toast the bread?
+    /**Texture for raw meat */
     public static Texture rawMeatTexture;
+    /**Texture for cut meat */
     public static Texture cutMeatTexture;
-    public static Texture friedMeatTexture; // Do we want to have a Burger texture too?
+    /**Texture for fried meat */
+    public static Texture friedMeatTexture;
 
     //completed dish textures
+    /** Texture for a completed burger {@link group24.piazzapanic.levelElements.Dish } */
     public static Texture burgerDishTexture;
+    /** Texture for a Salad {@link group24.piazzapanic.levelElements.Dish} */
     public static Texture saladDishTexture;
 
+    /**
+     * Initializes all the textures and animations
+     */
     public static void init() {
         //Chef animations
+        /*
+        Okay, so why is this done this way? You are probably looking at this and your eyes are bleeding.
+        but worry not, this is actually the best way to do it lol.
+        This is mostly done to avoid recreating animations that are already present in memory each time the player needs to change animations, so they are all made in advance.
+        Otherwise, this would lead to a memory leak. which is not poggers.
+         */
         chef1Animations = new HashMap<String, Animation<TextureRegion>>();
         chef1Animations.put("IdleFrontSelected",
                 StageAnimation.makeAnimation("chef/chef_idle_front_selected.png", 6, 1, 6));
@@ -191,7 +216,7 @@ public class GameData {
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         binTexture = new Texture("stations/bin.png");
-        servingStationTexture = new Texture("stations/customer_station.png"); // get new texture
+        servingStationTexture = new Texture("stations/customer_station.png");
         obstacleTexture = new Texture("stations/wall.png");
 
         // Ingredient Textures
@@ -223,14 +248,18 @@ public class GameData {
         BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
     }
 
-    /** 
-     * @param score
+    /**
+     * Adds an integer to the current score.
+     * @param score the integer to add to the score.
      */
     public static void addScore(int score) {
         GameData.score += score;
         gameLoop.addScore(GameData.score);
     }
 
+    /**
+     * Free up memory when the game is closed.
+     */
     public static void dispose() {
         debugSquareTexture.dispose();
 

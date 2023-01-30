@@ -1,20 +1,25 @@
 package group24.piazzapanic.ui;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.GameLoop;
 
-import java.util.HashMap;
-
+/**
+ * Manages which stage is "active" (ie is displayed and is responding to user input).
+ */
 public class StageManager {
+    /** A dictionary privataly noting a name and a corresponding stage. */
     private static HashMap<String, Stage> stages;
+    /** A "global" value indicating the current active stage. */
     private static Stage activeStage;
+    /** A "global" value indicating string whose corresponding stage is currently active. */
     private static String activeStageName;
 
     /**
-     * Stage manager manages active screens and buttons, currently lacks multi stage input support so this may need to be looked at
-     * Currently will only draw and recieve inputs from the active stage, no multi-stage support yet
+     * Create the various stages now, using `StageFactory.java`.
      */
     public static void init() {
         stages = new HashMap<String, Stage>();
@@ -23,18 +28,23 @@ public class StageManager {
         GameData.gameLoop = new GameLoop();
         stages.put("Game", GameData.gameLoop);
         stages.put("Pause", StageFactory.createPauseMenuStage());
+        stages.put("Instructions", StageFactory.createInstructionsStage());
         setActiveStage("MainMenu");
     }
 
+    /**
+     * Add a stage to the record of stages, supplying a string name for it.
+     * @param key The name to refer to the stage by.
+     * @param stage The stage itself.
+     */
     public static void addStage(String key, Stage stage) {
         stages.put(key, stage);
     }
 
     /**
-     * Set the active stage by passing the stage itself, 
-     * does not add it to stages so should only be used for temporary menus that are destroyed after use
-     * sets the specified stage as the input processor and the drawn stage
-     * @param stage The Stage to be made active
+     * Set the active stage without supplying a string. Used for "anonymous" stages that aren't
+     * stored permanently.
+     * @param stage The stage object to use as the active stage.
      */
     public static void setActiveStage(Stage stage) {
         activeStage = stage;
@@ -42,10 +52,8 @@ public class StageManager {
     }
 
     /**
-     * Set the active stage by passing the name
-     * sets the specified stage as the input processor and the drawn stage
-     * for stage names check the stage manager constructor
-     * @param stage The Stage to be made active
+     * Set the active stage by name (names of stages are as shown in the StageManager constructor).
+     * @param stage  The name of an already existing stage.
      */
     public static void setActiveStage(String stage) {
         activeStage = getStage(stage);
@@ -53,28 +61,28 @@ public class StageManager {
         Gdx.input.setInputProcessor(activeStage);
     }
 
-    /**
-     * Gets the active stage.
-     * @return The Stage class of the active stage.
+    /** 
+     * Get the stage object of whichever stage is currently active.
+     * @return The stage object itself.
      */
     public static Stage getActiveStage() {
         return activeStage;
     }
 
     /**
-     * Gets the active stage name
-     * @return the name of the active stage
+     * Get the name of the active stage.
+     * @return The string/key referring to the active stage.
      */
     public static String getActiveStageName() {
         return activeStageName;
     }
 
     /**
-     * Get stage by name
-     * @param Name
-     * @return the stage with that name
+     * Get a stage by name.
+     * @param name The name of the desired stage.
+     * @return The stage referred to by 
      */
-    public static Stage getStage(String Name) {
-        return stages.get(Name);
+    public static Stage getStage(String name) {
+        return stages.get(name);
     }
 }

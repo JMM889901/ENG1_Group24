@@ -1,20 +1,27 @@
 package group24.piazzapanic.levelElements.stations;
 
-import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
 
+/**
+ * Bins allow users to dispose of items.
+ * When an item is placed on a Bin station, the item is deleted.
+ */
 public class Bin extends Station {
 
+    /**
+     * Class constructor.
+     */
     public Bin() {
         super(GameData.binTexture);
         this.item = null;
     }
 
     /**
-     * @param Item to try place
-     * @returns true, always. 
-     * Returns true without assigning the item, causes there to be no references to the item therby "deleting" it
+     * Returns true without assigning the item, dereferencing it.
+     * @param item {@link Movable} to try and place
+     * @return true
+     *
      */
     @Override
     public boolean placeItem(Movable item) {
@@ -22,6 +29,11 @@ public class Bin extends Station {
         return true;
     }
 
+    /**
+     * Bins do not have items that can be picked up.
+     * This is implemented to satisfy the {@link Station} parent.
+     * @return null
+     */
     @Override
     public Movable takeItem() {
         this.item = null;

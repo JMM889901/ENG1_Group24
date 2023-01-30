@@ -18,10 +18,14 @@ import group24.piazzapanic.levelElements.Ingredient;
  */
 public class Station extends Image {
 
-    public float timeKeyHeld; // A counter of how long the player has been holding the BASE.ACT_KEYkey for.
+    /**
+     * A counter of how long the player has been holding the BASE.ACT_KEY key for.
+     */
+    public float timeKeyHeld;
 
     /**
      * Initialise the station class
+     *
      * @param Texture the station's texture
      */
     public Station(Texture Texture) {
@@ -32,14 +36,27 @@ public class Station extends Image {
 
     //protected Vector2 location;
     //protected Texture sprite;
-    public Movable item;// The Movable the station holds.
+    /**
+     * The {@link Movable} the station holds.
+     */
+    public Movable item;
 
-    protected int gridX; // Once these are set, don't change them.
+    /**
+     * The x coordinate of the station in the grid. Do not change this once it is set.
+     */
+    protected int gridX;
+    /**
+     * The y coordinate of the station in the grid. Do not change this once it is set.
+     */
     protected int gridY;
+    /**
+     * The Station's progress bar
+     */
     ProgressBar bar;
 
     /**
      * Creates a new station. Each station knows its own location.
+     *
      * @param gridX The x coordinate of the station in the grid.
      * @param gridY The y coordinate of the station in the grid.
      */
@@ -67,12 +84,12 @@ public class Station extends Image {
             }
             this.item = item;
             return true;
-        } else
-            return false;
+        } else return false;
     }
 
     /**
      * A private convenience method to check if an item can be placed on the station.
+     *
      * @return True if item can be placed, False otherwise.
      */
     private boolean canPlaceItem() {
@@ -84,6 +101,7 @@ public class Station extends Image {
 
     /**
      * Checks if the station has an item on it.
+     *
      * @return True if the station has an item(s) on it. False otherwise.
      */
     public boolean hasItem() {
@@ -92,6 +110,7 @@ public class Station extends Image {
 
     /**
      * Pick up the item from the station.
+     *
      * @return A Movable of the station's current item, null if it doesn't have an item.
      */
     public Movable takeItem() {
@@ -99,15 +118,15 @@ public class Station extends Image {
             Movable tmp = this.item;
             this.item = null;
             return tmp;
-        } else
-            return null;
+        } else return null;
     }
 
     /**
      * Draw the station graphic to Batch.
+     *
      * @param arg0 libGDX batch to draw to
      * @param arg1 The parent alpha, to be multiplied with this actor's alpha, allowing the parent's alpha to affect all
-     *           children.
+     *             children.
      */
     @Override
     public void draw(Batch arg0, float arg1) {
@@ -115,6 +134,11 @@ public class Station extends Image {
 
     }
 
+    /**
+     * A method stub which children override to allow the player to interact with the station.
+     *
+     * @param delta The time in seconds since the last frame.
+     */
     public void interact(float delta) {
     }
 

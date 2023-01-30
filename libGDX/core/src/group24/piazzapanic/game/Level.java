@@ -1,13 +1,11 @@
 package group24.piazzapanic.game;
 
-import java.io.File;
-import java.util.Scanner;
-
-import group24.piazzapanic.Base;
-import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
+
+import java.io.File;
+import java.util.Scanner;
 
 /**
  * Reads level environment data from a file and stores it in a 2D array of
@@ -17,17 +15,28 @@ import group24.piazzapanic.maths.Vector2;
  * screen to the player.
  */
 public class Level {
+    /**
+     * The name of the level file on disk.
+     */
     private final String levelName;
+    /** The grid of stations */
     public Station[][] grid;
+    /** The width of the level */
     private int width;
+    /** The height of the level */
     private int height;
-
+    /** The X starting position of the player */
     public int startX;
+    /** The Y starting position of the player */
     public int startY;
 
+    /**
+     * Level constructor, reads level data from file and stores it in a 2D array of {@link Station}s.
+     * @param levelName The name of the level file on disk.
+     */
     public Level(String levelName) {
         this.levelName = levelName;
-
+        // Read the level file from disk.
         try {
             File levelFile = new File(levelName);
             Scanner levelScanner = new Scanner(levelFile);
@@ -88,7 +97,7 @@ public class Level {
                             break;
                         case 't': // tomato
                         case 'o': // onion
-                        case 'l': // lettuce pray. 
+                        case 'l': // lettuce
                         case 'b': // bread
                         case 'm': // meat
                         case 'd': // dish (plate)
@@ -121,9 +130,12 @@ public class Level {
         }
     }
 
+
     /**
-     * @param abbrevation
-     * @return The type of the ingredient.
+     * Extrapolates the ingredient from a single letter in the level file.
+     * e.g. the letter "t" represents tomatoes
+     * @param abbrevation The letter representing the ingredient
+     * @return An {@link IngredientType} object representing the ingredient. Null if the ingredient is unknown.
      */
     private static IngredientType extrapolateIngredient(char abbrevation) {
         switch (abbrevation) {
@@ -146,16 +158,18 @@ public class Level {
     }
 
     /**
-     * @return String
+     * Returns the name of the level file on disk.
+     * @return A String representing the name of the level file on disk.
      */
     public String getLevelName() {
         return levelName;
     }
 
     /**
-     * @param x
-     * @param y
-     * @return Station or Null if no station
+     * Returns the station at the given coordinates.
+     * @param x The integer x coordinate of the station.
+     * @param y The integer y coordinate of the station.
+     * @return The {@link Station} at the given coordinates. Null if the coordinates are out of bounds.
      */
     public Station getStation(int x, int y) {
         // Bounds check
@@ -168,14 +182,16 @@ public class Level {
     }
 
     /**
-     * @return int
+     * Returns the width of the level in grid units.
+     * @return an integer representing the width of the level in grid units.
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * @return int
+     * Returns the height of the level in grid units.
+     * @return an integer representing the height of the level in grid units.
      */
     public int getHeight() {
         return height;

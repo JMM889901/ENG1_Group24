@@ -2,46 +2,38 @@ package group24.piazzapanic.levelElements.stations;
 
 //import com.badlogic.gdx.graphics.Texture;
 //import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.Gdx;
 
-import group24.piazzapanic.Base;
-import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.Physics;
 import group24.piazzapanic.Physics.Movable;
+import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.levelElements.Ingredient;
 
+/**
+ * BakingStation allows users to bake items.
+ * They interact with {@link group24.piazzapanic.levelElements.Ingredient}'s {@link Ingredient#bake()} method and {@link group24.piazzapanic.levelElements.Ingredient.getBakingProgress()} method.
+ * .
+ */
 public class BakingStation extends Station {
 
-    public BakingStation(/* Texture sprite, Vector2 location */) {
+    /**
+     * Constructor for BakingStation with no item.
+     */
+    public BakingStation() {
         super(GameData.bakingStationTexture);
-        // this.sprite = sprite;
-        // this.location = location;
-
-        // I don't think each instance of any station should store its own texture, that
-        // just eats
-        // up memory. I've put the actual drawing of stations into GameLoop.
-        // Similarly, each object doesn't need to know its own location, it should only
-        // know, on a
-        // temporary basis, how far away a player interacting with it is.
-        // If it turns out that each object really needs to know its own location, we
-        // can add that
-        // back in, but I don't think we should prematurely add in the redundant data -
-        // Joss.
         this.item = null;
     }
 
-    public BakingStation(/* Texture sprite, Vector2 location, */ Movable item) {
+    /**
+     * Constructor for BakingStation that is holding an item.
+     * @param item an {@link Movable} item.
+     */
+    public BakingStation(Movable item) {
         super(GameData.bakingStationTexture);
-        /*
-         * this.sprite = sprite;
-         * this.location = location;
-         */
         this.item = item;
     }
 
     /**
      * Bakes the item.
-     * act(float delta) is called by the stage.
-     * float progress
+     * act(float delta) is called by the stage every frame..
      * @param delta Time in seconds since the last frame.
      */
     @Override
@@ -52,7 +44,7 @@ public class BakingStation extends Station {
     @Override
     public void interact(float delta) {
         // TODO Auto-generated method stub
-        if (super.item == null) {
+        if (super.item == null) { // No item to bake.
             return;
         }
         if (super.item.getIngredient().getBakingProgress() == 1) { // Item already baked, so can't bake further.
@@ -60,13 +52,13 @@ public class BakingStation extends Station {
             return;
         }
         if (super.item.getIngredient().getBakingProgress() == -1) { // Item cannot be baked
-            //                    timeKeyHeld = 0;
+
             return;
         }
-        timeKeyHeld += delta; // Increase the
+        timeKeyHeld += delta; // Increase the timeKeyHeld by the time since the last frame.
         if (timeKeyHeld > 3 && super.item.getIngredient().getBakingProgress() == 0) {
             super.item.getIngredient().bake(); // Button held for 3 seconds, so item is baked.
-            timeKeyHeld = 0;
+            timeKeyHeld = 0; // Reset the timeKeyHeld.
         }
     }
 }

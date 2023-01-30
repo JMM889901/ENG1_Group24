@@ -7,3 +7,4 @@ libGDX/clone.sh
 libGDX/commit.sh
 libGDX/eclipse-formatter.xml
 wrun.py
+_site/

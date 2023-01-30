@@ -1,6 +1,7 @@
 package group24.piazzapanic.game;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -35,6 +36,10 @@ public class Customer extends StageAnimation {
      * The text for the customer's order
      */
     private CharSequence orderText; //temporary
+    /**
+     * The texture for the customer's order
+     */
+    private Texture orderTexture; //temporary
 
     /**
      * The time limit for the customer's order to be filled.
@@ -53,13 +58,21 @@ public class Customer extends StageAnimation {
                 20, 20, entityWidth, entityHeight);
 //        timeLimit = 30f;
         this.timeLimit = 15;
-        this.orderText = ":3";
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
         this.textBubble = new Label(orderText, style);
         this.textBubble.setPosition(this.getX(), this.getY() + entityHeight);
         this.order = Dish.Dishes.get(GameData.rand.nextInt(Dish.Dishes.size()));
+        if(order == new Dish(Dish.BURGER_RECIPE)){
+            this.orderText = "Burger";
+            this.orderTexture = GameData.burgerDishTexture;
+        }
+        else if(order == new Dish(Dish.SALAD_RECIPE)){ 
+            this.orderText = "Salad";
+            this.orderTexture = GameData.saladDishTexture;
+        }
+        
     }
 
     /** Fulfil the customer's order i.e. they have had their dish served and are happy now :) */

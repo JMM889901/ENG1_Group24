@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -20,16 +22,28 @@ import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.ui.StageManager;
+import group24.piazzapanic.ui.WidgetFactory;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.*;
 
+/**
+ * The GameLoop class is the main game loop. It handles setting up the game,
+ * spawning customers and the level, spawning players, the game score, and so on. It extends {@link Stage}.
+ */
 public class GameLoop extends Stage {
+    /** The game score */
     private final Label scoreCounter;
-    private Vector2 curPosition;//Var for stoiring positions in per frame calculations, making a new vector causes the funny memory leak
+    /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
+    private Vector2 curPosition;
 
-    private final ArrayList<Group> rows; //Rows of stations for z level purposes
+    /** The rows of stations. Done this way to avoid Z-level drawing issues */
+    private final ArrayList<Group> rows;
 
+    /** The stations in the game level */
     private ArrayList<Station> stations;
+
+    public int maxCustomers = 5;
+    public int totalCustomers;
 
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
@@ -38,9 +52,10 @@ public class GameLoop extends Stage {
         GameData.gameTime = 0f;
         GameData.sinceLastSpawn = 0f;
         GameData.customers = new ArrayList<Customer>();
+        totalCustomers = 0;
         this.rows = new ArrayList<Group>();
         this.stations = new ArrayList<Station>();
-        //Level
+        //Read level data from file, create stations and add them to the level
         GameData.level = new Level("levels/Level 3");
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             Group group = new Group();
@@ -54,6 +69,21 @@ public class GameLoop extends Stage {
             this.addActor(group);
             this.rows.add(group);
         }
+        // //Add pause button
+        // TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+        //         new Vector2(0.15, 0.95), "||", Align.right);
+        // pauseButton.getStyle().overFontColor = Color.BLUE;
+        // //Create onclick function
+        // pauseButton.addListener(new ChangeListener() {
+
+        //     @Override
+        //     public void changed(ChangeEvent event, Actor actor) {
+        //         System.out.print("Open Main");
+        //         StageManager.setActiveStage("Pause");
+        //     }
+
+        // });
+        // stage.addActor(backButton);
 
         //Player creation
 
@@ -77,7 +107,7 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
-        //Inventory Panel
+        //Create Inventory Panel
         StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
                 new Vector2(0.85, 0.85), 50, 100);
         StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
@@ -86,29 +116,31 @@ public class GameLoop extends Stage {
         this.addActor(ChefAnimation);
         this.addActor(ChefAnimation1);
 
-        //Customers
+        //Create customers
         GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
                 "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
 
     }
 
-    /** 
-     * @param score
+    /**
+     * Adds a score to the score counter.
+     * @param score The score to add (Integer)
      */
     public void addScore(int score) {
         CharSequence count = Integer.toString(score);
         this.scoreCounter.setText(count);
     }
 
-    /** 
-     * @param delta
+    /**
+     * Spawns customers, handles swapping players and pausing game.
+     * @param delta Time in seconds since the last frame.
      */
     @Override
     public void act(float delta) {
         GameData.gameTime += delta;
 
-        if (GameData.customers.size() < 5) {
+        if (this.totalCustomers < this.maxCustomers) {
             GameData.sinceLastSpawn += delta;
         }
         if (GameData.sinceLastSpawn >= 5) {
@@ -118,6 +150,7 @@ public class GameLoop extends Stage {
             GameData.customers.add(customer);
             this.addActor(customer);
             GameData.sinceLastSpawn = 0;
+            this.totalCustomers++;
         }
         if (Gdx.input.isKeyJustPressed(Base.SWAP_KEY)) {
             if (GameData.player == GameData.player1) {
@@ -131,15 +164,15 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
             StageManager.setActiveStage("Pause");
         }
-        //GameData.player1.animation.act(1);
-        //GameData.player2.animation.act(1);
         // Run player movement and physics, it's quite long so I put it in a separate function.
         Physics.playerMovement(GameData.player, delta);
         resortActors();
         super.act(delta);
     }
 
-    //Resort z levels of actors
+    /**
+     * Resorts the actors in the game loop to avoid Z-level drawing issues.
+     */
     private void resortActors() {
         int ylevel = 0;
         int offset = 0;
@@ -159,6 +192,9 @@ public class GameLoop extends Stage {
         }
     }
 
+    /**
+     * Resorts the customers in the game loop to avoid Z-level drawing issues.
+     */
     public void resortCustomers() {
         int i = 0;
         for (Customer customer : GameData.customers) {
@@ -168,7 +204,7 @@ public class GameLoop extends Stage {
     }
 
     /**
-     * Draws all level elements, floor tiles, players and (yet to be implemented) customers.
+     * Draws all level elements, floor tiles, players and customers.
      */
     @Override
     public void draw() {
@@ -176,7 +212,6 @@ public class GameLoop extends Stage {
         ScreenUtils.clear(0.8f, 0.8f, 0.8f, 1);
 
         // Iterate through level array and draw tiles.
-
         // Make sure the tiles are drawn first higher up the screen.
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
@@ -188,8 +223,7 @@ public class GameLoop extends Stage {
         }
 
         //This code causes a slight memory leak
-        if (Base.DEBUG) {
-            // Set to true to see the chef's hitbox.
+        if (Base.DEBUG) { // Draws the player's hitbox area.
             Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2,
                     GameData.player.y - Player.GRID_WIDTH / 2);
             Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2,
@@ -208,7 +242,6 @@ public class GameLoop extends Stage {
                     50);
         }
         if (GameData.player2.holding != null) {
-            //curPosition = new Vector2(0.8, 0.85);
             curPosition.y = 0.85;
             curPosition.x = 0.8;
             GameData.player2.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,

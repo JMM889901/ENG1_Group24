@@ -1,6 +1,5 @@
 package group24.piazzapanic.levelElements.stations;
 
-import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
 

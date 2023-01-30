@@ -3,6 +3,7 @@ package group24.piazzapanic.levelElements;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.levelElements.stations.Station;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +16,10 @@ import java.util.Arrays;
  */
 public class Dish extends ImageMovable {
     /** The burger recipe. */
-    static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.BURGER_BUN, GameData.BURGER, GameData.CHOPPED_LETTUCE));
     /** The Salad recipe. */
-    static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
     /** The list of all dishes. */
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
@@ -41,6 +42,10 @@ public class Dish extends ImageMovable {
         this.recipe = new ArrayList<Ingredient>();
     }
 
+    /**
+     * Initialise the Dish. Set its texture, size, completeness, and recipe.
+     * @param recipe The recipe for the dish, an ArrayList of {@link Ingredient}s.
+     */
     public Dish(ArrayList<Ingredient> recipe) {
         super(GameData.dishTexture);
         super.setWidth(Base.tile_pixel_width);
@@ -50,11 +55,16 @@ public class Dish extends ImageMovable {
         this.Ingredients = recipe;
     }
 
+    /**
+     * Adds an ingredient to the dish.
+     * Will only add ingredients if the ingredient is part of a recipe.
+     * @param item The {@link Ingredient} to add to the dish.
+     * @return True if the ingredient was added, false otherwise.
+     */
     public boolean addIngredient(Ingredient item) {
         if (recipe.size() == 0) {
             ArrayList<Ingredient> tmp = new ArrayList<Ingredient>(this.Ingredients);
             tmp.add(item);
-            System.out.println(this.Ingredients);
             if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
                 this.complete = checkComplete();
@@ -68,7 +78,7 @@ public class Dish extends ImageMovable {
                 }
                 return true;
             }
-        } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) {
+        } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) { //Prevents adding duplicate ingredients to the dish.
             this.Ingredients.add(item);
             this.complete = checkComplete();
             System.out.println("added to dish\ncurrent:");
@@ -84,7 +94,6 @@ public class Dish extends ImageMovable {
         return false;
     }
 
-    //moved recipe checks to separate method so it doesnt check when it doesnt need to
     public void act(float delta) {
         /*
         ArrayList<String> CurrentIngredients = new ArrayList<String>();
@@ -105,6 +114,11 @@ public class Dish extends ImageMovable {
         */
     }
 
+    /**
+     * Sets the Dish's recipe when an ingredient is first added, as it is initialised without a recipe.
+     * @param currentIngredients an ArrayList of {@link Ingredient}s.
+     * @return True if there is a recipe that matches the ingredients, false otherwise.
+     */
     private boolean setRecipe(ArrayList<Ingredient> currentIngredients) {
         boolean matchSalad = true;
         boolean matchBurger = true;
@@ -113,9 +127,6 @@ public class Dish extends ImageMovable {
             System.out.println(i.getBakingProgress());
             System.out.println(i.getFryingProgress());
             System.out.println(i.ingredientType.getName());
-            // for (Dish d : Dishes) {
-            //     if(d.recipe.c)
-            // }
             if (!BURGER_RECIPE.contains(i)) {
                 matchBurger = false;
             }
@@ -128,11 +139,16 @@ public class Dish extends ImageMovable {
         else if (matchBurger && !matchSalad)
             recipe = BURGER_RECIPE; //if it only matches burger set recipe to burger
         else
-            return matchBurger || matchSalad; //returns flase if it matches none of the recipes
+            return matchBurger || matchSalad; //returns false if it matches none of the recipes
         return true; //returns true if there is a recipe that matches
 
     }
 
+    /**
+     * Checks if the recipe is complete (that is, all the ingredients for the recipe have been added to the dish).
+     * If it is, set the dish's texture to the appropriate dish texture.
+     * @return True if the recipe is complete, false otherwise.
+     */
     private boolean checkComplete() {
         if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {
             for (Ingredient i : recipe) {
@@ -150,13 +166,19 @@ public class Dish extends ImageMovable {
     }
 
     /**
-     * Gets the dish's completeness.
+     * Gets the dish's {@link #complete} value.
      * @return true if the dish is complete, false otherwise.
      */
     public boolean isComplete() {
         return complete;
     }
 
+    /**
+     * Checks if the dish is equal to another dish.
+     * A dish is equal to another dish if they have the same recipe and completeness value.
+     * @param obj The {@link Dish} to compare to.
+     * @return True if the dishes are equal, false otherwise.
+     */
     @Override
     public void drawItemInventory(int x, int y, int width, int height) {
         super.drawItemInventory(x, y, width, height);
