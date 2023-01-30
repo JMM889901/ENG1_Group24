@@ -1,24 +1,19 @@
 package group24.piazzapanic;
 
 //import java.util.HashMap;
-import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.Gdx;
-
-import group24.piazzapanic.ui.StageAnimation;
-import group24.piazzapanic.Base;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageManager;
@@ -77,7 +72,7 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.end();
     }
 
-    /** 
+    /**
      * @param width
      * @param height
      */
