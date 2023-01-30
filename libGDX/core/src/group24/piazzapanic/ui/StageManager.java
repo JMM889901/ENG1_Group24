@@ -19,7 +19,7 @@ public class StageManager {
     private static String activeStageName;
 
     /**
-     * Create the various stages now, using `StageFactory.java`.
+     * Create the various stages.
      */
     public static void init() {
         stages = new HashMap<String, Stage>();
