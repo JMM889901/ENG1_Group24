@@ -54,7 +54,7 @@ public class Dish extends ImageMovable {
         super.setHeight(Base.tile_pixel_height);
         this.complete = true;
         this.recipe = recipe;
-        this.Ingredients.clear();
+        this.Ingredients = recipe;
     }
 
     /**
@@ -142,6 +142,7 @@ public class Dish extends ImageMovable {
                 this.texture = GameData.burgerDishTexture;
             else if (recipe == SALAD_RECIPE)
                 this.texture = GameData.saladDishTexture;
+            this.Ingredients.clear();
             return true;
         }
         return false;
@@ -173,7 +174,6 @@ public class Dish extends ImageMovable {
             ingredient.drawItemInventory(x, y, Base.tile_pixel_width / 2,
                     Base.tile_pixel_width / 2);
         }
-        System.out.println("IntelliJ? more like IntelliCringe");
     }
 
     @Override
