@@ -204,14 +204,14 @@ public class GameLoop extends Stage {
             curPosition.x = 0.85;
             curPosition.y = 0.85;
             //curPosition = new Vector2(0.85, 0.85);
-            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
+            GameData.player1.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         if (GameData.player2.holding != null) {
             //curPosition = new Vector2(0.8, 0.85);
             curPosition.y = 0.85;
             curPosition.x = 0.8;
-            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
+            GameData.player2.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         Base.batch.end();
@@ -227,6 +227,5 @@ public class GameLoop extends Stage {
                         Base.tile_pixel_width / 2);
             }
         }
-        // Todo: draw the player at the right z level depending on its y position.
     }
 }

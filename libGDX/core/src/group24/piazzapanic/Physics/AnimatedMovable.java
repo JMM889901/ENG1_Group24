@@ -41,4 +41,10 @@ public class AnimatedMovable extends StageAnimation implements Movable {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void drawItemInventory(int x, int y, int width, int height) {
+        // TODO Auto-generated method stub
+        
+    }
 }

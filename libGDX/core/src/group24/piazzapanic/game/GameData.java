@@ -42,7 +42,7 @@ public class GameData {
     /** Random number generator used while instantiating customers and dishes */
     public static Random rand;
     /** x offset for the camera, in pixels */
-    public static int offsetX = 400;
+    public static int offsetX = 300;
     /** y offset for the camera, in pixels */
     public static int offsetY = 200;
 

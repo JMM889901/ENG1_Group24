@@ -52,8 +52,9 @@ public class Dish extends ImageMovable {
 
     public boolean addIngredient(Ingredient item) {
         if (recipe.size() == 0) {
-            ArrayList<Ingredient> tmp = this.Ingredients;
+            ArrayList<Ingredient> tmp = new ArrayList<Ingredient>(this.Ingredients);
             tmp.add(item);
+            System.out.println(this.Ingredients);
             if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
                 this.complete = checkComplete();
@@ -82,7 +83,6 @@ public class Dish extends ImageMovable {
         }
         return false;
     }
-
 
     //moved recipe checks to separate method so it doesnt check when it doesnt need to
     public void act(float delta) {
@@ -133,7 +133,6 @@ public class Dish extends ImageMovable {
 
     }
 
-
     private boolean checkComplete() {
         if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {
             for (Ingredient i : recipe) {
@@ -156,6 +155,19 @@ public class Dish extends ImageMovable {
      */
     public boolean isComplete() {
         return complete;
+    }
+
+    @Override
+    public void drawItemInventory(int x, int y, int width, int height) {
+        super.drawItemInventory(x, y, width, height);
+
+        for (Ingredient ingredient : Ingredients) {
+            System.out.println(ingredient);
+            y -= 50;
+            ingredient.drawItemInventory(x, y, Base.tile_pixel_width / 2,
+                    Base.tile_pixel_width / 2);
+        }
+        System.out.println("IntelliJ? more like IntelliCringe");
     }
 
     @Override
