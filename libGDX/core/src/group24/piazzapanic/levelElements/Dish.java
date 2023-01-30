@@ -22,14 +22,15 @@ public class Dish extends ImageMovable {
     public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
     /** The list of all dishes. */
+    public static Dish BURGER = new Dish(BURGER_RECIPE);
+    public static Dish SALAD = new Dish(SALAD_RECIPE);
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
-            Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
+            Arrays.asList(BURGER, SALAD));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     /** Stores the dish's recipe. */
     ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
     boolean complete;
-
 
     /**
      * Initialise the Dish. Set its texture, size, completeness, and recipe.
@@ -63,8 +64,8 @@ public class Dish extends ImageMovable {
      * @return True if the ingredient was added, false otherwise.
      */
     public boolean addIngredient(Ingredient item) {
-        if (recipe.size() == 0) { // If the recipe is empty, add the ingredient.
-            ArrayList<Ingredient> tmp = this.Ingredients;
+        if (recipe.size() == 0) {
+            ArrayList<Ingredient> tmp = new ArrayList<Ingredient>(this.Ingredients);
             tmp.add(item);
             if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
@@ -94,7 +95,6 @@ public class Dish extends ImageMovable {
         }
         return false;
     }
-
 
     public void act(float delta) {
         /*
@@ -146,7 +146,6 @@ public class Dish extends ImageMovable {
 
     }
 
-
     /**
      * Checks if the recipe is complete (that is, all the ingredients for the recipe have been added to the dish).
      * If it is, set the dish's texture to the appropriate dish texture.
@@ -182,6 +181,19 @@ public class Dish extends ImageMovable {
      * @param obj The {@link Dish} to compare to.
      * @return True if the dishes are equal, false otherwise.
      */
+    @Override
+    public void drawItemInventory(int x, int y, int width, int height) {
+        super.drawItemInventory(x, y, width, height);
+
+        for (Ingredient ingredient : Ingredients) {
+            System.out.println(ingredient);
+            y -= 50;
+            ingredient.drawItemInventory(x, y, Base.tile_pixel_width / 2,
+                    Base.tile_pixel_width / 2);
+        }
+        System.out.println("IntelliJ? more like IntelliCringe");
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Dish)) {

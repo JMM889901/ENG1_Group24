@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
+import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
@@ -27,7 +28,7 @@ public class Customer extends StageAnimation {
     /**
      * The name for the customer
      */
-//    private String name; //Probably pointless
+    //    private String name; //Probably pointless
     /**
      * The order for the customer, a {@link Dish}
      */
@@ -48,7 +49,7 @@ public class Customer extends StageAnimation {
     /**
      * The text bubble for the customer
      */
-    private final Label textBubble;
+    //private final Label textBubble;
 
     /**
      * Constructor for the Customer class
@@ -56,28 +57,28 @@ public class Customer extends StageAnimation {
     public Customer() {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
-//        timeLimit = 30f;
+        //        timeLimit = 30f;
         this.timeLimit = 15;
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
-        this.textBubble = new Label(orderText, style);
-        this.textBubble.setPosition(this.getX(), this.getY() + entityHeight);
+
         this.order = Dish.Dishes.get(GameData.rand.nextInt(Dish.Dishes.size()));
-        if(order == new Dish(Dish.BURGER_RECIPE)){
-            this.orderText = "Burger";
+        if (order.equals(Dish.BURGER)) {
+            //    this.orderText = "Burger";
             this.orderTexture = GameData.burgerDishTexture;
-        }
-        else if(order == new Dish(Dish.SALAD_RECIPE)){ 
-            this.orderText = "Salad";
+        } else if (order.equals(Dish.SALAD)) {
+            //    this.orderText = "Salad";
             this.orderTexture = GameData.saladDishTexture;
         }
-        
+        //System.out.println("Order text " + orderText);
+        //this.textBubble = new Label(orderText, style);
+        //this.textBubble.setPosition(this.getX(), this.getY() + entityHeight);
     }
 
     /** Fulfil the customer's order i.e. they have had their dish served and are happy now :) */
     public void fulfillOrder() {
-        this.textBubble.setText("Done");
+        //this.textBubble.setText("Done");
         GameData.customers.remove(this);
         this.remove();
         GameData.gameLoop.resortCustomers();
@@ -88,8 +89,8 @@ public class Customer extends StageAnimation {
     @Override
     public void setX(float x) {
         super.setX(x);
-        if (this.textBubble != null)
-            this.textBubble.setX(x);
+        //if (this.textBubble != null)
+        //    this.textBubble.setX(x);
     }
 
     /**
@@ -99,8 +100,8 @@ public class Customer extends StageAnimation {
     @Override
     public void setY(float y) {
         super.setY(y);
-        if (this.textBubble != null)
-            this.textBubble.setY(y + entityHeight);
+        //if (this.textBubble != null)
+        //    this.textBubble.setY(y + entityHeight);
     }
 
     /**
@@ -111,7 +112,8 @@ public class Customer extends StageAnimation {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        textBubble.draw(batch, parentAlpha);
+        //textBubble.draw(batch, parentAlpha);
+        Base.batch.draw(orderTexture, this.getX(), this.getY() + entityHeight, entityWidth, entityWidth);
     }
 
     /**

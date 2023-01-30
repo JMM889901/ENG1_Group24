@@ -87,9 +87,11 @@ public class GameLoop extends Stage {
 
         //Player creation
 
-        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, GameData.initialChef1Animation, GameData.chef1Animations);
+        GameData.player = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                GameData.initialChef1Animation, GameData.chef1Animations);
         GameData.player1 = GameData.player;
-        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5, GameData.initialChef2Animation, GameData.chef2Animations);
+        GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                GameData.initialChef2Animation, GameData.chef2Animations);
 
         this.addActor(GameData.player1);
         this.addActor(GameData.player2);
@@ -106,14 +108,17 @@ public class GameLoop extends Stage {
         this.addActor(scoreCounter);
 
         //Create Inventory Panel
-        StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1, new Vector2(0.85, 0.85), 50, 100);
-        StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1, new Vector2(0.8, 0.85), 50, 100);
+        StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
+                new Vector2(0.85, 0.85), 50, 100);
+        StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
+                new Vector2(0.8, 0.85), 50, 100);
 
         this.addActor(ChefAnimation);
         this.addActor(ChefAnimation1);
 
         //Create customers
-        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png", "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
+        GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
+                "customers/customer_2_idle.png", "customers/customer_3_idle.png"));
         GameData.rand = new Random();
 
     }
@@ -211,28 +216,36 @@ public class GameLoop extends Stage {
         for (int y = GameData.level.getHeight() - 1; y >= 0; y--) {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 curPosition = Vector2.gridUnitTranslate(x, y);
-                Base.batch.draw(GameData.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX, curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
+                Base.batch.draw(GameData.floorTexture, curPosition.getAbsoluteX() + GameData.offsetX,
+                        curPosition.getAbsoluteY() + GameData.offsetY, Base.tile_pixel_width, Base.tile_pixel_width);
 
             }
         }
 
         //This code causes a slight memory leak
         if (Base.DEBUG) { // Draws the player's hitbox area.
-            Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2, GameData.player.y - Player.GRID_WIDTH / 2);
-            Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2, GameData.player.y + Player.GRID_WIDTH / 2);
-            Base.batch.draw(GameData.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX, bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(), topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
+            Vector2 bottomLeft = Vector2.gridUnitTranslate(GameData.player.x - Player.GRID_WIDTH / 2,
+                    GameData.player.y - Player.GRID_WIDTH / 2);
+            Vector2 topRight = Vector2.gridUnitTranslate(GameData.player.x + Player.GRID_WIDTH / 2,
+                    GameData.player.y + Player.GRID_WIDTH / 2);
+            Base.batch.draw(GameData.debugSquareTexture, bottomLeft.getAbsoluteX() + GameData.offsetX,
+                    bottomLeft.getAbsoluteY() + GameData.offsetY, topRight.getAbsoluteX() - bottomLeft.getAbsoluteX(),
+                    topRight.getAbsoluteY() - bottomLeft.getAbsoluteY());
         }
 
         //Draw the player inventory
         if (GameData.player1.holding != null) {
             curPosition.x = 0.85;
             curPosition.y = 0.85;
-            GameData.player1.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50, 50);
+            //curPosition = new Vector2(0.85, 0.85);
+            GameData.player1.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
+                    50);
         }
         if (GameData.player2.holding != null) {
             curPosition.y = 0.85;
             curPosition.x = 0.8;
-            GameData.player2.holding.drawItem(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50, 50);
+            GameData.player2.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
+                    50);
         }
         Base.batch.end();
         Base.batch.begin();
@@ -242,9 +255,10 @@ public class GameLoop extends Stage {
         //Draw items
         for (Station station : this.stations) {
             if (station.item != null) {
-                station.item.drawItem((int) (station.getX() + ((Base.tile_pixel_width / 3))), (int) (station.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2, Base.tile_pixel_width / 2);
+                station.item.drawItem((int) (station.getX() + ((Base.tile_pixel_width / 3))),
+                        (int) (station.getY() + (Base.tile_pixel_height / 2)), Base.tile_pixel_width / 2,
+                        Base.tile_pixel_width / 2);
             }
         }
-        // Todo: draw the player at the right z level depending on its y position.
     }
 }

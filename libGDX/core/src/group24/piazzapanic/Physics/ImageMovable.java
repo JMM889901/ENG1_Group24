@@ -67,4 +67,10 @@ public class ImageMovable extends Image implements Movable {
     public void drawItem(int x, int y, int width, int height) {
         Base.batch.draw(texture, x, y, width, height);
     }
+
+    @Override
+    public void drawItemInventory(int x, int y, int width, int height) {
+        drawItem(x, y, 50, 50);
+
+    }
 }
