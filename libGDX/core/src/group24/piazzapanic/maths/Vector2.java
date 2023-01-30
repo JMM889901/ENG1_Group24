@@ -1,7 +1,5 @@
 package group24.piazzapanic.maths;
 
-import java.lang.Math;
-
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 
@@ -12,14 +10,26 @@ import group24.piazzapanic.game.GameData;
  */
 public class Vector2 extends com.badlogic.gdx.math.Vector2 {
     // These should only be from 0 to 1, -1 means unset and anything else is a worrying mistake.
+    /** The x position of the vector. Should only be from 0 to 1, -1 means unset */
     public double x;
+    /** The y position of the vector. Should only be from 0 to 1, -1 means unset */
     public double y;
 
+    /**
+     * Create a new Vector2 with the given x and y values.
+     * @param x The x value of the vector.
+     * @param y The y value of the vector.
+     */
     public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Create a new Vector2 with the given x and y values.
+     * @param x The x value of the vector.
+     * @param y The y value of the vector.
+     */
     public Vector2(int x, int y) {
         // This will lead to slight innacuracies, but they get rounded away anyway so it won't
         // change the integer values. (eg 500 / 1280, * 1280 = 500.0000000000001)
@@ -71,12 +81,21 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
                 gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
-    //Equivalent of gridUnitTranslate but does not create a new instance for memory reasons
+    /**
+     * Equivalent of {@link #gridUnitTranslate(double, double)} but does not create a new instance for memory reasons
+     * @param gridX The x position of a given cell in the grid.
+     * @param gridY The y position of a given cell in the grid.
+     */
     public void gridUnitTranslateInplace(double gridX, double gridY) {
         this.x = (gridX * Base.TILE_GRID_UNIT);
         this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
     }
 
+    /**
+     * Equivalent of {@link #gridUnitTranslate(float, float)} but does not create a new instance for memory reasons
+     * @param gridX The x position of a given cell in the grid.
+     * @param gridY The y position of a given cell in the grid.
+     */
     public void gridUnitTranslateInplace(float gridX, float gridY) {
         this.x = (gridX * Base.TILE_GRID_UNIT);
         this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);

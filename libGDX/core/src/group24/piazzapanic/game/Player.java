@@ -43,27 +43,52 @@ public class Player extends Actor {
     public double x_vel = 0;
     /** The y velocity of the player. */
     public double y_vel = 0;
+    /** acceleration, in units per second squared. */
     public static double acceleration = 25; // Grid units per second squared.
+    /** deceleration, in grid units per second squared. */
     public static double deacceleration = 20;
+    /** the max speed, in grid units per second. */
     public static double maxSpeed = 3; // Grid units per second.
-    public static double minSpeed = 0.4; // The player is deemed still if they are below this.
+    /** The player is deemed still if they are below this. */
+    public static double minSpeed = 0.4; // The player is deemed still if// they are below this.
+    /** A small offset to prevent the player from colliding with objects. */
     public static double movementEpsilon = 0.01; // Just a small number to offset the player from
                                                  // collidable objects.
+    /** Prevents memory leaks, otherwise this would be in the draw function. */
     Vector2 playerPosition; //Meant to prevent mem leaks, otherwise this would be in the draw func
+    /** Starting x position for when a player starts to interact with a station. */
     public double playerInteractX;
+    /** Starting y position for when a player starts to interact with a station. */
     public double playerInteractY;
+    /** A boolean to determine whether the player is interacting with a station. */
     boolean playerInteracting;
+    /** The {@link Station} the player is interacting with. */
     Station interactingStation;
 
+    /** The player's one-item inventory. */
     public Movable holding; // The player's one-item inventory.
 
+    /** The player's animation. */
     public StageAnimation animation;
     public HashMap<String, Animation<TextureRegion>> AnimMap;
+    /** The player's progress bar. */
     ProgressBar bar;
+    /** A boolean to determine whether the progress bar should be drawn. */
     boolean DrawBar;
 
+
+    /**
+     * The direction the player is facing.
+     */
     public enum facing {
-        UP, DOWN, LEFT, RIGHT
+        /** The player is facing up. */
+        UP,
+        /** The player is facing down. */
+        DOWN,
+        /** The player is facing left. */
+        LEFT,
+        /** The player is facing right. */
+        RIGHT
     }
 
     public facing direction;

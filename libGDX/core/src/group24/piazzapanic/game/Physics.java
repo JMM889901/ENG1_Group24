@@ -6,6 +6,9 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.maths.Vector2;
 
+/**
+ * A class that contains static methods for checking collisions and other physics.
+ */
 public class Physics {
 
     /**

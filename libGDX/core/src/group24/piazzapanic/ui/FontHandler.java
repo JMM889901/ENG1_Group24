@@ -17,6 +17,7 @@ public class FontHandler {
     public static BitmapFont subtitleFormat;
     /** The font used on smaller buttons. */
     public static BitmapFont textButtonFormat;
+    /** The font used for content. */
     public static BitmapFont contentFormat;
 
     /**
