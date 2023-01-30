@@ -29,6 +29,7 @@ public class StageManager {
         stages.put("Game", GameData.gameLoop);
         stages.put("Pause", StageFactory.createPauseMenuStage());
         stages.put("Instructions", StageFactory.createInstructionsStage());
+        stages.put("GameOver", StageFactory.createGameOverStage());
         setActiveStage("MainMenu");
     }
 

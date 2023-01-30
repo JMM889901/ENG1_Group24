@@ -54,7 +54,7 @@ public class Dish extends ImageMovable {
         super.setHeight(Base.tile_pixel_height);
         this.complete = true;
         this.recipe = recipe;
-        this.Ingredients = recipe;
+        this.Ingredients.clear();
     }
 
     /**
