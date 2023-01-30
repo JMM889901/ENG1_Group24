@@ -155,11 +155,13 @@ public class Dish extends ImageMovable {
         return complete;
     }
 
+
     /**
-     * Checks if the dish is equal to another dish.
-     * A dish is equal to another dish if they have the same recipe and completeness value.
-     * @param obj The {@link Dish} to compare to.
-     * @return True if the dishes are equal, false otherwise.
+     * Draws the dish and its ingredients in the inventory.
+     * @param x The X coordinate of the dish.
+     * @param y The Y coordinate of the dish.
+     * @param width The width of the drawing.
+     * @param height The height of the drawing.
      */
     @Override
     public void drawItemInventory(int x, int y, int width, int height) {

@@ -5,12 +5,10 @@ package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.levelElements.Ingredient;
 
 /**
  * BakingStation allows users to bake items.
- * They interact with {@link group24.piazzapanic.levelElements.Ingredient}'s {@link Ingredient#bake()} method and {@link group24.piazzapanic.levelElements.Ingredient.getBakingProgress()} method.
- * .
+ * They interact with {@link group24.piazzapanic.levelElements.Ingredient}.
  */
 public class BakingStation extends Station {
 

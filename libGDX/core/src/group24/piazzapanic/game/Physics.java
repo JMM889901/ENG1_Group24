@@ -50,8 +50,8 @@ public class Physics {
     }
 
     /** 
-     * @param player
-     * @param delta
+     * @param player The {@link Player} that is moving 
+     * @param delta The time since the last frame in seconds. 
      */
     public static void playerMovement(Player player, float delta) {
         /*
