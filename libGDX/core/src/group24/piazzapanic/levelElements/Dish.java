@@ -16,14 +16,16 @@ import java.util.Arrays;
  */
 public class Dish extends ImageMovable {
     /** The burger recipe. */
-    static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> BURGER_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.BURGER_BUN, GameData.BURGER, GameData.CHOPPED_LETTUCE));
     /** The Salad recipe. */
-    static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
+    public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
     /** The list of all dishes. */
+    public static Dish BURGER = new Dish(BURGER_RECIPE);
+    public static Dish SALAD = new Dish(SALAD_RECIPE);
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
-            Arrays.asList(new Dish(BURGER_RECIPE), new Dish(SALAD_RECIPE)));
+            Arrays.asList(BURGER, SALAD));
     ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     /** Stores the dish's recipe. */
     ArrayList<Ingredient> recipe;
@@ -62,8 +64,8 @@ public class Dish extends ImageMovable {
      * @return True if the ingredient was added, false otherwise.
      */
     public boolean addIngredient(Ingredient item) {
-        if (recipe.size() == 0) { // If the recipe is empty, add the ingredient.
-            ArrayList<Ingredient> tmp = this.Ingredients;
+        if (recipe.size() == 0) {
+            ArrayList<Ingredient> tmp = new ArrayList<Ingredient>(this.Ingredients);
             tmp.add(item);
             if (setRecipe(tmp)) { //checks if there is a recipe with this combination of ingredients
                 this.Ingredients.add(item);
@@ -82,37 +84,16 @@ public class Dish extends ImageMovable {
             this.Ingredients.add(item);
             this.complete = checkComplete();
             System.out.println("added to dish\ncurrent:");
-            for (Ingredient i : Ingredients) {
-                System.out.println(i.ingredientType.getName());
-            }
             System.out.println("recipe:");
-            for (Ingredient i : recipe) {
-                System.out.println(i.ingredientType.getName());
-            }
             return true;
         }
         return false;
     }
 
-
+    /**
+     * Not implemented.
+     */
     public void act(float delta) {
-        /*
-        ArrayList<String> CurrentIngredients = new ArrayList<String>();
-        // Get arraylist of all ingredient names, sort it, compare it, return it otherwise. 
-        for (Ingredient item : Ingredients) {
-            CurrentIngredients.add(item.getName());
-        }
-        Collections.sort(CurrentIngredients); // Sort the ArrayList of Strings of ingredients
-        if (CurrentIngredients.equals(BURGER_RECIPE)){
-            this.Ingredients = null; // IT'S BURGR TIME, BABYE.  
-            //TODO - SET ME TO **BORGER**
-        }
-        else if (CurrentIngredients.equals(SALAD_RECIPE)){
-            this.Ingredients = null; // SALAD MOMENt
-            //TODO - set me as a salad. 
-        }
-        CurrentIngredients = null; // To avoid a memory leak. 
-        */
     }
 
     /**
@@ -145,10 +126,10 @@ public class Dish extends ImageMovable {
 
     }
 
-
     /**
      * Checks if the recipe is complete (that is, all the ingredients for the recipe have been added to the dish).
-     * If it is, set the dish's texture to the appropriate dish texture.
+     * If it is, set the dish's texture to the appropriate dish texture and clear ingredients to prevent drawing them
+     * in players inventory alongside the dish.
      * @return True if the recipe is complete, false otherwise.
      */
     private boolean checkComplete() {
@@ -162,6 +143,7 @@ public class Dish extends ImageMovable {
                 this.texture = GameData.burgerDishTexture;
             else if (recipe == SALAD_RECIPE)
                 this.texture = GameData.saladDishTexture;
+            this.Ingredients.clear();
             return true;
         }
         return false;
@@ -175,12 +157,26 @@ public class Dish extends ImageMovable {
         return complete;
     }
 
+
     /**
-     * Checks if the dish is equal to another dish.
-     * A dish is equal to another dish if they have the same recipe and completeness value.
-     * @param obj The {@link Dish} to compare to.
-     * @return True if the dishes are equal, false otherwise.
+     * Draws the dish and its ingredients in the inventory.
+     * @param x The X coordinate of the dish.
+     * @param y The Y coordinate of the dish.
+     * @param width The width of the drawing.
+     * @param height The height of the drawing.
      */
+    @Override
+    public void drawItemInventory(int x, int y, int width, int height) {
+        super.drawItemInventory(x, y, width, height);
+
+        for (Ingredient ingredient : Ingredients) {
+            System.out.println(ingredient);
+            y -= 50;
+            ingredient.drawItemInventory(x, y, Base.tile_pixel_width / 2,
+                    Base.tile_pixel_width / 2);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Dish)) {

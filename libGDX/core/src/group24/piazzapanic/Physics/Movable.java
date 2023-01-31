@@ -11,5 +11,7 @@ public interface Movable {
 
     void drawItem(int x, int y, int width, int height);
 
+    void drawItemInventory(int x, int y, int width, int height);
+
     Ingredient getIngredient();
 }

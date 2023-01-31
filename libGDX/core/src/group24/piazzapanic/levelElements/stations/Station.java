@@ -74,7 +74,7 @@ public class Station extends Image {
      * OR
      * hold a Dish and an unlimited number of Ingredients (to combine into a finished meal)
      *
-     * @param item
+     * @param item The {@link Movable} to be placed on the station. 
      * @return true if the item was placed, false if the item could not be placed
      */
     public boolean placeItem(Movable item) {

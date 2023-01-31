@@ -22,31 +22,46 @@ public class Base {
     public static final boolean DEBUG = false;
     /** The path to the config file. */
     public static String CONFIG_PATH = "config.txt";
+    /** The window width */
     public static int WINDOW_WIDTH = 100;
+    /** The window height */
     public static int WINDOW_HEIGHT = 100;
 
+    /** The tile texture width. Needs a nice 1:2 ratio with the {@link #TILE_TEXTURE_HEIGHT}*/
     // These 2 numbers below work best if they make a nice ratio (eg 1:2).
     public static final int TILE_TEXTURE_WIDTH = 100;
+    /** The tile texture height. Needs a nice 2:1 ratio with the {@link #TILE_TEXTURE_WIDTH}*/
     public static final int TILE_TEXTURE_HEIGHT = 200;
+    /** The width of the tile grid. 20 tiles fit within one screen width*/
     public static final float TILE_GRID_UNIT = 0.05f; // 20 tiles fit within one screen width.
+    /** The tile pixel width. */
     public static int tile_pixel_width;
+    /** The tile pixel height. */
     public static int tile_pixel_height;
 
+    /** The SpriteBatch used to draw all textures. */
     public static SpriteBatch batch;
 
     // Don't declare any unused textures otherwise gradle just inexplicably dies permanently.
+    /** The up arrow keybind. */
     public static final int UP_KEY = Keys.W;
+    /** The down arrow keybind. */
     public static final int DOWN_KEY = Keys.S;
+    /** The left arrow keybind. */
     public static final int LEFT_KEY = Keys.A;
+    /** The right arrow keybind. */
     public static final int RIGHT_KEY = Keys.D;
+    /** The action keybind. */
     public static final int ACT_KEY = Keys.F; // Interact with a station
-    public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items 
+    /** The pickup keybind. */
+    public static final int PICKUP_KEY = Keys.E; // Pickup/putdown items
+    /** The select keybind, which clicks the "first" option in a given menu */
     public static final int SELECT_KEY = Keys.ENTER;
+    /** The swap keybind. */
     public static final int SWAP_KEY = Keys.Q;
+    /** The pause keybind. */
     public static final int PAUSE_KEY = Keys.ESCAPE;
 
-    // SELECT_KEY just clicks the "first" option in a given menu. Useful to ignore UI bugs when
-    // developing non-UI features.
 
     /**
      * Read the config file and set the values of the variables in this class.

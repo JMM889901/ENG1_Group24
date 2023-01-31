@@ -1,41 +1,27 @@
 package group24.piazzapanic;
 
 //import java.util.HashMap;
-import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.Gdx;
-
-import group24.piazzapanic.ui.StageAnimation;
-import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageManager;
 
+/**
+ * The main class of the game.
+ */
 public class PiazzaPanic extends ApplicationAdapter {
-    Texture img;
 
-    SpriteBatch batch;
-    PerspectiveCamera camera;
+    /** The viewport of the game. */
     Viewport viewport;
-    Stage stage;
-    TextButton button;
-    StageManager stageManager;
-    Float stateTime;
-    Animation<TextureRegion> chefIdle;
-    //Texture idleChefSheet;
 
+    /**
+     * Called when the Application is first created.
+     */
     @Override
     public void create() {
         Base.init();
@@ -53,11 +39,13 @@ public class PiazzaPanic extends ApplicationAdapter {
         Gdx.graphics.setWindowedMode(Base.WINDOW_WIDTH, Base.WINDOW_HEIGHT);
         FontHandler.create();
 
-        img = new Texture("badlogic.jpg");
 
         StageManager.init();
     }
 
+    /**
+     * Render the game.
+     */
     @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
@@ -77,20 +65,21 @@ public class PiazzaPanic extends ApplicationAdapter {
         Base.batch.end();
     }
 
-    /** 
-     * @param width
-     * @param height
+    /**
+     * Called when the Application is resized.
+     * @param width the new width in pixels
+     * @param height the new height in pixels
      */
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
     }
 
+    /** Destroy the game. */
     @Override
     public void dispose() {
         Base.dispose();
         FontHandler.dispose();
-        img.dispose();
         //idleChefSheet.dispose();
     }
 }
