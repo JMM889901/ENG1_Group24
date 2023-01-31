@@ -4,9 +4,6 @@ import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
 
-import java.io.File;
-import java.util.Scanner;
-
 /**
  * Reads level environment data from a file and stores it in a 2D array of
  * stations.
@@ -38,30 +35,32 @@ public class Level {
         this.levelName = levelName;
         // Read the level file from disk.
         try {
-            File levelFile = new File(levelName);
-            Scanner levelScanner = new Scanner(levelFile);
+            width = 10;
+            height = 5;
 
-            String[] dimensions = levelScanner.nextLine().split("x");
-
-            width = Integer.parseInt(dimensions[0]);
-            height = Integer.parseInt(dimensions[1]);
+            String[] level_string = {"s111111112",
+            ".........3",
+            "g.dBCF1..3",
+            "....*....4",
+            "o.t.l.b.m."};
 
             grid = new Station[width][height];
 
-            int x, y;
-            // Be aware that i is the outer loop, controlling the y coordinate.
-            for (int i = 0; i < height; i++) {
-                if (!levelScanner.hasNextLine()) {
-                    throw new Exception("Expected " + height + " lines in level file, but found " + i + ".");
-                }
+            // The x and y coordinates of the current station.
+            int x;
+            int y;
 
-                String line = levelScanner.nextLine();
+            // Loop variables to interpret a level string array (i, the outer loop, refers to y coordinate).
+            int j;
+            int i = 0;
+
+            for (String line : level_string) {
                 if (line.length() != width) {
                     throw new Exception(
                             "Expected " + width + " characters in line " + i + ", but found " + line.length() + ".");
                 }
 
-                for (int j = 0; j < width; j++) {
+                for (j = 0; j < width; j++) {
                     y = height - i - 1;
                     x = j;
 
@@ -122,8 +121,10 @@ public class Level {
                     grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,
                             pos.getAbsoluteY() + GameData.offsetY);
                 }
+
+                i += 1;
             }
-            levelScanner.close();
+            //levelScanner.close();
         } catch (Exception exception) {
             System.out.println("Error reading level, '" + levelName + "'.");
             exception.printStackTrace();

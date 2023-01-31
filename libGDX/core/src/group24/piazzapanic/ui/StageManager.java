@@ -19,7 +19,7 @@ public class StageManager {
     private static String activeStageName;
 
     /**
-     * Create the various stages now, using `StageFactory.java`.
+     * Create the various stages.
      */
     public static void init() {
         stages = new HashMap<String, Stage>();
@@ -29,6 +29,7 @@ public class StageManager {
         stages.put("Game", GameData.gameLoop);
         stages.put("Pause", StageFactory.createPauseMenuStage());
         stages.put("Instructions", StageFactory.createInstructionsStage());
+        stages.put("GameOver", StageFactory.createGameOverStage());
         setActiveStage("MainMenu");
     }
 

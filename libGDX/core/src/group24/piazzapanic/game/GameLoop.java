@@ -45,8 +45,8 @@ public class GameLoop extends Stage {
     /** The stations in the game level */
     private ArrayList<Station> stations;
 
-    public int maxCustomers = 5;
-    public int totalCustomers;
+    public int maxCustomers = 5; //maximum number of customers to appear 
+    public int totalCustomers; //number of customers spawned so far
 
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
@@ -170,6 +170,9 @@ public class GameLoop extends Stage {
         }
         if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
             StageManager.setActiveStage("Pause");
+        }
+        if (this.totalCustomers == this.maxCustomers && GameData.customers.size() == 0) {
+            StageManager.setActiveStage("GameOver");
         }
         // Run player movement and physics, it's quite long so I put it in a separate function.
         CharSequence count = Integer.toString(Math.toIntExact((long) Math.floor(GameData.gameTime)));

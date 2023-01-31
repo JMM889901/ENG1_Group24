@@ -39,7 +39,7 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
 
     /** 
      * Convert a decimal percentage of the screen width to an absolute pixel value.
-     * @return int
+     * @return the absolute pixel value
      */
     public int getAbsoluteX() {
         return Math.toIntExact(Math.round(x * Base.WINDOW_WIDTH));
@@ -47,7 +47,7 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
 
     /** 
      * Convert a decimal percentage of the screen width to an absolute pixel value.
-     * @return int
+     * @return the absolute pixel value
      */
     public int getAbsoluteY() {
         return Math.toIntExact(Math.round(y * Base.WINDOW_HEIGHT));
@@ -103,9 +103,9 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
 
     /**
      * Convert grid units to on screen positions inlcuding offset.
-     * @param gridX
-     * @param gridY
-     * @return
+     * @param gridX the grid X coordinates
+     * @param gridY the grid Y coordinates
+     * @return The on-screen position including offset
      */
     public static Vector2 worldUnitTranslate(float gridX, float gridY) {
         Vector2 pos = gridUnitTranslate(gridX, gridY);
@@ -116,9 +116,9 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
 
     /**
      * Convert grid units to on screen positions inlcuding offset.
-     * @param gridX
-     * @param gridY
-     * @return
+     * @param gridX The grid X coordinates
+     * @param gridY The grid Y coordinates
+     * @return The on-screen position including offset
      */
     public static Vector2 worldUnitTranslate(Double gridX, Double gridY) {
         Vector2 pos = gridUnitTranslate(gridX, gridY);

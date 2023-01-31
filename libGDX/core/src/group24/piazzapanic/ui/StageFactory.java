@@ -75,6 +75,22 @@ public class StageFactory {
         });
         stage.addActor(button2);
 
+        // quit button
+        TextButton button3 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.3), "Quit", Align.center);
+        button3.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button3.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Quit");
+                Gdx.app.exit();
+            }
+
+        });
+        stage.addActor(button3);
+
         // Temporary (?) dancing chef.
         StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154,
                 307);
@@ -145,6 +161,7 @@ public class StageFactory {
                 super.act();
             }
         };
+        //return to game button
         TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.6), "Return to game", Align.center);
         button.getStyle().overFontColor = Color.BLUE;
@@ -161,6 +178,7 @@ public class StageFactory {
         });
         stage.addActor(button);
 
+        //restart game button
         TextButton restart = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.5), "Restart", Align.center);
         restart.getStyle().overFontColor = Color.BLUE;
@@ -178,6 +196,7 @@ public class StageFactory {
         });
         stage.addActor(restart);
 
+        //exit to menu button
         TextButton exit = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.4), "Exit to Menu", Align.center);
         exit.getStyle().overFontColor = Color.BLUE;
@@ -193,6 +212,7 @@ public class StageFactory {
         });
         stage.addActor(exit);
 
+        //how to play button
         TextButton instructions = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.3), "How to Play", Align.center);
         instructions.getStyle().overFontColor = Color.BLUE;
@@ -210,25 +230,31 @@ public class StageFactory {
         return stage;
     }
 
+    /**
+     * Create Instructions stage
+     * @return The new stage created
+     */
     public static Stage createInstructionsStage(){
         Stage stage = new Stage();
-        //Window instructions = new Window("How To Play", new Window.WindowStyle(FontHandler.titleFormat, Color.WHITE,));
-        //instructions.setKeepWithinStage(true);
-        //instructions.setSkin(new Skin());
+        
         CharSequence Controls = "W - up\nA - left\nS - down\nD - right\nQ - swap chef\nE - Pick up/Put down\nF - Interact\n    (cut/fry/bake)";
         CharSequence Recipes = "Burger:\n-cut bread\n-cut meat\n-fry meat\n-cut lettuce\n\nSalad:\n-cut onion\n-cut tomato\n-cut lettuce";
+        //Title
         Label title1 = new Label("Controls", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.05, 0.85);
         title1.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
 
+        //Controls
         Label controls = new Label(Controls, new LabelStyle(FontHandler.contentFormat, Color.WHITE));
         coords = new Vector2(0.05, 0.7);
         controls.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
 
+        //Title 2
         Label title2 = new Label("Recipes", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
         coords = new Vector2(0.5, 0.85);
         title2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
 
+        //Recipes
         Label recipes = new Label(Recipes, new LabelStyle(FontHandler.contentFormat, Color.WHITE));
         coords = new Vector2(0.5, 0.7);
         recipes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
@@ -240,6 +266,7 @@ public class StageFactory {
         dishes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         dishes.setAlignment(Align.center, Align.center);
 
+        //ingredient textures
         Image bun = new Image(GameData.cutBreadTexture);
         coords = new Vector2(0.93, 0.75);
         bun.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
@@ -275,7 +302,7 @@ public class StageFactory {
         lettuce2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         lettuce2.setScale((float)0.07);
 
-        //Add return to pause menu button
+        //Return to pause menu button
         TextButton backButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
                 new Vector2(0.15, 0.95), "Back", Align.right);
         backButton.getStyle().overFontColor = Color.BLUE;
@@ -302,6 +329,66 @@ public class StageFactory {
         stage.addActor(controls);
         stage.addActor(title2);
         stage.addActor(recipes);
+        return stage;
+    }
+
+    /**
+     * Create Game Over Stage
+     * @return The new stage created
+     */
+    public static Stage createGameOverStage() {
+        Stage stage = new Stage();
+        GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
+        GameData.music.setLooping(true);
+        //GameData.music.play();
+        
+        //Title
+        CharSequence TitleText = "Level Complete!";
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
+        Vector2 coords = new Vector2(0.5, 0.7);
+        Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(Title);
+
+        // return to menu button
+        TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.5), "Main Menu", Align.center);
+        button.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Main Menu");
+                StageManager.setActiveStage("MainMenu");
+            }
+
+        });
+        stage.addActor(button);
+
+        // quit button
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.4), "Quit", Align.center);
+        button2.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button2.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Quit");
+                Gdx.app.exit();
+            }
+
+        });
+        stage.addActor(button2);
+
+        // Temporary (?) dancing chef.
+        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154,
+                307);
+        StageAnimation ChefAnimation1 = new StageAnimation("chef/chef_1_idle_front_selected.png", 6, 6, 1,
+                Base.WINDOW_WIDTH - 180, 20, 154, 307);
+
+        stage.addActor(ChefAnimation);
+        stage.addActor(ChefAnimation1);
         return stage;
     }
 }

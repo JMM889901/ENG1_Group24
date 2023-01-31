@@ -71,9 +71,7 @@ public class Customer extends StageAnimation {
             //    this.orderText = "Salad";
             this.orderTexture = GameData.saladDishTexture;
         }
-        //System.out.println("Order text " + orderText);
-        //this.textBubble = new Label(orderText, style);
-        //this.textBubble.setPosition(this.getX(), this.getY() + entityHeight);
+
     }
 
     /** Fulfil the customer's order i.e. they have had their dish served and are happy now :) */

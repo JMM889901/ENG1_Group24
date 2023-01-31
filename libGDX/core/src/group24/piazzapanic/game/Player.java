@@ -116,6 +116,7 @@ public class Player extends Actor {
 
     /**
      * Returns the y position of the top of the player's hitbox.
+     * @return The Y position of the top of the player's hitbox
      */
     public double top() {
         return y + GRID_WIDTH / 2;
@@ -123,6 +124,7 @@ public class Player extends Actor {
 
     /**
      * Returns the y position of the bottom of the player's hitbox.
+     * @return the Y position of the bottom of the player's hitbox.
      */
     public double bottom() {
         return y - GRID_WIDTH / 2;
@@ -130,6 +132,7 @@ public class Player extends Actor {
 
     /**
      * Returns the x position of the right of the player's hitbox.
+     * @return the x position of the right of the player's hitbox.
      */
     public double right() {
         return x + GRID_WIDTH / 2;
@@ -137,6 +140,7 @@ public class Player extends Actor {
 
     /**
      * Returns the x position of the left of the player's hitbox.
+     * @return the x position of the left of the player's hitbox.
      */
     public double left() {
         return x - GRID_WIDTH / 2;

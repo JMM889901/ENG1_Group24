@@ -23,7 +23,7 @@ public class CuttingStation extends Station {
      * Allows the player to cut the item.
      * Checks that the player is near the station, facing the station, and is pressing the ACT_KEY.
      * Checks if the item has already been cut or can't be cut.
-     * If it can be cut increases timeKeyHeld by act until timeKeyHeld > 3 seconds. Then cuts the item.
+     * If it can be cut increases timeKeyHeld by act until timeKeyHeld greater than 3 seconds. Then cuts the item.
      * n.b. act(float delta) is called every frame.
      *
      * @param delta Time in seconds since the last frame.
