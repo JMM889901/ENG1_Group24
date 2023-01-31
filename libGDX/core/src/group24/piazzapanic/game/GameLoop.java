@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -33,6 +34,8 @@ import group24.piazzapanic.levelElements.stations.*;
 public class GameLoop extends Stage {
     /** The game score */
     private final Label scoreCounter;
+    /** The game timer */
+    private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
     private Vector2 curPosition;
 
@@ -69,21 +72,21 @@ public class GameLoop extends Stage {
             this.addActor(group);
             this.rows.add(group);
         }
-        // //Add pause button
-        // TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
-        //         new Vector2(0.15, 0.95), "||", Align.right);
-        // pauseButton.getStyle().overFontColor = Color.BLUE;
-        // //Create onclick function
-        // pauseButton.addListener(new ChangeListener() {
+        //Add pause button
+        TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+                new Vector2(0.15, 0.95), "||", Align.right);
+        pauseButton.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        pauseButton.addListener(new ChangeListener() {
 
-        //     @Override
-        //     public void changed(ChangeEvent event, Actor actor) {
-        //         System.out.print("Open Main");
-        //         StageManager.setActiveStage("Pause");
-        //     }
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Main");
+                StageManager.setActiveStage("Pause");
+            }
 
-        // });
-        // stage.addActor(backButton);
+        });
+        this.addActor(pauseButton);
 
         //Player creation
 
@@ -107,6 +110,10 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
+        gameTimer = new Label(count, style);
+        pos = new Vector2(0.05, 0.9); // Score counter position.
+        gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
+        this.addActor(gameTimer);
         //Create Inventory Panel
         StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
                 new Vector2(0.85, 0.85), 50, 100);
@@ -165,6 +172,8 @@ public class GameLoop extends Stage {
             StageManager.setActiveStage("Pause");
         }
         // Run player movement and physics, it's quite long so I put it in a separate function.
+        CharSequence count = Integer.toString(Math.toIntExact((long) Math.floor(GameData.gameTime)));
+        this.gameTimer.setText(count);
         Physics.playerMovement(GameData.player, delta);
         resortActors();
         super.act(delta);
