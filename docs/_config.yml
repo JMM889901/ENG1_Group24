@@ -29,7 +29,9 @@ remote_theme: pages-themes/midnight
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
-
+include:
+  - .*.jpg
+  - .*.png
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
