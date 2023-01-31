@@ -22,3 +22,6 @@ Want to develop our game more? Full javadocs can be found  [here](./javadoc.zip)
 ## PDF Documents for assessment
 
 The PDF documents for our assessment can be found [here](https://drive.google.com/drive/folders/1uPDxU_NtrS0mfdUevFa9mR-tiHp2zYf8)
+
+## Gantt chart plan 
+![gantt chart](./gantt.png)
