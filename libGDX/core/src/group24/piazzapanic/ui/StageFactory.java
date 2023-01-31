@@ -260,7 +260,7 @@ public class StageFactory {
         recipes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
         
         Label dishes = new Label("Place ingredients on top of a plate to combine into a dish", new LabelStyle(FontHandler.contentFormat, Color.WHITE));
-        coords = new Vector2(0.5, 0.2);
+        coords = new Vector2(0.5, 0.15);
         dishes.setWrap(true);
         dishes.setWidth((float)(Base.WINDOW_WIDTH * 0.75));
         dishes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
