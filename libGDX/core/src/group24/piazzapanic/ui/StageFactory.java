@@ -53,27 +53,29 @@ public class StageFactory {
                 GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
                 GameData.music.setLooping(true);
                 //  GameData.music.play();
+                GameData.gameLoop = new GameLoop();
+                StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
             }
 
         });
         stage.addActor(button);
 
-        // Options button
-        TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-                new Vector2(0.5, 0.4), "Options", Align.center);
-        button2.getStyle().overFontColor = Color.BLUE;
-        //Create onclick function
-        button2.addListener(new ChangeListener() {
-
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                System.out.print("Open Options");
-                StageManager.setActiveStage("Options");
-            }
-
-        });
-        stage.addActor(button2);
+        //// Options button
+        //TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+        //        new Vector2(0.5, 0.4), "Options", Align.center);
+        //button2.getStyle().overFontColor = Color.BLUE;
+        ////Create onclick function
+        //button2.addListener(new ChangeListener() {
+        //
+        //    @Override
+        //    public void changed(ChangeEvent event, Actor actor) {
+        //        System.out.print("Open Options");
+        //        StageManager.setActiveStage("Options");
+        //    }
+        //
+        //});
+        //stage.addActor(button2);
 
         // quit button
         TextButton button3 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
@@ -234,9 +236,17 @@ public class StageFactory {
      * Create Instructions stage
      * @return The new stage created
      */
-    public static Stage createInstructionsStage(){
-        Stage stage = new Stage();
-        
+    public static Stage createInstructionsStage() {
+        Stage stage = new Stage() {
+            @Override
+            public void act() {
+                if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
+                    StageManager.setActiveStage("Game");
+                }
+                super.act();
+            }
+        };
+
         CharSequence Controls = "W - up\nA - left\nS - down\nD - right\nQ - swap chef\nE - Pick up/Put down\nF - Interact\n    (cut/fry/bake)";
         CharSequence Recipes = "Burger:\n-cut bread\n-cut meat\n-fry meat\n-cut lettuce\n\nSalad:\n-cut onion\n-cut tomato\n-cut lettuce";
         //Title
@@ -258,11 +268,12 @@ public class StageFactory {
         Label recipes = new Label(Recipes, new LabelStyle(FontHandler.contentFormat, Color.WHITE));
         coords = new Vector2(0.5, 0.7);
         recipes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.topLeft);
-        
-        Label dishes = new Label("Place ingredients on top of a plate to combine into a dish", new LabelStyle(FontHandler.contentFormat, Color.WHITE));
-        coords = new Vector2(0.5, 0.15);
+
+        Label dishes = new Label("Place ingredients on top of a plate to combine into a dish",
+                new LabelStyle(FontHandler.contentFormat, Color.WHITE));
+        coords = new Vector2(0.5, 0.2);
         dishes.setWrap(true);
-        dishes.setWidth((float)(Base.WINDOW_WIDTH * 0.75));
+        dishes.setWidth((float) (Base.WINDOW_WIDTH * 0.75));
         dishes.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         dishes.setAlignment(Align.center, Align.center);
 
@@ -270,37 +281,37 @@ public class StageFactory {
         Image bun = new Image(GameData.cutBreadTexture);
         coords = new Vector2(0.93, 0.75);
         bun.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        bun.setScale((float)0.15);
+        bun.setScale((float) 0.15);
 
         Image cutMeat = new Image(GameData.cutMeatTexture);
         coords = new Vector2(0.7, 0.6);
         cutMeat.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        cutMeat.setScale((float)1);
+        cutMeat.setScale((float) 1);
 
         Image cookedMeat = new Image(GameData.friedMeatTexture);
         coords = new Vector2(0.77, 0.64);
         cookedMeat.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        cookedMeat.setScale((float)0.32);
+        cookedMeat.setScale((float) 0.32);
 
         Image lettuce = new Image(GameData.cutLettuceTexture);
         coords = new Vector2(0.97, 0.82);
         lettuce.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        lettuce.setScale((float)0.07);
+        lettuce.setScale((float) 0.07);
 
         Image onion = new Image(GameData.cutOnionTexture);
         coords = new Vector2(0.89, 0.58);
         onion.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        onion.setScale((float)0.1);
+        onion.setScale((float) 0.1);
 
         Image tomato = new Image(GameData.cutTomatoTexture);
         coords = new Vector2(0.77, 0.41);
         tomato.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        tomato.setScale((float)0.3);
+        tomato.setScale((float) 0.3);
 
         Image lettuce2 = new Image(GameData.cutLettuceTexture);
         coords = new Vector2(0.97, 0.61);
         lettuce2.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
-        lettuce2.setScale((float)0.07);
+        lettuce2.setScale((float) 0.07);
 
         //Return to pause menu button
         TextButton backButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
@@ -341,7 +352,7 @@ public class StageFactory {
         GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
         GameData.music.setLooping(true);
         //GameData.music.play();
-        
+
         //Title
         CharSequence TitleText = "Level Complete!";
         Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
