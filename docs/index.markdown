@@ -24,4 +24,5 @@ Want to develop our game more? Full javadocs can be found  [here](./javadoc/)
 The PDF documents for our assessment can be found [here](https://drive.google.com/drive/folders/1uPDxU_NtrS0mfdUevFa9mR-tiHp2zYf8)
 
 ## Gantt chart plan 
+Here is our week-to-week plan of the project:
 ![image](./gantt.jpg)
