@@ -128,7 +128,8 @@ public class Dish extends ImageMovable {
 
     /**
      * Checks if the recipe is complete (that is, all the ingredients for the recipe have been added to the dish).
-     * If it is, set the dish's texture to the appropriate dish texture.
+     * If it is, set the dish's texture to the appropriate dish texture and clear ingredients to prevent drawing them
+     * in players inventory alongside the dish.
      * @return True if the recipe is complete, false otherwise.
      */
     private boolean checkComplete() {
