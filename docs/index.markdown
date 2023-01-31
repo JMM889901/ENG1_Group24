@@ -17,7 +17,7 @@ Requires Java 11
 
 ## Developer Information
 
-Want to develop our game more? Full javadocs can be found  [here](./javadoc/index.html)
+Want to develop our game more? Full javadocs can be found  [here](./javadoc.zip)
 
 ## PDF Documents for assessment
 
