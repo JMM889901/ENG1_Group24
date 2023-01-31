@@ -4,6 +4,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.ui.StageAnimation;
@@ -146,6 +148,9 @@ public class GameData {
     /** Texture for a Salad {@link group24.piazzapanic.levelElements.Dish} */
     public static Texture saladDishTexture;
 
+    /**Textures for pause button */
+    public static TextureRegionDrawable pauseButtonTexture;
+    public static TextureRegionDrawable pauseButtonHovTexture;
     /**
      * Initializes all the textures and animations
      */
@@ -241,11 +246,17 @@ public class GameData {
 
         errorTexture = new Texture("stations/sourceerr.png");
 
+        pauseButtonTexture = new TextureRegionDrawable(new Texture("pause_button.png"));
+        pauseButtonHovTexture = new TextureRegionDrawable(new Texture("pause_button_hover.png"));
+        
+        //ingredients for comparisons
         CHOPPED_TOMATO = new Ingredient(IngredientType.TOMATO, 1, -1, -1);
         CHOPPED_LETTUCE = new Ingredient(IngredientType.LETTUCE, 1, -1, -1);
         CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);
         BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);
         BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
+
+        
     }
 
     /**

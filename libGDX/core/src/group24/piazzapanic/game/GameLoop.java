@@ -11,10 +11,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -65,7 +68,7 @@ public class GameLoop extends Stage {
             for (int x = 0; x < GameData.level.getWidth(); x++) {
                 if (GameData.level.grid[x][y] != null) {
 
-                    group.addActor(GameData.level.grid[x][y]);
+                     group.addActor(GameData.level.grid[x][y]);
                     this.stations.add(GameData.level.grid[x][y]);
                 }
             }
@@ -73,9 +76,13 @@ public class GameLoop extends Stage {
             this.rows.add(group);
         }
         //Add pause button
-        TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
-                new Vector2(0.15, 0.95), "||", Align.right);
-        pauseButton.getStyle().overFontColor = Color.BLUE;
+        ImageButton pauseButton = new ImageButton(GameData.pauseButtonTexture);
+        Vector2 coords = new Vector2(0.1, 0.87);
+        pauseButton.setSize(this.getHeight()/10,(float)(this.getHeight()/10));
+        pauseButton.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY());
+        pauseButton.getStyle().imageOver = GameData.pauseButtonHovTexture;
+        pauseButton.getStyle().checkedFocused = GameData.pauseButtonTexture;
+        
         //Create onclick function
         pauseButton.addListener(new ChangeListener() {
 
