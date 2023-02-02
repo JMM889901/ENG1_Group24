@@ -32,7 +32,7 @@ public class StageFactory {
         Stage stage = new Stage();
         GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
         GameData.music.setLooping(true);
-        // GameData.music.play();
+        GameData.music.play();
         CharSequence TitleText = "Piazza Panic!";
         Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
@@ -52,7 +52,7 @@ public class StageFactory {
                 GameData.music.dispose();
                 GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
                 GameData.music.setLooping(true);
-                //  GameData.music.play();
+                 GameData.music.play();
                 GameData.gameLoop = new GameLoop();
                 StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
@@ -173,7 +173,7 @@ public class StageFactory {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.print("Open Game");
-                //  GameData.music.play();
+                 GameData.music.play();
                 StageManager.setActiveStage("Game");
             }
 
@@ -351,7 +351,7 @@ public class StageFactory {
         Stage stage = new Stage();
         GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
         GameData.music.setLooping(true);
-        //GameData.music.play();
+        GameData.music.play();
 
         //Title
         CharSequence TitleText = "Level Complete!";
